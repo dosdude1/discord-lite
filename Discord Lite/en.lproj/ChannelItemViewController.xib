@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="6751" systemVersion="13F1911" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none">
+    <dependencies>
+        <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="6751"/>
+    </dependencies>
+    <objects>
+        <customObject id="-2" userLabel="File's Owner" customClass="ChannelItemViewController">
+            <connections>
+                <outlet property="childChannelLabel" destination="MjX-EJ-OJY" id="Ys0-Hf-vFu"/>
+                <outlet property="dmView" destination="UI1-PG-IWT" id="n5T-1X-Oh7"/>
+                <outlet property="headerView" destination="FCA-fi-Qal" id="WUV-9O-Z0M"/>
+                <outlet property="mentionBadgeLabel" destination="w42-ce-XtG" id="XN0-mq-FXN"/>
+                <outlet property="parentChannelLabel" destination="QeT-me-3Ng" id="OSe-oe-Kva"/>
+                <outlet property="view" destination="c22-O7-iKe" id="dnP-uT-UhX"/>
+            </connections>
+        </customObject>
+        <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
+        <customObject id="-3" userLabel="Application" customClass="NSObject"/>
+        <customView id="c22-O7-iKe" customClass="NSView_BGColor">
+            <rect key="frame" x="0.0" y="0.0" width="240" height="24"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+            <subviews>
+                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="MjX-EJ-OJY">
+                    <rect key="frame" x="27" y="4" width="209" height="17"/>
+                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                    <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Channel" id="D0q-8K-aJz">
+                        <font key="font" metaFont="system"/>
+                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                </textField>
+                <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" id="rk0-03-vJg">
+                    <rect key="frame" x="0.0" y="2" width="21" height="20"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="uI4" id="gcR-KG-dpX"/>
+                </imageView>
+                <textField hidden="YES" horizontalHuggingPriority="251" verticalHuggingPriority="750" id="w42-ce-XtG" customClass="BadgeTextField">
+                    <rect key="frame" x="14" y="1" width="11" height="11"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="1" drawsBackground="YES" id="DmQ-d0-KGK" customClass="RoundedTextFieldCell">
+                        <font key="font" metaFont="system" size="8"/>
+                        <color key="textColor" name="alternateSelectedControlTextColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" red="0.88270635190000002" green="0.0" blue="0.010405921659999999" alpha="1" colorSpace="calibratedRGB"/>
+                    </textFieldCell>
+                </textField>
+            </subviews>
+            <point key="canvasLocation" x="248" y="193"/>
+        </customView>
+        <customView id="FCA-fi-Qal" customClass="NSView_BGColor">
+            <rect key="frame" x="0.0" y="0.0" width="220" height="24"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+            <subviews>
+                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="QeT-me-3Ng">
+                    <rect key="frame" x="4" y="4" width="212" height="17"/>
+                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Header" id="9ir-hg-2m5">
+                        <font key="font" metaFont="systemBold"/>
+                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                </textField>
+            </subviews>
+            <point key="canvasLocation" x="454" y="315"/>
+        </customView>
+        <customView id="UI1-PG-IWT" customClass="NSView_BGColor">
+            <rect key="frame" x="0.0" y="0.0" width="163" height="96"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+            <point key="canvasLocation" x="262.5" y="460"/>
+        </customView>
+    </objects>
+    <resources>
+        <image name="uI4" width="60" height="60"/>
+    </resources>
+</document>

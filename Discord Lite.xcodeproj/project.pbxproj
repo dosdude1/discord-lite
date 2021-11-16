@@ -1,0 +1,1003 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		8714B1A62729ED5200DA4AF9 /* DLError.m in Sources */ = {isa = PBXBuildFile; fileRef = 8714B1A52729ED5200DA4AF9 /* DLError.m */; };
+		8714B1AB2729F5B000DA4AF9 /* DLErrorHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 8714B1AA2729F5B000DA4AF9 /* DLErrorHandler.m */; };
+		8714B1AF2729FC5000DA4AF9 /* DLMainWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8714B1AD2729FC5000DA4AF9 /* DLMainWindowController.m */; };
+		8714B1B12729FCF200DA4AF9 /* DLMainWindowController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8714B1B32729FCF200DA4AF9 /* DLMainWindowController.xib */; };
+		8714B1B9272A0C6900DA4AF9 /* DLServer.m in Sources */ = {isa = PBXBuildFile; fileRef = 8714B1B8272A0C6900DA4AF9 /* DLServer.m */; };
+		872FCEC8272A4C5F002434B1 /* ServerItemViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 872FCEC6272A4C5F002434B1 /* ServerItemViewController.m */; };
+		872FCECA272A4CDA002434B1 /* ServerItemViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 872FCECC272A4CDA002434B1 /* ServerItemViewController.xib */; };
+		872FCED7272A5902002434B1 /* FlippedClipView.m in Sources */ = {isa = PBXBuildFile; fileRef = 872FCED6272A5902002434B1 /* FlippedClipView.m */; };
+		8742C8682730EE47005359DC /* ChatItemViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8742C8672730EE47005359DC /* ChatItemViewController.m */; };
+		8742C86B2730EE85005359DC /* ChatItemViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8742C86D2730EE85005359DC /* ChatItemViewController.xib */; };
+		87450D2C27370833007B4C08 /* DLUserSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = 87450D2B27370833007B4C08 /* DLUserSettings.m */; };
+		876DBDF227291681008682BC /* CJSONDeserializer.m in Sources */ = {isa = PBXBuildFile; fileRef = 876DBDEC27291681008682BC /* CJSONDeserializer.m */; };
+		876DBDF327291681008682BC /* CJSONScanner.m in Sources */ = {isa = PBXBuildFile; fileRef = 876DBDEE27291681008682BC /* CJSONScanner.m */; };
+		876DBDF427291681008682BC /* CJSONSerializer.m in Sources */ = {isa = PBXBuildFile; fileRef = 876DBDF027291681008682BC /* CJSONSerializer.m */; };
+		876DBDF727291711008682BC /* CDataScanner.m in Sources */ = {isa = PBXBuildFile; fileRef = 876DBDF627291711008682BC /* CDataScanner.m */; };
+		876DBDFD2729172A008682BC /* CDataScanner_Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 876DBDFA2729172A008682BC /* CDataScanner_Extensions.m */; };
+		876DBDFE2729172A008682BC /* NSDictionary_JSONExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 876DBDFC2729172A008682BC /* NSDictionary_JSONExtensions.m */; };
+		876DBE012729234A008682BC /* DLUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 876DBE002729234A008682BC /* DLUtil.m */; };
+		87877CDA273050A50062B796 /* ChannelItemViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 87877CDC273050A50062B796 /* ChannelItemViewController.xib */; };
+		878B0B2A2738FC6400547D61 /* discord_purple.png in Resources */ = {isa = PBXBuildFile; fileRef = 878B0B292738FC6400547D61 /* discord_purple.png */; };
+		878B0B2C2738FD4A00547D61 /* discord_placeholder.png in Resources */ = {isa = PBXBuildFile; fileRef = 878B0B2B2738FD4A00547D61 /* discord_placeholder.png */; };
+		878B0B2E2738FDCC00547D61 /* discord_group.png in Resources */ = {isa = PBXBuildFile; fileRef = 878B0B2D2738FDCC00547D61 /* discord_group.png */; };
+		878E49712734644600BBB18B /* NSString+Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = 878E49702734644600BBB18B /* NSString+Base64.m */; };
+		878E497B2734645900BBB18B /* WSFrame.m in Sources */ = {isa = PBXBuildFile; fileRef = 878E49732734645900BBB18B /* WSFrame.m */; };
+		878E497C2734645900BBB18B /* WSMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 878E49752734645900BBB18B /* WSMessage.m */; };
+		878E497D2734645900BBB18B /* WSMessageProcessor.m in Sources */ = {isa = PBXBuildFile; fileRef = 878E49772734645900BBB18B /* WSMessageProcessor.m */; };
+		878E497E2734645900BBB18B /* WSWebSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = 878E497A2734645900BBB18B /* WSWebSocket.m */; };
+		878E498527347A4900BBB18B /* DLWSController.m in Sources */ = {isa = PBXBuildFile; fileRef = 878E498427347A4900BBB18B /* DLWSController.m */; };
+		879E31C62743070400A21FF5 /* AttachmentPreviewViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 879E31C82743070400A21FF5 /* AttachmentPreviewViewController.xib */; };
+		879E31E12743502A00A21FF5 /* settings.png in Resources */ = {isa = PBXBuildFile; fileRef = 879E31E02743502A00A21FF5 /* settings.png */; };
+		87A32B26273F149A003D64BD /* NSView+Events.m in Sources */ = {isa = PBXBuildFile; fileRef = 87A32B25273F149A003D64BD /* NSView+Events.m */; };
+		87A32B2D273F1A28003D64BD /* DLAttachmentWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 87A32B2B273F1A28003D64BD /* DLAttachmentWindowController.m */; };
+		87A32B2F273F1ADC003D64BD /* DLAttachmentWindowController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 87A32B31273F1ADC003D64BD /* DLAttachmentWindowController.xib */; };
+		87A38DD02732FEDB002385EE /* HTTPCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 87A38DCF2732FEDB002385EE /* HTTPCache.m */; };
+		87A38DD32732FF76002385EE /* HTTPCacheData.m in Sources */ = {isa = PBXBuildFile; fileRef = 87A38DD22732FF76002385EE /* HTTPCacheData.m */; };
+		87A38DD627330B49002385EE /* NSView+Border.m in Sources */ = {isa = PBXBuildFile; fileRef = 87A38DD527330B49002385EE /* NSView+Border.m */; };
+		87A38DD9273330C0002385EE /* AttachmentPreviewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 87A38DD8273330C0002385EE /* AttachmentPreviewViewController.m */; };
+		87A38DDE27336E14002385EE /* DirectMessageItemViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 87A38DDD27336E14002385EE /* DirectMessageItemViewController.m */; };
+		87A38DE027336E24002385EE /* DirectMessageItemViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 87A38DDF27336E24002385EE /* DirectMessageItemViewController.xib */; };
+		87A38DE327337386002385EE /* DLDirectMessageChannel.m in Sources */ = {isa = PBXBuildFile; fileRef = 87A38DE227337386002385EE /* DLDirectMessageChannel.m */; };
+		87A38DE927338E48002385EE /* f5k.png in Resources */ = {isa = PBXBuildFile; fileRef = 87A38DE827338E48002385EE /* f5k.png */; };
+		87A38DEF27339557002385EE /* at.png in Resources */ = {isa = PBXBuildFile; fileRef = 87A38DEE27339557002385EE /* at.png */; };
+		87A6E2BE2735E0C2000DC06E /* RoundedTextFieldCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 87A6E2BD2735E0C2000DC06E /* RoundedTextFieldCell.m */; };
+		87A6E2C12735E392000DC06E /* BadgeTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 87A6E2C02735E392000DC06E /* BadgeTextField.m */; };
+		87A6E2C4273612B5000DC06E /* BezierPathRoundedRect.m in Sources */ = {isa = PBXBuildFile; fileRef = 87A6E2C3273612B5000DC06E /* BezierPathRoundedRect.m */; };
+		87AD27D72741D3230092F428 /* HorizontalDynamicScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 87AD27D62741D3230092F428 /* HorizontalDynamicScrollView.m */; };
+		87AD27DA2741EF9C0092F428 /* PendingAttachmentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 87AD27D92741EF9C0092F428 /* PendingAttachmentViewController.m */; };
+		87AD27DD2741EFBC0092F428 /* PendingAttachmentViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 87AD27DF2741EFBC0092F428 /* PendingAttachmentViewController.xib */; };
+		87AD27E32741F3E20092F428 /* delete.png in Resources */ = {isa = PBXBuildFile; fileRef = 87AD27E22741F3E20092F428 /* delete.png */; };
+		87C0834E2728DDFD00C8F933 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 87C0834D2728DDFD00C8F933 /* Cocoa.framework */; };
+		87C083532728DEA000C8F933 /* DLController.m in Sources */ = {isa = PBXBuildFile; fileRef = 87C083522728DEA000C8F933 /* DLController.m */; };
+		87C083572728E1A800C8F933 /* DLLoginWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 87C083552728E1A800C8F933 /* DLLoginWindowController.m */; };
+		87C083592728E1F000C8F933 /* DLLoginWindowController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 87C0835B2728E1F000C8F933 /* DLLoginWindowController.xib */; };
+		87C0835E2728E28500C8F933 /* Discord-Logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 87C0835D2728E28500C8F933 /* Discord-Logo.png */; };
+		87C083632728E94A00C8F933 /* AsyncHTTPRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 87C083622728E94A00C8F933 /* AsyncHTTPRequest.m */; };
+		87C083662728E9FB00C8F933 /* AsyncHTTPPostRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 87C083652728E9FB00C8F933 /* AsyncHTTPPostRequest.m */; };
+		87C083692728EA0800C8F933 /* AsyncHTTPGetRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 87C083682728EA0800C8F933 /* AsyncHTTPGetRequest.m */; };
+		87C0836B2728EA2800C8F933 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 87C0836A2728EA2800C8F933 /* Foundation.framework */; };
+		87C11C942728DB7B000046F2 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 87C11C932728DB7B000046F2 /* AppDelegate.m */; };
+		87C11C962728DB7B000046F2 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 87C11C952728DB7B000046F2 /* main.m */; };
+		87C11C982728DB7B000046F2 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 87C11C972728DB7B000046F2 /* Images.xcassets */; };
+		87C11C9B2728DB7B000046F2 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 87C11C992728DB7B000046F2 /* MainMenu.xib */; };
+		87C11CA72728DB7B000046F2 /* Discord_LiteTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 87C11CA62728DB7B000046F2 /* Discord_LiteTests.m */; };
+		87C2CF8C272F438600F10466 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 87C2CF8B272F438600F10466 /* ViewController.m */; };
+		87C2CF92272F77AD00F10466 /* NSView+BGColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 87C2CF91272F77AD00F10466 /* NSView+BGColor.m */; };
+		87C6E6972730510500090639 /* uI4.png in Resources */ = {isa = PBXBuildFile; fileRef = 87C6E6962730510500090639 /* uI4.png */; };
+		87C6E69A273052B100090639 /* ChannelItemViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 87C6E699273052B100090639 /* ChannelItemViewController.m */; };
+		87C6E6A0273053F000090639 /* DynamicScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 87C6E69F273053F000090639 /* DynamicScrollView.m */; };
+		87C6E6A627305BB600090639 /* DLServerChannel.m in Sources */ = {isa = PBXBuildFile; fileRef = 87C6E6A527305BB600090639 /* DLServerChannel.m */; };
+		87C6E6A827305DBF00090639 /* DLChannel.m in Sources */ = {isa = PBXBuildFile; fileRef = 87C6E6A727305DBF00090639 /* DLChannel.m */; };
+		87D9D1682731C77600162F22 /* PaddedTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 87D9D1672731C77600162F22 /* PaddedTextView.m */; };
+		87D9D16B2731CCA700162F22 /* ChatScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 87D9D16A2731CCA700162F22 /* ChatScrollView.m */; };
+		87D9D16E27320B1500162F22 /* DLMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 87D9D16D27320B1500162F22 /* DLMessage.m */; };
+		87D9D17127320C1000162F22 /* DLUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 87D9D17027320C1000162F22 /* DLUser.m */; };
+		87D9D17427320C1A00162F22 /* DLAttachment.m in Sources */ = {isa = PBXBuildFile; fileRef = 87D9D17327320C1A00162F22 /* DLAttachment.m */; };
+		87DA40092739DB28007E7455 /* mention_notification.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 87DA40082739DB28007E7455 /* mention_notification.mp3 */; };
+		87DA400C2739DD58007E7455 /* DLAudioPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 87DA400B2739DD58007E7455 /* DLAudioPlayer.m */; };
+		87DA40172739F4DB007E7455 /* AppIcon.icns in Resources */ = {isa = PBXBuildFile; fileRef = 87DA40162739F4DB007E7455 /* AppIcon.icns */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		87C11CA12728DB7B000046F2 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 87C11C852728DB7B000046F2 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 87C11C8C2728DB7B000046F2;
+			remoteInfo = "Discord Lite";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		8714B1A42729ED5200DA4AF9 /* DLError.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DLError.h; sourceTree = "<group>"; };
+		8714B1A52729ED5200DA4AF9 /* DLError.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DLError.m; sourceTree = "<group>"; };
+		8714B1A92729F5B000DA4AF9 /* DLErrorHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DLErrorHandler.h; sourceTree = "<group>"; };
+		8714B1AA2729F5B000DA4AF9 /* DLErrorHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DLErrorHandler.m; sourceTree = "<group>"; };
+		8714B1AC2729FC5000DA4AF9 /* DLMainWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DLMainWindowController.h; sourceTree = "<group>"; };
+		8714B1AD2729FC5000DA4AF9 /* DLMainWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DLMainWindowController.m; sourceTree = "<group>"; };
+		8714B1B22729FCF200DA4AF9 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/DLMainWindowController.xib; sourceTree = "<group>"; };
+		8714B1B7272A0C6900DA4AF9 /* DLServer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DLServer.h; sourceTree = "<group>"; };
+		8714B1B8272A0C6900DA4AF9 /* DLServer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DLServer.m; sourceTree = "<group>"; };
+		872FCEC5272A4C5F002434B1 /* ServerItemViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ServerItemViewController.h; sourceTree = "<group>"; };
+		872FCEC6272A4C5F002434B1 /* ServerItemViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ServerItemViewController.m; sourceTree = "<group>"; };
+		872FCECB272A4CDA002434B1 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ServerItemViewController.xib; sourceTree = "<group>"; };
+		872FCED5272A5902002434B1 /* FlippedClipView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlippedClipView.h; sourceTree = "<group>"; };
+		872FCED6272A5902002434B1 /* FlippedClipView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FlippedClipView.m; sourceTree = "<group>"; };
+		8742C8662730EE47005359DC /* ChatItemViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatItemViewController.h; sourceTree = "<group>"; };
+		8742C8672730EE47005359DC /* ChatItemViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatItemViewController.m; sourceTree = "<group>"; };
+		8742C86C2730EE85005359DC /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ChatItemViewController.xib; sourceTree = "<group>"; };
+		87450D2A27370833007B4C08 /* DLUserSettings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DLUserSettings.h; sourceTree = "<group>"; };
+		87450D2B27370833007B4C08 /* DLUserSettings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DLUserSettings.m; sourceTree = "<group>"; };
+		876DBDEB27291681008682BC /* CJSONDeserializer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CJSONDeserializer.h; sourceTree = "<group>"; };
+		876DBDEC27291681008682BC /* CJSONDeserializer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CJSONDeserializer.m; sourceTree = "<group>"; };
+		876DBDED27291681008682BC /* CJSONScanner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CJSONScanner.h; sourceTree = "<group>"; };
+		876DBDEE27291681008682BC /* CJSONScanner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CJSONScanner.m; sourceTree = "<group>"; };
+		876DBDEF27291681008682BC /* CJSONSerializer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CJSONSerializer.h; sourceTree = "<group>"; };
+		876DBDF027291681008682BC /* CJSONSerializer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CJSONSerializer.m; sourceTree = "<group>"; };
+		876DBDF127291681008682BC /* JSONRepresentation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSONRepresentation.h; sourceTree = "<group>"; };
+		876DBDF527291711008682BC /* CDataScanner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CDataScanner.h; sourceTree = "<group>"; };
+		876DBDF627291711008682BC /* CDataScanner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CDataScanner.m; sourceTree = "<group>"; };
+		876DBDF92729172A008682BC /* CDataScanner_Extensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CDataScanner_Extensions.h; sourceTree = "<group>"; };
+		876DBDFA2729172A008682BC /* CDataScanner_Extensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CDataScanner_Extensions.m; sourceTree = "<group>"; };
+		876DBDFB2729172A008682BC /* NSDictionary_JSONExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSDictionary_JSONExtensions.h; sourceTree = "<group>"; };
+		876DBDFC2729172A008682BC /* NSDictionary_JSONExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSDictionary_JSONExtensions.m; sourceTree = "<group>"; };
+		876DBDFF2729234A008682BC /* DLUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DLUtil.h; sourceTree = "<group>"; };
+		876DBE002729234A008682BC /* DLUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DLUtil.m; sourceTree = "<group>"; };
+		877F0F9D2728DBEE00FBD4B3 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainMenu.xib; sourceTree = "<group>"; };
+		87877CDB273050A50062B796 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ChannelItemViewController.xib; sourceTree = "<group>"; };
+		878B0B292738FC6400547D61 /* discord_purple.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = discord_purple.png; sourceTree = "<group>"; };
+		878B0B2B2738FD4A00547D61 /* discord_placeholder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = discord_placeholder.png; sourceTree = "<group>"; };
+		878B0B2D2738FDCC00547D61 /* discord_group.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = discord_group.png; sourceTree = "<group>"; };
+		878E496F2734644600BBB18B /* NSString+Base64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Base64.h"; sourceTree = "<group>"; };
+		878E49702734644600BBB18B /* NSString+Base64.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Base64.m"; sourceTree = "<group>"; };
+		878E49722734645900BBB18B /* WSFrame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WSFrame.h; sourceTree = "<group>"; };
+		878E49732734645900BBB18B /* WSFrame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WSFrame.m; sourceTree = "<group>"; };
+		878E49742734645900BBB18B /* WSMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WSMessage.h; sourceTree = "<group>"; };
+		878E49752734645900BBB18B /* WSMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WSMessage.m; sourceTree = "<group>"; };
+		878E49762734645900BBB18B /* WSMessageProcessor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WSMessageProcessor.h; sourceTree = "<group>"; };
+		878E49772734645900BBB18B /* WSMessageProcessor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WSMessageProcessor.m; sourceTree = "<group>"; };
+		878E49782734645900BBB18B /* WSWebSocket-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "WSWebSocket-Prefix.pch"; sourceTree = "<group>"; };
+		878E49792734645900BBB18B /* WSWebSocket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WSWebSocket.h; sourceTree = "<group>"; };
+		878E497A2734645900BBB18B /* WSWebSocket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WSWebSocket.m; sourceTree = "<group>"; };
+		878E498327347A4900BBB18B /* DLWSController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DLWSController.h; sourceTree = "<group>"; };
+		878E498427347A4900BBB18B /* DLWSController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DLWSController.m; sourceTree = "<group>"; };
+		879E31C72743070400A21FF5 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/AttachmentPreviewViewController.xib; sourceTree = "<group>"; };
+		879E31E02743502A00A21FF5 /* settings.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = settings.png; sourceTree = "<group>"; };
+		87A32B24273F149A003D64BD /* NSView+Events.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSView+Events.h"; sourceTree = "<group>"; };
+		87A32B25273F149A003D64BD /* NSView+Events.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSView+Events.m"; sourceTree = "<group>"; };
+		87A32B2A273F1A28003D64BD /* DLAttachmentWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DLAttachmentWindowController.h; sourceTree = "<group>"; };
+		87A32B2B273F1A28003D64BD /* DLAttachmentWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DLAttachmentWindowController.m; sourceTree = "<group>"; };
+		87A32B30273F1ADC003D64BD /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/DLAttachmentWindowController.xib; sourceTree = "<group>"; };
+		87A38DCE2732FEDB002385EE /* HTTPCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTTPCache.h; sourceTree = "<group>"; };
+		87A38DCF2732FEDB002385EE /* HTTPCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTTPCache.m; sourceTree = "<group>"; };
+		87A38DD12732FF76002385EE /* HTTPCacheData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTTPCacheData.h; sourceTree = "<group>"; };
+		87A38DD22732FF76002385EE /* HTTPCacheData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTTPCacheData.m; sourceTree = "<group>"; };
+		87A38DD427330B49002385EE /* NSView+Border.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSView+Border.h"; sourceTree = "<group>"; };
+		87A38DD527330B49002385EE /* NSView+Border.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSView+Border.m"; sourceTree = "<group>"; };
+		87A38DD7273330C0002385EE /* AttachmentPreviewViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AttachmentPreviewViewController.h; sourceTree = "<group>"; };
+		87A38DD8273330C0002385EE /* AttachmentPreviewViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AttachmentPreviewViewController.m; sourceTree = "<group>"; };
+		87A38DDC27336E14002385EE /* DirectMessageItemViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DirectMessageItemViewController.h; sourceTree = "<group>"; };
+		87A38DDD27336E14002385EE /* DirectMessageItemViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DirectMessageItemViewController.m; sourceTree = "<group>"; };
+		87A38DDF27336E24002385EE /* DirectMessageItemViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DirectMessageItemViewController.xib; sourceTree = "<group>"; };
+		87A38DE127337386002385EE /* DLDirectMessageChannel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DLDirectMessageChannel.h; sourceTree = "<group>"; };
+		87A38DE227337386002385EE /* DLDirectMessageChannel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DLDirectMessageChannel.m; sourceTree = "<group>"; };
+		87A38DE827338E48002385EE /* f5k.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = f5k.png; sourceTree = "<group>"; };
+		87A38DEE27339557002385EE /* at.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = at.png; sourceTree = "<group>"; };
+		87A6E2BC2735E0C2000DC06E /* RoundedTextFieldCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RoundedTextFieldCell.h; sourceTree = "<group>"; };
+		87A6E2BD2735E0C2000DC06E /* RoundedTextFieldCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RoundedTextFieldCell.m; sourceTree = "<group>"; };
+		87A6E2BF2735E392000DC06E /* BadgeTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BadgeTextField.h; sourceTree = "<group>"; };
+		87A6E2C02735E392000DC06E /* BadgeTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BadgeTextField.m; sourceTree = "<group>"; };
+		87A6E2C2273612B5000DC06E /* BezierPathRoundedRect.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BezierPathRoundedRect.h; sourceTree = "<group>"; };
+		87A6E2C3273612B5000DC06E /* BezierPathRoundedRect.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BezierPathRoundedRect.m; sourceTree = "<group>"; };
+		87AD27D52741D3230092F428 /* HorizontalDynamicScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HorizontalDynamicScrollView.h; sourceTree = "<group>"; };
+		87AD27D62741D3230092F428 /* HorizontalDynamicScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HorizontalDynamicScrollView.m; sourceTree = "<group>"; };
+		87AD27D82741EF9C0092F428 /* PendingAttachmentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PendingAttachmentViewController.h; sourceTree = "<group>"; };
+		87AD27D92741EF9C0092F428 /* PendingAttachmentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PendingAttachmentViewController.m; sourceTree = "<group>"; };
+		87AD27DE2741EFBC0092F428 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/PendingAttachmentViewController.xib; sourceTree = "<group>"; };
+		87AD27E22741F3E20092F428 /* delete.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = delete.png; sourceTree = "<group>"; };
+		87C0834D2728DDFD00C8F933 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/System/Library/Frameworks/Cocoa.framework; sourceTree = DEVELOPER_DIR; };
+		87C083512728DEA000C8F933 /* DLController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DLController.h; sourceTree = "<group>"; };
+		87C083522728DEA000C8F933 /* DLController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DLController.m; sourceTree = "<group>"; };
+		87C083542728E1A800C8F933 /* DLLoginWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DLLoginWindowController.h; sourceTree = "<group>"; };
+		87C083552728E1A800C8F933 /* DLLoginWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DLLoginWindowController.m; sourceTree = "<group>"; };
+		87C0835A2728E1F000C8F933 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/DLLoginWindowController.xib; sourceTree = "<group>"; };
+		87C0835D2728E28500C8F933 /* Discord-Logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Discord-Logo.png"; sourceTree = "<group>"; };
+		87C083612728E94A00C8F933 /* AsyncHTTPRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AsyncHTTPRequest.h; sourceTree = "<group>"; };
+		87C083622728E94A00C8F933 /* AsyncHTTPRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AsyncHTTPRequest.m; sourceTree = "<group>"; };
+		87C083642728E9FB00C8F933 /* AsyncHTTPPostRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AsyncHTTPPostRequest.h; sourceTree = "<group>"; };
+		87C083652728E9FB00C8F933 /* AsyncHTTPPostRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AsyncHTTPPostRequest.m; sourceTree = "<group>"; };
+		87C083672728EA0800C8F933 /* AsyncHTTPGetRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AsyncHTTPGetRequest.h; sourceTree = "<group>"; };
+		87C083682728EA0800C8F933 /* AsyncHTTPGetRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AsyncHTTPGetRequest.m; sourceTree = "<group>"; };
+		87C0836A2728EA2800C8F933 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
+		87C11C8D2728DB7B000046F2 /* Discord Lite.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Discord Lite.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		87C11C912728DB7B000046F2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		87C11C922728DB7B000046F2 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		87C11C932728DB7B000046F2 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		87C11C952728DB7B000046F2 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		87C11C972728DB7B000046F2 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		87C11CA02728DB7B000046F2 /* Discord LiteTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Discord LiteTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		87C11CA52728DB7B000046F2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		87C11CA62728DB7B000046F2 /* Discord_LiteTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Discord_LiteTests.m; sourceTree = "<group>"; };
+		87C2CF8A272F438600F10466 /* ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		87C2CF8B272F438600F10466 /* ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		87C2CF90272F77AD00F10466 /* NSView+BGColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSView+BGColor.h"; sourceTree = "<group>"; };
+		87C2CF91272F77AD00F10466 /* NSView+BGColor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSView+BGColor.m"; sourceTree = "<group>"; };
+		87C6E6962730510500090639 /* uI4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = uI4.png; sourceTree = "<group>"; };
+		87C6E698273052B100090639 /* ChannelItemViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChannelItemViewController.h; sourceTree = "<group>"; };
+		87C6E699273052B100090639 /* ChannelItemViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChannelItemViewController.m; sourceTree = "<group>"; };
+		87C6E69E273053F000090639 /* DynamicScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DynamicScrollView.h; sourceTree = "<group>"; };
+		87C6E69F273053F000090639 /* DynamicScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DynamicScrollView.m; sourceTree = "<group>"; };
+		87C6E6A127305A9400090639 /* DLChannel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DLChannel.h; sourceTree = "<group>"; };
+		87C6E6A427305BB600090639 /* DLServerChannel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DLServerChannel.h; sourceTree = "<group>"; };
+		87C6E6A527305BB600090639 /* DLServerChannel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DLServerChannel.m; sourceTree = "<group>"; };
+		87C6E6A727305DBF00090639 /* DLChannel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DLChannel.m; sourceTree = "<group>"; };
+		87D9D1662731C77600162F22 /* PaddedTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PaddedTextView.h; sourceTree = "<group>"; };
+		87D9D1672731C77600162F22 /* PaddedTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PaddedTextView.m; sourceTree = "<group>"; };
+		87D9D1692731CCA700162F22 /* ChatScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatScrollView.h; sourceTree = "<group>"; };
+		87D9D16A2731CCA700162F22 /* ChatScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatScrollView.m; sourceTree = "<group>"; };
+		87D9D16C27320B1500162F22 /* DLMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DLMessage.h; sourceTree = "<group>"; };
+		87D9D16D27320B1500162F22 /* DLMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DLMessage.m; sourceTree = "<group>"; };
+		87D9D16F27320C1000162F22 /* DLUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DLUser.h; sourceTree = "<group>"; };
+		87D9D17027320C1000162F22 /* DLUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DLUser.m; sourceTree = "<group>"; };
+		87D9D17227320C1A00162F22 /* DLAttachment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DLAttachment.h; sourceTree = "<group>"; };
+		87D9D17327320C1A00162F22 /* DLAttachment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DLAttachment.m; sourceTree = "<group>"; };
+		87DA40082739DB28007E7455 /* mention_notification.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = mention_notification.mp3; sourceTree = "<group>"; };
+		87DA400A2739DD58007E7455 /* DLAudioPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DLAudioPlayer.h; sourceTree = "<group>"; };
+		87DA400B2739DD58007E7455 /* DLAudioPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DLAudioPlayer.m; sourceTree = "<group>"; };
+		87DA40162739F4DB007E7455 /* AppIcon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = AppIcon.icns; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		87C11C8A2728DB7B000046F2 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				87C0836B2728EA2800C8F933 /* Foundation.framework in Frameworks */,
+				87C0834E2728DDFD00C8F933 /* Cocoa.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		87C11C9D2728DB7B000046F2 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		8714B1A72729F46300DA4AF9 /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				87C11C922728DB7B000046F2 /* AppDelegate.h */,
+				87C11C932728DB7B000046F2 /* AppDelegate.m */,
+				87C11C972728DB7B000046F2 /* Images.xcassets */,
+				87C11C992728DB7B000046F2 /* MainMenu.xib */,
+				87DA40162739F4DB007E7455 /* AppIcon.icns */,
+				8714B1A82729F59F00DA4AF9 /* Controllers */,
+				87C083502728DE7600C8F933 /* WindowControllers */,
+				8714B1B6272A06B800DA4AF9 /* Views */,
+			);
+			name = UI;
+			sourceTree = "<group>";
+		};
+		8714B1A82729F59F00DA4AF9 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				8714B1A92729F5B000DA4AF9 /* DLErrorHandler.h */,
+				8714B1AA2729F5B000DA4AF9 /* DLErrorHandler.m */,
+			);
+			name = Controllers;
+			sourceTree = "<group>";
+		};
+		8714B1B6272A06B800DA4AF9 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				87C6E69E273053F000090639 /* DynamicScrollView.h */,
+				87C6E69F273053F000090639 /* DynamicScrollView.m */,
+				87AD27D52741D3230092F428 /* HorizontalDynamicScrollView.h */,
+				87AD27D62741D3230092F428 /* HorizontalDynamicScrollView.m */,
+				87D9D1692731CCA700162F22 /* ChatScrollView.h */,
+				87D9D16A2731CCA700162F22 /* ChatScrollView.m */,
+				872FCEC5272A4C5F002434B1 /* ServerItemViewController.h */,
+				872FCEC6272A4C5F002434B1 /* ServerItemViewController.m */,
+				872FCECC272A4CDA002434B1 /* ServerItemViewController.xib */,
+				87C6E698273052B100090639 /* ChannelItemViewController.h */,
+				87C6E699273052B100090639 /* ChannelItemViewController.m */,
+				87877CDC273050A50062B796 /* ChannelItemViewController.xib */,
+				87A38DDC27336E14002385EE /* DirectMessageItemViewController.h */,
+				87A38DDD27336E14002385EE /* DirectMessageItemViewController.m */,
+				87A38DDF27336E24002385EE /* DirectMessageItemViewController.xib */,
+				8742C8662730EE47005359DC /* ChatItemViewController.h */,
+				8742C8672730EE47005359DC /* ChatItemViewController.m */,
+				8742C86D2730EE85005359DC /* ChatItemViewController.xib */,
+				87A38DD7273330C0002385EE /* AttachmentPreviewViewController.h */,
+				87A38DD8273330C0002385EE /* AttachmentPreviewViewController.m */,
+				879E31C82743070400A21FF5 /* AttachmentPreviewViewController.xib */,
+				87AD27D82741EF9C0092F428 /* PendingAttachmentViewController.h */,
+				87AD27D92741EF9C0092F428 /* PendingAttachmentViewController.m */,
+				87AD27DF2741EFBC0092F428 /* PendingAttachmentViewController.xib */,
+				87D9D17627320E8500162F22 /* Helper Views */,
+				87C2CF89272F436E00F10466 /* Base Classes */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
+		876DBDE72728F768008682BC /* Libraries */ = {
+			isa = PBXGroup;
+			children = (
+				876DBDF827291713008682BC /* JSON */,
+			);
+			name = Libraries;
+			sourceTree = "<group>";
+		};
+		876DBDF827291713008682BC /* JSON */ = {
+			isa = PBXGroup;
+			children = (
+				876DBDEB27291681008682BC /* CJSONDeserializer.h */,
+				876DBDEC27291681008682BC /* CJSONDeserializer.m */,
+				876DBDED27291681008682BC /* CJSONScanner.h */,
+				876DBDEE27291681008682BC /* CJSONScanner.m */,
+				876DBDEF27291681008682BC /* CJSONSerializer.h */,
+				876DBDF027291681008682BC /* CJSONSerializer.m */,
+				876DBDF127291681008682BC /* JSONRepresentation.h */,
+				876DBDF527291711008682BC /* CDataScanner.h */,
+				876DBDF627291711008682BC /* CDataScanner.m */,
+				876DBDF92729172A008682BC /* CDataScanner_Extensions.h */,
+				876DBDFA2729172A008682BC /* CDataScanner_Extensions.m */,
+				876DBDFB2729172A008682BC /* NSDictionary_JSONExtensions.h */,
+				876DBDFC2729172A008682BC /* NSDictionary_JSONExtensions.m */,
+			);
+			name = JSON;
+			sourceTree = "<group>";
+		};
+		878E496E2734643C00BBB18B /* Web Sockets */ = {
+			isa = PBXGroup;
+			children = (
+				878E496F2734644600BBB18B /* NSString+Base64.h */,
+				878E49702734644600BBB18B /* NSString+Base64.m */,
+				878E49722734645900BBB18B /* WSFrame.h */,
+				878E49732734645900BBB18B /* WSFrame.m */,
+				878E49742734645900BBB18B /* WSMessage.h */,
+				878E49752734645900BBB18B /* WSMessage.m */,
+				878E49762734645900BBB18B /* WSMessageProcessor.h */,
+				878E49772734645900BBB18B /* WSMessageProcessor.m */,
+				878E49782734645900BBB18B /* WSWebSocket-Prefix.pch */,
+				878E49792734645900BBB18B /* WSWebSocket.h */,
+				878E497A2734645900BBB18B /* WSWebSocket.m */,
+			);
+			name = "Web Sockets";
+			sourceTree = "<group>";
+		};
+		87C0834F2728DE6B00C8F933 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				87C083512728DEA000C8F933 /* DLController.h */,
+				87C083522728DEA000C8F933 /* DLController.m */,
+				878E498327347A4900BBB18B /* DLWSController.h */,
+				878E498427347A4900BBB18B /* DLWSController.m */,
+				876DBDFF2729234A008682BC /* DLUtil.h */,
+				876DBE002729234A008682BC /* DLUtil.m */,
+				8714B1A42729ED5200DA4AF9 /* DLError.h */,
+				8714B1A52729ED5200DA4AF9 /* DLError.m */,
+				8714B1B7272A0C6900DA4AF9 /* DLServer.h */,
+				8714B1B8272A0C6900DA4AF9 /* DLServer.m */,
+				87C6E6A127305A9400090639 /* DLChannel.h */,
+				87C6E6A727305DBF00090639 /* DLChannel.m */,
+				87C6E6A427305BB600090639 /* DLServerChannel.h */,
+				87C6E6A527305BB600090639 /* DLServerChannel.m */,
+				87A38DE127337386002385EE /* DLDirectMessageChannel.h */,
+				87A38DE227337386002385EE /* DLDirectMessageChannel.m */,
+				87D9D16C27320B1500162F22 /* DLMessage.h */,
+				87D9D16D27320B1500162F22 /* DLMessage.m */,
+				87D9D16F27320C1000162F22 /* DLUser.h */,
+				87D9D17027320C1000162F22 /* DLUser.m */,
+				87450D2A27370833007B4C08 /* DLUserSettings.h */,
+				87450D2B27370833007B4C08 /* DLUserSettings.m */,
+				87D9D17227320C1A00162F22 /* DLAttachment.h */,
+				87D9D17327320C1A00162F22 /* DLAttachment.m */,
+				87DA400A2739DD58007E7455 /* DLAudioPlayer.h */,
+				87DA400B2739DD58007E7455 /* DLAudioPlayer.m */,
+				878E496E2734643C00BBB18B /* Web Sockets */,
+				87D9D17527320E6A00162F22 /* HTTP */,
+			);
+			name = Classes;
+			sourceTree = "<group>";
+		};
+		87C083502728DE7600C8F933 /* WindowControllers */ = {
+			isa = PBXGroup;
+			children = (
+				87C083542728E1A800C8F933 /* DLLoginWindowController.h */,
+				87C083552728E1A800C8F933 /* DLLoginWindowController.m */,
+				87C0835B2728E1F000C8F933 /* DLLoginWindowController.xib */,
+				8714B1AC2729FC5000DA4AF9 /* DLMainWindowController.h */,
+				8714B1AD2729FC5000DA4AF9 /* DLMainWindowController.m */,
+				8714B1B32729FCF200DA4AF9 /* DLMainWindowController.xib */,
+				87A32B2A273F1A28003D64BD /* DLAttachmentWindowController.h */,
+				87A32B2B273F1A28003D64BD /* DLAttachmentWindowController.m */,
+				87A32B31273F1ADC003D64BD /* DLAttachmentWindowController.xib */,
+			);
+			name = WindowControllers;
+			sourceTree = "<group>";
+		};
+		87C0835C2728E27900C8F933 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				878B0B2B2738FD4A00547D61 /* discord_placeholder.png */,
+				87C0835D2728E28500C8F933 /* Discord-Logo.png */,
+				87C6E6962730510500090639 /* uI4.png */,
+				87A38DE827338E48002385EE /* f5k.png */,
+				878B0B2D2738FDCC00547D61 /* discord_group.png */,
+				87A38DEE27339557002385EE /* at.png */,
+				878B0B292738FC6400547D61 /* discord_purple.png */,
+				87DA40082739DB28007E7455 /* mention_notification.mp3 */,
+				87AD27E22741F3E20092F428 /* delete.png */,
+				879E31E02743502A00A21FF5 /* settings.png */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		87C11C842728DB7B000046F2 = {
+			isa = PBXGroup;
+			children = (
+				87C0836A2728EA2800C8F933 /* Foundation.framework */,
+				87C0834D2728DDFD00C8F933 /* Cocoa.framework */,
+				87C11C8F2728DB7B000046F2 /* Discord Lite */,
+				87C11CA32728DB7B000046F2 /* Discord LiteTests */,
+				87C11C8E2728DB7B000046F2 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		87C11C8E2728DB7B000046F2 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				87C11C8D2728DB7B000046F2 /* Discord Lite.app */,
+				87C11CA02728DB7B000046F2 /* Discord LiteTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		87C11C8F2728DB7B000046F2 /* Discord Lite */ = {
+			isa = PBXGroup;
+			children = (
+				8714B1A72729F46300DA4AF9 /* UI */,
+				87C0834F2728DE6B00C8F933 /* Classes */,
+				876DBDE72728F768008682BC /* Libraries */,
+				87C0835C2728E27900C8F933 /* Resources */,
+				87C11C902728DB7B000046F2 /* Supporting Files */,
+			);
+			path = "Discord Lite";
+			sourceTree = "<group>";
+		};
+		87C11C902728DB7B000046F2 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				87C11C912728DB7B000046F2 /* Info.plist */,
+				87C11C952728DB7B000046F2 /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		87C11CA32728DB7B000046F2 /* Discord LiteTests */ = {
+			isa = PBXGroup;
+			children = (
+				87C11CA62728DB7B000046F2 /* Discord_LiteTests.m */,
+				87C11CA42728DB7B000046F2 /* Supporting Files */,
+			);
+			path = "Discord LiteTests";
+			sourceTree = "<group>";
+		};
+		87C11CA42728DB7B000046F2 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				87C11CA52728DB7B000046F2 /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		87C2CF89272F436E00F10466 /* Base Classes */ = {
+			isa = PBXGroup;
+			children = (
+				87C2CF8A272F438600F10466 /* ViewController.h */,
+				87C2CF8B272F438600F10466 /* ViewController.m */,
+			);
+			name = "Base Classes";
+			sourceTree = "<group>";
+		};
+		87D9D17527320E6A00162F22 /* HTTP */ = {
+			isa = PBXGroup;
+			children = (
+				87C083612728E94A00C8F933 /* AsyncHTTPRequest.h */,
+				87C083622728E94A00C8F933 /* AsyncHTTPRequest.m */,
+				87C083642728E9FB00C8F933 /* AsyncHTTPPostRequest.h */,
+				87C083652728E9FB00C8F933 /* AsyncHTTPPostRequest.m */,
+				87C083672728EA0800C8F933 /* AsyncHTTPGetRequest.h */,
+				87C083682728EA0800C8F933 /* AsyncHTTPGetRequest.m */,
+				87A38DCE2732FEDB002385EE /* HTTPCache.h */,
+				87A38DCF2732FEDB002385EE /* HTTPCache.m */,
+				87A38DD12732FF76002385EE /* HTTPCacheData.h */,
+				87A38DD22732FF76002385EE /* HTTPCacheData.m */,
+			);
+			name = HTTP;
+			sourceTree = "<group>";
+		};
+		87D9D17627320E8500162F22 /* Helper Views */ = {
+			isa = PBXGroup;
+			children = (
+				872FCED5272A5902002434B1 /* FlippedClipView.h */,
+				872FCED6272A5902002434B1 /* FlippedClipView.m */,
+				87A32B24273F149A003D64BD /* NSView+Events.h */,
+				87A32B25273F149A003D64BD /* NSView+Events.m */,
+				87C2CF90272F77AD00F10466 /* NSView+BGColor.h */,
+				87C2CF91272F77AD00F10466 /* NSView+BGColor.m */,
+				87A38DD427330B49002385EE /* NSView+Border.h */,
+				87A38DD527330B49002385EE /* NSView+Border.m */,
+				87D9D1662731C77600162F22 /* PaddedTextView.h */,
+				87D9D1672731C77600162F22 /* PaddedTextView.m */,
+				87A6E2BC2735E0C2000DC06E /* RoundedTextFieldCell.h */,
+				87A6E2BD2735E0C2000DC06E /* RoundedTextFieldCell.m */,
+				87A6E2BF2735E392000DC06E /* BadgeTextField.h */,
+				87A6E2C02735E392000DC06E /* BadgeTextField.m */,
+				87A6E2C2273612B5000DC06E /* BezierPathRoundedRect.h */,
+				87A6E2C3273612B5000DC06E /* BezierPathRoundedRect.m */,
+			);
+			name = "Helper Views";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		87C11C8C2728DB7B000046F2 /* Discord Lite */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 87C11CAA2728DB7B000046F2 /* Build configuration list for PBXNativeTarget "Discord Lite" */;
+			buildPhases = (
+				87C11C892728DB7B000046F2 /* Sources */,
+				87C11C8A2728DB7B000046F2 /* Frameworks */,
+				87C11C8B2728DB7B000046F2 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Discord Lite";
+			productName = "Discord Lite";
+			productReference = 87C11C8D2728DB7B000046F2 /* Discord Lite.app */;
+			productType = "com.apple.product-type.application";
+		};
+		87C11C9F2728DB7B000046F2 /* Discord LiteTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 87C11CAD2728DB7B000046F2 /* Build configuration list for PBXNativeTarget "Discord LiteTests" */;
+			buildPhases = (
+				87C11C9C2728DB7B000046F2 /* Sources */,
+				87C11C9D2728DB7B000046F2 /* Frameworks */,
+				87C11C9E2728DB7B000046F2 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				87C11CA22728DB7B000046F2 /* PBXTargetDependency */,
+			);
+			name = "Discord LiteTests";
+			productName = "Discord LiteTests";
+			productReference = 87C11CA02728DB7B000046F2 /* Discord LiteTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		87C11C852728DB7B000046F2 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0620;
+				ORGANIZATIONNAME = dosdude1;
+				TargetAttributes = {
+					87C11C8C2728DB7B000046F2 = {
+						CreatedOnToolsVersion = 6.2;
+					};
+					87C11C9F2728DB7B000046F2 = {
+						CreatedOnToolsVersion = 6.2;
+						TestTargetID = 87C11C8C2728DB7B000046F2;
+					};
+				};
+			};
+			buildConfigurationList = 87C11C882728DB7B000046F2 /* Build configuration list for PBXProject "Discord Lite" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 87C11C842728DB7B000046F2;
+			productRefGroup = 87C11C8E2728DB7B000046F2 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				87C11C8C2728DB7B000046F2 /* Discord Lite */,
+				87C11C9F2728DB7B000046F2 /* Discord LiteTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		87C11C8B2728DB7B000046F2 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				87A38DEF27339557002385EE /* at.png in Resources */,
+				87C6E6972730510500090639 /* uI4.png in Resources */,
+				87DA40172739F4DB007E7455 /* AppIcon.icns in Resources */,
+				87C11C982728DB7B000046F2 /* Images.xcassets in Resources */,
+				87A38DE027336E24002385EE /* DirectMessageItemViewController.xib in Resources */,
+				87C0835E2728E28500C8F933 /* Discord-Logo.png in Resources */,
+				87877CDA273050A50062B796 /* ChannelItemViewController.xib in Resources */,
+				87DA40092739DB28007E7455 /* mention_notification.mp3 in Resources */,
+				87AD27E32741F3E20092F428 /* delete.png in Resources */,
+				878B0B2A2738FC6400547D61 /* discord_purple.png in Resources */,
+				87AD27DD2741EFBC0092F428 /* PendingAttachmentViewController.xib in Resources */,
+				872FCECA272A4CDA002434B1 /* ServerItemViewController.xib in Resources */,
+				8714B1B12729FCF200DA4AF9 /* DLMainWindowController.xib in Resources */,
+				87C11C9B2728DB7B000046F2 /* MainMenu.xib in Resources */,
+				879E31E12743502A00A21FF5 /* settings.png in Resources */,
+				87A32B2F273F1ADC003D64BD /* DLAttachmentWindowController.xib in Resources */,
+				879E31C62743070400A21FF5 /* AttachmentPreviewViewController.xib in Resources */,
+				8742C86B2730EE85005359DC /* ChatItemViewController.xib in Resources */,
+				87A38DE927338E48002385EE /* f5k.png in Resources */,
+				878B0B2E2738FDCC00547D61 /* discord_group.png in Resources */,
+				87C083592728E1F000C8F933 /* DLLoginWindowController.xib in Resources */,
+				878B0B2C2738FD4A00547D61 /* discord_placeholder.png in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		87C11C9E2728DB7B000046F2 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		87C11C892728DB7B000046F2 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8714B1A62729ED5200DA4AF9 /* DLError.m in Sources */,
+				87C6E6A627305BB600090639 /* DLServerChannel.m in Sources */,
+				87A38DD02732FEDB002385EE /* HTTPCache.m in Sources */,
+				872FCEC8272A4C5F002434B1 /* ServerItemViewController.m in Sources */,
+				878E49712734644600BBB18B /* NSString+Base64.m in Sources */,
+				87AD27D72741D3230092F428 /* HorizontalDynamicScrollView.m in Sources */,
+				87A6E2C12735E392000DC06E /* BadgeTextField.m in Sources */,
+				876DBDFE2729172A008682BC /* NSDictionary_JSONExtensions.m in Sources */,
+				87C083662728E9FB00C8F933 /* AsyncHTTPPostRequest.m in Sources */,
+				8714B1AB2729F5B000DA4AF9 /* DLErrorHandler.m in Sources */,
+				878E497E2734645900BBB18B /* WSWebSocket.m in Sources */,
+				87C083692728EA0800C8F933 /* AsyncHTTPGetRequest.m in Sources */,
+				876DBDFD2729172A008682BC /* CDataScanner_Extensions.m in Sources */,
+				87AD27DA2741EF9C0092F428 /* PendingAttachmentViewController.m in Sources */,
+				87C11C962728DB7B000046F2 /* main.m in Sources */,
+				87C083572728E1A800C8F933 /* DLLoginWindowController.m in Sources */,
+				87D9D1682731C77600162F22 /* PaddedTextView.m in Sources */,
+				87C2CF92272F77AD00F10466 /* NSView+BGColor.m in Sources */,
+				872FCED7272A5902002434B1 /* FlippedClipView.m in Sources */,
+				87D9D17427320C1A00162F22 /* DLAttachment.m in Sources */,
+				878E497B2734645900BBB18B /* WSFrame.m in Sources */,
+				876DBDF327291681008682BC /* CJSONScanner.m in Sources */,
+				87C083532728DEA000C8F933 /* DLController.m in Sources */,
+				87C11C942728DB7B000046F2 /* AppDelegate.m in Sources */,
+				87A38DE327337386002385EE /* DLDirectMessageChannel.m in Sources */,
+				87A38DD9273330C0002385EE /* AttachmentPreviewViewController.m in Sources */,
+				87A32B26273F149A003D64BD /* NSView+Events.m in Sources */,
+				8714B1AF2729FC5000DA4AF9 /* DLMainWindowController.m in Sources */,
+				87D9D17127320C1000162F22 /* DLUser.m in Sources */,
+				87A38DDE27336E14002385EE /* DirectMessageItemViewController.m in Sources */,
+				87450D2C27370833007B4C08 /* DLUserSettings.m in Sources */,
+				8714B1B9272A0C6900DA4AF9 /* DLServer.m in Sources */,
+				876DBE012729234A008682BC /* DLUtil.m in Sources */,
+				87D9D16E27320B1500162F22 /* DLMessage.m in Sources */,
+				87C6E6A827305DBF00090639 /* DLChannel.m in Sources */,
+				876DBDF727291711008682BC /* CDataScanner.m in Sources */,
+				878E497C2734645900BBB18B /* WSMessage.m in Sources */,
+				87A32B2D273F1A28003D64BD /* DLAttachmentWindowController.m in Sources */,
+				876DBDF427291681008682BC /* CJSONSerializer.m in Sources */,
+				87C6E6A0273053F000090639 /* DynamicScrollView.m in Sources */,
+				87A38DD32732FF76002385EE /* HTTPCacheData.m in Sources */,
+				87C2CF8C272F438600F10466 /* ViewController.m in Sources */,
+				87DA400C2739DD58007E7455 /* DLAudioPlayer.m in Sources */,
+				87C6E69A273052B100090639 /* ChannelItemViewController.m in Sources */,
+				878E498527347A4900BBB18B /* DLWSController.m in Sources */,
+				878E497D2734645900BBB18B /* WSMessageProcessor.m in Sources */,
+				87A38DD627330B49002385EE /* NSView+Border.m in Sources */,
+				87A6E2C4273612B5000DC06E /* BezierPathRoundedRect.m in Sources */,
+				8742C8682730EE47005359DC /* ChatItemViewController.m in Sources */,
+				87D9D16B2731CCA700162F22 /* ChatScrollView.m in Sources */,
+				876DBDF227291681008682BC /* CJSONDeserializer.m in Sources */,
+				87A6E2BE2735E0C2000DC06E /* RoundedTextFieldCell.m in Sources */,
+				87C083632728E94A00C8F933 /* AsyncHTTPRequest.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		87C11C9C2728DB7B000046F2 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				87C11CA72728DB7B000046F2 /* Discord_LiteTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		87C11CA22728DB7B000046F2 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 87C11C8C2728DB7B000046F2 /* Discord Lite */;
+			targetProxy = 87C11CA12728DB7B000046F2 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		8714B1B32729FCF200DA4AF9 /* DLMainWindowController.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				8714B1B22729FCF200DA4AF9 /* en */,
+			);
+			name = DLMainWindowController.xib;
+			sourceTree = "<group>";
+		};
+		872FCECC272A4CDA002434B1 /* ServerItemViewController.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				872FCECB272A4CDA002434B1 /* en */,
+			);
+			name = ServerItemViewController.xib;
+			sourceTree = "<group>";
+		};
+		8742C86D2730EE85005359DC /* ChatItemViewController.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				8742C86C2730EE85005359DC /* en */,
+			);
+			name = ChatItemViewController.xib;
+			sourceTree = "<group>";
+		};
+		87877CDC273050A50062B796 /* ChannelItemViewController.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				87877CDB273050A50062B796 /* en */,
+			);
+			name = ChannelItemViewController.xib;
+			sourceTree = "<group>";
+		};
+		879E31C82743070400A21FF5 /* AttachmentPreviewViewController.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				879E31C72743070400A21FF5 /* en */,
+			);
+			name = AttachmentPreviewViewController.xib;
+			sourceTree = "<group>";
+		};
+		87A32B31273F1ADC003D64BD /* DLAttachmentWindowController.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				87A32B30273F1ADC003D64BD /* en */,
+			);
+			name = DLAttachmentWindowController.xib;
+			sourceTree = "<group>";
+		};
+		87AD27DF2741EFBC0092F428 /* PendingAttachmentViewController.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				87AD27DE2741EFBC0092F428 /* en */,
+			);
+			name = PendingAttachmentViewController.xib;
+			sourceTree = "<group>";
+		};
+		87C0835B2728E1F000C8F933 /* DLLoginWindowController.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				87C0835A2728E1F000C8F933 /* en */,
+			);
+			name = DLLoginWindowController.xib;
+			sourceTree = "<group>";
+		};
+		87C11C992728DB7B000046F2 /* MainMenu.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				877F0F9D2728DBEE00FBD4B3 /* en */,
+			);
+			name = MainMenu.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		87C11CA82728DB7B000046F2 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COPY_PHASE_STRIP = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		87C11CA92728DB7B000046F2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		87C11CAB2728DB7B000046F2 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_OBJC_ARC = NO;
+				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(DEVELOPER_DIR)/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/System/Library/Frameworks",
+				);
+				INFOPLIST_FILE = "Discord Lite/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited)";
+				MACOSX_DEPLOYMENT_TARGET = 10.4;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx10.9;
+			};
+			name = Debug;
+		};
+		87C11CAC2728DB7B000046F2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ADDITIONAL_SDKS = "";
+				ARCHS = (
+					ppc,
+					i386,
+					x86_64,
+				);
+				CLANG_ENABLE_OBJC_ARC = NO;
+				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = "";
+				"FRAMEWORK_SEARCH_PATHS[arch=i386]" = (
+					"$(inherited)",
+					"$(DEVELOPER_DIR)/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.7.sdk/System/Library/Frameworks",
+				);
+				"FRAMEWORK_SEARCH_PATHS[arch=ppc]" = (
+					"$(inherited)",
+					"$(DEVELOPER_DIR)/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.5.sdk/System/Library/Frameworks",
+				);
+				"FRAMEWORK_SEARCH_PATHS[arch=x86_64]" = (
+					"$(inherited)",
+					"$(DEVELOPER_DIR)/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.7.sdk/System/Library/Frameworks",
+				);
+				INFOPLIST_FILE = "Discord Lite/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited)";
+				MACOSX_DEPLOYMENT_TARGET = 10.4;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx10.7;
+				"SDKROOT[arch=i386]" = macosx10.7;
+				"SDKROOT[arch=ppc]" = macosx10.5;
+				"SDKROOT[arch=x86_64]" = macosx10.7;
+			};
+			name = Release;
+		};
+		87C11CAE2728DB7B000046F2 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+					"$(inherited)",
+				);
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "Discord LiteTests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Discord Lite.app/Contents/MacOS/Discord Lite";
+			};
+			name = Debug;
+		};
+		87C11CAF2728DB7B000046F2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "Discord LiteTests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Discord Lite.app/Contents/MacOS/Discord Lite";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		87C11C882728DB7B000046F2 /* Build configuration list for PBXProject "Discord Lite" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				87C11CA82728DB7B000046F2 /* Debug */,
+				87C11CA92728DB7B000046F2 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		87C11CAA2728DB7B000046F2 /* Build configuration list for PBXNativeTarget "Discord Lite" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				87C11CAB2728DB7B000046F2 /* Debug */,
+				87C11CAC2728DB7B000046F2 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		87C11CAD2728DB7B000046F2 /* Build configuration list for PBXNativeTarget "Discord LiteTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				87C11CAE2728DB7B000046F2 /* Debug */,
+				87C11CAF2728DB7B000046F2 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 87C11C852728DB7B000046F2 /* Project object */;
+}

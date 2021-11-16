@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="6751" systemVersion="13F1911" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none">
+    <dependencies>
+        <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="6751"/>
+    </dependencies>
+    <objects>
+        <customObject id="-2" userLabel="File's Owner" customClass="ServerItemViewController">
+            <connections>
+                <outlet property="mentionBadgeLabel" destination="Wza-Qy-mHN" id="afI-E9-Iex"/>
+                <outlet property="selectionButton" destination="f6D-sD-zJr" id="jQt-BY-HGI"/>
+                <outlet property="separatorView" destination="IOI-Ch-wLa" id="3RE-ZU-Ewu"/>
+                <outlet property="view" destination="Acd-nJ-JvX" id="SF9-A7-wlA"/>
+            </connections>
+        </customObject>
+        <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
+        <customObject id="-3" userLabel="Application" customClass="NSObject"/>
+        <customView id="Acd-nJ-JvX" customClass="NSView_BGColor">
+            <rect key="frame" x="0.0" y="0.0" width="64" height="64"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+            <subviews>
+                <button id="f6D-sD-zJr">
+                    <rect key="frame" x="7" y="8" width="50" height="48"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    <buttonCell key="cell" type="bevel" bezelStyle="regularSquare" image="discord_placeholder" imagePosition="only" alignment="center" inset="2" id="q8O-Iy-tFN">
+                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                        <font key="font" metaFont="system"/>
+                    </buttonCell>
+                    <connections>
+                        <action selector="selectItem:" target="-2" id="yke-Ch-fhi"/>
+                    </connections>
+                </button>
+                <textField hidden="YES" horizontalHuggingPriority="251" verticalHuggingPriority="750" id="Wza-Qy-mHN" customClass="BadgeTextField">
+                    <rect key="frame" x="46" y="2" width="16" height="16"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="1" drawsBackground="YES" id="iqG-uO-FfB" customClass="RoundedTextFieldCell">
+                        <font key="font" metaFont="cellTitle"/>
+                        <color key="textColor" name="alternateSelectedControlTextColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" red="0.88270635190000002" green="0.0" blue="0.010405921659999999" alpha="1" colorSpace="calibratedRGB"/>
+                    </textFieldCell>
+                </textField>
+            </subviews>
+            <point key="canvasLocation" x="721" y="837"/>
+        </customView>
+        <customView id="IOI-Ch-wLa">
+            <rect key="frame" x="0.0" y="0.0" width="63" height="22"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+            <subviews>
+                <box autoresizesSubviews="NO" verticalHuggingPriority="750" title="Box" boxType="separator" titlePosition="noTitle" id="pM8-30-Hiv">
+                    <rect key="frame" x="12" y="9" width="39" height="5"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
+                    <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <font key="titleFont" metaFont="system"/>
+                </box>
+            </subviews>
+            <point key="canvasLocation" x="889.5" y="925"/>
+        </customView>
+    </objects>
+    <resources>
+        <image name="discord_placeholder" width="256" height="256"/>
+    </resources>
+</document>
