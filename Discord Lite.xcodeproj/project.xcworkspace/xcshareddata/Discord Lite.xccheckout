@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>DF6C768D-5680-4592-95E9-AF1676439BD1</string>
+	<key>IDESourceControlProjectName</key>
+	<string>Discord Lite</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>C94421DB0A9A899F70A342D508556BE25B12B873</key>
+		<string>github.com:dosdude1/discord-lite.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>Discord Lite.xcodeproj</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>C94421DB0A9A899F70A342D508556BE25B12B873</key>
+		<string>../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>github.com:dosdude1/discord-lite.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>C94421DB0A9A899F70A342D508556BE25B12B873</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>C94421DB0A9A899F70A342D508556BE25B12B873</string>
+			<key>IDESourceControlWCCName</key>
+			<string>Discord%20Lite</string>
+		</dict>
+	</array>
+</dict>
+</plist>
