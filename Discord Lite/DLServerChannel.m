@@ -63,4 +63,9 @@
     serverID = inServerID;
 }
 
+-(void)dealloc {
+    [children release];
+    [super dealloc];
+}
+
 @end

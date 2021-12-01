@@ -12,7 +12,6 @@
 
 - (void)drawRect:(NSRect)dirtyRect {
     [super drawRect:dirtyRect];
-    [self.documentView setAutoresizingMask:NSViewWidthSizable];
     // Drawing code here.
 }
 
@@ -31,7 +30,6 @@
     ViewController *item;
     while (item = [e nextObject]) {
         [item.view removeFromSuperview];
-        [item.view release];
     }
     
     [content release];
@@ -50,6 +48,10 @@
     NSRect frame = [self frame];
     frame.size.height = height;
     [self.documentView setFrame: frame];
+}
+
+-(NSArray *)content {
+    return content;
 }
 
 @end

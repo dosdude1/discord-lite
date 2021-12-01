@@ -12,7 +12,6 @@
 
 - (void)drawRect:(NSRect)dirtyRect {
     [super drawRect:dirtyRect];
-    [self.documentView setAutoresizingMask:NSViewWidthSizable];
     // Drawing code here.
 }
 -(void)awakeFromNib {
@@ -22,9 +21,6 @@
     [self.documentView setFrame: frame];
 }
 -(void)setVisibleSubviews {
-    for (int i=0; i<[self.documentView subviews].count; i++) {
-        [[[self.documentView subviews] objectAtIndex:i] removeFromSuperviewWithoutNeedingDisplay];
-    }
     CGFloat height = 0;
     NSEnumerator *e = [content reverseObjectEnumerator];
     ChatItemViewController *item;
@@ -46,10 +42,10 @@
     [self performSelector:@selector(screenResize) withObject:nil afterDelay:0.5];
 }
 -(void)setContent:(NSArray *)inContent {
-    NSEnumerator *e = [content reverseObjectEnumerator];
-    ChatItemViewController *item;
+    NSEnumerator *e = [content objectEnumerator];
+    ViewController *item;
     while (item = [e nextObject]) {
-        [item.view release];
+        [item.view removeFromSuperview];
     }
     [content release];
     content = [[NSMutableArray alloc] initWithArray:inContent];
@@ -68,7 +64,7 @@
     CGFloat expectedHeight = [vc expectedHeight];
     NSRect itemFrame = vc.view.frame;
     itemFrame.size.height = expectedHeight;
-    itemFrame.size.width = [self.documentView frame].size.width - 15;
+    itemFrame.size.width = [self.contentView frame].size.width;
     itemFrame.origin.y = 0;
     vc.view.frame = itemFrame;
     [vc.view setNeedsDisplay:YES];

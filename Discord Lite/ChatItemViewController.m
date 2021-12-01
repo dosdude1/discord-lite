@@ -48,7 +48,9 @@ const NSInteger ATTACHMENT_SPACING = 15;
     [obj retain];
     representedObject = obj;
     [[representedObject author] setDelegate:self];
-    [chatTextView setString:[representedObject content]];
+    
+    [[chatTextView textStorage] setAttributedString:[DLTextParser attributedContentStringForMessage:representedObject]];
+    
     [usernameTextField setStringValue:[[representedObject author] username]];
     [avatarImageView setImage:[[[NSImage alloc] initWithData:[[representedObject author] avatarImageData]] autorelease]];
     [[representedObject author] loadAvatarData];
@@ -84,7 +86,7 @@ const NSInteger ATTACHMENT_SPACING = 15;
     NSEnumerator *e = [[representedObject attachments] objectEnumerator];
     DLAttachment *attachment;
     while (attachment = [e nextObject]) {
-        AttachmentPreviewViewController *attachmentVC = [[[AttachmentPreviewViewController alloc] initWithNibNamed:@"AttachmentPreviewViewController" bundle:nil] autorelease];
+        AttachmentPreviewViewController *attachmentVC = [[AttachmentPreviewViewController alloc] initWithNibNamed:@"AttachmentPreviewViewController" bundle:nil];
         [attachmentVC setRepresentedObject:attachment];
         NSRect frame = [attachmentVC attachmentView].frame;
         frame.origin.y = ((([self expectedHeight] - attachmentsHeight) - VIEW_HEADER_SPACING) - chatTextView.frame.size.height) - frame.size.height;
@@ -93,7 +95,7 @@ const NSInteger ATTACHMENT_SPACING = 15;
         [views addObject:attachmentVC];
         [insetView addSubview:attachmentVC.attachmentView];
         attachmentsHeight += [attachment scaledHeight] + ATTACHMENT_SPACING;
-        [attachment release];
+        [attachmentVC release];
     }
     attachmentViews = views;
 }
@@ -101,6 +103,7 @@ const NSInteger ATTACHMENT_SPACING = 15;
 -(void)dealloc {
     [attachmentViews release];
     [representedObject release];
+    [self.view release];
     [super dealloc];
 }
 

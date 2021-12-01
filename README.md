@@ -19,14 +19,15 @@
 - Sending images and attachments
 - Viewing and downloading images and attachments
 - Mention/ping notifications
+- Pinging users
+- Typing indication
 
 #### What does not work
 
 (I plan to implement all the following unless noted otherwise)
 
-- Message rich text (tag information, hotlinking, etc.)
+- Message hotlinks
 - Message web embeds
-- Pinging users
 - Voice and video chat
 - Friend requests (will not be implemented due to Discord TOS concerns)
 - Two-factor authentication

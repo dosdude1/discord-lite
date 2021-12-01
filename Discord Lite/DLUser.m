@@ -10,8 +10,12 @@
 
 @implementation DLUser
 
+const NSTimeInterval TYPING_INTERVAL = 10.0;
+
 -(id)init {
     self = [super init];
+    typing = NO;
+    avatarImageData = [[NSData dataWithContentsOfFile:[[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"discord_placeholder.png"]] retain];
     return self;
 }
 -(id)initWithDict:(NSDictionary *)d {
@@ -25,6 +29,10 @@
 
 -(void)setDelegate:(id<DLUserDelegate>)inDelegate {
     delegate = inDelegate;
+}
+
+-(void)setTypingDelegate:(id<DLUserTypingDelegate>)inTypingDelegate {
+    typingDelegate = inTypingDelegate;
 }
 
 -(void)loadAvatarData {
@@ -46,9 +54,6 @@
     return avatarID;
 }
 -(NSData *)avatarImageData {
-    if (!avatarImageData) {
-        avatarImageData = [[NSData dataWithContentsOfFile:[[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"discord_placeholder.png"]] retain];
-    }
     return avatarImageData;
 }
 
@@ -60,8 +65,28 @@
     return [userID isEqualToString:[object userID]];
 }
 
+-(void)updateTypingTimeout {
+    typing = NO;
+    [typingDelegate userDidStopTyping:self];
+    if (typingTimer) {
+        [typingTimer invalidate];
+        typingTimer = nil;
+    }
+}
+
+-(void)setTyping:(BOOL)isTyping {
+    typing = isTyping;
+    if (typingTimer) {
+        [typingTimer invalidate];
+        typingTimer = nil;
+    }
+    if (isTyping) {
+        typingTimer = [NSTimer scheduledTimerWithTimeInterval:TYPING_INTERVAL target:self selector:@selector(updateTypingTimeout) userInfo:nil repeats:NO];
+    }
+}
+
 -(void)dealloc {
-    //NSLog(@"Data: %ld for: %@", [avatarImageData retainCount], username);
+    
     [avatarImageData release];
     [self setDelegate:nil];
     [req setDelegate:nil];
@@ -75,7 +100,7 @@
     if ([request result] == HTTPResultOK) {
         [avatarImageData release];
         avatarImageData = [[request responseData] retain];
-        [delegate avatarDidUpdateWithData:[request responseData]];
+        [delegate avatarDidUpdateWithData:avatarImageData];
     }
     [request release];
     req = nil;

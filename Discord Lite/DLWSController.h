@@ -12,7 +12,7 @@
 #import "WSWebSocket.h"
 #import "CJSONDeserializer.h"
 #import "CJSONSerializer.h"
-
+#import "DLServer.h"
 
 
 #define WS_GATEWAY_URL "wss://gateway.discord.gg/?encoding=json&v=6"
@@ -27,8 +27,11 @@ typedef enum {
     OPCodeHeartbeat = 1,
     OPCodeIdentify = 2,
     OPCodeResume = 6,
+    OPCodeQueryServerMembers = 8,
     OPCodeHello = 10,
-    OPCodeHeartbeatAck = 11
+    OPCodeHeartbeatAck = 11,
+    OPCodeDMParticipantOp = 13,
+    OPCodeServerMemberOp = 14
 } OPCode;
 
 @protocol DLWSControllerDelegate <NSObject>
@@ -41,6 +44,10 @@ typedef enum {
 -(void)wsDidReceiveUserSettings:(DLUserSettings *)s;
 -(void)wsDidLoadAllData;
 -(void)wsDidAcknowledgeMessage:(DLMessage *)m;
+-(void)wsUserWithID:(NSString *)userID didStartTypingInServerWithID:(NSString *)serverID inChannelWithID:(NSString *)channelID withMemberData:(NSDictionary *)memberData;
+-(void)wsUserWithID:(NSString *)userID didStartTypingInDirectMessageChannelWithID:(NSString *)channelID;
+
+-(void)wsDidReceiveMemberData:(NSArray *)memberData forServerWithID:(NSString *)serverID;
 @end
 
 @interface DLWSController : NSObject <WSWebSocketDelegate> {
@@ -59,5 +66,10 @@ typedef enum {
 
 -(void)startWithAuthToken:(NSString *)inToken;
 -(void)stop;
+
+-(void)updateWSForDirectMessageChannel:(DLChannel *)c;
+-(void)updateWSForChannel:(DLChannel *)c inServer:(DLServer *)s;
+
+-(void)queryServer:(DLServer *)s forMembersContainingUsername:(NSString *)username;
 
 @end

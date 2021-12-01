@@ -160,6 +160,11 @@
         type = AttachmentTypeFile;
     }
 }
+
+-(BOOL)isEqual:(DLAttachment *)a {
+    return [filename isEqualToString:[a filename]];
+}
+
 -(void)dealloc {
     [req setDelegate:nil];
     [self setPreviewDelegate:nil];

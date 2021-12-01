@@ -27,6 +27,8 @@
 -(NSData *)subImageData;
 -(NSString *)serverID;
 -(NSDate *)lastUpdateTimestamp;
+-(DLUser *)recipientWithUserID:(NSString *)userID;
+-(NSArray *)recipientsWithUsernameContainingString:(NSString *)username;
 
 -(void)setLastMessageID:(NSString *)msgID;
 

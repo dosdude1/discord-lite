@@ -12,7 +12,6 @@
 
 - (void)drawRect:(NSRect)dirtyRect {
     [super drawRect:dirtyRect];
-    [self.documentView setAutoresizingMask:NSViewHeightSizable];
     // Drawing code here.
 }
 
@@ -20,7 +19,7 @@
     docViewWidth = 0;
     NSRect frame = [self.contentView frame];
     frame.size.width = 50;
-    frame.origin.y = 0;
+    //frame.origin.y = 0;
     [self.documentView setFrame: frame];
     content = [[NSMutableArray alloc] init];
 }
@@ -42,7 +41,7 @@
         item.view.frame = itemFrame;
         [self.documentView addSubview:item.view];
     }
-    NSRect frame = [self.contentView frame];
+    NSRect frame = [self.documentView frame];
     frame.size.width = docViewWidth;
     [self.documentView setFrame: frame];
 }
@@ -52,7 +51,6 @@
     ViewController *item;
     while (item = [e nextObject]) {
         [item.view removeFromSuperview];
-        [item.view release];
     }
     
     [content release];
@@ -73,7 +71,6 @@
 }
 -(void)removeContent:(ViewController *)item {
     [item.view removeFromSuperview];
-    [item.view release];
     [content removeObject:item];
     [self setVisibleSubviews];
 }

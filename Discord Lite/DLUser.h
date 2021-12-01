@@ -11,9 +11,16 @@
 
 #define AvatarCDNRoot "https://cdn.discordapp.com/avatars"
 
+@class DLUser;
+
 @protocol DLUserDelegate <NSObject>
 @optional
 -(void)avatarDidUpdateWithData:(NSData *)data;
+@end
+
+@protocol DLUserTypingDelegate <NSObject>
+@optional
+-(void)userDidStopTyping:(DLUser *)u;
 @end
 
 @interface DLUser : NSObject <AsyncHTTPRequestDelegate> {
@@ -23,7 +30,10 @@
     NSData *avatarImageData;
     NSString *discriminator;
     AsyncHTTPRequest *req;
+    NSTimer *typingTimer;
+    BOOL typing;
     id<DLUserDelegate> delegate;
+    id<DLUserTypingDelegate> typingDelegate;
 }
 
 -(id)init;
@@ -37,8 +47,11 @@
 
 -(BOOL)isEqual:(DLUser *)object;
 
+-(void)setTyping:(BOOL)isTyping;
+
 -(void)loadAvatarData;
 
 -(void)setDelegate:(id<DLUserDelegate>)inDelegate;
+-(void)setTypingDelegate:(id<DLUserTypingDelegate>)inTypingDelegate;
 
 @end

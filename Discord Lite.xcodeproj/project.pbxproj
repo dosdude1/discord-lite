@@ -18,6 +18,11 @@
 		8742C8682730EE47005359DC /* ChatItemViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8742C8672730EE47005359DC /* ChatItemViewController.m */; };
 		8742C86B2730EE85005359DC /* ChatItemViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8742C86D2730EE85005359DC /* ChatItemViewController.xib */; };
 		87450D2C27370833007B4C08 /* DLUserSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = 87450D2B27370833007B4C08 /* DLUserSettings.m */; };
+		87591389274D9EBD003B7128 /* License.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 87591386274D9EBD003B7128 /* License.rtf */; };
+		8759138A274D9EBD003B7128 /* RegexKitLite.m in Sources */ = {isa = PBXBuildFile; fileRef = 87591388274D9EBD003B7128 /* RegexKitLite.m */; };
+		8759138C274D9EE1003B7128 /* libicucore.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 8759138B274D9EE1003B7128 /* libicucore.dylib */; };
+		8759138F274DB5BD003B7128 /* TagSelectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8759138E274DB5BD003B7128 /* TagSelectionViewController.m */; };
+		87591392274DB5D7003B7128 /* TagSelectionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 87591394274DB5D7003B7128 /* TagSelectionViewController.xib */; };
 		876DBDF227291681008682BC /* CJSONDeserializer.m in Sources */ = {isa = PBXBuildFile; fileRef = 876DBDEC27291681008682BC /* CJSONDeserializer.m */; };
 		876DBDF327291681008682BC /* CJSONScanner.m in Sources */ = {isa = PBXBuildFile; fileRef = 876DBDEE27291681008682BC /* CJSONScanner.m */; };
 		876DBDF427291681008682BC /* CJSONSerializer.m in Sources */ = {isa = PBXBuildFile; fileRef = 876DBDF027291681008682BC /* CJSONSerializer.m */; };
@@ -25,6 +30,7 @@
 		876DBDFD2729172A008682BC /* CDataScanner_Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 876DBDFA2729172A008682BC /* CDataScanner_Extensions.m */; };
 		876DBDFE2729172A008682BC /* NSDictionary_JSONExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 876DBDFC2729172A008682BC /* NSDictionary_JSONExtensions.m */; };
 		876DBE012729234A008682BC /* DLUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 876DBE002729234A008682BC /* DLUtil.m */; };
+		8782FE0E274C40B800ECA836 /* DLServerMember.m in Sources */ = {isa = PBXBuildFile; fileRef = 8782FE0D274C40B800ECA836 /* DLServerMember.m */; };
 		87877CDA273050A50062B796 /* ChannelItemViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 87877CDC273050A50062B796 /* ChannelItemViewController.xib */; };
 		878B0B2A2738FC6400547D61 /* discord_purple.png in Resources */ = {isa = PBXBuildFile; fileRef = 878B0B292738FC6400547D61 /* discord_purple.png */; };
 		878B0B2C2738FD4A00547D61 /* discord_placeholder.png in Resources */ = {isa = PBXBuildFile; fileRef = 878B0B2B2738FD4A00547D61 /* discord_placeholder.png */; };
@@ -35,6 +41,8 @@
 		878E497D2734645900BBB18B /* WSMessageProcessor.m in Sources */ = {isa = PBXBuildFile; fileRef = 878E49772734645900BBB18B /* WSMessageProcessor.m */; };
 		878E497E2734645900BBB18B /* WSWebSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = 878E497A2734645900BBB18B /* WSWebSocket.m */; };
 		878E498527347A4900BBB18B /* DLWSController.m in Sources */ = {isa = PBXBuildFile; fileRef = 878E498427347A4900BBB18B /* DLWSController.m */; };
+		878EA5FA275477E5002F173A /* DLMessageEditor.m in Sources */ = {isa = PBXBuildFile; fileRef = 878EA5F9275477E5002F173A /* DLMessageEditor.m */; };
+		87994C6A2753450300A27326 /* DLTextParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 87994C692753450300A27326 /* DLTextParser.m */; };
 		879E31C62743070400A21FF5 /* AttachmentPreviewViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 879E31C82743070400A21FF5 /* AttachmentPreviewViewController.xib */; };
 		879E31E12743502A00A21FF5 /* settings.png in Resources */ = {isa = PBXBuildFile; fileRef = 879E31E02743502A00A21FF5 /* settings.png */; };
 		87A32B26273F149A003D64BD /* NSView+Events.m in Sources */ = {isa = PBXBuildFile; fileRef = 87A32B25273F149A003D64BD /* NSView+Events.m */; };
@@ -117,6 +125,13 @@
 		8742C86C2730EE85005359DC /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ChatItemViewController.xib; sourceTree = "<group>"; };
 		87450D2A27370833007B4C08 /* DLUserSettings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DLUserSettings.h; sourceTree = "<group>"; };
 		87450D2B27370833007B4C08 /* DLUserSettings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DLUserSettings.m; sourceTree = "<group>"; };
+		87591386274D9EBD003B7128 /* License.rtf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.rtf; path = License.rtf; sourceTree = "<group>"; };
+		87591387274D9EBD003B7128 /* RegexKitLite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegexKitLite.h; sourceTree = "<group>"; };
+		87591388274D9EBD003B7128 /* RegexKitLite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegexKitLite.m; sourceTree = "<group>"; };
+		8759138B274D9EE1003B7128 /* libicucore.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libicucore.dylib; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/usr/lib/libicucore.dylib; sourceTree = DEVELOPER_DIR; };
+		8759138D274DB5BD003B7128 /* TagSelectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TagSelectionViewController.h; sourceTree = "<group>"; };
+		8759138E274DB5BD003B7128 /* TagSelectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TagSelectionViewController.m; sourceTree = "<group>"; };
+		87591393274DB5D7003B7128 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/TagSelectionViewController.xib; sourceTree = "<group>"; };
 		876DBDEB27291681008682BC /* CJSONDeserializer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CJSONDeserializer.h; sourceTree = "<group>"; };
 		876DBDEC27291681008682BC /* CJSONDeserializer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CJSONDeserializer.m; sourceTree = "<group>"; };
 		876DBDED27291681008682BC /* CJSONScanner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CJSONScanner.h; sourceTree = "<group>"; };
@@ -133,6 +148,8 @@
 		876DBDFF2729234A008682BC /* DLUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DLUtil.h; sourceTree = "<group>"; };
 		876DBE002729234A008682BC /* DLUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DLUtil.m; sourceTree = "<group>"; };
 		877F0F9D2728DBEE00FBD4B3 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainMenu.xib; sourceTree = "<group>"; };
+		8782FE0C274C40B800ECA836 /* DLServerMember.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DLServerMember.h; sourceTree = "<group>"; };
+		8782FE0D274C40B800ECA836 /* DLServerMember.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DLServerMember.m; sourceTree = "<group>"; };
 		87877CDB273050A50062B796 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ChannelItemViewController.xib; sourceTree = "<group>"; };
 		878B0B292738FC6400547D61 /* discord_purple.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = discord_purple.png; sourceTree = "<group>"; };
 		878B0B2B2738FD4A00547D61 /* discord_placeholder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = discord_placeholder.png; sourceTree = "<group>"; };
@@ -150,6 +167,10 @@
 		878E497A2734645900BBB18B /* WSWebSocket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WSWebSocket.m; sourceTree = "<group>"; };
 		878E498327347A4900BBB18B /* DLWSController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DLWSController.h; sourceTree = "<group>"; };
 		878E498427347A4900BBB18B /* DLWSController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DLWSController.m; sourceTree = "<group>"; };
+		878EA5F8275477E5002F173A /* DLMessageEditor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DLMessageEditor.h; sourceTree = "<group>"; };
+		878EA5F9275477E5002F173A /* DLMessageEditor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DLMessageEditor.m; sourceTree = "<group>"; };
+		87994C682753450300A27326 /* DLTextParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DLTextParser.h; sourceTree = "<group>"; };
+		87994C692753450300A27326 /* DLTextParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DLTextParser.m; sourceTree = "<group>"; };
 		879E31C72743070400A21FF5 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/AttachmentPreviewViewController.xib; sourceTree = "<group>"; };
 		879E31E02743502A00A21FF5 /* settings.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = settings.png; sourceTree = "<group>"; };
 		87A32B24273F149A003D64BD /* NSView+Events.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSView+Events.h"; sourceTree = "<group>"; };
@@ -241,6 +262,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8759138C274D9EE1003B7128 /* libicucore.dylib in Frameworks */,
 				87C0836B2728EA2800C8F933 /* Foundation.framework in Frameworks */,
 				87C0834E2728DDFD00C8F933 /* Cocoa.framework in Frameworks */,
 			);
@@ -307,15 +329,30 @@
 				87AD27D82741EF9C0092F428 /* PendingAttachmentViewController.h */,
 				87AD27D92741EF9C0092F428 /* PendingAttachmentViewController.m */,
 				87AD27DF2741EFBC0092F428 /* PendingAttachmentViewController.xib */,
+				8759138D274DB5BD003B7128 /* TagSelectionViewController.h */,
+				8759138E274DB5BD003B7128 /* TagSelectionViewController.m */,
+				87591394274DB5D7003B7128 /* TagSelectionViewController.xib */,
 				87D9D17627320E8500162F22 /* Helper Views */,
 				87C2CF89272F436E00F10466 /* Base Classes */,
 			);
 			name = Views;
 			sourceTree = "<group>";
 		};
+		87591385274D9EA5003B7128 /* Regex */ = {
+			isa = PBXGroup;
+			children = (
+				87591386274D9EBD003B7128 /* License.rtf */,
+				87591387274D9EBD003B7128 /* RegexKitLite.h */,
+				87591388274D9EBD003B7128 /* RegexKitLite.m */,
+			);
+			name = Regex;
+			sourceTree = "<group>";
+		};
 		876DBDE72728F768008682BC /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
+				87591385274D9EA5003B7128 /* Regex */,
+				878E496E2734643C00BBB18B /* Web Sockets */,
 				876DBDF827291713008682BC /* JSON */,
 			);
 			name = Libraries;
@@ -359,6 +396,21 @@
 			name = "Web Sockets";
 			sourceTree = "<group>";
 		};
+		87994C67275344D000A27326 /* OS X */ = {
+			isa = PBXGroup;
+			children = (
+				87DA400A2739DD58007E7455 /* DLAudioPlayer.h */,
+				87DA400B2739DD58007E7455 /* DLAudioPlayer.m */,
+				876DBDFF2729234A008682BC /* DLUtil.h */,
+				876DBE002729234A008682BC /* DLUtil.m */,
+				87994C682753450300A27326 /* DLTextParser.h */,
+				87994C692753450300A27326 /* DLTextParser.m */,
+				878EA5F8275477E5002F173A /* DLMessageEditor.h */,
+				878EA5F9275477E5002F173A /* DLMessageEditor.m */,
+			);
+			name = "OS X";
+			sourceTree = "<group>";
+		};
 		87C0834F2728DE6B00C8F933 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
@@ -366,8 +418,6 @@
 				87C083522728DEA000C8F933 /* DLController.m */,
 				878E498327347A4900BBB18B /* DLWSController.h */,
 				878E498427347A4900BBB18B /* DLWSController.m */,
-				876DBDFF2729234A008682BC /* DLUtil.h */,
-				876DBE002729234A008682BC /* DLUtil.m */,
 				8714B1A42729ED5200DA4AF9 /* DLError.h */,
 				8714B1A52729ED5200DA4AF9 /* DLError.m */,
 				8714B1B7272A0C6900DA4AF9 /* DLServer.h */,
@@ -386,9 +436,9 @@
 				87450D2B27370833007B4C08 /* DLUserSettings.m */,
 				87D9D17227320C1A00162F22 /* DLAttachment.h */,
 				87D9D17327320C1A00162F22 /* DLAttachment.m */,
-				87DA400A2739DD58007E7455 /* DLAudioPlayer.h */,
-				87DA400B2739DD58007E7455 /* DLAudioPlayer.m */,
-				878E496E2734643C00BBB18B /* Web Sockets */,
+				8782FE0C274C40B800ECA836 /* DLServerMember.h */,
+				8782FE0D274C40B800ECA836 /* DLServerMember.m */,
+				87994C67275344D000A27326 /* OS X */,
 				87D9D17527320E6A00162F22 /* HTTP */,
 			);
 			name = Classes;
@@ -430,6 +480,7 @@
 		87C11C842728DB7B000046F2 = {
 			isa = PBXGroup;
 			children = (
+				8759138B274D9EE1003B7128 /* libicucore.dylib */,
 				87C0836A2728EA2800C8F933 /* Foundation.framework */,
 				87C0834D2728DDFD00C8F933 /* Cocoa.framework */,
 				87C11C8F2728DB7B000046F2 /* Discord Lite */,
@@ -620,6 +671,7 @@
 				87C11C982728DB7B000046F2 /* Images.xcassets in Resources */,
 				87A38DE027336E24002385EE /* DirectMessageItemViewController.xib in Resources */,
 				87C0835E2728E28500C8F933 /* Discord-Logo.png in Resources */,
+				87591389274D9EBD003B7128 /* License.rtf in Resources */,
 				87877CDA273050A50062B796 /* ChannelItemViewController.xib in Resources */,
 				87DA40092739DB28007E7455 /* mention_notification.mp3 in Resources */,
 				87AD27E32741F3E20092F428 /* delete.png in Resources */,
@@ -629,6 +681,7 @@
 				8714B1B12729FCF200DA4AF9 /* DLMainWindowController.xib in Resources */,
 				87C11C9B2728DB7B000046F2 /* MainMenu.xib in Resources */,
 				879E31E12743502A00A21FF5 /* settings.png in Resources */,
+				87591392274DB5D7003B7128 /* TagSelectionViewController.xib in Resources */,
 				87A32B2F273F1ADC003D64BD /* DLAttachmentWindowController.xib in Resources */,
 				879E31C62743070400A21FF5 /* AttachmentPreviewViewController.xib in Resources */,
 				8742C86B2730EE85005359DC /* ChatItemViewController.xib in Resources */,
@@ -656,6 +709,7 @@
 				8714B1A62729ED5200DA4AF9 /* DLError.m in Sources */,
 				87C6E6A627305BB600090639 /* DLServerChannel.m in Sources */,
 				87A38DD02732FEDB002385EE /* HTTPCache.m in Sources */,
+				8759138A274D9EBD003B7128 /* RegexKitLite.m in Sources */,
 				872FCEC8272A4C5F002434B1 /* ServerItemViewController.m in Sources */,
 				878E49712734644600BBB18B /* NSString+Base64.m in Sources */,
 				87AD27D72741D3230092F428 /* HorizontalDynamicScrollView.m in Sources */,
@@ -668,8 +722,11 @@
 				876DBDFD2729172A008682BC /* CDataScanner_Extensions.m in Sources */,
 				87AD27DA2741EF9C0092F428 /* PendingAttachmentViewController.m in Sources */,
 				87C11C962728DB7B000046F2 /* main.m in Sources */,
+				8759138F274DB5BD003B7128 /* TagSelectionViewController.m in Sources */,
 				87C083572728E1A800C8F933 /* DLLoginWindowController.m in Sources */,
+				87994C6A2753450300A27326 /* DLTextParser.m in Sources */,
 				87D9D1682731C77600162F22 /* PaddedTextView.m in Sources */,
+				878EA5FA275477E5002F173A /* DLMessageEditor.m in Sources */,
 				87C2CF92272F77AD00F10466 /* NSView+BGColor.m in Sources */,
 				872FCED7272A5902002434B1 /* FlippedClipView.m in Sources */,
 				87D9D17427320C1A00162F22 /* DLAttachment.m in Sources */,
@@ -680,6 +737,7 @@
 				87A38DE327337386002385EE /* DLDirectMessageChannel.m in Sources */,
 				87A38DD9273330C0002385EE /* AttachmentPreviewViewController.m in Sources */,
 				87A32B26273F149A003D64BD /* NSView+Events.m in Sources */,
+				8782FE0E274C40B800ECA836 /* DLServerMember.m in Sources */,
 				8714B1AF2729FC5000DA4AF9 /* DLMainWindowController.m in Sources */,
 				87D9D17127320C1000162F22 /* DLUser.m in Sources */,
 				87A38DDE27336E14002385EE /* DirectMessageItemViewController.m in Sources */,
@@ -750,6 +808,14 @@
 				8742C86C2730EE85005359DC /* en */,
 			);
 			name = ChatItemViewController.xib;
+			sourceTree = "<group>";
+		};
+		87591394274DB5D7003B7128 /* TagSelectionViewController.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				87591393274DB5D7003B7128 /* en */,
+			);
+			name = TagSelectionViewController.xib;
 			sourceTree = "<group>";
 		};
 		87877CDC273050A50062B796 /* ChannelItemViewController.xib */ = {
@@ -890,6 +956,7 @@
 				);
 				INFOPLIST_FILE = "Discord Lite/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited)";
+				LIBRARY_SEARCH_PATHS = "$(DEVELOPER_DIR)/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/usr/lib";
 				MACOSX_DEPLOYMENT_TARGET = 10.4;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx10.9;
@@ -922,6 +989,19 @@
 				);
 				INFOPLIST_FILE = "Discord Lite/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited)";
+				LIBRARY_SEARCH_PATHS = "";
+				"LIBRARY_SEARCH_PATHS[arch=i386]" = (
+					"$(inherited)",
+					"$(DEVELOPER_DIR)/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.7.sdk/usr/lib",
+				);
+				"LIBRARY_SEARCH_PATHS[arch=ppc]" = (
+					"$(inherited)",
+					"$(DEVELOPER_DIR)/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.5.sdk/usr/lib",
+				);
+				"LIBRARY_SEARCH_PATHS[arch=x86_64]" = (
+					"$(inherited)",
+					"$(DEVELOPER_DIR)/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.7.sdk/usr/lib",
+				);
 				MACOSX_DEPLOYMENT_TARGET = 10.4;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx10.7;

@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "AsyncHTTPGetRequest.h"
+#import "DLServerMember.h"
 
 #define IconCDNRoot "https://cdn.discordapp.com/icons"
 
@@ -23,6 +24,7 @@
     NSString *iconID;
     NSData *iconImageData;
     NSInteger mentionCount;
+    NSMutableArray *members;
     id<DLServerDelegate> delegate;
 }
 
@@ -34,10 +36,16 @@
 -(NSString *)iconID;
 -(NSData *)iconImageData;
 -(NSInteger)mentionCount;
+-(NSArray *)members;
 
 -(void)setServerID:(NSString *)inId;
 -(void)setName:(NSString *)inName;
 -(void)setIconImageData:(NSData *)data;
+
+-(void)addMember:(DLServerMember *)m;
+
+-(DLServerMember *)memberWithUserID:(NSString *)userID;
+-(NSArray *)membersWithUsernameContainingString:(NSString *)username;
 
 -(void)setDelegate:(id <DLServerDelegate>)inDelegate;
 -(BOOL)isEqual:(DLServer *)object;

@@ -53,6 +53,9 @@ typedef enum {
 -(NSString *)serverID;
 -(NSString *)lastMessageID;
 
+-(DLUser *)recipientWithUserID:(NSString *)userID;
+-(NSArray *)recipientsWithUsernameContainingString:(NSString *)username;
+
 -(void)setServerID:(NSString *)inServerID;
 
 -(BOOL)isEqual:(DLChannel *)c;

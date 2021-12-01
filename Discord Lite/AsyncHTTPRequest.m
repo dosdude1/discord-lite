@@ -111,7 +111,6 @@
     } else {
         if (cached) {
             [[HTTPCache sharedInstance] setCachedData:responseData forURL:[url absoluteString]];
-            [responseData release];
         }
     }
     [delegate requestDidFinishLoading:self];
@@ -123,8 +122,6 @@
     result = HTTPResultErrConnecting;
     if (isFileDownload) {
         [downloadingFile closeFile];
-    } else {
-        [responseData release];
     }
     [connection release];
 }
@@ -144,6 +141,7 @@
 
 -(void)dealloc {
     [url release];
+    [responseData release];
     [super dealloc];
 }
 

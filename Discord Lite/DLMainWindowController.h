@@ -20,20 +20,27 @@
 #import "DLAudioPlayer.h"
 #import "HorizontalDynamicScrollView.h"
 #import "PendingAttachmentViewController.h"
+#import "TagSelectionViewController.h"
+#import "DLMessageEditor.h"
 
 @protocol DLMainWindowDelegate <NSObject>
 @optional
 -(void)logoutWasSuccessful;
 @end
 
-@interface DLMainWindowController : NSWindowController <DLControllerDelegate, ServerItemDelegate, ChannelItemDelegate, DLUserDelegate, DMChannelItemDelegate, PendingAttachmentItemDelegate> {
+@interface DLMainWindowController : NSWindowController <DLControllerDelegate, ServerItemDelegate, ChannelItemDelegate, DLUserDelegate, DMChannelItemDelegate, PendingAttachmentItemDelegate, DLUserTypingDelegate, TagSelectionItemDelegate, DLMessageEditorDelegate> {
     
     BOOL isLoadingViews;
     BOOL isLoadingMessages;
-    BOOL attachmentViewVisible;
+    BOOL isTyping;
+    BOOL madeMentionChange;
+    
+    NSInteger editingLocation;
+    NSInteger tagIndex;
     
     IBOutlet DynamicScrollView *serversScrollView;
     IBOutlet DynamicScrollView *channelsScrollView;
+    IBOutlet DynamicScrollView *tagSelectionScrollView;
     IBOutlet PaddedTextView *messageEntryTextView;
     IBOutlet NSScrollView *messageEntryScrollView;
     IBOutlet ChatScrollView *chatScrollView;
@@ -48,14 +55,20 @@
     IBOutlet NSTextField *chatHeaderLabel;
     IBOutlet NSView_Border *messageEntryContainerView;
     IBOutlet HorizontalDynamicScrollView *pendingAttachmentsScrollView;
+    IBOutlet NSTextField *typingStatusTextField;
     
     DLMessage *lastMessage;
+    DLMessageEditor *messageEditor;
     ServerItemViewController *me;
     
     NSArray *serverViews;
     NSArray *channelViews;
     
+    NSMutableArray *typingUsers;
+    
     CGFloat currentMessageScrollHeight;
+    
+    NSTimer *typingTimer;
     
     id<DLMainWindowDelegate> delegate;
 }

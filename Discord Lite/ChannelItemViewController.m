@@ -78,6 +78,7 @@
 
 -(void)dealloc {
     [representedObject release];
+    [self.view release];
     [super dealloc];
 }
 

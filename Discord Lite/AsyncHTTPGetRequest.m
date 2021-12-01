@@ -36,7 +36,8 @@
     [super start];
     if (cached) {
         if ([[HTTPCache sharedInstance] cachedDataForURL:[url absoluteString]]) {
-            responseData = (NSMutableData *)[[HTTPCache sharedInstance] cachedDataForURL:[url absoluteString]];
+            [responseData release];
+            responseData = (NSMutableData *)[[[HTTPCache sharedInstance] cachedDataForURL:[url absoluteString]] retain];
             result = HTTPResultOK;
             [delegate requestDidFinishLoading:self];
         } else {

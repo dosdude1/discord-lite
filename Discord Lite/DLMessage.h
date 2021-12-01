@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "DLUser.h"
 #import "DLAttachment.h"
+#import "RegexKitLite.h"
 
 @interface DLMessage : NSObject {
     NSString *messageID;

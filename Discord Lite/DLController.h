@@ -25,7 +25,8 @@ typedef enum {
     RequestIDMessages = 1,
     RequestIDSendMessage = 2,
     RequestIDAckMessage = 3,
-    RequestIDLogout = 4
+    RequestIDLogout = 4,
+    RequestIDTyping = 5
 } RequestID;
 
 @protocol DLLoginDelegate <NSObject>
@@ -40,6 +41,8 @@ typedef enum {
 -(void)messages:(NSArray *)messages receivedForChannel:(DLChannel *)c;
 -(void)newMessage:(DLMessage *)m receivedForChannel:(DLChannel *)c inServer:(DLServer *)s;
 -(void)didLogoutSuccessfully;
+-(void)userDidStartTypingInSelectedChannel:(DLUser *)u;
+-(void)members:(NSArray *)members didUpdateForServer:(DLServer *)s;
 @end
 
 @interface DLController : NSObject <AsyncHTTPRequestDelegate, DLWSControllerDelegate> {
@@ -72,6 +75,7 @@ typedef enum {
 -(void)sendMessage:(DLMessage *)m toChannel:(DLChannel *)c;
 -(void)acknowledgeMessage:(DLMessage *)m;
 -(void)logOutUser;
+-(void)informTypingInChannel:(DLChannel *)c;
 
 -(void)startWebSocket;
 -(void)stopWebSocket;
@@ -80,6 +84,7 @@ typedef enum {
 -(NSArray *)channelsForServer:(DLServer *)s;
 -(NSArray *)directMessageChannels;
 
+-(void)queryServer:(DLServer *)s forMembersContainingUsername:(NSString *)username;
 
 
 -(DLServer *)myServerItem;

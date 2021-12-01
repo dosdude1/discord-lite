@@ -57,6 +57,7 @@
     return self;
 }
 
+
 -(NSDictionary *)dictRepresentation {
     NSDictionary *dict = [[[NSDictionary alloc] initWithObjects:[NSArray arrayWithObjects:content, [NSNumber numberWithBool:NO], nil] forKeys:[NSArray arrayWithObjects:@"content", @"tts", nil]] autorelease];
     return dict;
@@ -103,6 +104,7 @@
     [author release];
     [mentionedUsers release];
     [content release];
+    [attachments release];
     [super dealloc];
 }
 

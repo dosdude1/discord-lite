@@ -25,6 +25,7 @@
 -(NSString *)topic;
 -(NSInteger) position;
 -(NSArray *)children;
+
 - (NSComparisonResult)compare:(DLServerChannel *)o;
 
 -(void)setChildren:(NSArray *)inChildren;

@@ -9,6 +9,7 @@
 #import "ViewController.h"
 #import "DLMessage.h"
 #import "AttachmentPreviewViewController.h"
+#import "DLTextParser.h"
 
 @interface ChatItemViewController : ViewController <DLUserDelegate> {
     DLMessage *representedObject;

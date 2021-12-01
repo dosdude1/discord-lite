@@ -83,6 +83,8 @@ typedef enum {
 -(void)setMaxScaledWidth:(CGFloat)inWidth;
 -(void)setMimeType:(NSString *)inMimeType;
 
+-(BOOL)isEqual:(DLAttachment *)a;
+
 -(void)setViewerDelegate:(id<DLAttachmentViewerDelegate>)inDelegate;
 -(void)setPreviewDelegate:(id<DLAttachmentPreviewDelegate>)inDelegate;
 

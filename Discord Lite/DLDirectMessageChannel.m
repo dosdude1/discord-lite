@@ -96,6 +96,28 @@
     return lastUpdateTimestamp;
 }
 
+-(DLUser *)recipientWithUserID:(NSString *)userID {
+    NSEnumerator *e = [recipients objectEnumerator];
+    DLUser *user;
+    while (user = [e nextObject]) {
+        if ([[user userID] isEqualToString:userID]) {
+            return user;
+        }
+    }
+    return nil;
+}
+
+-(NSArray *)recipientsWithUsernameContainingString:(NSString *)username {
+    NSMutableArray *matchedUsers = [[NSMutableArray alloc] init];
+    NSEnumerator *e = [recipients objectEnumerator];
+    DLUser *user;
+    while (user = [e nextObject]) {
+        if ([[user username] rangeOfString:username].location != NSNotFound) {
+            [matchedUsers addObject:user];
+        }
+    }
+    return matchedUsers;
+}
 
 - (NSComparisonResult)compare:(DLDirectMessageChannel *)o {
     if (lastUpdateTimestamp && [o lastUpdateTimestamp]) {
@@ -113,6 +135,11 @@
 -(void)setLastMessageID:(NSString *)msgID {
     [super setLastMessageID:msgID];
     [self setUpdateTimestamp];
+}
+
+-(void)dealloc {
+    [recipients release];
+    [super dealloc];
 }
 
 #pragma mark Delegated Functions

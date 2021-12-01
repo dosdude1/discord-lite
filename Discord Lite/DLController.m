@@ -64,12 +64,20 @@ static DLController* sharedObject = nil;
 }
 
 -(void)loadMessagesForChannel:(DLChannel *)c beforeMessage:(DLMessage *)m quantity:(NSInteger)numMsgs {
-    [selectedChannel release];
-    [c retain];
-    selectedChannel = c;
+    if (![c isEqual:selectedChannel]) {
+        [selectedChannel release];
+        [c retain];
+        selectedChannel = c;
+        if ([selectedServer isEqual:myServerItem]) {
+            [[DLWSController sharedInstance] updateWSForDirectMessageChannel:c];
+        } else {
+            [[DLWSController sharedInstance] updateWSForChannel:c inServer:selectedServer];
+        }
+    }
+    
     AsyncHTTPGetRequest *req = [[AsyncHTTPGetRequest alloc] init];
     [req setDelegate:self];
-    [req setHeaders:[NSDictionary dictionaryWithObjects:[NSArray arrayWithObjects:@"application/json", @"application/json", token, nil] forKeys:[NSArray arrayWithObjects:@"Content-Type", @"Accept", @"Authorization", nil]]];
+    [req setHeaders:[NSDictionary dictionaryWithObjects:[NSArray arrayWithObjects:token, nil] forKeys:[NSArray arrayWithObjects:@"Authorization", nil]]];
     [req setIdentifier:RequestIDMessages];
     NSString *requestURL = [@API_ROOT stringByAppendingPathComponent:[NSString stringWithFormat:@"channels/%@/messages?limit=%ld", c.channelID, numMsgs]];
     if (m != nil) {
@@ -103,7 +111,7 @@ static DLController* sharedObject = nil;
     AsyncHTTPPostRequest *req = [[AsyncHTTPPostRequest alloc] init];
     [req setDelegate:self];
     [req setParameters:[NSDictionary dictionaryWithObject:[NSNull null] forKey:@"token"]];
-    [req setHeaders:[NSDictionary dictionaryWithObjects:[NSArray arrayWithObjects:@"application/json", @"application/json", token, nil] forKeys:[NSArray arrayWithObjects:@"Content-Type", @"Accept", @"Authorization", nil]]];
+    [req setHeaders:[NSDictionary dictionaryWithObjects:[NSArray arrayWithObjects: token, nil] forKeys:[NSArray arrayWithObjects:@"Authorization", nil]]];
     [req setIdentifier:RequestIDAckMessage];
     NSString *requestURL = [@API_ROOT stringByAppendingPathComponent:[NSString stringWithFormat:@"channels/%@/messages/%@/ack", [m channelID], [m messageID]]];
     [req setUrl:[NSURL URLWithString:requestURL]];
@@ -117,6 +125,17 @@ static DLController* sharedObject = nil;
     [req setHeaders:[NSDictionary dictionaryWithObjects:[NSArray arrayWithObjects:token, nil] forKeys:[NSArray arrayWithObjects:@"Authorization", nil]]];
     [req setIdentifier:RequestIDLogout];
     NSString *requestURL = [@API_ROOT stringByAppendingPathComponent:@"auth/logout"];
+    [req setUrl:[NSURL URLWithString:requestURL]];
+    [req start];
+}
+
+-(void)informTypingInChannel:(DLChannel *)c {
+    AsyncHTTPPostRequest *req = [[AsyncHTTPPostRequest alloc] init];
+    [req setDelegate:self];
+    [req setParameters:[NSDictionary dictionaryWithObject:[NSNull null] forKey:@"token"]];
+    [req setHeaders:[NSDictionary dictionaryWithObjects:[NSArray arrayWithObjects: token, nil] forKeys:[NSArray arrayWithObjects:@"Authorization", nil]]];
+    [req setIdentifier:RequestIDTyping];
+    NSString *requestURL = [@API_ROOT stringByAppendingPathComponent:[NSString stringWithFormat:@"channels/%@/typing", [c channelID]]];
     [req setUrl:[NSURL URLWithString:requestURL]];
     [req start];
 }
@@ -259,6 +278,10 @@ static DLController* sharedObject = nil;
     return myServerItem;
 }
 
+-(void)queryServer:(DLServer *)s forMembersContainingUsername:(NSString *)username {
+    [[DLWSController sharedInstance] queryServer:s forMembersContainingUsername:username];
+}
+
 
 #pragma mark Response Handlers
 
@@ -349,6 +372,12 @@ static DLController* sharedObject = nil;
     }
 }
 
+-(void)handleSendMessageRequestResponse:(AsyncHTTPRequest *)req {
+    if ([req result] != HTTPResultOK) {
+        [self handleHTTPRequestError:req];
+    }
+}
+
 
 -(void)handleHTTPRequestError:(AsyncHTTPRequest *)req {
     switch ([req result]) {
@@ -390,11 +419,18 @@ static DLController* sharedObject = nil;
         case RequestIDLogout:
             [self handleLogoutRequestResponse:request];
             break;
+        case RequestIDSendMessage:
+            [self handleSendMessageRequestResponse:request];
+            break;
+        case RequestIDTyping:
+            break;
         default:
             break;
     }
     [request release];
 }
+
+#pragma mark Websocket Delegated Functions
 
 -(void)wsDidReceiveMessage:(DLMessage *)m {
     DLChannel *c = [self loadedChannelWithID:[m channelID]];
@@ -469,6 +505,43 @@ static DLController* sharedObject = nil;
     DLChannel *c = [self loadedChannelWithID:[m channelID]];
     [[self loadedServerWithID:[c serverID]] addMentionCount:[c mentionCount] * -1];
     [c setMentionCount:0];
+}
+
+-(void)wsUserWithID:(NSString *)userID didStartTypingInServerWithID:(NSString *)serverID inChannelWithID:(NSString *)channelID withMemberData:(NSDictionary *)memberData {
+    if ([channelID isEqualToString:[selectedChannel channelID]]) {
+        DLServerMember *m = [[self loadedServerWithID:serverID] memberWithUserID:userID];
+        if (!m) {
+            m = [[DLServerMember alloc] initWithDict:memberData];
+            [[self loadedServerWithID:serverID] addMember:m];
+            [m release];
+        }
+        DLUser *u = [m user];
+        if (u && (![u isEqual:myUser])) {
+            [u setTyping:YES];
+            [delegate userDidStartTypingInSelectedChannel:u];
+        }
+    }
+}
+-(void)wsUserWithID:(NSString *)userID didStartTypingInDirectMessageChannelWithID:(NSString *)channelID {
+    if ([channelID isEqualToString:[selectedChannel channelID]]) {
+        DLUser *u = [selectedChannel recipientWithUserID:userID];
+        if (u && (![u isEqual:myUser])) {
+            [u setTyping:YES];
+            [delegate userDidStartTypingInSelectedChannel:u];
+        }
+    }
+}
+
+-(void)wsDidReceiveMemberData:(NSArray *)memberData forServerWithID:(NSString *)serverID {
+    NSMutableArray *members = [[NSMutableArray alloc] init];
+    NSEnumerator *e = [memberData objectEnumerator];
+    NSDictionary *memberDict;
+    while (memberDict = [e nextObject]) {
+        DLServerMember *m = [[DLServerMember alloc] initWithDict:memberDict];
+        [members addObject:m];
+        [m release];
+    }
+    [delegate members:members didUpdateForServer:[self loadedServerWithID:serverID]];
 }
 
 @end

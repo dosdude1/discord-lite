@@ -62,6 +62,13 @@
 -(NSString *)lastMessageID {
     return lastMessageID;
 }
+-(DLUser *)recipientWithUserID:(NSString *)userID {
+    return nil;
+}
+-(NSArray *)recipientsWithUsernameContainingString:(NSString *)username {
+    return nil;
+}
+
 -(void)setServerID:(NSString *)inServerID {
     //Doesn't exist
 }

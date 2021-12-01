@@ -69,6 +69,12 @@
     delegate = inDelegate;
 }
 
+-(void)dealloc {
+    [representedObject release];
+    [self.view release];
+    [super dealloc];
+}
+
 #pragma mark Delegated Functions
 
 -(void)iconDidUpdateWithData:(NSData *)data {

@@ -23,4 +23,6 @@
 -(void)setContent:(NSArray *)inContent;
 -(void)setDelegate:(id<DynamicScrollViewDelegate>)inDelegate;
 
+-(NSArray *)content;
+
 @end

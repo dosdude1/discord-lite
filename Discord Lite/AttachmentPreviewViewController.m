@@ -79,6 +79,8 @@
 -(void)dealloc {
     [representedObject setPreviewDelegate:nil];
     [representedObject release];
+    [attachmentViewerWindow setDelegate:nil];
+    [attachmentViewerWindow release];
     [super dealloc];
 }
 
@@ -112,6 +114,7 @@
 }
 -(void)viewerWindowDidClose {
     [attachmentViewerWindow release];
+    attachmentViewerWindow = nil;
 }
 
 
