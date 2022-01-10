@@ -144,7 +144,7 @@
 
 #pragma mark Delegated Functions
 
--(void)avatarDidUpdateWithData:(NSData *)data {
+-(void)user:(DLUser *)u avatarDidUpdateWithData:(NSData *)data {
     if (recipients.count == 1) {
         imageData = data;
         [delegate channel:self imageDidUpdateWithData:data];

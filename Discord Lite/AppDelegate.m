@@ -29,6 +29,25 @@
 
 - (void)applicationWillTerminate:(NSNotification *)aNotification {
     // Insert code here to tear down your application
+    [[DLController sharedInstance] stopWebSocket];
+}
+
+- (BOOL)applicationShouldHandleReopen:(NSApplication *)theApplication hasVisibleWindows:(BOOL)flag {
+    if (![[DLController sharedInstance] isLoggedIn]) {
+        if (!loginWindow) {
+            loginWindow = [[DLLoginWindowController alloc] initWithWindowNibName:@"DLLoginWindowController"];
+        }
+        [loginWindow setDelegate:self];
+        [loginWindow showWindow:loginWindow.window];
+    } else {
+        if (!mainWindow) {
+            mainWindow = [[DLMainWindowController alloc] initWithWindowNibName:@"DLMainWindowController"];
+            [[DLController sharedInstance] startWebSocket];
+        }
+        [mainWindow setDelegate:self];
+        [mainWindow showWindow:mainWindow.window];
+    }
+    return YES;
 }
 
 #pragma mark Delegated Functions

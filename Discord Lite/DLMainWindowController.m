@@ -219,6 +219,47 @@ const NSTimeInterval TYPING_SEND_INTERVAL = 8.0;
     }
 }
 
+-(void)showReplyToView {
+    if (![replyToView superview]) {
+        NSRect replyToViewFrame = replyToView.frame;
+        replyToViewFrame.origin.y = messageEntryTextView.frame.size.height + 35;
+        replyToViewFrame.size.width = messageEntryContainerView.frame.size.width;
+        [replyToView setFrame:replyToViewFrame];
+        
+        NSRect chatViewFrame = chatScrollView.frame;
+        chatViewFrame.size.height -= replyToViewFrame.size.height;
+        chatViewFrame.origin.y += replyToViewFrame.size.height;
+        [chatScrollView setFrame:chatViewFrame];
+        
+        NSRect containerFrame = messageEntryContainerView.frame;
+        containerFrame.size.height += replyToViewFrame.size.height;
+        [messageEntryContainerView setFrame:containerFrame];
+        
+        [messageEntryContainerView addSubview:replyToView];
+        [messageEntryContainerView setNeedsDisplay:YES];
+        [chatScrollView setNeedsDisplay:YES];
+    }
+}
+
+-(void)hideReplyToView {
+    if ([replyToView superview]) {
+        NSRect replyToViewFrame = replyToView.frame;
+        
+        NSRect chatViewFrame = chatScrollView.frame;
+        chatViewFrame.size.height += replyToViewFrame.size.height;
+        chatViewFrame.origin.y -= replyToViewFrame.size.height;
+        [chatScrollView setFrame:chatViewFrame];
+        
+        NSRect containerFrame = messageEntryContainerView.frame;
+        containerFrame.size.height -= replyToViewFrame.size.height;
+        [messageEntryContainerView setFrame:containerFrame];
+        
+        [replyToView removeFromSuperview];
+        [messageEntryContainerView setNeedsDisplay:YES];
+        [chatScrollView setNeedsDisplay:YES];
+    }
+}
+
 -(void)logOutUser {
     [[DLController sharedInstance] logOutUser];
 }
@@ -338,6 +379,11 @@ const NSTimeInterval TYPING_SEND_INTERVAL = 8.0;
     }
 }
 
+- (IBAction)removeReferencedMessage:(id)sender {
+    [messageEditor removeReferencedMessage];
+    [self hideReplyToView];
+}
+
 -(void)dealloc {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
     [super dealloc];
@@ -384,7 +430,7 @@ const NSTimeInterval TYPING_SEND_INTERVAL = 8.0;
     [DLErrorHandler displayError:e onWindow:self.window];
 }
 
--(void)avatarDidUpdateWithData:(NSData *)data {
+-(void)user:(DLUser *)u avatarDidUpdateWithData:(NSData *)data {
     [myUserAvatarImage setImage:[[[NSImage alloc] initWithData:data] autorelease]];
 }
 
@@ -463,6 +509,7 @@ const NSTimeInterval TYPING_SEND_INTERVAL = 8.0;
     }
     while (item = [e nextObject]) {
         ChatItemViewController *view = [[ChatItemViewController alloc] initWithNibNamed:@"ChatItemViewController" bundle:nil];
+        [view setDelegate:self];
         [view setRepresentedObject:item];
         [views addObject:view];
         lastMessage = item;
@@ -490,6 +537,7 @@ const NSTimeInterval TYPING_SEND_INTERVAL = 8.0;
     if ([c isEqual:[[DLController sharedInstance] selectedChannel]]) {
         ChatItemViewController *view = [[[ChatItemViewController alloc] initWithNibNamed:@"ChatItemViewController" bundle:nil] autorelease];
         [view setRepresentedObject:m];
+        [view setDelegate:self];
         [chatScrollView prependViewController:view];
         [[m author] setTyping:NO];
         [self userDidStopTyping:[m author]];
@@ -501,6 +549,12 @@ const NSTimeInterval TYPING_SEND_INTERVAL = 8.0;
     BOOL mentioned = NO;
     NSEnumerator *e = [[m mentionedUsers] objectEnumerator];
     DLUser *user;
+    while (user = [e nextObject]) {
+        if ([user isEqual:[[DLController sharedInstance] myUser]]) {
+            mentioned = YES;
+        }
+    }
+    e = [[[m referencedMessage] mentionedUsers] objectEnumerator];
     while (user = [e nextObject]) {
         if ([user isEqual:[[DLController sharedInstance] myUser]]) {
             mentioned = YES;
@@ -592,6 +646,18 @@ const NSTimeInterval TYPING_SEND_INTERVAL = 8.0;
     [self showTagSelectionViewWithContent:users];
 }
 
+-(void)addReferencedMessage:(DLMessage *)m {
+    if (![[[DLController sharedInstance] selectedServer] isEqual:[[DLController sharedInstance] myServerItem]]) {
+        [m setServerID:[[[DLController sharedInstance] selectedServer] serverID]];
+    }
+    [messageEditor setReferencedMessage:m];
+    NSString *baseString = [NSString stringWithFormat:@"Replying to %@", [[m author] username]];
+    NSMutableAttributedString *as = [[NSMutableAttributedString alloc] initWithString:baseString];
+    [as addAttribute:NSFontAttributeName value:[NSFont boldSystemFontOfSize:13] range:[baseString rangeOfString:[[m author] username]]];
+    [replyToTextField setAttributedStringValue:as];
+    [self showReplyToView];
+}
+
 #pragma mark Text View Delegated Functions
 
 - (BOOL)textView:(NSTextView *)aTextView doCommandBySelector:(SEL)aSelector
@@ -624,6 +690,7 @@ const NSTimeInterval TYPING_SEND_INTERVAL = 8.0;
                 [messageEntryTextView setString:@""];
                 [self textDidChange:nil];
                 [self hidePendingAttachmentView];
+                [self hideReplyToView];
             }
             
             return YES;

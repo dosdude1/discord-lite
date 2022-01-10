@@ -45,6 +45,15 @@ const CGFloat MESSAGE_VIEW_FONT_SIZE = 13.0;
         }
     }
     
+    NSString *urlRegex = @"(http|https)://((w)|([0-9])|([-|_]))+(.|/)+";
+    
+    NSArray *urlMatches = [[m content] componentsMatchedByRegex:urlRegex];
+    e = [urlMatches objectEnumerator];
+    NSString *matchedUrl;
+    while (matchedUrl = [e nextObject]) {
+        [as addAttribute: NSLinkAttributeName value:matchedUrl range:[[as string] rangeOfString:matchedUrl]];
+    }
+    
     return [as autorelease];
 }
 

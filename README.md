@@ -15,12 +15,13 @@
 
 #### What Works
 
-- Vieweing and interaction in both servers and direct messages
+- Viewing and interaction in both servers and direct messages
 - Sending images and attachments
 - Viewing and downloading images and attachments
 - Mention/ping notifications
 - Pinging users
 - Typing indication
+- Viewing and sending replies
 
 #### What does not work
 
@@ -31,6 +32,15 @@
 - Voice and video chat
 - Friend requests (will not be implemented due to Discord TOS concerns)
 - Two-factor authentication
+- Captchas
+- Editing messages
+
+
+### Releases
+
+Prebuilt Universal "Tri-FAT" binaries can be found in the [Releases](https://github.com/dosdude1/discord-lite/releases) section. You can download and run on PowerPC, 32-bit Intel, or 64-bit Intel. It will also run on ARM-based Macs under Rosetta, but native ARM support will be added soon.
+
+Alternatively, you can download the latest release off [my website](http://dosdude1.com/apps/Discord%20Lite.dmg), which is loadable on the older machines.
 
 
 

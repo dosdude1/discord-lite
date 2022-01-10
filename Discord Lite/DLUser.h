@@ -15,7 +15,7 @@
 
 @protocol DLUserDelegate <NSObject>
 @optional
--(void)avatarDidUpdateWithData:(NSData *)data;
+-(void)user:(DLUser *)u avatarDidUpdateWithData:(NSData *)data;
 @end
 
 @protocol DLUserTypingDelegate <NSObject>

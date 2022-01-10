@@ -29,10 +29,12 @@ static HTTPCache* sharedObject = nil;
     return [[cacheData objectForKey:url] data];
 }
 -(void)setCachedData:(NSData *)data forURL:(NSString *)url {
-    HTTPCacheData *d = [[HTTPCacheData alloc] init];
-    [d setUrl:url];
-    [d setData:data];
-    [cacheData setObject:d forKey:url];
+    if (![cacheData objectForKey:url]) {
+        HTTPCacheData *d = [[HTTPCacheData alloc] init];
+        [d setUrl:url];
+        [d setData:data];
+        [cacheData setObject:d forKey:url];
+    }
 }
 
 @end

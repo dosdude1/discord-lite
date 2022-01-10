@@ -20,6 +20,7 @@
     NSMutableArray *mentionedUsers;
     NSMutableArray *attachments;
     NSString *userContent;
+    DLMessage *referencedMessage;
     id<DLMessageEditorDelegate> delegate;
 }
 
@@ -29,8 +30,10 @@
 -(void)setContent:(NSString *)inContent;
 -(void)addMentionedUser:(DLUser *)u byReplacingStringInRange:(NSRange)range;
 -(void)addAttachment:(DLAttachment *)a;
+-(void)setReferencedMessage:(DLMessage *)m;
 -(void)removeMentionedUserAtStringIndex:(NSInteger)sIndex;
 -(void)removeAttachment:(DLAttachment *)a;
+-(void)removeReferencedMessage;
 
 -(DLMessage *)finalizedMessage;
 

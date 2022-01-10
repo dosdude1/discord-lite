@@ -10,6 +10,9 @@
                 <outlet property="avatarImageView" destination="vY0-Rz-T46" id="pcu-J3-T0O"/>
                 <outlet property="chatTextView" destination="VIi-as-Cgc" id="HPB-bm-oT3"/>
                 <outlet property="insetView" destination="pHK-Z3-6HJ" id="RyJ-td-4ZE"/>
+                <outlet property="referencedMessageAvatarImageView" destination="NHe-xm-IIv" id="OYQ-27-l7e"/>
+                <outlet property="referencedMessageTextField" destination="dSY-kn-Rev" id="Vch-lR-Dyt"/>
+                <outlet property="referencedMessageView" destination="xLe-Ob-sIc" id="fhN-8C-e4l"/>
                 <outlet property="timestampTextField" destination="r01-07-0b0" id="za9-KL-Wfn"/>
                 <outlet property="usernameTextField" destination="xQA-wb-nV4" id="J8w-jI-Ute"/>
                 <outlet property="view" destination="c22-O7-iKe" id="Fn8-4d-N98"/>
@@ -39,7 +42,7 @@
                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                             </textFieldCell>
                         </textField>
-                        <customView id="VIi-as-Cgc" customClass="NSTextView">
+                        <customView id="VIi-as-Cgc" customClass="NSTextView_Menu">
                             <rect key="frame" x="69" y="15" width="308" height="23"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                         </customView>
@@ -57,8 +60,35 @@
             </subviews>
             <point key="canvasLocation" x="357.5" y="323.5"/>
         </customView>
+        <customView id="xLe-Ob-sIc">
+            <rect key="frame" x="0.0" y="0.0" width="333" height="37"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+            <subviews>
+                <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" id="NHe-xm-IIv">
+                    <rect key="frame" x="75" y="5" width="26" height="26"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="discord_placeholder" id="bQx-R4-G1k"/>
+                </imageView>
+                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="dSY-kn-Rev">
+                    <rect key="frame" x="107" y="10" width="219" height="17"/>
+                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                    <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Label" id="AoY-Wv-Dzx">
+                        <font key="font" metaFont="cellTitle"/>
+                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                </textField>
+                <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" id="sv0-rT-HU4">
+                    <rect key="frame" x="36" y="0.0" width="31" height="22"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="reply_curve" id="24s-KL-bC7"/>
+                </imageView>
+            </subviews>
+            <point key="canvasLocation" x="403.5" y="452.5"/>
+        </customView>
     </objects>
     <resources>
         <image name="discord_placeholder" width="256" height="256"/>
+        <image name="reply_curve" width="60" height="30"/>
     </resources>
 </document>

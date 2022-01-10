@@ -62,7 +62,7 @@
 
 #pragma mark Delegated Functions
 
--(void)avatarDidUpdateWithData:(NSData *)data {
+-(void)user:(DLUser *)u avatarDidUpdateWithData:(NSData *)data {
     [avatarImageView setImage:[[[NSImage alloc] initWithData:data] autorelease]];
 }
 

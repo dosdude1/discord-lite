@@ -43,7 +43,7 @@
         NSString *sizeString = @"";
         if ([representedObject fileSize] < 100000) {
             sizeString = [NSString stringWithFormat:@"%.2f KB", [representedObject fileSize] / 1000.0];
-        } else if ([representedObject fileSize] > 100000 && [representedObject fileSize] < 10000000) {
+        } else if ([representedObject fileSize] > 100000 && [representedObject fileSize] < 100000000) {
             sizeString = [NSString stringWithFormat:@"%.2f MB", [representedObject fileSize] / 1000000.0];
         } else {
             sizeString = [NSString stringWithFormat:@"%.2f GB", [representedObject fileSize] / 100000000.0];

@@ -21,6 +21,7 @@
     NSImageView *imgView;
     IBOutlet NSProgressIndicator *progressIndicator;
     id<DLAttachmentWindowDelegate> delegate;
+    NSMenu *contextMenu;
 }
 
 

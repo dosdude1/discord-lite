@@ -20,6 +20,9 @@
     [progressIndicator startAnimation:self];
     [viewedAttachment loadFullData];
     
+    contextMenu = [[NSMenu alloc] init];
+    [contextMenu addItemWithTitle:@"Save Image" action:@selector(saveAttachment) keyEquivalent:@""];
+    
     // Implement this method to handle any initialization after your window controller's window has been loaded from its nib file.
 }
 
@@ -96,9 +99,13 @@
     [self performSelector:@selector(delegateWindowDidClose) withObject:nil afterDelay:0.1];
 }
 
+-(void)mouseWasDepressedWithEvent:(NSEvent *)event {
+    if ((event.modifierFlags & NSControlKeyMask) == NSControlKeyMask) {
+        [NSMenu popUpContextMenu:contextMenu withEvent:event forView:nil];
+    }
+}
+
 -(void)mouseRightButtonWasDepressedWithEvent:(NSEvent *)event {
-    NSMenu *contextMenu = [[NSMenu alloc] init];
-    [contextMenu addItemWithTitle:@"Save Image" action:@selector(saveAttachment) keyEquivalent:@""];
     [NSMenu popUpContextMenu:contextMenu withEvent:event forView:nil];
 }
 

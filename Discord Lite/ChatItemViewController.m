@@ -18,15 +18,29 @@ const NSInteger ATTACHMENT_SPACING = 15;
     [insetView setBackgroundColor:[NSColor whiteColor]];
     [chatTextView setEditable:NO];
     [chatTextView setFont:[NSFont systemFontOfSize:13]];
+    [chatTextView setMenuDelegate:self];
     
+    [insetView setDelegate:self];
+    
+    contextMenu = [[NSMenu alloc] init];
+    NSMenuItem *replyItem = [[NSMenuItem alloc] initWithTitle:@"Reply" action:@selector(addReply) keyEquivalent:@""];
+    [replyItem setTarget:self];
+    [contextMenu addItem:replyItem];
+    [replyItem release];
+    
+    NSMenuItem *copyItem = [[NSMenuItem alloc] initWithTitle:@"Copy Message" action:@selector(copyMessageContent) keyEquivalent:@""];
+    [copyItem setTarget:self];
+    [contextMenu addItem:copyItem];
+    [copyItem release];
 }
+
 -(CGFloat)expectedHeight {
     CGFloat textViewHeight = 0;
     if (![[representedObject content] isEqualToString:@""]) {
         textViewHeight = chatTextView.frame.size.height;
     }
-    CGFloat height = 0;
-    height += textViewHeight + VIEW_HEADER_SPACING;
+    CGFloat height = VIEW_HEADER_SPACING;
+    height += textViewHeight;
     CGFloat attachmentsHeight = 0;
     NSEnumerator *e = [[representedObject attachments] objectEnumerator];
     DLAttachment *attachment;
@@ -38,10 +52,16 @@ const NSInteger ATTACHMENT_SPACING = 15;
     frame.size.height = textViewHeight;
     [chatTextView setFrame:frame];
     height += attachmentsHeight;
+    if ([representedObject referencedMessage]) {
+        height += referencedMessageView.frame.size.height;
+    }
     return height;
 }
 -(DLMessage *)representedObject {
     return representedObject;
+}
+-(void)setDelegate:(id<ChatItemViewControllerDelegate>)inDelegate {
+    delegate = inDelegate;
 }
 -(void)setRepresentedObject:(DLMessage *)obj {
     [representedObject release];
@@ -90,6 +110,9 @@ const NSInteger ATTACHMENT_SPACING = 15;
         [attachmentVC setRepresentedObject:attachment];
         NSRect frame = [attachmentVC attachmentView].frame;
         frame.origin.y = ((([self expectedHeight] - attachmentsHeight) - VIEW_HEADER_SPACING) - chatTextView.frame.size.height) - frame.size.height;
+        if ([representedObject referencedMessage]) {
+            frame.origin.y -= referencedMessageView.frame.size.height;
+        }
         frame.origin.x = chatTextView.frame.origin.x;
         [[attachmentVC attachmentView] setFrame:frame];
         [views addObject:attachmentVC];
@@ -98,6 +121,48 @@ const NSInteger ATTACHMENT_SPACING = 15;
         [attachmentVC release];
     }
     attachmentViews = views;
+    
+    CGFloat shift = 0;
+    if ([representedObject referencedMessage]) {
+        [[[representedObject referencedMessage] author] setDelegate:self];
+        shift = referencedMessageView.frame.size.height;
+        
+        NSMutableAttributedString *attStr = [[NSMutableAttributedString alloc] initWithString:[[[[representedObject referencedMessage] author] username] stringByAppendingString:@" "]];
+        [attStr addAttribute:NSFontAttributeName value:[NSFont boldSystemFontOfSize:12] range:NSMakeRange(0, attStr.length)];
+        [attStr appendAttributedString:[DLTextParser attributedContentStringForMessage:[representedObject referencedMessage]]];
+        NSMutableParagraphStyle *style = [[NSMutableParagraphStyle alloc] init];
+        style.lineBreakMode = NSLineBreakByTruncatingTail;
+        [attStr addAttribute:NSParagraphStyleAttributeName value:style range:NSMakeRange(0, attStr.length)];
+        [referencedMessageTextField setAttributedStringValue:attStr];
+        
+        [referencedMessageAvatarImageView setImage:[[[NSImage alloc] initWithData:[[[representedObject referencedMessage] author]avatarImageData]] autorelease]];
+        NSRect frame = usernameTextField.frame;
+        frame.origin.y -= shift;
+        [usernameTextField setFrame:frame];
+        frame = timestampTextField.frame;
+        frame.origin.y -= shift;
+        [timestampTextField setFrame:frame];
+        frame = avatarImageView.frame;
+        frame.origin.y -= shift;
+        [avatarImageView setFrame:frame];
+        
+        frame = referencedMessageView.frame;
+        frame.origin.y = 31;
+        frame.size.width = insetView.frame.size.width - 5;
+        [referencedMessageView setFrame:frame];
+        [insetView addSubview:referencedMessageView];
+        
+        [[[representedObject referencedMessage] author] loadAvatarData];
+    }
+}
+
+-(void)addReply {
+    [delegate addReferencedMessage:representedObject];
+}
+-(void)copyMessageContent {
+    NSPasteboard *pasteBoard = [NSPasteboard generalPasteboard];
+    [pasteBoard declareTypes:[NSArray arrayWithObjects:NSStringPboardType, nil] owner:nil];
+    [pasteBoard setString:[representedObject content] forType:NSStringPboardType];
 }
 
 -(void)dealloc {
@@ -109,8 +174,28 @@ const NSInteger ATTACHMENT_SPACING = 15;
 
 #pragma mark Delegated Functions
 
--(void)avatarDidUpdateWithData:(NSData *)data {
-    [avatarImageView setImage:[[[NSImage alloc] initWithData:data] autorelease]];
+-(void)user:(DLUser *)u avatarDidUpdateWithData:(NSData *)data {
+    if ([u isEqual:[representedObject author]]) {
+        [avatarImageView setImage:[[[NSImage alloc] initWithData:data] autorelease]];
+    }
+    if ([representedObject referencedMessage]) {
+        if ([u isEqual:[[representedObject referencedMessage] author]]) {
+            [referencedMessageAvatarImageView setImage:[[[NSImage alloc] initWithData:data] autorelease]];
+        }
+    }
+}
+
+-(void)mouseWasDepressedWithEvent:(NSEvent *)event {
+    if ((event.modifierFlags & NSControlKeyMask) == NSControlKeyMask) {
+        [NSMenu popUpContextMenu:contextMenu withEvent:event forView:nil];
+    }
+}
+-(void)mouseRightButtonWasDepressedWithEvent:(NSEvent *)event {
+    [NSMenu popUpContextMenu:contextMenu withEvent:event forView:nil];
+}
+
+-(NSMenu *)textViewContextMenu {
+    return contextMenu;
 }
 
 @end

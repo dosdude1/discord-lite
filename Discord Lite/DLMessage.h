@@ -15,11 +15,13 @@
     NSString *messageID;
     NSString *content;
     NSString *channelID;
+    NSString *serverID;
     DLUser *author;
     NSArray *attachments;
     NSDate *timestamp;
     NSArray *mentionedUsers;
     BOOL mentionedEveryone;
+    DLMessage *referencedMessage;
 }
 
 -(id)init;
@@ -30,13 +32,17 @@
 -(NSString *)messageID;
 -(NSString *)content;
 -(NSString *)channelID;
+-(NSString *)serverID;
 -(DLUser *)author;
 -(NSArray *)attachments;
 -(NSDate *)timestamp;
 -(NSArray *)mentionedUsers;
+-(DLMessage *)referencedMessage;
 -(BOOL)mentionedEveryone;
 
 -(void)setContent:(NSString *)inContent;
 -(void)setAttachments:(NSArray *)inAttachments;
+-(void)setReferencedMessage:(DLMessage *)m;
+-(void)setServerID:(NSString *)inServerID;
 
 @end

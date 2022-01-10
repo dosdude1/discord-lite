@@ -97,6 +97,16 @@
     [attachments removeObject:a];
 }
 
+-(void)setReferencedMessage:(DLMessage *)m {
+    [referencedMessage release];
+    [m retain];
+    referencedMessage = m;
+}
+-(void)removeReferencedMessage {
+    [referencedMessage release];
+    referencedMessage = nil;
+}
+
 -(DLMessage *)finalizedMessage {
     
     NSMutableString *rawContent = [userContent mutableCopy];
@@ -113,12 +123,15 @@
     DLMessage *m = [[DLMessage alloc] init];
     [m setContent:rawContent];
     [m setAttachments:attachments];
+    [m setReferencedMessage:referencedMessage];
     return m;
 }
 
 -(void)clear {
     [mentionedUsers removeAllObjects];
     [attachments removeAllObjects];
+    [referencedMessage release];
+    referencedMessage = nil;
     userContent = @"";
 }
 

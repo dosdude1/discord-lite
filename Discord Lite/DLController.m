@@ -149,12 +149,11 @@ static DLController* sharedObject = nil;
             [servers addObject:[loadedServers objectForKey:serverID]];
         }
     }
-    if (servers.count == 0) {
-        //Try unordered, Discord stupidly sometimes does not have an order state
-        NSEnumerator *e = [[loadedServers allKeys] objectEnumerator];
-        NSString *serverID;
-        while (serverID = [e nextObject]) {
-            if ([loadedServers objectForKey:serverID]) {
+    //Load unordered servers
+    e = [[loadedServers allKeys] objectEnumerator];
+    while (serverID = [e nextObject]) {
+        if ([loadedServers objectForKey:serverID]) {
+            if (![servers containsObject:[loadedServers objectForKey:serverID]]) {
                 [servers addObject:[loadedServers objectForKey:serverID]];
             }
         }

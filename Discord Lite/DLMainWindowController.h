@@ -28,7 +28,7 @@
 -(void)logoutWasSuccessful;
 @end
 
-@interface DLMainWindowController : NSWindowController <DLControllerDelegate, ServerItemDelegate, ChannelItemDelegate, DLUserDelegate, DMChannelItemDelegate, PendingAttachmentItemDelegate, DLUserTypingDelegate, TagSelectionItemDelegate, DLMessageEditorDelegate> {
+@interface DLMainWindowController : NSWindowController <DLControllerDelegate, ServerItemDelegate, ChannelItemDelegate, DLUserDelegate, DMChannelItemDelegate, PendingAttachmentItemDelegate, DLUserTypingDelegate, TagSelectionItemDelegate, DLMessageEditorDelegate, ChatItemViewControllerDelegate> {
     
     BOOL isLoadingViews;
     BOOL isLoadingMessages;
@@ -57,6 +57,10 @@
     IBOutlet HorizontalDynamicScrollView *pendingAttachmentsScrollView;
     IBOutlet NSTextField *typingStatusTextField;
     
+    IBOutlet NSView *replyToView;
+    IBOutlet NSTextField *replyToTextField;
+    
+    
     DLMessage *lastMessage;
     DLMessageEditor *messageEditor;
     ServerItemViewController *me;
@@ -74,6 +78,7 @@
 }
 - (IBAction)showFileOpenDialog:(id)sender;
 - (IBAction)showSettingsMenu:(id)sender;
+- (IBAction)removeReferencedMessage:(id)sender;
 
 -(void)setDelegate:(id<DLMainWindowDelegate>)inDelegate;
 @end

@@ -64,6 +64,8 @@
 		87AD27DA2741EF9C0092F428 /* PendingAttachmentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 87AD27D92741EF9C0092F428 /* PendingAttachmentViewController.m */; };
 		87AD27DD2741EFBC0092F428 /* PendingAttachmentViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 87AD27DF2741EFBC0092F428 /* PendingAttachmentViewController.xib */; };
 		87AD27E32741F3E20092F428 /* delete.png in Resources */ = {isa = PBXBuildFile; fileRef = 87AD27E22741F3E20092F428 /* delete.png */; };
+		87BE740D278B811A00F61BF7 /* reply_curve.png in Resources */ = {isa = PBXBuildFile; fileRef = 87BE740C278B811A00F61BF7 /* reply_curve.png */; };
+		87BE741B278BEBA800F61BF7 /* NSTextView+Menu.m in Sources */ = {isa = PBXBuildFile; fileRef = 87BE741A278BEBA800F61BF7 /* NSTextView+Menu.m */; };
 		87C0834E2728DDFD00C8F933 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 87C0834D2728DDFD00C8F933 /* Cocoa.framework */; };
 		87C083532728DEA000C8F933 /* DLController.m in Sources */ = {isa = PBXBuildFile; fileRef = 87C083522728DEA000C8F933 /* DLController.m */; };
 		87C083572728E1A800C8F933 /* DLLoginWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 87C083552728E1A800C8F933 /* DLLoginWindowController.m */; };
@@ -205,6 +207,9 @@
 		87AD27D92741EF9C0092F428 /* PendingAttachmentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PendingAttachmentViewController.m; sourceTree = "<group>"; };
 		87AD27DE2741EFBC0092F428 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/PendingAttachmentViewController.xib; sourceTree = "<group>"; };
 		87AD27E22741F3E20092F428 /* delete.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = delete.png; sourceTree = "<group>"; };
+		87BE740C278B811A00F61BF7 /* reply_curve.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = reply_curve.png; sourceTree = "<group>"; };
+		87BE7419278BEBA800F61BF7 /* NSTextView+Menu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSTextView+Menu.h"; sourceTree = "<group>"; };
+		87BE741A278BEBA800F61BF7 /* NSTextView+Menu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSTextView+Menu.m"; sourceTree = "<group>"; };
 		87C0834D2728DDFD00C8F933 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/System/Library/Frameworks/Cocoa.framework; sourceTree = DEVELOPER_DIR; };
 		87C083512728DEA000C8F933 /* DLController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DLController.h; sourceTree = "<group>"; };
 		87C083522728DEA000C8F933 /* DLController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DLController.m; sourceTree = "<group>"; };
@@ -473,6 +478,7 @@
 				87DA40082739DB28007E7455 /* mention_notification.mp3 */,
 				87AD27E22741F3E20092F428 /* delete.png */,
 				879E31E02743502A00A21FF5 /* settings.png */,
+				87BE740C278B811A00F61BF7 /* reply_curve.png */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -573,6 +579,8 @@
 				87C2CF91272F77AD00F10466 /* NSView+BGColor.m */,
 				87A38DD427330B49002385EE /* NSView+Border.h */,
 				87A38DD527330B49002385EE /* NSView+Border.m */,
+				87BE7419278BEBA800F61BF7 /* NSTextView+Menu.h */,
+				87BE741A278BEBA800F61BF7 /* NSTextView+Menu.m */,
 				87D9D1662731C77600162F22 /* PaddedTextView.h */,
 				87D9D1672731C77600162F22 /* PaddedTextView.m */,
 				87A6E2BC2735E0C2000DC06E /* RoundedTextFieldCell.h */,
@@ -677,6 +685,7 @@
 				87AD27E32741F3E20092F428 /* delete.png in Resources */,
 				878B0B2A2738FC6400547D61 /* discord_purple.png in Resources */,
 				87AD27DD2741EFBC0092F428 /* PendingAttachmentViewController.xib in Resources */,
+				87BE740D278B811A00F61BF7 /* reply_curve.png in Resources */,
 				872FCECA272A4CDA002434B1 /* ServerItemViewController.xib in Resources */,
 				8714B1B12729FCF200DA4AF9 /* DLMainWindowController.xib in Resources */,
 				87C11C9B2728DB7B000046F2 /* MainMenu.xib in Resources */,
@@ -745,6 +754,7 @@
 				8714B1B9272A0C6900DA4AF9 /* DLServer.m in Sources */,
 				876DBE012729234A008682BC /* DLUtil.m in Sources */,
 				87D9D16E27320B1500162F22 /* DLMessage.m in Sources */,
+				87BE741B278BEBA800F61BF7 /* NSTextView+Menu.m in Sources */,
 				87C6E6A827305DBF00090639 /* DLChannel.m in Sources */,
 				876DBDF727291711008682BC /* CDataScanner.m in Sources */,
 				878E497C2734645900BBB18B /* WSMessage.m in Sources */,

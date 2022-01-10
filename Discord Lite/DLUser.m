@@ -100,7 +100,7 @@ const NSTimeInterval TYPING_INTERVAL = 10.0;
     if ([request result] == HTTPResultOK) {
         [avatarImageData release];
         avatarImageData = [[request responseData] retain];
-        [delegate avatarDidUpdateWithData:avatarImageData];
+        [delegate user:self avatarDidUpdateWithData:avatarImageData];
     }
     [request release];
     req = nil;
