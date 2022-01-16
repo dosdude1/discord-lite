@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+    <script>
+        document.onreadystatechange = function () {
+            if (document.readyState === "complete") {
+                documentReady();
+            }
+        }
+
+        var captchaComplete = function() {
+        	var response = grecaptcha.getResponse();
+            window.location.replace("captcha_key=" + response);
+        };
+    </script>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
+</head>
+
+<body style="background-color: rgb(34, 34, 34);">
+    <div class="g-recaptcha" data-sitekey="<SITE_KEY>" data-callback="captchaComplete" style="position: absolute; top: 50%; left: calc(50% - 151px);">
+    </div>
+</body>
+
+</html>

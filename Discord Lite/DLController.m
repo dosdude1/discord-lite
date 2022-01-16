@@ -48,18 +48,36 @@ static DLController* sharedObject = nil;
 -(void)setDelegate:(id <DLControllerDelegate>)inDelegate {
     delegate = inDelegate;
 }
+-(void)setCaptchaKey:(NSString *)inKey {
+    captchaKey = inKey;
+}
 
 -(BOOL)isLoggedIn {
     return (token && ![token isEqualToString:@""]);
 }
 
 -(void)loginWithEmail:(NSString *)email andPassword:(NSString *)password {
+    NSMutableDictionary *params = [NSMutableDictionary dictionaryWithObjects:[NSArray arrayWithObjects:email, password, nil] forKeys:[NSArray arrayWithObjects:@"email", @"password", nil]];
+    if (captchaKey) {
+        [params setObject:captchaKey forKey:@"captcha_key"];
+    }
     AsyncHTTPPostRequest *req = [[AsyncHTTPPostRequest alloc] init];
     [req setDelegate:self];
-    [req setParameters:[NSDictionary dictionaryWithObjects:[NSArray arrayWithObjects:email, password, nil] forKeys:[NSArray arrayWithObjects:@"email", @"password", nil]]];
+    [req setParameters:params];
     [req setIdentifier:RequestIDLogin];
     
     [req setUrl:[NSURL URLWithString:[@API_ROOT stringByAppendingPathComponent:@"auth/login"]]];
+    [req start];
+}
+
+-(void)loginWithTwoFactorAuthCode:(NSString *)twoFactorCode {
+    NSDictionary *params = [NSDictionary dictionaryWithObjects:[NSArray arrayWithObjects:twoFactorTicket, twoFactorCode, nil] forKeys:[NSArray arrayWithObjects:@"ticket", @"code", nil]];
+    AsyncHTTPPostRequest *req = [[AsyncHTTPPostRequest alloc] init];
+    [req setDelegate:self];
+    [req setParameters:params];
+    [req setIdentifier:RequestIDTwoFactor];
+    
+    [req setUrl:[NSURL URLWithString:[@API_ROOT stringByAppendingPathComponent:@"auth/mfa/totp"]]];
     [req start];
 }
 
@@ -292,10 +310,15 @@ static DLController* sharedObject = nil;
             if ([req responseData]) {
                 resDict = [[CJSONDeserializer deserializer] deserializeAsDictionary:[req responseData] error:nil];
             }
-            token = [resDict objectForKey:@"token"];
-            [[NSUserDefaults standardUserDefaults] setObject:token forKey:@kDefaultsToken];
-            [[NSUserDefaults standardUserDefaults] synchronize];
-            [loginDelegate didLoginWithError:nil];
+            if ([resDict objectForKey:@"token"] && ![[resDict objectForKey:@"token"] isKindOfClass:[NSNull class]]) {
+                token = [[resDict objectForKey:@"token"] retain];
+                [[NSUserDefaults standardUserDefaults] setObject:token forKey:@kDefaultsToken];
+                [[NSUserDefaults standardUserDefaults] synchronize];
+                [loginDelegate didLoginWithError:nil];
+            } else if ([resDict objectForKey:@"ticket"] && ![[resDict objectForKey:@"ticket"] isKindOfClass:[NSNull class]]) {
+                twoFactorTicket = [[resDict objectForKey:@"ticket"] retain];
+                [loginDelegate didReceiveTwoFactorAuthRequest];
+            }
             break;
         }
         case HTTPResultErrParameter: {
@@ -304,9 +327,15 @@ static DLController* sharedObject = nil;
                 resDict = [[CJSONDeserializer deserializer] deserializeAsDictionary:[req responseData] error:nil];
             }
             if ([resDict objectForKey:@"captcha_key"]) {
-                
+                [loginDelegate didReceiveCaptchaRequestOfType:[resDict objectForKey:@"captcha_service"] withSiteKey:[resDict objectForKey:@"captcha_sitekey"]];
             } else {
-                [loginDelegate didLoginWithError:[DLError requestErrorWithMessage:[[resDict objectForKey:[resDict.allKeys objectAtIndex:0]] objectAtIndex:0]]];
+                NSString *message = @"";
+                if ([[resDict objectForKey:[resDict.allKeys objectAtIndex:0]] isKindOfClass:[NSArray class]]) {
+                    message = [[resDict objectForKey:[resDict.allKeys objectAtIndex:0]] objectAtIndex:0];
+                } else {
+                    message = [resDict objectForKey:@"message"];
+                }
+                [loginDelegate didLoginWithError:[DLError requestErrorWithMessage:message]];
             }
             
             break;
@@ -326,7 +355,6 @@ static DLController* sharedObject = nil;
             break;
     }
 }
-
 
 -(void)handleMessagesRequestResponse:(AsyncHTTPRequest *)req {
     if ([req result] == HTTPResultOK) {
@@ -385,8 +413,13 @@ static DLController* sharedObject = nil;
             if ([req responseData]) {
                 resDict = [[CJSONDeserializer deserializer] deserializeAsDictionary:[req responseData] error:nil];
             }
-            [delegate requestDidFailWithError:[DLError requestErrorWithMessage:[[resDict objectForKey:[resDict.allKeys objectAtIndex:0]] objectAtIndex:0]]];
-            
+            NSString *message = @"";
+            if ([[resDict objectForKey:[resDict.allKeys objectAtIndex:0]] isKindOfClass:[NSArray class]]) {
+                message = [[resDict objectForKey:[resDict.allKeys objectAtIndex:0]] objectAtIndex:0];
+            } else {
+                message = [resDict objectForKey:@"message"];
+            }
+            [delegate requestDidFailWithError:[DLError requestErrorWithMessage:message]];
             break;
         }
         case HTTPResultErrGeneral: {
@@ -410,6 +443,7 @@ static DLController* sharedObject = nil;
 -(void)requestDidFinishLoading:(AsyncHTTPRequest *)request {
     switch ([request identifier]) {
         case RequestIDLogin:
+        case RequestIDTwoFactor:
             [self handleLoginRequestResponse:request];
             break;
         case RequestIDMessages:

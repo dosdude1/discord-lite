@@ -22,17 +22,18 @@
 - Pinging users
 - Typing indication
 - Viewing and sending replies
+- URL hotlinks
+- Two-factor authentication
+- Captchas (in Mac OS X 10.5 or later only)
+
 
 #### What does not work
 
 (I plan to implement all the following unless noted otherwise)
 
-- Message hotlinks
 - Message web embeds
 - Voice and video chat
 - Friend requests (will not be implemented due to Discord TOS concerns)
-- Two-factor authentication
-- Captchas
 - Editing messages
 
 
@@ -41,7 +42,6 @@
 Prebuilt Universal "Tri-FAT" binaries can be found in the [Releases](https://github.com/dosdude1/discord-lite/releases) section. You can download and run on PowerPC, 32-bit Intel, or 64-bit Intel. It will also run on ARM-based Macs under Rosetta, but native ARM support will be added soon.
 
 Alternatively, you can download the latest release off [my website](http://dosdude1.com/apps/Discord%20Lite.dmg), which is loadable on the older machines.
-
 
 
 ### Building

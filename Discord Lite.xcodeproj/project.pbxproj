@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		87062772278E97AA0056BD71 /* captcha_hcaptcha.html in Resources */ = {isa = PBXBuildFile; fileRef = 87062771278E97AA0056BD71 /* captcha_hcaptcha.html */; };
+		87062776278E9CF20056BD71 /* DLCaptchaWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 87062774278E9CF20056BD71 /* DLCaptchaWindowController.m */; };
+		87062778278E9CFF0056BD71 /* DLCaptchaWindowController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8706277A278E9CFF0056BD71 /* DLCaptchaWindowController.xib */; };
+		8706277C278E9E0A0056BD71 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8706277B278E9E0A0056BD71 /* WebKit.framework */; };
+		8706277E278EB2BB0056BD71 /* captcha_recaptcha.html in Resources */ = {isa = PBXBuildFile; fileRef = 8706277D278EB2BB0056BD71 /* captcha_recaptcha.html */; };
 		8714B1A62729ED5200DA4AF9 /* DLError.m in Sources */ = {isa = PBXBuildFile; fileRef = 8714B1A52729ED5200DA4AF9 /* DLError.m */; };
 		8714B1AB2729F5B000DA4AF9 /* DLErrorHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 8714B1AA2729F5B000DA4AF9 /* DLErrorHandler.m */; };
 		8714B1AF2729FC5000DA4AF9 /* DLMainWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8714B1AD2729FC5000DA4AF9 /* DLMainWindowController.m */; };
@@ -42,6 +47,9 @@
 		878E497E2734645900BBB18B /* WSWebSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = 878E497A2734645900BBB18B /* WSWebSocket.m */; };
 		878E498527347A4900BBB18B /* DLWSController.m in Sources */ = {isa = PBXBuildFile; fileRef = 878E498427347A4900BBB18B /* DLWSController.m */; };
 		878EA5FA275477E5002F173A /* DLMessageEditor.m in Sources */ = {isa = PBXBuildFile; fileRef = 878EA5F9275477E5002F173A /* DLMessageEditor.m */; };
+		8791ACC12794AE50005672AB /* DLTwoFactorWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8791ACBF2794AE50005672AB /* DLTwoFactorWindowController.m */; };
+		8791ACC32794AF0D005672AB /* DLTwoFactorWindowController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8791ACC52794AF0D005672AB /* DLTwoFactorWindowController.xib */; };
+		8791ACC82794B7C9005672AB /* TwoFactorEntryFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = 8791ACC72794B7C9005672AB /* TwoFactorEntryFormatter.m */; };
 		87994C6A2753450300A27326 /* DLTextParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 87994C692753450300A27326 /* DLTextParser.m */; };
 		879E31C62743070400A21FF5 /* AttachmentPreviewViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 879E31C82743070400A21FF5 /* AttachmentPreviewViewController.xib */; };
 		879E31E12743502A00A21FF5 /* settings.png in Resources */ = {isa = PBXBuildFile; fileRef = 879E31E02743502A00A21FF5 /* settings.png */; };
@@ -108,6 +116,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		87062771278E97AA0056BD71 /* captcha_hcaptcha.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = captcha_hcaptcha.html; sourceTree = "<group>"; };
+		87062773278E9CF20056BD71 /* DLCaptchaWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DLCaptchaWindowController.h; sourceTree = "<group>"; };
+		87062774278E9CF20056BD71 /* DLCaptchaWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DLCaptchaWindowController.m; sourceTree = "<group>"; };
+		87062779278E9CFF0056BD71 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/DLCaptchaWindowController.xib; sourceTree = "<group>"; };
+		8706277B278E9E0A0056BD71 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/System/Library/Frameworks/WebKit.framework; sourceTree = DEVELOPER_DIR; };
+		8706277D278EB2BB0056BD71 /* captcha_recaptcha.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = captcha_recaptcha.html; sourceTree = "<group>"; };
 		8714B1A42729ED5200DA4AF9 /* DLError.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DLError.h; sourceTree = "<group>"; };
 		8714B1A52729ED5200DA4AF9 /* DLError.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DLError.m; sourceTree = "<group>"; };
 		8714B1A92729F5B000DA4AF9 /* DLErrorHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DLErrorHandler.h; sourceTree = "<group>"; };
@@ -171,6 +185,11 @@
 		878E498427347A4900BBB18B /* DLWSController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DLWSController.m; sourceTree = "<group>"; };
 		878EA5F8275477E5002F173A /* DLMessageEditor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DLMessageEditor.h; sourceTree = "<group>"; };
 		878EA5F9275477E5002F173A /* DLMessageEditor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DLMessageEditor.m; sourceTree = "<group>"; };
+		8791ACBE2794AE50005672AB /* DLTwoFactorWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DLTwoFactorWindowController.h; sourceTree = "<group>"; };
+		8791ACBF2794AE50005672AB /* DLTwoFactorWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DLTwoFactorWindowController.m; sourceTree = "<group>"; };
+		8791ACC42794AF0D005672AB /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/DLTwoFactorWindowController.xib; sourceTree = "<group>"; };
+		8791ACC62794B7C9005672AB /* TwoFactorEntryFormatter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TwoFactorEntryFormatter.h; sourceTree = "<group>"; };
+		8791ACC72794B7C9005672AB /* TwoFactorEntryFormatter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TwoFactorEntryFormatter.m; sourceTree = "<group>"; };
 		87994C682753450300A27326 /* DLTextParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DLTextParser.h; sourceTree = "<group>"; };
 		87994C692753450300A27326 /* DLTextParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DLTextParser.m; sourceTree = "<group>"; };
 		879E31C72743070400A21FF5 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/AttachmentPreviewViewController.xib; sourceTree = "<group>"; };
@@ -267,6 +286,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8706277C278E9E0A0056BD71 /* WebKit.framework in Frameworks */,
 				8759138C274D9EE1003B7128 /* libicucore.dylib in Frameworks */,
 				87C0836B2728EA2800C8F933 /* Foundation.framework in Frameworks */,
 				87C0834E2728DDFD00C8F933 /* Cocoa.framework in Frameworks */,
@@ -337,7 +357,7 @@
 				8759138D274DB5BD003B7128 /* TagSelectionViewController.h */,
 				8759138E274DB5BD003B7128 /* TagSelectionViewController.m */,
 				87591394274DB5D7003B7128 /* TagSelectionViewController.xib */,
-				87D9D17627320E8500162F22 /* Helper Views */,
+				87D9D17627320E8500162F22 /* Helper Classes */,
 				87C2CF89272F436E00F10466 /* Base Classes */,
 			);
 			name = Views;
@@ -461,6 +481,12 @@
 				87A32B2A273F1A28003D64BD /* DLAttachmentWindowController.h */,
 				87A32B2B273F1A28003D64BD /* DLAttachmentWindowController.m */,
 				87A32B31273F1ADC003D64BD /* DLAttachmentWindowController.xib */,
+				87062773278E9CF20056BD71 /* DLCaptchaWindowController.h */,
+				87062774278E9CF20056BD71 /* DLCaptchaWindowController.m */,
+				8706277A278E9CFF0056BD71 /* DLCaptchaWindowController.xib */,
+				8791ACBE2794AE50005672AB /* DLTwoFactorWindowController.h */,
+				8791ACBF2794AE50005672AB /* DLTwoFactorWindowController.m */,
+				8791ACC52794AF0D005672AB /* DLTwoFactorWindowController.xib */,
 			);
 			name = WindowControllers;
 			sourceTree = "<group>";
@@ -479,6 +505,8 @@
 				87AD27E22741F3E20092F428 /* delete.png */,
 				879E31E02743502A00A21FF5 /* settings.png */,
 				87BE740C278B811A00F61BF7 /* reply_curve.png */,
+				87062771278E97AA0056BD71 /* captcha_hcaptcha.html */,
+				8706277D278EB2BB0056BD71 /* captcha_recaptcha.html */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -486,6 +514,7 @@
 		87C11C842728DB7B000046F2 = {
 			isa = PBXGroup;
 			children = (
+				8706277B278E9E0A0056BD71 /* WebKit.framework */,
 				8759138B274D9EE1003B7128 /* libicucore.dylib */,
 				87C0836A2728EA2800C8F933 /* Foundation.framework */,
 				87C0834D2728DDFD00C8F933 /* Cocoa.framework */,
@@ -568,7 +597,7 @@
 			name = HTTP;
 			sourceTree = "<group>";
 		};
-		87D9D17627320E8500162F22 /* Helper Views */ = {
+		87D9D17627320E8500162F22 /* Helper Classes */ = {
 			isa = PBXGroup;
 			children = (
 				872FCED5272A5902002434B1 /* FlippedClipView.h */,
@@ -589,8 +618,10 @@
 				87A6E2C02735E392000DC06E /* BadgeTextField.m */,
 				87A6E2C2273612B5000DC06E /* BezierPathRoundedRect.h */,
 				87A6E2C3273612B5000DC06E /* BezierPathRoundedRect.m */,
+				8791ACC62794B7C9005672AB /* TwoFactorEntryFormatter.h */,
+				8791ACC72794B7C9005672AB /* TwoFactorEntryFormatter.m */,
 			);
-			name = "Helper Views";
+			name = "Helper Classes";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -676,6 +707,7 @@
 				87A38DEF27339557002385EE /* at.png in Resources */,
 				87C6E6972730510500090639 /* uI4.png in Resources */,
 				87DA40172739F4DB007E7455 /* AppIcon.icns in Resources */,
+				8706277E278EB2BB0056BD71 /* captcha_recaptcha.html in Resources */,
 				87C11C982728DB7B000046F2 /* Images.xcassets in Resources */,
 				87A38DE027336E24002385EE /* DirectMessageItemViewController.xib in Resources */,
 				87C0835E2728E28500C8F933 /* Discord-Logo.png in Resources */,
@@ -683,6 +715,7 @@
 				87877CDA273050A50062B796 /* ChannelItemViewController.xib in Resources */,
 				87DA40092739DB28007E7455 /* mention_notification.mp3 in Resources */,
 				87AD27E32741F3E20092F428 /* delete.png in Resources */,
+				8791ACC32794AF0D005672AB /* DLTwoFactorWindowController.xib in Resources */,
 				878B0B2A2738FC6400547D61 /* discord_purple.png in Resources */,
 				87AD27DD2741EFBC0092F428 /* PendingAttachmentViewController.xib in Resources */,
 				87BE740D278B811A00F61BF7 /* reply_curve.png in Resources */,
@@ -690,7 +723,9 @@
 				8714B1B12729FCF200DA4AF9 /* DLMainWindowController.xib in Resources */,
 				87C11C9B2728DB7B000046F2 /* MainMenu.xib in Resources */,
 				879E31E12743502A00A21FF5 /* settings.png in Resources */,
+				87062772278E97AA0056BD71 /* captcha_hcaptcha.html in Resources */,
 				87591392274DB5D7003B7128 /* TagSelectionViewController.xib in Resources */,
+				87062778278E9CFF0056BD71 /* DLCaptchaWindowController.xib in Resources */,
 				87A32B2F273F1ADC003D64BD /* DLAttachmentWindowController.xib in Resources */,
 				879E31C62743070400A21FF5 /* AttachmentPreviewViewController.xib in Resources */,
 				8742C86B2730EE85005359DC /* ChatItemViewController.xib in Resources */,
@@ -717,6 +752,7 @@
 			files = (
 				8714B1A62729ED5200DA4AF9 /* DLError.m in Sources */,
 				87C6E6A627305BB600090639 /* DLServerChannel.m in Sources */,
+				8791ACC12794AE50005672AB /* DLTwoFactorWindowController.m in Sources */,
 				87A38DD02732FEDB002385EE /* HTTPCache.m in Sources */,
 				8759138A274D9EBD003B7128 /* RegexKitLite.m in Sources */,
 				872FCEC8272A4C5F002434B1 /* ServerItemViewController.m in Sources */,
@@ -747,6 +783,7 @@
 				87A38DD9273330C0002385EE /* AttachmentPreviewViewController.m in Sources */,
 				87A32B26273F149A003D64BD /* NSView+Events.m in Sources */,
 				8782FE0E274C40B800ECA836 /* DLServerMember.m in Sources */,
+				8791ACC82794B7C9005672AB /* TwoFactorEntryFormatter.m in Sources */,
 				8714B1AF2729FC5000DA4AF9 /* DLMainWindowController.m in Sources */,
 				87D9D17127320C1000162F22 /* DLUser.m in Sources */,
 				87A38DDE27336E14002385EE /* DirectMessageItemViewController.m in Sources */,
@@ -769,6 +806,7 @@
 				878E497D2734645900BBB18B /* WSMessageProcessor.m in Sources */,
 				87A38DD627330B49002385EE /* NSView+Border.m in Sources */,
 				87A6E2C4273612B5000DC06E /* BezierPathRoundedRect.m in Sources */,
+				87062776278E9CF20056BD71 /* DLCaptchaWindowController.m in Sources */,
 				8742C8682730EE47005359DC /* ChatItemViewController.m in Sources */,
 				87D9D16B2731CCA700162F22 /* ChatScrollView.m in Sources */,
 				876DBDF227291681008682BC /* CJSONDeserializer.m in Sources */,
@@ -796,6 +834,14 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		8706277A278E9CFF0056BD71 /* DLCaptchaWindowController.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				87062779278E9CFF0056BD71 /* en */,
+			);
+			name = DLCaptchaWindowController.xib;
+			sourceTree = "<group>";
+		};
 		8714B1B32729FCF200DA4AF9 /* DLMainWindowController.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -834,6 +880,14 @@
 				87877CDB273050A50062B796 /* en */,
 			);
 			name = ChannelItemViewController.xib;
+			sourceTree = "<group>";
+		};
+		8791ACC52794AF0D005672AB /* DLTwoFactorWindowController.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				8791ACC42794AF0D005672AB /* en */,
+			);
+			name = DLTwoFactorWindowController.xib;
 			sourceTree = "<group>";
 		};
 		879E31C82743070400A21FF5 /* AttachmentPreviewViewController.xib */ = {

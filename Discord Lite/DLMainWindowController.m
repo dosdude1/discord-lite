@@ -18,7 +18,7 @@ const NSTimeInterval TYPING_SEND_INTERVAL = 8.0;
 
 - (void)windowDidLoad {
     [super windowDidLoad];
-
+    
     lastMessage = nil;
     editingLocation = NSNotFound;
     tagIndex = NSNotFound;
@@ -50,6 +50,8 @@ const NSTimeInterval TYPING_SEND_INTERVAL = 8.0;
     [typingUsers removeAllObjects];
     [self updateTypingString];
     [self hidePendingAttachmentView];
+    [self hideReplyToView];
+    [messageEditor clear];
     [messageEntryTextView setString:@""];
     [self textDidChange:nil];
 }
@@ -379,6 +381,14 @@ const NSTimeInterval TYPING_SEND_INTERVAL = 8.0;
     }
 }
 
+-(void)updateTypingStatus {
+    if (isTyping) {
+        isTyping = NO;
+        [typingTimer invalidate];
+        typingTimer = nil;
+    }
+}
+
 - (IBAction)removeReferencedMessage:(id)sender {
     [messageEditor removeReferencedMessage];
     [self hideReplyToView];
@@ -626,14 +636,6 @@ const NSTimeInterval TYPING_SEND_INTERVAL = 8.0;
 -(void)userDidStopTyping:(DLUser *)u {
     [typingUsers removeObject:u];
     [self updateTypingString];
-}
-
--(void)updateTypingStatus {
-    if (isTyping) {
-        isTyping = NO;
-        [typingTimer invalidate];
-        typingTimer = nil;
-    }
 }
 
 -(void)members:(NSArray *)members didUpdateForServer:(DLServer *)s {

@@ -10,13 +10,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Discord Lite/AsyncHTTPRequest.m"
-            timestampString = "659423366.209311"
+            timestampString = "663660161.529402"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "139"
-            endingLineNumber = "139"
-            landmarkName = "-connection:didReceiveAuthenticationChallenge:"
-            landmarkType = "5">
+            startingLineNumber = "147"
+            endingLineNumber = "147"
+            landmarkName = "@implementation AsyncHTTPRequest"
+            landmarkType = "3">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -26,13 +26,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Discord Lite/AsyncHTTPRequest.m"
-            timestampString = "659423366.209311"
+            timestampString = "663660161.529402"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "135"
-            endingLineNumber = "135"
-            landmarkName = "-connection:didReceiveAuthenticationChallenge:"
-            landmarkType = "5">
+            startingLineNumber = "143"
+            endingLineNumber = "143"
+            landmarkName = "@implementation AsyncHTTPRequest"
+            landmarkType = "3">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -42,11 +42,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Discord Lite/DLMainWindowController.m"
-            timestampString = "663467568.908307"
+            timestampString = "663787397.96253"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "456"
-            endingLineNumber = "456"
+            startingLineNumber = "466"
+            endingLineNumber = "466"
             landmarkName = "-serverItemWasSelected:"
             landmarkType = "5">
          </BreakpointContent>
@@ -74,7 +74,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Discord Lite/DLMainWindowController.m"
-            timestampString = "660081030.2157511"
+            timestampString = "663664319.3477859"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "35"

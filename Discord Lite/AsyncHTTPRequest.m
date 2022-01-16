@@ -8,6 +8,14 @@
 
 #import "AsyncHTTPRequest.h"
 
+@implementation NSURLRequest(DataController)
+
++(BOOL)allowsAnyHTTPSCertificateForHost:(NSString *)host {
+    return YES;
+}
+
+@end
+
 @implementation AsyncHTTPRequest
 
 -(id)init {
@@ -126,7 +134,7 @@
     [connection release];
 }
 
-- (BOOL)connection:(NSURLConnection *)connection canAuthenticateAgainstProtectionSpace:(NSURLProtectionSpace *)protectionSpace {
+/*- (BOOL)connection:(NSURLConnection *)connection canAuthenticateAgainstProtectionSpace:(NSURLProtectionSpace *)protectionSpace {
     return [protectionSpace.authenticationMethod isEqualToString:@"NSURLAuthenticationMethodServerTrust"];
 }
 
@@ -137,7 +145,7 @@
     }
 #endif
     [challenge.sender continueWithoutCredentialForAuthenticationChallenge:challenge];
-}
+}*/
 
 -(void)dealloc {
     [url release];

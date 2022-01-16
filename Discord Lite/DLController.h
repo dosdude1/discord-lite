@@ -26,12 +26,15 @@ typedef enum {
     RequestIDSendMessage = 2,
     RequestIDAckMessage = 3,
     RequestIDLogout = 4,
-    RequestIDTyping = 5
+    RequestIDTyping = 5,
+    RequestIDTwoFactor = 6
 } RequestID;
 
 @protocol DLLoginDelegate <NSObject>
 @optional
 -(void)didLoginWithError:(DLError *)e;
+-(void)didReceiveCaptchaRequestOfType:(NSString *)captchaType withSiteKey:(NSString *)siteKey;
+-(void)didReceiveTwoFactorAuthRequest;
 @end
 
 @protocol DLControllerDelegate <NSObject>
@@ -47,8 +50,10 @@ typedef enum {
 
 @interface DLController : NSObject <AsyncHTTPRequestDelegate, DLWSControllerDelegate> {
     NSString *token;
+    NSString *twoFactorTicket;
     id <DLControllerDelegate> delegate;
     id <DLLoginDelegate> loginDelegate;
+    NSString *captchaKey;
     DLServer *selectedServer;
     DLServer *myServerItem;
     DLChannel *selectedChannel;
@@ -66,11 +71,14 @@ typedef enum {
 -(void)setLoginDelegate:(id <DLLoginDelegate>)inLoginDelegate;
 -(void)setDelegate:(id <DLControllerDelegate>)inDelegate;
 
+-(void)setCaptchaKey:(NSString *)inKey;
+
 +(DLController *)sharedInstance;
 
 -(void)loadUserDefaults;
 -(BOOL)isLoggedIn;
 -(void)loginWithEmail:(NSString *)email andPassword:(NSString *)password;
+-(void)loginWithTwoFactorAuthCode:(NSString *)twoFactorCode;
 -(void)loadMessagesForChannel:(DLChannel *)c beforeMessage:(DLMessage *)m quantity:(NSInteger)numMsgs;
 -(void)sendMessage:(DLMessage *)m toChannel:(DLChannel *)c;
 -(void)acknowledgeMessage:(DLMessage *)m;
