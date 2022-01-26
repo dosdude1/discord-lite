@@ -19,7 +19,7 @@
     
     NSBezierPath *border = [NSBezierPath bezierPathWithRect:dirtyRect];
     [border setLineWidth:1];
-    [[NSColor controlShadowColor] set];
+    [[NSColor windowFrameColor] set];
     [border stroke];
     // Drawing code here.
 }

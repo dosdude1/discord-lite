@@ -11,9 +11,6 @@
 @implementation ChannelItemViewController
 
 -(void)awakeFromNib {
-    [view setBackgroundColor:[NSColor whiteColor]];
-    [headerView setBackgroundColor:[NSColor whiteColor]];
-    [dmView setBackgroundColor:[NSColor whiteColor]];
     [view setDelegate:self];
     [dmView setDelegate:self];
     [view setNeedsDisplay:YES];
@@ -62,7 +59,7 @@
         [view setBackgroundColor:[[NSColor selectedControlColor] colorUsingColorSpaceName:NSCalibratedRGBColorSpace]];
         [view setNeedsDisplay:YES];
     } else {
-        [view setBackgroundColor:[[NSColor whiteColor] colorUsingColorSpaceName:NSCalibratedRGBColorSpace]];
+        [view setBackgroundColor:[NSColor clearColor]];
         [view setNeedsDisplay:YES];
     }
 }

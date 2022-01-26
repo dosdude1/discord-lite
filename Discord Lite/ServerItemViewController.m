@@ -46,7 +46,7 @@
             [view setBackgroundColor:[[NSColor selectedControlColor] colorUsingColorSpaceName:NSCalibratedRGBColorSpace]];
             [view setNeedsDisplay:YES];
         } else {
-            [view setBackgroundColor:[[NSColor controlColor] colorUsingColorSpaceName:NSCalibratedRGBColorSpace]];
+            [view setBackgroundColor:[NSColor clearColor]];
             [view setNeedsDisplay:YES];
         }
     }

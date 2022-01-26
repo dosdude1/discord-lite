@@ -576,5 +576,8 @@ static DLController* sharedObject = nil;
     }
     [delegate members:members didUpdateForServer:[self loadedServerWithID:serverID]];
 }
+-(void)wsMessageWithID:(NSString *)messageID wasUpdatedWithData:(NSDictionary *)data {
+    
+}
 
 @end

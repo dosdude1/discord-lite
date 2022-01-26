@@ -13,11 +13,11 @@
 - (void)drawRect:(NSRect)dirtyRect {
     [super drawRect:dirtyRect];
     if (!backgroundColor) {
-        backgroundColor = [NSColor controlColor];
+        backgroundColor = [NSColor clearColor];
     }
     
     [backgroundColor set];
-    NSRectFill([self bounds]);
+    NSRectFillUsingOperation([self bounds], NSCompositeSourceOver);
     // Drawing code here.
 }
 -(void)setBackgroundColor:(NSColor *)bgColor {

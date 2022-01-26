@@ -25,6 +25,7 @@
     NSMutableAttributedString *as = [[NSMutableAttributedString alloc] initWithString:userContent];
     NSInteger lastLocation = -1;
     NSInteger index = 0;
+    [as addAttribute:NSForegroundColorAttributeName value:[NSColor textColor] range:NSMakeRange(0, [as string].length)];
     while (lastLocation != NSNotFound) {
         lastLocation = [userContent rangeOfString:@"@" options:0 range:NSMakeRange(lastLocation + 1, userContent.length - (lastLocation + 1))].location;
         if (lastLocation != NSNotFound) {
@@ -36,6 +37,8 @@
                         NSRange tagRange = NSMakeRange(lastLocation, [user username].length + 1);
                         [as addAttribute:NSBackgroundColorAttributeName value:[NSColor yellowColor] range:tagRange];
                         [as addAttribute:@kTagAttribute value:[NSNumber numberWithBool:YES] range:tagRange];
+                        [as addAttribute:NSForegroundColorAttributeName value:[NSColor blackColor] range:tagRange];
+                        [as addAttribute:NSForegroundColorAttributeName value:[NSColor textColor] range:NSMakeRange(tagRange.location + tagRange.length + 1, [as string].length - (tagRange.location + tagRange.length + 1))];
                         index++;
                     }
                 }

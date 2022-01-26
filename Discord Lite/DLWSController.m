@@ -143,6 +143,8 @@ static DLWSController* sharedObject = nil;
                 NSArray *memberData = [wsData objectForKey:@"members"];
                 NSString *serverID = [wsData objectForKey:@"guild_id"];
                 [delegate wsDidReceiveMemberData:memberData forServerWithID:serverID];
+            } else if ([type isEqualToString:@"MESSAGE_UPDATE"]) {
+                
             }
             break;
         }

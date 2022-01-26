@@ -15,10 +15,11 @@ const NSInteger ATTACHMENT_SPACING = 15;
 
 -(void)awakeFromNib {
     baseViewHeight = view.frame.size.height;
-    [insetView setBackgroundColor:[NSColor whiteColor]];
+    [insetView setBackgroundColor:[NSColor controlBackgroundColor]];
     [chatTextView setEditable:NO];
     [chatTextView setFont:[NSFont systemFontOfSize:13]];
     [chatTextView setMenuDelegate:self];
+    [chatTextView setDrawsBackground:NO];
     
     [insetView setDelegate:self];
     

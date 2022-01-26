@@ -40,10 +40,10 @@
                 <rect key="frame" x="0.0" y="0.0" width="743" height="517"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <scrollView horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" id="h23-nI-XrN" customClass="DynamicScrollView">
+                    <scrollView horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" horizontalScrollElasticity="none" id="h23-nI-XrN" customClass="DynamicScrollView">
                         <rect key="frame" x="0.0" y="0.0" width="81" height="517"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" heightSizable="YES"/>
-                        <clipView key="contentView" copiesOnScroll="NO" id="Ngg-kN-ptI" customClass="FlippedClipView">
+                        <clipView key="contentView" drawsBackground="NO" copiesOnScroll="NO" id="Ngg-kN-ptI" customClass="FlippedClipView">
                             <rect key="frame" x="1" y="1" width="166" height="79"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <subviews>
@@ -64,7 +64,7 @@
                     <scrollView horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" horizontalScrollElasticity="none" id="dt2-4X-sLM" customClass="ChatScrollView">
                         <rect key="frame" x="334" y="56" width="410" height="420"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <clipView key="contentView" copiesOnScroll="NO" id="4c6-jB-Mh4">
+                        <clipView key="contentView" drawsBackground="NO" copiesOnScroll="NO" id="4c6-jB-Mh4">
                             <rect key="frame" x="1" y="1" width="166" height="79"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <subviews>
@@ -105,7 +105,7 @@
                                             <size key="maxSize" width="463" height="10000000"/>
                                         </textView>
                                     </subviews>
-                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </clipView>
                                 <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="YES" id="VLe-hl-XXM">
                                     <rect key="frame" x="-100" y="-100" width="87" height="18"/>
@@ -213,7 +213,7 @@
                             </textField>
                         </subviews>
                     </customView>
-                    <scrollView horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" id="E5m-T8-onc" customClass="DynamicScrollView">
+                    <scrollView horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" horizontalScrollElasticity="none" id="E5m-T8-onc" customClass="DynamicScrollView">
                         <rect key="frame" x="81" y="56" width="253" height="420"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" heightSizable="YES"/>
                         <clipView key="contentView" copiesOnScroll="NO" id="de6-yQ-Van" customClass="FlippedClipView">
@@ -243,10 +243,10 @@
             </connections>
             <point key="canvasLocation" x="435.5" y="369.5"/>
         </window>
-        <scrollView horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasVerticalScroller="NO" usesPredominantAxisScrolling="NO" id="3by-Kh-2v5" customClass="HorizontalDynamicScrollView">
+        <scrollView horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasVerticalScroller="NO" usesPredominantAxisScrolling="NO" verticalScrollElasticity="none" id="3by-Kh-2v5" customClass="HorizontalDynamicScrollView">
             <rect key="frame" x="0.0" y="0.0" width="101" height="94"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
-            <clipView key="contentView" copiesOnScroll="NO" id="C8Q-Ax-lmG" customClass="FlippedClipView">
+            <clipView key="contentView" drawsBackground="NO" copiesOnScroll="NO" id="C8Q-Ax-lmG" customClass="FlippedClipView">
                 <rect key="frame" x="1" y="1" width="166" height="79"/>
                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                 <subviews>
@@ -266,10 +266,10 @@
             </scroller>
             <point key="canvasLocation" x="728.5" y="735"/>
         </scrollView>
-        <scrollView horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" id="tms-ob-ZbN" customClass="DynamicScrollView">
+        <scrollView horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" horizontalScrollElasticity="none" id="tms-ob-ZbN" customClass="DynamicScrollView">
             <rect key="frame" x="0.0" y="1" width="144" height="25"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-            <clipView key="contentView" id="qv6-fT-Mdh">
+            <clipView key="contentView" drawsBackground="NO" copiesOnScroll="NO" id="qv6-fT-Mdh">
                 <rect key="frame" x="1" y="1" width="166" height="79"/>
                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                 <subviews>

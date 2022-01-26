@@ -15,6 +15,7 @@ const CGFloat MESSAGE_VIEW_FONT_SIZE = 13.0;
 +(NSAttributedString *)attributedContentStringForMessage:(DLMessage *)m {
     NSMutableAttributedString *as = [[NSMutableAttributedString alloc] initWithString:[m content]];
     [as addAttribute:NSFontAttributeName value:[NSFont systemFontOfSize:MESSAGE_VIEW_FONT_SIZE] range:NSMakeRange(0, [m content].length)];
+    [as addAttribute:NSForegroundColorAttributeName value:[NSColor textColor] range:NSMakeRange(0, [m content].length)];
     
     NSString *userTagRegex = @"<@(!)?([0-9]*)>";
     NSString *userIDRegex = @"[0-9]+";

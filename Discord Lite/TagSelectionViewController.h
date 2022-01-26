@@ -23,6 +23,7 @@
     IBOutlet NSTextField *usernameTextField;
     DLUser *representedObject;
     id<TagSelectionItemDelegate> delegate;
+    NSColor *unselectedBGColor;
 }
 
 -(id)init;

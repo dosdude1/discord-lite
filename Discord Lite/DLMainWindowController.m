@@ -37,6 +37,7 @@ const NSTimeInterval TYPING_SEND_INTERVAL = 8.0;
     currentMessageScrollHeight = messageEntryScrollView.frame.size.height;
     typingUsers = [[NSMutableArray alloc] init];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(textDidChange:) name:NSWindowDidResizeNotification object:nil];
+    
 }
 
 -(void)setDelegate:(id<DLMainWindowDelegate>)inDelegate {
@@ -617,7 +618,7 @@ const NSTimeInterval TYPING_SEND_INTERVAL = 8.0;
                 }
             }
         } else {
-            typingString = @"Serveral People are Typing...";
+            typingString = @"Several People are Typing...";
         }
         [typingStatusTextField setStringValue:typingString];
     } else {
@@ -733,7 +734,7 @@ const NSTimeInterval TYPING_SEND_INTERVAL = 8.0;
 -(void)textViewDidChangeSelection:(NSNotification *)notification {
     editingLocation = [[[messageEntryTextView selectedRanges] objectAtIndex:0] rangeValue].location;
     
-    [messageEntryTextView setTypingAttributes:[NSDictionary dictionaryWithObject:[NSColor controlBackgroundColor] forKey:NSBackgroundColorAttributeName]];
+    [messageEntryTextView setTypingAttributes:[NSDictionary dictionaryWithObjects:[NSArray arrayWithObjects:[NSColor textColor], [NSColor controlBackgroundColor], nil] forKeys:[NSArray arrayWithObjects:NSForegroundColorAttributeName, NSBackgroundColorAttributeName, nil]]];
     
     NSString *textPreSelection = [[messageEntryTextView string] substringToIndex:editingLocation];
     tagIndex = [textPreSelection rangeOfString:@"@" options:NSBackwardsSearch].location;

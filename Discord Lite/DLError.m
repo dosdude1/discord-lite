@@ -32,7 +32,7 @@
 
 -(void)setType:(ErrorType)t {
     if (t == ErrorTypeConnection) {
-        messageText = @"Could not connect to the Discord server. Please check your Internet connection and try again.";
+        infoText = @"Could not connect to the Discord server. Please check your Internet connection and try again.";
     }
     type = t;
 }

@@ -10,10 +10,6 @@
 
 @implementation AttachmentPreviewViewController
 
--(void)awakeFromNib {
-    [nonImageAttachmentView setBackgroundColor:[NSColor whiteColor]];
-}
-
 -(NSView *)attachmentView {
     return attachmentView;
 }

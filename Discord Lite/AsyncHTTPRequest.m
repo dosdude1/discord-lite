@@ -126,11 +126,12 @@
 }
 
 - (void) connection:(NSURLConnection *)connection didFailWithError:(NSError *)error {
-    NSLog(@"Error: %@", [error localizedDescription]);
+    NSLog(@"Error: %@", error);
     result = HTTPResultErrConnecting;
     if (isFileDownload) {
         [downloadingFile closeFile];
     }
+    [delegate requestDidFinishLoading:self];
     [connection release];
 }
 

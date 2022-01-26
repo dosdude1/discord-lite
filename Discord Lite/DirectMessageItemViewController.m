@@ -12,7 +12,6 @@
 
 -(void)awakeFromNib {
     [view setDelegate:self];
-    [view setBackgroundColor:[NSColor whiteColor]];
     [view setNeedsDisplay:YES];
 }
 
@@ -43,7 +42,7 @@
         [view setBackgroundColor:[[NSColor selectedControlColor] colorUsingColorSpaceName:NSCalibratedRGBColorSpace]];
         [view setNeedsDisplay:YES];
     } else {
-        [view setBackgroundColor:[[NSColor whiteColor] colorUsingColorSpaceName:NSCalibratedRGBColorSpace]];
+        [view setBackgroundColor:[NSColor clearColor]];
         [view setNeedsDisplay:YES];
     }
 }

@@ -13,6 +13,8 @@
 -(void)awakeFromNib {
     isSelected = NO;
     [view setDelegate:self];
+    unselectedBGColor = [[NSColor windowBackgroundColor] retain];
+    [view setBackgroundColor:unselectedBGColor];
 }
 
 -(id)init {
@@ -44,7 +46,7 @@
         [view setBackgroundColor:[[NSColor selectedControlColor] colorUsingColorSpaceName:NSCalibratedRGBColorSpace]];
         [view setNeedsDisplay:YES];
     } else {
-        [view setBackgroundColor:[[NSColor controlColor] colorUsingColorSpaceName:NSCalibratedRGBColorSpace]];
+        [view setBackgroundColor:unselectedBGColor];
         [view setNeedsDisplay:YES];
     }
 }

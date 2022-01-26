@@ -46,8 +46,8 @@ typedef enum {
 -(void)wsDidAcknowledgeMessage:(DLMessage *)m;
 -(void)wsUserWithID:(NSString *)userID didStartTypingInServerWithID:(NSString *)serverID inChannelWithID:(NSString *)channelID withMemberData:(NSDictionary *)memberData;
 -(void)wsUserWithID:(NSString *)userID didStartTypingInDirectMessageChannelWithID:(NSString *)channelID;
-
 -(void)wsDidReceiveMemberData:(NSArray *)memberData forServerWithID:(NSString *)serverID;
+-(void)wsMessageWithID:(NSString *)messageID wasUpdatedWithData:(NSDictionary *)data;
 @end
 
 @interface DLWSController : NSObject <WSWebSocketDelegate> {
