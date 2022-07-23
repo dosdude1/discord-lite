@@ -11,12 +11,15 @@
 @protocol NSTextViewMenuDelegate <NSObject>
 @optional
 -(NSMenu *)textViewContextMenu;
+-(void)escapeKeyWasPressed;
 @end
 
 @interface NSTextView_Menu : NSTextView {
     id<NSTextViewMenuDelegate> menuDelegate;
+    BOOL bordered;
 }
 
 -(void)setMenuDelegate:(id<NSTextViewMenuDelegate>)inDelegate;
+-(void)setShouldShowBorder:(BOOL)isBordered;
 
 @end

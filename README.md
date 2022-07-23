@@ -25,6 +25,7 @@
 - URL hotlinks
 - Two-factor authentication
 - Captchas (in Mac OS X 10.5 or later only)
+- Editing messages
 
 
 #### What does not work
@@ -34,7 +35,6 @@
 - Message web embeds
 - Voice and video chat
 - Friend requests (will not be implemented due to Discord TOS concerns)
-- Editing messages
 
 
 ### Releases

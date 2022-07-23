@@ -11,6 +11,10 @@
 #import "DLAttachment.h"
 #import "RegexKitLite.h"
 
+@protocol DLMessageDelegate <NSObject>
+-(void)messageContentWasUpdated;
+@end
+
 @interface DLMessage : NSObject {
     NSString *messageID;
     NSString *content;
@@ -19,13 +23,16 @@
     DLUser *author;
     NSArray *attachments;
     NSDate *timestamp;
+    NSDate *editedTimestamp;
     NSArray *mentionedUsers;
     BOOL mentionedEveryone;
     DLMessage *referencedMessage;
+    id<DLMessageDelegate> delegate;
 }
 
 -(id)init;
 -(id)initWithDict:(NSDictionary *)d;
+-(void)updateWithDict:(NSDictionary *)d;
 
 -(NSDictionary *)dictRepresentation;
 
@@ -36,9 +43,12 @@
 -(DLUser *)author;
 -(NSArray *)attachments;
 -(NSDate *)timestamp;
+-(NSDate *)editedTimestamp;
 -(NSArray *)mentionedUsers;
 -(DLMessage *)referencedMessage;
 -(BOOL)mentionedEveryone;
+
+-(void)setDelegate:(id<DLMessageDelegate>)inDelegate;
 
 -(void)setContent:(NSString *)inContent;
 -(void)setAttachments:(NSArray *)inAttachments;

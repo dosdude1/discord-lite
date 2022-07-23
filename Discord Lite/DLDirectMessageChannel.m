@@ -139,6 +139,7 @@
 
 -(void)dealloc {
     [recipients release];
+    [lastUpdateTimestamp release];
     [super dealloc];
 }
 

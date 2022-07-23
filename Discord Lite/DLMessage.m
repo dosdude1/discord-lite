@@ -17,6 +17,10 @@
 }
 -(id)initWithDict:(NSDictionary *)d {
     self = [self init];
+    [self updateWithDict:d];
+    return self;
+}
+-(void)updateWithDict:(NSDictionary *)d {
     messageID = [[d objectForKey:@"id"] retain];
     content = [[d objectForKey:@"content"] retain];
     channelID = [[d objectForKey:@"channel_id"] retain];
@@ -32,17 +36,11 @@
     attachments = attachmentData;
     NSString *timestampString = [d objectForKey:@"timestamp"];
     if (timestampString && ![timestampString isKindOfClass:[NSNull class]]) {
-        if ([timestampString rangeOfString:@"."].location != NSNotFound) {
-            timestampString = [timestampString substringToIndex:[timestampString rangeOfString:@"."].location];
-        } else {
-            timestampString = [timestampString substringToIndex:[timestampString rangeOfString:@"+"].location];
-        }
-        timestampString = [timestampString stringByAppendingString:@"+0000"];
-        NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-        [formatter setFormatterBehavior:NSDateFormatterBehavior10_4];
-        [formatter setDateFormat:@"yyyy-MM-dd'T'HH:mm:ssZ"];
-        timestamp = [formatter dateFromString:timestampString];
-        [formatter release];
+        timestamp = [DLUtil dateFromTimestampString:timestampString];
+    }
+    NSString *editedTimestampString = [d objectForKey:@"edited_timestamp"];
+    if (editedTimestampString && ![editedTimestampString isKindOfClass:[NSNull class]]) {
+        editedTimestamp = [DLUtil dateFromTimestampString:editedTimestampString];
     }
     NSMutableArray *mentionedUsersTemp = [[NSMutableArray alloc] init];
     e = [[d objectForKey:@"mentions"] objectEnumerator];
@@ -57,18 +55,18 @@
     if ([d objectForKey:@"referenced_message"] && ![[d objectForKey:@"referenced_message"] isKindOfClass:[NSNull class]]) {
         referencedMessage = [[DLMessage alloc] initWithDict:[d objectForKey:@"referenced_message"]];
     }
-    return self;
+    if ([delegate respondsToSelector:@selector(messageContentWasUpdated)]) {
+        [delegate messageContentWasUpdated];
+    }
 }
 
-
 -(NSDictionary *)dictRepresentation {
-    NSMutableDictionary *dict = [[[NSMutableDictionary alloc] initWithObjects:[NSArray arrayWithObjects:content, [NSNumber numberWithBool:NO], nil] forKeys:[NSArray arrayWithObjects:@"content", @"tts", nil]] autorelease];
+    NSMutableDictionary *dict = [[[NSMutableDictionary alloc] initWithObjects:[NSArray arrayWithObjects:content, [DLUtil generateSnowflake],[NSNumber numberWithBool:NO], nil] forKeys:[NSArray arrayWithObjects:@"content", @"nonce", @"tts", nil]] autorelease];
     if (referencedMessage) {
         NSMutableDictionary *refMsg = [[[NSMutableDictionary alloc] initWithObjects:[NSArray arrayWithObjects:[referencedMessage channelID], [referencedMessage messageID], nil] forKeys:[NSArray arrayWithObjects:@"channel_id", @"message_id", nil]] autorelease];
         if ([referencedMessage serverID]) {
             [refMsg setObject:[referencedMessage serverID] forKey:@"guild_id"];
         }
-        
         [dict setObject:refMsg forKey:@"message_reference"];
     }
     return dict;
@@ -95,6 +93,9 @@
 -(NSDate *)timestamp {
     return timestamp;
 }
+-(NSDate *)editedTimestamp {
+    return editedTimestamp;
+}
 -(NSArray *)mentionedUsers {
     return mentionedUsers;
 }
@@ -103,6 +104,10 @@
 }
 -(BOOL)mentionedEveryone {
     return mentionedEveryone;
+}
+
+-(void)setDelegate:(id<DLMessageDelegate>)inDelegate {
+    delegate = inDelegate;
 }
 
 -(void)setContent:(NSString *)inContent {

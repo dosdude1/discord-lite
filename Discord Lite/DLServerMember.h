@@ -19,4 +19,6 @@
 -(DLUser *)user;
 -(NSArray *)roles;
 
+-(void)setUser:(DLUser *)u;
+
 @end

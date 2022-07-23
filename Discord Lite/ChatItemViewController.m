@@ -20,6 +20,9 @@ const NSInteger ATTACHMENT_SPACING = 15;
     [chatTextView setFont:[NSFont systemFontOfSize:13]];
     [chatTextView setMenuDelegate:self];
     [chatTextView setDrawsBackground:NO];
+    [chatTextView setDelegate:self];
+    viewHasLoaded = NO;
+    isEditing = NO;
     
     [insetView setDelegate:self];
     
@@ -33,6 +36,9 @@ const NSInteger ATTACHMENT_SPACING = 15;
     [copyItem setTarget:self];
     [contextMenu addItem:copyItem];
     [copyItem release];
+    
+    editItem = [[NSMenuItem alloc] initWithTitle:@"Edit Message" action:@selector(beginEditingContent) keyEquivalent:@""];
+    [editItem setTarget:self];
 }
 
 -(CGFloat)expectedHeight {
@@ -68,6 +74,11 @@ const NSInteger ATTACHMENT_SPACING = 15;
     [representedObject release];
     [obj retain];
     representedObject = obj;
+    [self updateViewFromRepresentedObject];
+}
+
+-(void)updateViewFromRepresentedObject {
+    [representedObject setDelegate:self];
     [[representedObject author] setDelegate:self];
     
     [[chatTextView textStorage] setAttributedString:[DLTextParser attributedContentStringForMessage:representedObject]];
@@ -102,6 +113,10 @@ const NSInteger ATTACHMENT_SPACING = 15;
     
     [components release];
     
+    if ([representedObject editedTimestamp]) {
+        [editedInfoLabel setHidden:NO];
+    }
+    
     CGFloat attachmentsHeight = 0;
     NSMutableArray *views = [[NSMutableArray alloc] init];
     NSEnumerator *e = [[representedObject attachments] objectEnumerator];
@@ -124,7 +139,7 @@ const NSInteger ATTACHMENT_SPACING = 15;
     attachmentViews = views;
     
     CGFloat shift = 0;
-    if ([representedObject referencedMessage]) {
+    if ([representedObject referencedMessage] && !viewHasLoaded) {
         [[[representedObject referencedMessage] author] setDelegate:self];
         shift = referencedMessageView.frame.size.height;
         
@@ -155,6 +170,7 @@ const NSInteger ATTACHMENT_SPACING = 15;
         
         [[[representedObject referencedMessage] author] loadAvatarData];
     }
+    viewHasLoaded = YES;
 }
 
 -(void)addReply {
@@ -166,6 +182,34 @@ const NSInteger ATTACHMENT_SPACING = 15;
     [pasteBoard setString:[representedObject content] forType:NSStringPboardType];
 }
 
+-(void)setAllowsEditingContent:(BOOL)editable {
+    if (editable) {
+        [contextMenu addItem:editItem];
+    } else {
+        [contextMenu removeItem:editItem];
+    }
+}
+
+-(void)beginEditingContent {
+    if ([delegate chatViewShouldBeginEditing:self]) {
+        isEditing = YES;
+        [chatTextView setEditable:YES];
+        [chatTextView setShouldShowBorder:YES];
+        [editDismissInfoLabel setHidden:NO];
+    }
+}
+-(void)endEditingContent {
+    isEditing = NO;
+    [chatTextView setEditable:NO];
+    [chatTextView setShouldShowBorder:NO];
+    [editDismissInfoLabel setHidden:YES];
+}
+-(BOOL)isBeingEdited {
+    return isEditing;
+}
+-(void)becomeWindowFirstResponderForEditing:(NSWindow *)window {
+    [window makeFirstResponder:chatTextView];
+}
 -(void)dealloc {
     [attachmentViews release];
     [representedObject release];
@@ -197,6 +241,34 @@ const NSInteger ATTACHMENT_SPACING = 15;
 
 -(NSMenu *)textViewContextMenu {
     return contextMenu;
+}
+-(void)escapeKeyWasPressed {
+    [self endEditingContent];
+    [[chatTextView textStorage] setAttributedString:[DLTextParser attributedContentStringForMessage:representedObject]];
+    [delegate chatView:self didEndEditingWithCommit:NO];
+}
+-(void)messageContentWasUpdated {
+    [self updateViewFromRepresentedObject];
+}
+
+#pragma mark TextView Delegated Functions
+
+-(void)textDidChange:(NSNotification *)notification {
+    [delegate chatViewUpdatedWithEnteredText];
+}
+
+- (BOOL)textView:(NSTextView *)aTextView doCommandBySelector:(SEL)aSelector
+{
+    if (aSelector == @selector(insertNewline:)) {
+        NSEvent * event = [NSApp currentEvent];
+        if ((event.modifierFlags & NSShiftKeyMask) != NSShiftKeyMask) {
+            [self endEditingContent];
+            [representedObject setContent:[chatTextView string]];
+            [delegate chatView:self didEndEditingWithCommit:YES];
+            return YES;
+        }
+    }
+    return NO;
 }
 
 @end

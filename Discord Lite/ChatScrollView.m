@@ -20,6 +20,12 @@
     frame.size.height = 100;
     [self.documentView setFrame: frame];
 }
+-(void)setDelegate:(id<ChatScrollViewDelegate>)inDelegate {
+    delegate = inDelegate;
+}
+-(NSArray *)content {
+    return content;
+}
 -(void)setVisibleSubviews {
     CGFloat height = 0;
     NSEnumerator *e = [content reverseObjectEnumerator];
@@ -97,8 +103,36 @@
     }
     [self.documentView setNeedsDisplay:YES];
 }
+-(void)endAllChatContentEditing {
+    NSEnumerator *e = [content objectEnumerator];
+    ChatItemViewController *item;
+    while (item = [e nextObject]) {
+        [item endEditingContent];
+    }
+}
 -(void)dealloc {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
     [super dealloc];
 }
+
+#pragma mark File Dragging Functions
+
+- (NSDragOperation)draggingEntered:(id < NSDraggingInfo >)sender {
+    return NSDragOperationCopy;
+}
+
+- (NSDragOperation)draggingUpdated:(id<NSDraggingInfo>)sender {
+    return NSDragOperationCopy;
+}
+
+- (BOOL)performDragOperation:(id<NSDraggingInfo>)sender {
+    NSPasteboard *pboard = [sender draggingPasteboard];
+    NSArray *filenames = [pboard propertyListForType:NSFilenamesPboardType];
+    if (filenames.count > 0) {
+        [delegate updatePendingAttachmentsWithFilePaths:filenames];
+        return YES;
+    }
+    return NO;
+}
+
 @end

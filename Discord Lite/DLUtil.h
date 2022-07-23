@@ -18,5 +18,7 @@
 +(NSString *)randomStringWithLength:(NSInteger)len;
 +(NSString *)mimeTypeForExtension:(NSString *)ext;
 +(NSString *)downloadsPath;
++(NSString *)generateSnowflake;
++(NSDate *)dateFromTimestampString:(NSString *)timestampString;
 
 @end

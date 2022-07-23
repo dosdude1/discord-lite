@@ -27,7 +27,8 @@ typedef enum {
     RequestIDAckMessage = 3,
     RequestIDLogout = 4,
     RequestIDTyping = 5,
-    RequestIDTwoFactor = 6
+    RequestIDTwoFactor = 6,
+    RequestIDMessageEdit = 7
 } RequestID;
 
 @protocol DLLoginDelegate <NSObject>
@@ -61,6 +62,7 @@ typedef enum {
     DLUserSettings *myUserSettings;
     NSMutableDictionary *loadedServers;
     NSMutableDictionary *loadedChannels;
+    NSMutableArray *loadedMessages;
 }
 
 -(DLServer *)selectedServer;
@@ -84,6 +86,7 @@ typedef enum {
 -(void)acknowledgeMessage:(DLMessage *)m;
 -(void)logOutUser;
 -(void)informTypingInChannel:(DLChannel *)c;
+-(void)submitEditedMessage:(DLMessage *)m;
 
 -(void)startWebSocket;
 -(void)stopWebSocket;

@@ -12,7 +12,6 @@
 @protocol DynamicScrollViewDelegate <NSObject>
 @optional
 -(void)didSelectItemAtIndex:(NSInteger)index;
-
 @end
 
 @interface DynamicScrollView : NSScrollView {

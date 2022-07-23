@@ -77,5 +77,24 @@
     }
     return [NSHomeDirectory() stringByAppendingPathComponent:@"Desktop"];
 }
++(NSString *)generateSnowflake {
+    NSTimeInterval date = [[NSDate date] timeIntervalSince1970];
+    long snowflake = (((long)date * 1000) - 1420070400000) * 4194304;
+    return [[NSString stringWithFormat:@"%ld", snowflake] autorelease];
+}
++(NSDate *)dateFromTimestampString:(NSString *)timestampString {
+    if ([timestampString rangeOfString:@"."].location != NSNotFound) {
+        timestampString = [timestampString substringToIndex:[timestampString rangeOfString:@"."].location];
+    } else {
+        timestampString = [timestampString substringToIndex:[timestampString rangeOfString:@"+"].location];
+    }
+    timestampString = [timestampString stringByAppendingString:@"+0000"];
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    [formatter setFormatterBehavior:NSDateFormatterBehavior10_4];
+    [formatter setDateFormat:@"yyyy-MM-dd'T'HH:mm:ssZ"];
+    NSDate *date = [formatter dateFromString:timestampString];
+    [formatter release];
+    return date;
+}
 
 @end

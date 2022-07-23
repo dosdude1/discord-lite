@@ -183,17 +183,27 @@ static const NSUInteger WSHTTPCode101 = 101;
     NSUInteger port = (hostURL.port) ? hostURL.port.integerValue : ([hostURL.scheme.lowercaseString isEqualToString:WSScheme.lowercaseString]) ? WSPort : WSPortSecure;
     
     CFStreamCreatePairWithSocketToHost(NULL, (CFStringRef)hostURL.host, (UInt32)port, &readStream, &writeStream);
-
+    
+    //PROXY temporary stuff
+    
+    /*CFMutableDictionaryRef socksConfig = CFDictionaryCreateMutable(kCFAllocatorDefault, 0, &kCFTypeDictionaryKeyCallBacks, &kCFTypeDictionaryValueCallBacks);
+    CFDictionarySetValue(socksConfig, kCFStreamPropertySOCKSProxyHost, CFSTR("192.168.1.161"));
+    CFDictionarySetValue(socksConfig, kCFStreamPropertySOCKSProxyPort, (CFNumberRef)[NSNumber numberWithInt:8889]);
+    CFDictionarySetValue(socksConfig, kCFStreamPropertySOCKSVersion, kCFStreamSocketSOCKSVersion5);
+    
+    CFReadStreamSetProperty(readStream, kCFStreamPropertySOCKSProxy, socksConfig);
+    CFWriteStreamSetProperty(writeStream, kCFStreamPropertySOCKSProxy, socksConfig);*/
+    
+    //
+    
     inputStream = ( NSInputStream *)readStream;
     outputStream = ( NSOutputStream *)writeStream;
 
     
-    NSDictionary *d = [[NSDictionary alloc] initWithObjects:[NSArray arrayWithObjects:[NSNumber numberWithBool:YES], [NSNumber numberWithBool:YES], [NSNumber numberWithBool:NO], nil] forKeys:[NSArray arrayWithObjects:(NSString *)kCFStreamSSLAllowsExpiredCertificates, (NSString *)kCFStreamSSLAllowsExpiredRoots, (NSString *)kCFStreamSSLValidatesCertificateChain, nil]];
+    NSDictionary *d = [[NSDictionary alloc] initWithObjects:[NSArray arrayWithObjects:[NSNumber numberWithBool:YES], [NSNumber numberWithBool:YES], [NSNumber numberWithBool:NO], @"kCFStreamSocketSecurityLevelTLSv1_2", nil] forKeys:[NSArray arrayWithObjects:(NSString *)kCFStreamSSLAllowsExpiredCertificates, (NSString *)kCFStreamSSLAllowsExpiredRoots, (NSString *)kCFStreamSSLValidatesCertificateChain, (NSString *)kCFStreamSSLLevel, nil]];
     
     if ([hostURL.scheme isEqualToString:WSSchemeSecure]) {
-        [inputStream setProperty:NSStreamSocketSecurityLevelTLSv1 forKey:NSStreamSocketSecurityLevelKey];
         [inputStream setProperty:d forKey:(NSString *)kCFStreamPropertySSLSettings];
-        [outputStream setProperty:NSStreamSocketSecurityLevelTLSv1 forKey:NSStreamSocketSecurityLevelKey];
         [outputStream setProperty:d forKey:(NSString *)kCFStreamPropertySSLSettings];
     }
 

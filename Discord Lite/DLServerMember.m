@@ -29,6 +29,12 @@
     return roles;
 }
 
+-(void)setUser:(DLUser *)u {
+    [user release];
+    [u retain];
+    user = u;
+}
+
 -(void)dealloc {
     [user release];
     [super dealloc];

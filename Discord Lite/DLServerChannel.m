@@ -60,11 +60,14 @@
     children = inChildren;
 }
 -(void)setServerID:(NSString *)inServerID {
+    [serverID release];
+    [inServerID retain];
     serverID = inServerID;
 }
 
 -(void)dealloc {
     [children release];
+    [serverID release];
     [super dealloc];
 }
 

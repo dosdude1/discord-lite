@@ -10,7 +10,6 @@
 		87062772278E97AA0056BD71 /* captcha_hcaptcha.html in Resources */ = {isa = PBXBuildFile; fileRef = 87062771278E97AA0056BD71 /* captcha_hcaptcha.html */; };
 		87062776278E9CF20056BD71 /* DLCaptchaWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 87062774278E9CF20056BD71 /* DLCaptchaWindowController.m */; };
 		87062778278E9CFF0056BD71 /* DLCaptchaWindowController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8706277A278E9CFF0056BD71 /* DLCaptchaWindowController.xib */; };
-		8706277C278E9E0A0056BD71 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8706277B278E9E0A0056BD71 /* WebKit.framework */; };
 		8706277E278EB2BB0056BD71 /* captcha_recaptcha.html in Resources */ = {isa = PBXBuildFile; fileRef = 8706277D278EB2BB0056BD71 /* captcha_recaptcha.html */; };
 		8714B1A62729ED5200DA4AF9 /* DLError.m in Sources */ = {isa = PBXBuildFile; fileRef = 8714B1A52729ED5200DA4AF9 /* DLError.m */; };
 		8714B1AB2729F5B000DA4AF9 /* DLErrorHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 8714B1AA2729F5B000DA4AF9 /* DLErrorHandler.m */; };
@@ -23,9 +22,7 @@
 		8742C8682730EE47005359DC /* ChatItemViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8742C8672730EE47005359DC /* ChatItemViewController.m */; };
 		8742C86B2730EE85005359DC /* ChatItemViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8742C86D2730EE85005359DC /* ChatItemViewController.xib */; };
 		87450D2C27370833007B4C08 /* DLUserSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = 87450D2B27370833007B4C08 /* DLUserSettings.m */; };
-		87591389274D9EBD003B7128 /* License.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 87591386274D9EBD003B7128 /* License.rtf */; };
 		8759138A274D9EBD003B7128 /* RegexKitLite.m in Sources */ = {isa = PBXBuildFile; fileRef = 87591388274D9EBD003B7128 /* RegexKitLite.m */; };
-		8759138C274D9EE1003B7128 /* libicucore.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 8759138B274D9EE1003B7128 /* libicucore.dylib */; };
 		8759138F274DB5BD003B7128 /* TagSelectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8759138E274DB5BD003B7128 /* TagSelectionViewController.m */; };
 		87591392274DB5D7003B7128 /* TagSelectionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 87591394274DB5D7003B7128 /* TagSelectionViewController.xib */; };
 		876DBDF227291681008682BC /* CJSONDeserializer.m in Sources */ = {isa = PBXBuildFile; fileRef = 876DBDEC27291681008682BC /* CJSONDeserializer.m */; };
@@ -35,6 +32,7 @@
 		876DBDFD2729172A008682BC /* CDataScanner_Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 876DBDFA2729172A008682BC /* CDataScanner_Extensions.m */; };
 		876DBDFE2729172A008682BC /* NSDictionary_JSONExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 876DBDFC2729172A008682BC /* NSDictionary_JSONExtensions.m */; };
 		876DBE012729234A008682BC /* DLUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 876DBE002729234A008682BC /* DLUtil.m */; };
+		8773980E288A42AE00548F3F /* libicucore.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 8773980D288A42AE00548F3F /* libicucore.dylib */; };
 		8782FE0E274C40B800ECA836 /* DLServerMember.m in Sources */ = {isa = PBXBuildFile; fileRef = 8782FE0D274C40B800ECA836 /* DLServerMember.m */; };
 		87877CDA273050A50062B796 /* ChannelItemViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 87877CDC273050A50062B796 /* ChannelItemViewController.xib */; };
 		878B0B2A2738FC6400547D61 /* discord_purple.png in Resources */ = {isa = PBXBuildFile; fileRef = 878B0B292738FC6400547D61 /* discord_purple.png */; };
@@ -74,7 +72,6 @@
 		87AD27E32741F3E20092F428 /* delete.png in Resources */ = {isa = PBXBuildFile; fileRef = 87AD27E22741F3E20092F428 /* delete.png */; };
 		87BE740D278B811A00F61BF7 /* reply_curve.png in Resources */ = {isa = PBXBuildFile; fileRef = 87BE740C278B811A00F61BF7 /* reply_curve.png */; };
 		87BE741B278BEBA800F61BF7 /* NSTextView+Menu.m in Sources */ = {isa = PBXBuildFile; fileRef = 87BE741A278BEBA800F61BF7 /* NSTextView+Menu.m */; };
-		87C0834E2728DDFD00C8F933 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 87C0834D2728DDFD00C8F933 /* Cocoa.framework */; };
 		87C083532728DEA000C8F933 /* DLController.m in Sources */ = {isa = PBXBuildFile; fileRef = 87C083522728DEA000C8F933 /* DLController.m */; };
 		87C083572728E1A800C8F933 /* DLLoginWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 87C083552728E1A800C8F933 /* DLLoginWindowController.m */; };
 		87C083592728E1F000C8F933 /* DLLoginWindowController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 87C0835B2728E1F000C8F933 /* DLLoginWindowController.xib */; };
@@ -82,7 +79,6 @@
 		87C083632728E94A00C8F933 /* AsyncHTTPRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 87C083622728E94A00C8F933 /* AsyncHTTPRequest.m */; };
 		87C083662728E9FB00C8F933 /* AsyncHTTPPostRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 87C083652728E9FB00C8F933 /* AsyncHTTPPostRequest.m */; };
 		87C083692728EA0800C8F933 /* AsyncHTTPGetRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 87C083682728EA0800C8F933 /* AsyncHTTPGetRequest.m */; };
-		87C0836B2728EA2800C8F933 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 87C0836A2728EA2800C8F933 /* Foundation.framework */; };
 		87C11C942728DB7B000046F2 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 87C11C932728DB7B000046F2 /* AppDelegate.m */; };
 		87C11C962728DB7B000046F2 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 87C11C952728DB7B000046F2 /* main.m */; };
 		87C11C982728DB7B000046F2 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 87C11C972728DB7B000046F2 /* Images.xcassets */; };
@@ -103,6 +99,7 @@
 		87DA40092739DB28007E7455 /* mention_notification.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 87DA40082739DB28007E7455 /* mention_notification.mp3 */; };
 		87DA400C2739DD58007E7455 /* DLAudioPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 87DA400B2739DD58007E7455 /* DLAudioPlayer.m */; };
 		87DA40172739F4DB007E7455 /* AppIcon.icns in Resources */ = {isa = PBXBuildFile; fileRef = 87DA40162739F4DB007E7455 /* AppIcon.icns */; };
+		87F17B26288A47D500CF4F5D /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 87739807288A429B00548F3F /* Cocoa.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -120,7 +117,6 @@
 		87062773278E9CF20056BD71 /* DLCaptchaWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DLCaptchaWindowController.h; sourceTree = "<group>"; };
 		87062774278E9CF20056BD71 /* DLCaptchaWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DLCaptchaWindowController.m; sourceTree = "<group>"; };
 		87062779278E9CFF0056BD71 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/DLCaptchaWindowController.xib; sourceTree = "<group>"; };
-		8706277B278E9E0A0056BD71 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/System/Library/Frameworks/WebKit.framework; sourceTree = DEVELOPER_DIR; };
 		8706277D278EB2BB0056BD71 /* captcha_recaptcha.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = captcha_recaptcha.html; sourceTree = "<group>"; };
 		8714B1A42729ED5200DA4AF9 /* DLError.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DLError.h; sourceTree = "<group>"; };
 		8714B1A52729ED5200DA4AF9 /* DLError.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DLError.m; sourceTree = "<group>"; };
@@ -144,7 +140,6 @@
 		87591386274D9EBD003B7128 /* License.rtf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.rtf; path = License.rtf; sourceTree = "<group>"; };
 		87591387274D9EBD003B7128 /* RegexKitLite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegexKitLite.h; sourceTree = "<group>"; };
 		87591388274D9EBD003B7128 /* RegexKitLite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegexKitLite.m; sourceTree = "<group>"; };
-		8759138B274D9EE1003B7128 /* libicucore.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libicucore.dylib; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/usr/lib/libicucore.dylib; sourceTree = DEVELOPER_DIR; };
 		8759138D274DB5BD003B7128 /* TagSelectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TagSelectionViewController.h; sourceTree = "<group>"; };
 		8759138E274DB5BD003B7128 /* TagSelectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TagSelectionViewController.m; sourceTree = "<group>"; };
 		87591393274DB5D7003B7128 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/TagSelectionViewController.xib; sourceTree = "<group>"; };
@@ -163,6 +158,10 @@
 		876DBDFC2729172A008682BC /* NSDictionary_JSONExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSDictionary_JSONExtensions.m; sourceTree = "<group>"; };
 		876DBDFF2729234A008682BC /* DLUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DLUtil.h; sourceTree = "<group>"; };
 		876DBE002729234A008682BC /* DLUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DLUtil.m; sourceTree = "<group>"; };
+		87739807288A429B00548F3F /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.7.sdk/System/Library/Frameworks/Cocoa.framework; sourceTree = DEVELOPER_DIR; };
+		87739809288A42A300548F3F /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.7.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
+		8773980B288A42A800548F3F /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.7.sdk/System/Library/Frameworks/WebKit.framework; sourceTree = DEVELOPER_DIR; };
+		8773980D288A42AE00548F3F /* libicucore.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libicucore.dylib; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.7.sdk/usr/lib/libicucore.dylib; sourceTree = DEVELOPER_DIR; };
 		877F0F9D2728DBEE00FBD4B3 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		8782FE0C274C40B800ECA836 /* DLServerMember.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DLServerMember.h; sourceTree = "<group>"; };
 		8782FE0D274C40B800ECA836 /* DLServerMember.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DLServerMember.m; sourceTree = "<group>"; };
@@ -229,7 +228,6 @@
 		87BE740C278B811A00F61BF7 /* reply_curve.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = reply_curve.png; sourceTree = "<group>"; };
 		87BE7419278BEBA800F61BF7 /* NSTextView+Menu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSTextView+Menu.h"; sourceTree = "<group>"; };
 		87BE741A278BEBA800F61BF7 /* NSTextView+Menu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSTextView+Menu.m"; sourceTree = "<group>"; };
-		87C0834D2728DDFD00C8F933 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/System/Library/Frameworks/Cocoa.framework; sourceTree = DEVELOPER_DIR; };
 		87C083512728DEA000C8F933 /* DLController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DLController.h; sourceTree = "<group>"; };
 		87C083522728DEA000C8F933 /* DLController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DLController.m; sourceTree = "<group>"; };
 		87C083542728E1A800C8F933 /* DLLoginWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DLLoginWindowController.h; sourceTree = "<group>"; };
@@ -242,7 +240,6 @@
 		87C083652728E9FB00C8F933 /* AsyncHTTPPostRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AsyncHTTPPostRequest.m; sourceTree = "<group>"; };
 		87C083672728EA0800C8F933 /* AsyncHTTPGetRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AsyncHTTPGetRequest.h; sourceTree = "<group>"; };
 		87C083682728EA0800C8F933 /* AsyncHTTPGetRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AsyncHTTPGetRequest.m; sourceTree = "<group>"; };
-		87C0836A2728EA2800C8F933 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
 		87C11C8D2728DB7B000046F2 /* Discord Lite.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Discord Lite.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		87C11C912728DB7B000046F2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		87C11C922728DB7B000046F2 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -286,10 +283,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8706277C278E9E0A0056BD71 /* WebKit.framework in Frameworks */,
-				8759138C274D9EE1003B7128 /* libicucore.dylib in Frameworks */,
-				87C0836B2728EA2800C8F933 /* Foundation.framework in Frameworks */,
-				87C0834E2728DDFD00C8F933 /* Cocoa.framework in Frameworks */,
+				87F17B26288A47D500CF4F5D /* Cocoa.framework in Frameworks */,
+				8773980E288A42AE00548F3F /* libicucore.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -514,10 +509,10 @@
 		87C11C842728DB7B000046F2 = {
 			isa = PBXGroup;
 			children = (
-				8706277B278E9E0A0056BD71 /* WebKit.framework */,
-				8759138B274D9EE1003B7128 /* libicucore.dylib */,
-				87C0836A2728EA2800C8F933 /* Foundation.framework */,
-				87C0834D2728DDFD00C8F933 /* Cocoa.framework */,
+				8773980D288A42AE00548F3F /* libicucore.dylib */,
+				8773980B288A42A800548F3F /* WebKit.framework */,
+				87739809288A42A300548F3F /* Foundation.framework */,
+				87739807288A429B00548F3F /* Cocoa.framework */,
 				87C11C8F2728DB7B000046F2 /* Discord Lite */,
 				87C11CA32728DB7B000046F2 /* Discord LiteTests */,
 				87C11C8E2728DB7B000046F2 /* Products */,
@@ -711,7 +706,6 @@
 				87C11C982728DB7B000046F2 /* Images.xcassets in Resources */,
 				87A38DE027336E24002385EE /* DirectMessageItemViewController.xib in Resources */,
 				87C0835E2728E28500C8F933 /* Discord-Logo.png in Resources */,
-				87591389274D9EBD003B7128 /* License.rtf in Resources */,
 				87877CDA273050A50062B796 /* ChannelItemViewController.xib in Resources */,
 				87DA40092739DB28007E7455 /* mention_notification.mp3 in Resources */,
 				87AD27E32741F3E20092F428 /* delete.png in Resources */,
@@ -1012,15 +1006,20 @@
 		87C11CAB2728DB7B000046F2 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = NO;
 				CLANG_ENABLE_OBJC_ARC = NO;
+				CLANG_LINK_OBJC_RUNTIME = YES;
+				CLANG_MODULES_AUTOLINK = NO;
 				COMBINE_HIDPI_IMAGES = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(DEVELOPER_DIR)/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/System/Library/Frameworks",
 				);
 				INFOPLIST_FILE = "Discord Lite/Info.plist";
+				LD_DEPENDENCY_INFO_FILE = "$(OBJECT_FILE_DIR_$(CURRENT_VARIANT))/$(CURRENT_ARCH)/$(PRODUCT_NAME)_dependency_info.dat";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited)";
 				LIBRARY_SEARCH_PATHS = "$(DEVELOPER_DIR)/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/usr/lib";
+				LINK_WITH_STANDARD_LIBRARIES = YES;
 				MACOSX_DEPLOYMENT_TARGET = 10.4;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx10.9;
@@ -1036,36 +1035,23 @@
 					i386,
 					x86_64,
 				);
+				CLANG_ENABLE_MODULES = NO;
 				CLANG_ENABLE_OBJC_ARC = NO;
+				CLANG_LINK_OBJC_RUNTIME = YES;
+				CLANG_MODULES_AUTOLINK = NO;
 				COMBINE_HIDPI_IMAGES = YES;
-				FRAMEWORK_SEARCH_PATHS = "";
-				"FRAMEWORK_SEARCH_PATHS[arch=i386]" = (
-					"$(inherited)",
-					"$(DEVELOPER_DIR)/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.7.sdk/System/Library/Frameworks",
-				);
-				"FRAMEWORK_SEARCH_PATHS[arch=ppc]" = (
-					"$(inherited)",
-					"$(DEVELOPER_DIR)/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.5.sdk/System/Library/Frameworks",
-				);
-				"FRAMEWORK_SEARCH_PATHS[arch=x86_64]" = (
-					"$(inherited)",
-					"$(DEVELOPER_DIR)/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.7.sdk/System/Library/Frameworks",
-				);
+				FRAMEWORK_SEARCH_PATHS = "$(DEVELOPER_DIR)/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/System/Library/Frameworks";
+				"FRAMEWORK_SEARCH_PATHS[arch=i386]" = "$(DEVELOPER_DIR)/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.7.sdk/System/Library/Frameworks";
+				"FRAMEWORK_SEARCH_PATHS[arch=ppc]" = "$(DEVELOPER_DIR)/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.5.sdk/System/Library/Frameworks";
+				"FRAMEWORK_SEARCH_PATHS[arch=x86_64]" = "$(DEVELOPER_DIR)/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.7.sdk/System/Library/Frameworks";
 				INFOPLIST_FILE = "Discord Lite/Info.plist";
+				LD_DEPENDENCY_INFO_FILE = "$(OBJECT_FILE_DIR_$(CURRENT_VARIANT))/$(CURRENT_ARCH)/$(PRODUCT_NAME)_dependency_info.dat";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited)";
-				LIBRARY_SEARCH_PATHS = "";
-				"LIBRARY_SEARCH_PATHS[arch=i386]" = (
-					"$(inherited)",
-					"$(DEVELOPER_DIR)/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.7.sdk/usr/lib",
-				);
-				"LIBRARY_SEARCH_PATHS[arch=ppc]" = (
-					"$(inherited)",
-					"$(DEVELOPER_DIR)/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.5.sdk/usr/lib",
-				);
-				"LIBRARY_SEARCH_PATHS[arch=x86_64]" = (
-					"$(inherited)",
-					"$(DEVELOPER_DIR)/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.7.sdk/usr/lib",
-				);
+				LIBRARY_SEARCH_PATHS = "$(DEVELOPER_DIR)/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/usr/lib";
+				"LIBRARY_SEARCH_PATHS[arch=i386]" = "$(DEVELOPER_DIR)/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.7.sdk/usr/lib";
+				"LIBRARY_SEARCH_PATHS[arch=ppc]" = "$(DEVELOPER_DIR)/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.5.sdk/usr/lib";
+				"LIBRARY_SEARCH_PATHS[arch=x86_64]" = "$(DEVELOPER_DIR)/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.7.sdk/usr/lib";
+				LINK_WITH_STANDARD_LIBRARIES = YES;
 				MACOSX_DEPLOYMENT_TARGET = 10.4;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx10.7;

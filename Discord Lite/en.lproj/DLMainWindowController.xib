@@ -291,7 +291,7 @@
         </scrollView>
         <customView id="9Jd-d1-d7v">
             <rect key="frame" x="0.0" y="0.0" width="480" height="28"/>
-            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
             <subviews>
                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="dGo-1t-P9U">
                     <rect key="frame" x="9" y="6" width="443" height="17"/>
@@ -314,7 +314,7 @@
                     </connections>
                 </button>
             </subviews>
-            <point key="canvasLocation" x="312" y="803"/>
+            <point key="canvasLocation" x="462" y="771"/>
         </customView>
     </objects>
     <resources>

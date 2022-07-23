@@ -9,13 +9,23 @@
 #import <Cocoa/Cocoa.h>
 #import "ChatItemViewController.h"
 
+@protocol ChatScrollViewDelegate <NSObject>
+@optional
+-(void)updatePendingAttachmentsWithFilePaths:(NSArray *)paths;
+@end
+
 @interface ChatScrollView : NSScrollView {
     NSMutableArray *content;
+    id<ChatScrollViewDelegate> delegate;
 }
 
+-(NSArray *)content;
+
+-(void)setDelegate:(id<ChatScrollViewDelegate>)inDelegate;
 -(void)setContent:(NSArray *)inContent;
 -(void)appendContent:(NSArray *)inContent;
 -(void)prependViewController:(ChatItemViewController *)vc;
 -(void)screenResize;
+-(void)endAllChatContentEditing;
 
 @end

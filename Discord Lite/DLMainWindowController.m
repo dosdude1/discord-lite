@@ -34,10 +34,10 @@ const NSTimeInterval TYPING_SEND_INTERVAL = 8.0;
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(chatScrollViewBoundsDidChange:) name:NSViewBoundsDidChangeNotification object:chatScrollView.contentView];
     // Implement this method to handle any initialization after your window controller's window has been loaded from its nib file.
     [messageEntryTextView setDelegate:self];
+    [chatScrollView setDelegate:self];
     currentMessageScrollHeight = messageEntryScrollView.frame.size.height;
     typingUsers = [[NSMutableArray alloc] init];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(textDidChange:) name:NSWindowDidResizeNotification object:nil];
-    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateTextViewSizing) name:NSWindowDidResizeNotification object:nil];
 }
 
 -(void)setDelegate:(id<DLMainWindowDelegate>)inDelegate {
@@ -199,6 +199,13 @@ const NSTimeInterval TYPING_SEND_INTERVAL = 8.0;
         [messageEntryContainerView addSubview:pendingAttachmentsScrollView];
         [messageEntryContainerView setNeedsDisplay:YES];
         [chatScrollView setNeedsDisplay:YES];
+        
+        if ([replyToView superview]) {
+            NSRect replyToViewFrame = replyToView.frame;
+            replyToViewFrame.origin.y -= attachmentsViewFrame.size.height;
+            [replyToView setFrame:replyToViewFrame];
+            [replyToView setNeedsDisplay:YES];
+        }
     }
 }
 
@@ -219,6 +226,13 @@ const NSTimeInterval TYPING_SEND_INTERVAL = 8.0;
         [pendingAttachmentsScrollView removeFromSuperview];
         [messageEntryContainerView setNeedsDisplay:YES];
         [chatScrollView setNeedsDisplay:YES];
+        
+        if ([replyToView superview]) {
+            NSRect replyToViewFrame = replyToView.frame;
+            replyToViewFrame.origin.y += attachmentsViewFrame.size.height;
+            [replyToView setFrame:replyToViewFrame];
+            [replyToView setNeedsDisplay:YES];
+        }
     }
 }
 
@@ -274,22 +288,7 @@ const NSTimeInterval TYPING_SEND_INTERVAL = 8.0;
     [openDlg setCanChooseDirectories:NO];
     if ([openDlg runModalForDirectory:nil file:nil] == NSOKButton) {
         
-        [self showPendingAttachmentView];
-        NSEnumerator *e = [[openDlg filenames] objectEnumerator];
-        NSString *filepath;
-        while (filepath = [e nextObject]) {
-            NSData *fileData = [NSData dataWithContentsOfFile:filepath];
-            DLAttachment *a = [[DLAttachment alloc] init];
-            [a setFilename:[filepath lastPathComponent]];
-            [a setMimeType:[DLUtil mimeTypeForExtension:[filepath pathExtension]]];
-            [a setAttachmentData:fileData];
-            PendingAttachmentViewController *view = [[PendingAttachmentViewController alloc] initWithNibNamed:@"PendingAttachmentViewController" bundle:nil];
-            [view setRepresentedObject:a];
-            [view setDelegate:self];
-            [pendingAttachmentsScrollView appendContent:view];
-            [view release];
-            [a release];
-        }
+        [self updatePendingAttachmentsWithFilePaths:[openDlg filenames]];
     }
 }
 
@@ -365,20 +364,21 @@ const NSTimeInterval TYPING_SEND_INTERVAL = 8.0;
         
         CGFloat change = scrollViewFrame.size.height - currentMessageScrollHeight;
         
-        NSRect containerFrame = messageEntryContainerView.frame;
-        containerFrame.size.height += change;
-        [messageEntryContainerView setFrame:containerFrame];
-        
-        NSRect chatViewFrame = chatScrollView.frame;
-        chatViewFrame.size.height -= change;
-        chatViewFrame.origin.y += change;
-        [chatScrollView setFrame:chatViewFrame];
-        
-        currentMessageScrollHeight = scrollViewFrame.size.height;
         if (change) {
+            
+            NSRect containerFrame = messageEntryContainerView.frame;
+            containerFrame.size.height += change;
+            [messageEntryContainerView setFrame:containerFrame];
+            
+            NSRect chatViewFrame = chatScrollView.frame;
+            chatViewFrame.size.height -= change;
+            chatViewFrame.origin.y += change;
+            [chatScrollView setFrame:chatViewFrame];
+            
             [chatScrollView setNeedsDisplay:YES];
             [messageEntryContainerView setNeedsDisplay:YES];
         }
+        currentMessageScrollHeight = scrollViewFrame.size.height;
     }
 }
 
@@ -395,6 +395,12 @@ const NSTimeInterval TYPING_SEND_INTERVAL = 8.0;
     [self hideReplyToView];
 }
 
+-(BOOL)isEditingTag {
+    NSString *textPreSelection = [[messageEntryTextView string] substringToIndex:editingLocation];
+    tagIndex = [textPreSelection rangeOfString:@"@" options:NSBackwardsSearch].location;
+    return (tagIndex != NSNotFound) && ([[textPreSelection substringFromIndex:tagIndex] rangeOfString:@" "].location == NSNotFound);
+}
+
 -(void)dealloc {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
     [super dealloc];
@@ -408,6 +414,25 @@ const NSTimeInterval TYPING_SEND_INTERVAL = 8.0;
         [self hidePendingAttachmentView];
     }
     
+}
+
+-(void)updatePendingAttachmentsWithFilePaths:(NSArray *)paths {
+    [self showPendingAttachmentView];
+    NSEnumerator *e = [paths objectEnumerator];
+    NSString *filepath;
+    while (filepath = [e nextObject]) {
+        NSData *fileData = [NSData dataWithContentsOfFile:filepath];
+        DLAttachment *a = [[DLAttachment alloc] init];
+        [a setFilename:[filepath lastPathComponent]];
+        [a setMimeType:[DLUtil mimeTypeForExtension:[filepath pathExtension]]];
+        [a setAttachmentData:fileData];
+        PendingAttachmentViewController *view = [[PendingAttachmentViewController alloc] initWithNibNamed:@"PendingAttachmentViewController" bundle:nil];
+        [view setRepresentedObject:a];
+        [view setDelegate:self];
+        [pendingAttachmentsScrollView appendContent:view];
+        [view release];
+        [a release];
+    }
 }
 
 -(void)editorContentDidUpdateWithAttributedString:(NSAttributedString *)as {
@@ -456,6 +481,7 @@ const NSTimeInterval TYPING_SEND_INTERVAL = 8.0;
     
     [attachButton setEnabled:NO];
     [messageEntryTextView setEditable:NO];
+    [chatScrollView unregisterDraggedTypes];
     [self resetUI];
     [[DLController sharedInstance] setSelectedChannel:nil];
     [chatScrollView setContent:[NSArray array]];
@@ -479,6 +505,7 @@ const NSTimeInterval TYPING_SEND_INTERVAL = 8.0;
     }
     [attachButton setEnabled:YES];
     [messageEntryTextView setEditable:YES];
+    [chatScrollView registerForDraggedTypes:[NSArray arrayWithObjects:NSFilenamesPboardType, nil]];
     [self resetUI];
     [[DLController sharedInstance] loadMessagesForChannel:[item representedObject] beforeMessage:nil quantity:25];
 }
@@ -494,6 +521,7 @@ const NSTimeInterval TYPING_SEND_INTERVAL = 8.0;
     
     [attachButton setEnabled:YES];
     [messageEntryTextView setEditable:YES];
+    [chatScrollView registerForDraggedTypes:[NSArray arrayWithObjects:NSFilenamesPboardType, nil]];
     [self resetUI];
     [[DLController sharedInstance] loadMessagesForChannel:[item representedObject] beforeMessage:nil quantity:25];
 }
@@ -522,6 +550,9 @@ const NSTimeInterval TYPING_SEND_INTERVAL = 8.0;
         ChatItemViewController *view = [[ChatItemViewController alloc] initWithNibNamed:@"ChatItemViewController" bundle:nil];
         [view setDelegate:self];
         [view setRepresentedObject:item];
+        if ([[item author] isEqual:[[DLController sharedInstance] myUser]]) {
+            [view setAllowsEditingContent:YES];
+        }
         [views addObject:view];
         lastMessage = item;
         [view release];
@@ -549,6 +580,9 @@ const NSTimeInterval TYPING_SEND_INTERVAL = 8.0;
         ChatItemViewController *view = [[[ChatItemViewController alloc] initWithNibNamed:@"ChatItemViewController" bundle:nil] autorelease];
         [view setRepresentedObject:m];
         [view setDelegate:self];
+        if ([[m author] isEqual:[[DLController sharedInstance] myUser]]) {
+            [view setAllowsEditingContent:YES];
+        }
         [chatScrollView prependViewController:view];
         [[m author] setTyping:NO];
         [self userDidStopTyping:[m author]];
@@ -560,32 +594,34 @@ const NSTimeInterval TYPING_SEND_INTERVAL = 8.0;
     BOOL mentioned = NO;
     NSEnumerator *e = [[m mentionedUsers] objectEnumerator];
     DLUser *user;
-    while (user = [e nextObject]) {
-        if ([user isEqual:[[DLController sharedInstance] myUser]]) {
+    if (![[m author] isEqual:[[DLController sharedInstance] myUser]]) {
+        while (user = [e nextObject]) {
+            if ([user isEqual:[[DLController sharedInstance] myUser]]) {
+                mentioned = YES;
+            }
+        }
+        e = [[[m referencedMessage] mentionedUsers] objectEnumerator];
+        while (user = [e nextObject]) {
+            if ([user isEqual:[[DLController sharedInstance] myUser]]) {
+                mentioned = YES;
+            }
+        }
+        if ([m mentionedEveryone]) {
             mentioned = YES;
         }
-    }
-    e = [[[m referencedMessage] mentionedUsers] objectEnumerator];
-    while (user = [e nextObject]) {
-        if ([user isEqual:[[DLController sharedInstance] myUser]]) {
-            mentioned = YES;
-        }
-    }
-    if ([m mentionedEveryone]) {
-        mentioned = YES;
-    }
-    
-    if (mentioned || [c isKindOfClass:[DLDirectMessageChannel class]]) {
-        if ([[[DLController sharedInstance] selectedChannel] isEqual:c]) {
-            if (![self.window isKeyWindow]) {
+        
+        if (mentioned || [c isKindOfClass:[DLDirectMessageChannel class]]) {
+            if ([[[DLController sharedInstance] selectedChannel] isEqual:c]) {
+                if (![self.window isKeyWindow]) {
+                    [c notifyOfNewMention];
+                    [s notifyOfNewMention];
+                    [[DLAudioPlayer sharedInstance] playAudioWithID:AudioIDNotificationNewMention];
+                }
+            } else {
                 [c notifyOfNewMention];
                 [s notifyOfNewMention];
                 [[DLAudioPlayer sharedInstance] playAudioWithID:AudioIDNotificationNewMention];
             }
-        } else {
-            [c notifyOfNewMention];
-            [s notifyOfNewMention];
-            [[DLAudioPlayer sharedInstance] playAudioWithID:AudioIDNotificationNewMention];
         }
     }
     
@@ -640,13 +676,15 @@ const NSTimeInterval TYPING_SEND_INTERVAL = 8.0;
 }
 
 -(void)members:(NSArray *)members didUpdateForServer:(DLServer *)s {
-    NSMutableArray *users = [[NSMutableArray alloc] init];
-    NSEnumerator *e = [members objectEnumerator];
-    DLServerMember *m;
-    while (m = [e nextObject]) {
-        [users addObject:[m user]];
+    if ([self isEditingTag]) {
+        NSMutableArray *users = [[NSMutableArray alloc] init];
+        NSEnumerator *e = [members objectEnumerator];
+        DLServerMember *m;
+        while (m = [e nextObject]) {
+            [users addObject:[m user]];
+        }
+        [self showTagSelectionViewWithContent:users];
     }
-    [self showTagSelectionViewWithContent:users];
 }
 
 -(void)addReferencedMessage:(DLMessage *)m {
@@ -659,6 +697,23 @@ const NSTimeInterval TYPING_SEND_INTERVAL = 8.0;
     [as addAttribute:NSFontAttributeName value:[NSFont boldSystemFontOfSize:13] range:[baseString rangeOfString:[[m author] username]]];
     [replyToTextField setAttributedStringValue:as];
     [self showReplyToView];
+}
+-(BOOL)chatViewShouldBeginEditing:(ChatItemViewController *)chatView {
+    [chatScrollView endAllChatContentEditing];
+    [chatView becomeWindowFirstResponderForEditing:self.window];
+    return YES;
+}
+-(void)chatViewUpdatedWithEnteredText {
+    [chatScrollView screenResize];
+}
+
+-(void)chatView:(ChatItemViewController *)chatView didEndEditingWithCommit:(BOOL)didCommit {
+    if (didCommit) {
+        [[DLController sharedInstance] submitEditedMessage:[chatView representedObject]];
+    } else {
+        [chatScrollView performSelector:@selector(screenResize) withObject:nil afterDelay:0.5];
+    }
+    [self.window makeFirstResponder:messageEntryTextView];
 }
 
 #pragma mark Text View Delegated Functions
@@ -700,18 +755,30 @@ const NSTimeInterval TYPING_SEND_INTERVAL = 8.0;
         }
     }
     if(aSelector == @selector(moveUp:)){
-        NSInteger selectedIndex = [tagSelectionScrollView content].count;
-        for (NSInteger i=[tagSelectionScrollView content].count - 1; i >= 0; i--) {
-            if ([[[tagSelectionScrollView content] objectAtIndex:i] isSelected]) {
-                selectedIndex = i;
+        if ([tagSelectionScrollView superview]) {
+            NSInteger selectedIndex = [tagSelectionScrollView content].count;
+            for (NSInteger i=[tagSelectionScrollView content].count - 1; i >= 0; i--) {
+                if ([[[tagSelectionScrollView content] objectAtIndex:i] isSelected]) {
+                    selectedIndex = i;
+                }
+                [[[tagSelectionScrollView content] objectAtIndex:i] setSelected:NO];
             }
-            [[[tagSelectionScrollView content] objectAtIndex:i] setSelected:NO];
+            if (selectedIndex == 0) {
+                selectedIndex = [tagSelectionScrollView content].count;
+            }
+            TagSelectionViewController *item = [[tagSelectionScrollView content] objectAtIndex:selectedIndex - 1];
+            [item setSelected:YES];
+        } else {
+            [chatScrollView endAllChatContentEditing];
+            NSEnumerator *e = [[chatScrollView content] reverseObjectEnumerator];
+            ChatItemViewController *item;
+            while (item = [e nextObject]) {
+                if ([[[item representedObject] author] isEqual:[[DLController sharedInstance] myUser]]) {
+                    [item beginEditingContent];
+                    [item becomeWindowFirstResponderForEditing:self.window];
+                }
+            }
         }
-        if (selectedIndex == 0) {
-            selectedIndex = [tagSelectionScrollView content].count;
-        }
-        TagSelectionViewController *item = [[tagSelectionScrollView content] objectAtIndex:selectedIndex - 1];
-        [item setSelected:YES];
         return YES;
     }
     if(aSelector == @selector(moveDown:)){
@@ -736,9 +803,9 @@ const NSTimeInterval TYPING_SEND_INTERVAL = 8.0;
     
     [messageEntryTextView setTypingAttributes:[NSDictionary dictionaryWithObjects:[NSArray arrayWithObjects:[NSColor textColor], [NSColor controlBackgroundColor], nil] forKeys:[NSArray arrayWithObjects:NSForegroundColorAttributeName, NSBackgroundColorAttributeName, nil]]];
     
-    NSString *textPreSelection = [[messageEntryTextView string] substringToIndex:editingLocation];
-    tagIndex = [textPreSelection rangeOfString:@"@" options:NSBackwardsSearch].location;
-    if ((tagIndex != NSNotFound) && ([[textPreSelection substringFromIndex:tagIndex] rangeOfString:@" "].location == NSNotFound)) {
+    if ([self isEditingTag]) {
+        NSString *textPreSelection = [[messageEntryTextView string] substringToIndex:editingLocation];
+        tagIndex = [textPreSelection rangeOfString:@"@" options:NSBackwardsSearch].location;
         NSString *enteredUsername = [textPreSelection substringFromIndex:tagIndex];
         if ([[[DLController sharedInstance] selectedServer] isEqual:[[DLController sharedInstance] myServerItem]]) {
             if ([enteredUsername isEqualToString:@"@"]) {

@@ -104,7 +104,6 @@ static DLWSController* sharedObject = nil;
     NSData *resData = [text dataUsingEncoding:NSUTF8StringEncoding];
     NSDictionary *res = [[CJSONDeserializer deserializer] deserializeAsDictionary:resData error:nil];
     OPCode c = [[res objectForKey:@kWSOperation] intValue];
-    //NSLog(@"WS: %@", text);
     switch (c) {
         case OPCodeGeneral: {
             sequenceNumber = [[res objectForKey:@kWSSequence] intValue];
@@ -144,7 +143,9 @@ static DLWSController* sharedObject = nil;
                 NSString *serverID = [wsData objectForKey:@"guild_id"];
                 [delegate wsDidReceiveMemberData:memberData forServerWithID:serverID];
             } else if ([type isEqualToString:@"MESSAGE_UPDATE"]) {
-                
+                NSDictionary *wsData = [res objectForKey:@kWSData];
+                NSString *messageID = [wsData objectForKey:@"id"];
+                [delegate wsMessageWithID:messageID wasUpdatedWithData:wsData];
             }
             break;
         }
