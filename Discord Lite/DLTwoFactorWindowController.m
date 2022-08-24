@@ -16,7 +16,6 @@
 
 - (void)windowDidLoad {
     [super windowDidLoad];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(textDidChange:) name:NSControlTextDidChangeNotification object:nil];
     entryFormatter = [[TwoFactorEntryFormatter alloc] init];
     entryFields = [[NSArray alloc] initWithObjects:tfaField1, tfaField2, tfaField3, tfaField4, tfaField5, tfaField6, nil];
     NSEnumerator *e = [entryFields objectEnumerator];
@@ -33,6 +32,7 @@
 }
 
 -(void)clear {
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(textDidChange:) name:NSControlTextDidChangeNotification object:nil];
     NSEnumerator *e = [entryFields objectEnumerator];
     NSTextField *f;
     while (f = [e nextObject]) {
@@ -42,6 +42,7 @@
 }
 
 - (IBAction)cancelEntry:(id)sender {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
     [delegate didCancelTwoFactorEntry];
 }
 
@@ -52,6 +53,7 @@
     while (f = [e nextObject]) {
         twoFactorCode = [twoFactorCode stringByAppendingString:[f stringValue]];
     }
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
     [delegate didSubmitTwoFactorWithCode:twoFactorCode];
 }
 

@@ -101,11 +101,13 @@
 		87DA40092739DB28007E7455 /* mention_notification.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 87DA40082739DB28007E7455 /* mention_notification.mp3 */; };
 		87DA400C2739DD58007E7455 /* DLAudioPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 87DA400B2739DD58007E7455 /* DLAudioPlayer.m */; };
 		87DA40172739F4DB007E7455 /* AppIcon.icns in Resources */ = {isa = PBXBuildFile; fileRef = 87DA40162739F4DB007E7455 /* AppIcon.icns */; };
+		87E8A6F728B6A1A400BCBC93 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 87E8A6F628B6A1A400BCBC93 /* WebKit.framework */; };
+		87E8A6F828B6A21D00BCBC93 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 87739809288A42A300548F3F /* Foundation.framework */; };
 		87F066E028B553D000FE92A2 /* DLPreferencesWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 87F066DE28B553D000FE92A2 /* DLPreferencesWindowController.m */; };
 		87F066E228B553DC00FE92A2 /* DLPreferencesWindowController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 87F066E428B553DC00FE92A2 /* DLPreferencesWindowController.xib */; };
 		87F066E728B5854600FE92A2 /* NSData+Compress.m in Sources */ = {isa = PBXBuildFile; fileRef = 87F066E628B5854600FE92A2 /* NSData+Compress.m */; };
 		87F066E928B585F300FE92A2 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 87F066E828B585F300FE92A2 /* libz.dylib */; };
-		87F17B26288A47D500CF4F5D /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 87739807288A429B00548F3F /* Cocoa.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		87F17B26288A47D500CF4F5D /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 87739807288A429B00548F3F /* Cocoa.framework */; settings = {ATTRIBUTES = (Required, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -170,7 +172,6 @@
 		876DBE002729234A008682BC /* DLUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DLUtil.m; sourceTree = "<group>"; };
 		87739807288A429B00548F3F /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.7.sdk/System/Library/Frameworks/Cocoa.framework; sourceTree = DEVELOPER_DIR; };
 		87739809288A42A300548F3F /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.7.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
-		8773980B288A42A800548F3F /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.7.sdk/System/Library/Frameworks/WebKit.framework; sourceTree = DEVELOPER_DIR; };
 		8773980D288A42AE00548F3F /* libicucore.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libicucore.dylib; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.7.sdk/usr/lib/libicucore.dylib; sourceTree = DEVELOPER_DIR; };
 		877F0F9D2728DBEE00FBD4B3 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		8782FE0C274C40B800ECA836 /* DLServerMember.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DLServerMember.h; sourceTree = "<group>"; };
@@ -286,6 +287,7 @@
 		87DA400A2739DD58007E7455 /* DLAudioPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DLAudioPlayer.h; sourceTree = "<group>"; };
 		87DA400B2739DD58007E7455 /* DLAudioPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DLAudioPlayer.m; sourceTree = "<group>"; };
 		87DA40162739F4DB007E7455 /* AppIcon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = AppIcon.icns; sourceTree = "<group>"; };
+		87E8A6F628B6A1A400BCBC93 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.7.sdk/System/Library/Frameworks/WebKit.framework; sourceTree = DEVELOPER_DIR; };
 		87F066DD28B553D000FE92A2 /* DLPreferencesWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DLPreferencesWindowController.h; sourceTree = "<group>"; };
 		87F066DE28B553D000FE92A2 /* DLPreferencesWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DLPreferencesWindowController.m; sourceTree = "<group>"; };
 		87F066E328B553DC00FE92A2 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/DLPreferencesWindowController.xib; sourceTree = "<group>"; };
@@ -299,6 +301,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				87E8A6F828B6A21D00BCBC93 /* Foundation.framework in Frameworks */,
+				87E8A6F728B6A1A400BCBC93 /* WebKit.framework in Frameworks */,
 				87F066E928B585F300FE92A2 /* libz.dylib in Frameworks */,
 				87F17B26288A47D500CF4F5D /* Cocoa.framework in Frameworks */,
 				8773980E288A42AE00548F3F /* libicucore.dylib in Frameworks */,
@@ -531,9 +535,9 @@
 		87C11C842728DB7B000046F2 = {
 			isa = PBXGroup;
 			children = (
+				87E8A6F628B6A1A400BCBC93 /* WebKit.framework */,
 				87F066E828B585F300FE92A2 /* libz.dylib */,
 				8773980D288A42AE00548F3F /* libicucore.dylib */,
-				8773980B288A42A800548F3F /* WebKit.framework */,
 				87739809288A42A300548F3F /* Foundation.framework */,
 				87739807288A429B00548F3F /* Cocoa.framework */,
 				87C11C8F2728DB7B000046F2 /* Discord Lite */,
@@ -1058,10 +1062,7 @@
 				INFOPLIST_FILE = "Discord Lite/Info.plist";
 				LD_DEPENDENCY_INFO_FILE = "$(OBJECT_FILE_DIR_$(CURRENT_VARIANT))/$(CURRENT_ARCH)/$(PRODUCT_NAME)_dependency_info.dat";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited)";
-				LIBRARY_SEARCH_PATHS = (
-					"$(DEVELOPER_DIR)/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/usr/lib",
-					"$(DEVELOPER_DIR)/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.7.sdk/usr/lib",
-				);
+				LIBRARY_SEARCH_PATHS = "$(DEVELOPER_DIR)/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/usr/lib";
 				LINK_WITH_STANDARD_LIBRARIES = YES;
 				MACOSX_DEPLOYMENT_TARGET = 10.4;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1083,14 +1084,14 @@
 				CLANG_LINK_OBJC_RUNTIME = YES;
 				CLANG_MODULES_AUTOLINK = NO;
 				COMBINE_HIDPI_IMAGES = YES;
-				FRAMEWORK_SEARCH_PATHS = "$(DEVELOPER_DIR)/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/System/Library/Frameworks";
+				FRAMEWORK_SEARCH_PATHS = "";
 				"FRAMEWORK_SEARCH_PATHS[arch=i386]" = "$(DEVELOPER_DIR)/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.7.sdk/System/Library/Frameworks";
 				"FRAMEWORK_SEARCH_PATHS[arch=ppc]" = "$(DEVELOPER_DIR)/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.5.sdk/System/Library/Frameworks";
 				"FRAMEWORK_SEARCH_PATHS[arch=x86_64]" = "$(DEVELOPER_DIR)/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.7.sdk/System/Library/Frameworks";
 				INFOPLIST_FILE = "Discord Lite/Info.plist";
 				LD_DEPENDENCY_INFO_FILE = "$(OBJECT_FILE_DIR_$(CURRENT_VARIANT))/$(CURRENT_ARCH)/$(PRODUCT_NAME)_dependency_info.dat";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited)";
-				LIBRARY_SEARCH_PATHS = "$(DEVELOPER_DIR)/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/usr/lib";
+				LIBRARY_SEARCH_PATHS = "";
 				"LIBRARY_SEARCH_PATHS[arch=i386]" = "$(DEVELOPER_DIR)/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.7.sdk/usr/lib";
 				"LIBRARY_SEARCH_PATHS[arch=ppc]" = "$(DEVELOPER_DIR)/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.5.sdk/usr/lib";
 				"LIBRARY_SEARCH_PATHS[arch=x86_64]" = "$(DEVELOPER_DIR)/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.7.sdk/usr/lib";
