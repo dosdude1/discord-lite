@@ -27,6 +27,7 @@
 }
 
 -(void)start {
+    
     if (isFileDownload) {
         [downloadingFile seekToEndOfFile];
     } else {

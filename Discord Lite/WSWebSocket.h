@@ -82,6 +82,11 @@ typedef enum {
     uint16_t statusCode;
     NSString *closingReason;
     id<WSWebSocketDelegate> delegate;
+    
+    NSString *SOCKSProxyHost;
+    NSInteger SOCKSProxyPort;
+    NSString *SOCKSProxyUsername;
+    NSString *SOCKSProxyPassword;
 }
 
 -(void)setDelegate:(id<WSWebSocketDelegate>)inDelegate;
@@ -180,5 +185,10 @@ typedef enum {
  @param responseCallback The callback block
  */
 //- (void)setResponseCallback:(void (^)(NSHTTPURLResponse *response, NSData *data))responseCallback;
+
+-(void)setSOCKSProxyHost:(NSString *)proxyHost;
+-(void)setSOCKSProxyPort:(NSInteger)port;
+-(void)setSOCKSProxyUsername:(NSString *)username;
+-(void)setSOCKSProxyPassword:(NSString *)password;
 
 @end

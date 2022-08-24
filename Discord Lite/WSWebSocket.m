@@ -184,17 +184,21 @@ static const NSUInteger WSHTTPCode101 = 101;
     
     CFStreamCreatePairWithSocketToHost(NULL, (CFStringRef)hostURL.host, (UInt32)port, &readStream, &writeStream);
     
-    //PROXY temporary stuff
+    if (SOCKSProxyHost && ![SOCKSProxyHost isEqualToString:@""]) {
+        CFMutableDictionaryRef socksConfig = CFDictionaryCreateMutable(kCFAllocatorDefault, 0, &kCFTypeDictionaryKeyCallBacks, &kCFTypeDictionaryValueCallBacks);
+        CFDictionarySetValue(socksConfig, kCFStreamPropertySOCKSProxyHost, (CFStringRef)SOCKSProxyHost);
+        CFDictionarySetValue(socksConfig, kCFStreamPropertySOCKSProxyPort, (CFNumberRef)[NSNumber numberWithInt:SOCKSProxyPort]);
+        CFDictionarySetValue(socksConfig, kCFStreamPropertySOCKSVersion, kCFStreamSocketSOCKSVersion5);
+        
+        if (SOCKSProxyPassword && ![SOCKSProxyPassword isEqualToString:@""]) {
+            CFDictionarySetValue(socksConfig, kCFStreamPropertySOCKSUser, (CFStringRef)SOCKSProxyUsername);
+            CFDictionarySetValue(socksConfig, kCFStreamPropertySOCKSPassword, (CFStringRef)SOCKSProxyPassword);
+        }
+        
+        CFReadStreamSetProperty(readStream, kCFStreamPropertySOCKSProxy, socksConfig);
+        CFWriteStreamSetProperty(writeStream, kCFStreamPropertySOCKSProxy, socksConfig);
+    }
     
-    /*CFMutableDictionaryRef socksConfig = CFDictionaryCreateMutable(kCFAllocatorDefault, 0, &kCFTypeDictionaryKeyCallBacks, &kCFTypeDictionaryValueCallBacks);
-    CFDictionarySetValue(socksConfig, kCFStreamPropertySOCKSProxyHost, CFSTR("192.168.1.161"));
-    CFDictionarySetValue(socksConfig, kCFStreamPropertySOCKSProxyPort, (CFNumberRef)[NSNumber numberWithInt:8889]);
-    CFDictionarySetValue(socksConfig, kCFStreamPropertySOCKSVersion, kCFStreamSocketSOCKSVersion5);
-    
-    CFReadStreamSetProperty(readStream, kCFStreamPropertySOCKSProxy, socksConfig);
-    CFWriteStreamSetProperty(writeStream, kCFStreamPropertySOCKSProxy, socksConfig);*/
-    
-    //
     
     inputStream = ( NSInputStream *)readStream;
     outputStream = ( NSOutputStream *)writeStream;
@@ -769,6 +773,19 @@ static const NSUInteger WSHTTPCode101 = 101;
     //NSAssert(state == WSWebSocketStateConnecting, @"Requests can only be sent during connecting.");
     //[self performSelector:@selector(threadedSendRequest:) onThread:wsThread withObject:request waitUntilDone:NO];
     [self threadedSendRequest:request];
+}
+
+-(void)setSOCKSProxyHost:(NSString *)proxyHost {
+    SOCKSProxyHost = proxyHost;
+}
+-(void)setSOCKSProxyPort:(NSInteger)port {
+    SOCKSProxyPort = port;
+}
+-(void)setSOCKSProxyUsername:(NSString *)username {
+    SOCKSProxyUsername = username;
+}
+-(void)setSOCKSProxyPassword:(NSString *)password {
+    SOCKSProxyPassword = password;
 }
 
 @end

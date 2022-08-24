@@ -36,6 +36,14 @@ static DLWSController* sharedObject = nil;
     token = inToken;
     NSURL *wsURL = [NSURL URLWithString:@WS_GATEWAY_URL];
     webSocket = [[WSWebSocket alloc] initWithURL:wsURL protocols:nil];
+    if ([[DLPreferencesHandler sharedInstance] shouldUseSOCKSProxy]) {
+        [webSocket setSOCKSProxyHost:[[DLPreferencesHandler sharedInstance] SOCKSProxyHost]];
+        [webSocket setSOCKSProxyPort:[[DLPreferencesHandler sharedInstance] SOCKSProxyPort]];
+        if ([[DLPreferencesHandler sharedInstance] SOCKSProxyRequiresPassword]) {
+            [webSocket setSOCKSProxyUsername:[[DLPreferencesHandler sharedInstance] SOCKSProxyUsername]];
+            [webSocket setSOCKSProxyPassword:[[DLPreferencesHandler sharedInstance] SOCKSProxyPassword]];
+        }
+    }
     [webSocket setDelegate:self];
     [webSocket open];
 }

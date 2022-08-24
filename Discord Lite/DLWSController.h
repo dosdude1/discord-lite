@@ -13,6 +13,7 @@
 #import "CJSONDeserializer.h"
 #import "CJSONSerializer.h"
 #import "DLServer.h"
+#import "DLPreferencesHandler.h"
 
 
 #define WS_GATEWAY_URL "wss://gateway.discord.gg/?encoding=json&v=6"

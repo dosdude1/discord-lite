@@ -41,7 +41,7 @@
     if (iconID && ![iconID isKindOfClass:[NSNull class]]) {
         AsyncHTTPGetRequest *req = [[AsyncHTTPGetRequest alloc] init];
         [req setDelegate:self];
-        [req setUrl:[NSURL URLWithString:[@IconCDNRoot stringByAppendingPathComponent:[NSString stringWithFormat:@"%@/%@.png", serverID, iconID]]]];
+        [req setUrl:[NSURL URLWithString:[@IconCDNRoot stringByAppendingString:[NSString stringWithFormat:@"/%@/%@.png", serverID, iconID]]]];
         [req setCached:YES];
         [req start];
     }

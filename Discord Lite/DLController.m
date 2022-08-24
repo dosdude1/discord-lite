@@ -67,7 +67,7 @@ static DLController* sharedObject = nil;
     [req setParameters:params];
     [req setIdentifier:RequestIDLogin];
     
-    [req setUrl:[NSURL URLWithString:[@API_ROOT stringByAppendingPathComponent:@"auth/login"]]];
+    [req setUrl:[NSURL URLWithString:[@API_ROOT stringByAppendingString:@"/auth/login"]]];
     [req start];
 }
 
@@ -78,7 +78,7 @@ static DLController* sharedObject = nil;
     [req setParameters:params];
     [req setIdentifier:RequestIDTwoFactor];
     
-    [req setUrl:[NSURL URLWithString:[@API_ROOT stringByAppendingPathComponent:@"auth/mfa/totp"]]];
+    [req setUrl:[NSURL URLWithString:[@API_ROOT stringByAppendingString:@"/auth/mfa/totp"]]];
     [req start];
 }
 
@@ -98,7 +98,7 @@ static DLController* sharedObject = nil;
     [req setDelegate:self];
     [req setHeaders:[NSDictionary dictionaryWithObjects:[NSArray arrayWithObjects:token, nil] forKeys:[NSArray arrayWithObjects:@"Authorization", nil]]];
     [req setIdentifier:RequestIDMessages];
-    NSString *requestURL = [@API_ROOT stringByAppendingPathComponent:[NSString stringWithFormat:@"channels/%@/messages?limit=%ld", c.channelID, numMsgs]];
+    NSString *requestURL = [@API_ROOT stringByAppendingString:[NSString stringWithFormat:@"/channels/%@/messages?limit=%ld", c.channelID, numMsgs]];
     if (m != nil) {
         requestURL = [requestURL stringByAppendingString:[NSString stringWithFormat:@"&before=%@", m.messageID]];
     }
@@ -121,7 +121,7 @@ static DLController* sharedObject = nil;
     }
     [req setHeaders:[NSDictionary dictionaryWithObjects:[NSArray arrayWithObjects:token, nil] forKeys:[NSArray arrayWithObjects:@"Authorization", nil]]];
     [req setIdentifier:RequestIDSendMessage];
-    NSString *requestURL = [@API_ROOT stringByAppendingPathComponent:[NSString stringWithFormat:@"channels/%@/messages", c.channelID]];
+    NSString *requestURL = [@API_ROOT stringByAppendingString:[NSString stringWithFormat:@"/channels/%@/messages", c.channelID]];
     [req setUrl:[NSURL URLWithString:requestURL]];
     [req start];
 }
@@ -132,7 +132,7 @@ static DLController* sharedObject = nil;
     [req setParameters:[NSDictionary dictionaryWithObject:[NSNull null] forKey:@"token"]];
     [req setHeaders:[NSDictionary dictionaryWithObjects:[NSArray arrayWithObjects: token, nil] forKeys:[NSArray arrayWithObjects:@"Authorization", nil]]];
     [req setIdentifier:RequestIDAckMessage];
-    NSString *requestURL = [@API_ROOT stringByAppendingPathComponent:[NSString stringWithFormat:@"channels/%@/messages/%@/ack", [m channelID], [m messageID]]];
+    NSString *requestURL = [@API_ROOT stringByAppendingString:[NSString stringWithFormat:@"/channels/%@/messages/%@/ack", [m channelID], [m messageID]]];
     [req setUrl:[NSURL URLWithString:requestURL]];
     [req start];
 }
@@ -143,7 +143,7 @@ static DLController* sharedObject = nil;
     [req setParameters:[NSDictionary dictionaryWithObjects:[NSArray arrayWithObjects:@"apns_voip", @"apns", nil] forKeys:[NSArray arrayWithObjects:@"voip_provider", @"provider", nil]]];
     [req setHeaders:[NSDictionary dictionaryWithObjects:[NSArray arrayWithObjects:token, nil] forKeys:[NSArray arrayWithObjects:@"Authorization", nil]]];
     [req setIdentifier:RequestIDLogout];
-    NSString *requestURL = [@API_ROOT stringByAppendingPathComponent:@"auth/logout"];
+    NSString *requestURL = [@API_ROOT stringByAppendingString:@"/auth/logout"];
     [req setUrl:[NSURL URLWithString:requestURL]];
     [req start];
     
@@ -173,7 +173,7 @@ static DLController* sharedObject = nil;
     [req setParameters:[NSDictionary dictionaryWithObject:[NSNull null] forKey:@"token"]];
     [req setHeaders:[NSDictionary dictionaryWithObjects:[NSArray arrayWithObjects: token, nil] forKeys:[NSArray arrayWithObjects:@"Authorization", nil]]];
     [req setIdentifier:RequestIDTyping];
-    NSString *requestURL = [@API_ROOT stringByAppendingPathComponent:[NSString stringWithFormat:@"channels/%@/typing", [c channelID]]];
+    NSString *requestURL = [@API_ROOT stringByAppendingString:[NSString stringWithFormat:@"/channels/%@/typing", [c channelID]]];
     [req setUrl:[NSURL URLWithString:requestURL]];
     [req start];
 }
@@ -185,7 +185,7 @@ static DLController* sharedObject = nil;
     [req setHeaders:[NSDictionary dictionaryWithObjects:[NSArray arrayWithObjects: token, nil] forKeys:[NSArray arrayWithObjects:@"Authorization", nil]]];
     [req setIdentifier:RequestIDMessageEdit];
     [req setMethod:@"PATCH"];
-    NSString *requestURL = [@API_ROOT stringByAppendingPathComponent:[NSString stringWithFormat:@"channels/%@/messages/%@", [m channelID], [m messageID]]];
+    NSString *requestURL = [@API_ROOT stringByAppendingString:[NSString stringWithFormat:@"/channels/%@/messages/%@", [m channelID], [m messageID]]];
     [req setUrl:[NSURL URLWithString:requestURL]];
     [req start];
 }

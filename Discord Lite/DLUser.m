@@ -39,7 +39,7 @@ const NSTimeInterval TYPING_INTERVAL = 10.0;
     if (avatarID && ![avatarID isKindOfClass:[NSNull class]]) {
         req = [[AsyncHTTPGetRequest alloc] init];
         [req setDelegate:self];
-        [req setUrl:[NSURL URLWithString:[@AvatarCDNRoot stringByAppendingPathComponent:[NSString stringWithFormat:@"%@/%@.png?size=128", userID, avatarID]]]];
+        [req setUrl:[NSURL URLWithString:[@AvatarCDNRoot stringByAppendingString:[NSString stringWithFormat:@"/%@/%@.png?size=128", userID, avatarID]]]];
         [req setCached:YES];
         [req start];
     }

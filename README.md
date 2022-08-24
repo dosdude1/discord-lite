@@ -37,6 +37,11 @@
 - Friend requests (will not be implemented due to Discord TOS concerns)
 
 
+### Important Notes
+
+- Somewhat recently, Discord has killed support for TLS1.1 and older SSL protocols when connecting to their servers. As such, this application will no longer work on legacy Mac OS X versions without using a proxy. As of release 0.1.6-alpha, there is now a setting in the Preferences menu allowing you to set a SOCKS proxy configuration for the WebSocket. A custom proxy implementation for the HTTPS side of things is in the works, but at this time, that setting will have to be made in the Network pane of System Preferences on your machine.
+
+
 ### Releases
 
 Prebuilt Universal "Tri-FAT" binaries can be found in the [Releases](https://github.com/dosdude1/discord-lite/releases) section. You can download and run on PowerPC, 32-bit Intel, or 64-bit Intel. It will also run on ARM-based Macs under Rosetta, but native ARM support will be added soon.

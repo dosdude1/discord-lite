@@ -15,6 +15,9 @@
 @implementation AppDelegate
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
+    
+    //[NSURLProtocol registerClass:[DLURLProtocol class]];
+    
     if (![[DLController sharedInstance] isLoggedIn]) {
         loginWindow = [[DLLoginWindowController alloc] initWithWindowNibName:@"DLLoginWindowController"];
         [loginWindow setDelegate:self];
@@ -50,6 +53,13 @@
     return YES;
 }
 
+- (IBAction)showPreferencesWindow:(id)sender {
+    if (!preferencesWindow) {
+        preferencesWindow = [[DLPreferencesWindowController alloc] initWithWindowNibName:@"DLPreferencesWindowController"];
+    }
+    [preferencesWindow showWindow:preferencesWindow.window];
+}
+
 #pragma mark Delegated Functions
 
 -(void)loginWasSuccessful {
@@ -69,5 +79,4 @@
     [loginWindow setDelegate:self];
     [loginWindow showWindow:loginWindow.window];
 }
-
 @end

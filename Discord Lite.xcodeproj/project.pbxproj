@@ -16,6 +16,8 @@
 		8714B1AF2729FC5000DA4AF9 /* DLMainWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8714B1AD2729FC5000DA4AF9 /* DLMainWindowController.m */; };
 		8714B1B12729FCF200DA4AF9 /* DLMainWindowController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8714B1B32729FCF200DA4AF9 /* DLMainWindowController.xib */; };
 		8714B1B9272A0C6900DA4AF9 /* DLServer.m in Sources */ = {isa = PBXBuildFile; fileRef = 8714B1B8272A0C6900DA4AF9 /* DLServer.m */; };
+		871E7F1128B47B8A00D498E7 /* DLURLProtocol.m in Sources */ = {isa = PBXBuildFile; fileRef = 871E7F1028B47B8A00D498E7 /* DLURLProtocol.m */; };
+		871E7F1428B47C1200D498E7 /* DLPreferencesHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 871E7F1328B47C1200D498E7 /* DLPreferencesHandler.m */; };
 		872FCEC8272A4C5F002434B1 /* ServerItemViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 872FCEC6272A4C5F002434B1 /* ServerItemViewController.m */; };
 		872FCECA272A4CDA002434B1 /* ServerItemViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 872FCECC272A4CDA002434B1 /* ServerItemViewController.xib */; };
 		872FCED7272A5902002434B1 /* FlippedClipView.m in Sources */ = {isa = PBXBuildFile; fileRef = 872FCED6272A5902002434B1 /* FlippedClipView.m */; };
@@ -99,6 +101,10 @@
 		87DA40092739DB28007E7455 /* mention_notification.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 87DA40082739DB28007E7455 /* mention_notification.mp3 */; };
 		87DA400C2739DD58007E7455 /* DLAudioPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 87DA400B2739DD58007E7455 /* DLAudioPlayer.m */; };
 		87DA40172739F4DB007E7455 /* AppIcon.icns in Resources */ = {isa = PBXBuildFile; fileRef = 87DA40162739F4DB007E7455 /* AppIcon.icns */; };
+		87F066E028B553D000FE92A2 /* DLPreferencesWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 87F066DE28B553D000FE92A2 /* DLPreferencesWindowController.m */; };
+		87F066E228B553DC00FE92A2 /* DLPreferencesWindowController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 87F066E428B553DC00FE92A2 /* DLPreferencesWindowController.xib */; };
+		87F066E728B5854600FE92A2 /* NSData+Compress.m in Sources */ = {isa = PBXBuildFile; fileRef = 87F066E628B5854600FE92A2 /* NSData+Compress.m */; };
+		87F066E928B585F300FE92A2 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 87F066E828B585F300FE92A2 /* libz.dylib */; };
 		87F17B26288A47D500CF4F5D /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 87739807288A429B00548F3F /* Cocoa.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 /* End PBXBuildFile section */
 
@@ -127,6 +133,10 @@
 		8714B1B22729FCF200DA4AF9 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/DLMainWindowController.xib; sourceTree = "<group>"; };
 		8714B1B7272A0C6900DA4AF9 /* DLServer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DLServer.h; sourceTree = "<group>"; };
 		8714B1B8272A0C6900DA4AF9 /* DLServer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DLServer.m; sourceTree = "<group>"; };
+		871E7F0F28B47B8A00D498E7 /* DLURLProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DLURLProtocol.h; sourceTree = "<group>"; };
+		871E7F1028B47B8A00D498E7 /* DLURLProtocol.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DLURLProtocol.m; sourceTree = "<group>"; };
+		871E7F1228B47C1200D498E7 /* DLPreferencesHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DLPreferencesHandler.h; sourceTree = "<group>"; };
+		871E7F1328B47C1200D498E7 /* DLPreferencesHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DLPreferencesHandler.m; sourceTree = "<group>"; };
 		872FCEC5272A4C5F002434B1 /* ServerItemViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ServerItemViewController.h; sourceTree = "<group>"; };
 		872FCEC6272A4C5F002434B1 /* ServerItemViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ServerItemViewController.m; sourceTree = "<group>"; };
 		872FCECB272A4CDA002434B1 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ServerItemViewController.xib; sourceTree = "<group>"; };
@@ -276,6 +286,12 @@
 		87DA400A2739DD58007E7455 /* DLAudioPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DLAudioPlayer.h; sourceTree = "<group>"; };
 		87DA400B2739DD58007E7455 /* DLAudioPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DLAudioPlayer.m; sourceTree = "<group>"; };
 		87DA40162739F4DB007E7455 /* AppIcon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = AppIcon.icns; sourceTree = "<group>"; };
+		87F066DD28B553D000FE92A2 /* DLPreferencesWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DLPreferencesWindowController.h; sourceTree = "<group>"; };
+		87F066DE28B553D000FE92A2 /* DLPreferencesWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DLPreferencesWindowController.m; sourceTree = "<group>"; };
+		87F066E328B553DC00FE92A2 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/DLPreferencesWindowController.xib; sourceTree = "<group>"; };
+		87F066E528B5854000FE92A2 /* NSData+Compress.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+Compress.h"; sourceTree = "<group>"; };
+		87F066E628B5854600FE92A2 /* NSData+Compress.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+Compress.m"; sourceTree = "<group>"; };
+		87F066E828B585F300FE92A2 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.7.sdk/usr/lib/libz.dylib; sourceTree = DEVELOPER_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -283,6 +299,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				87F066E928B585F300FE92A2 /* libz.dylib in Frameworks */,
 				87F17B26288A47D500CF4F5D /* Cocoa.framework in Frameworks */,
 				8773980E288A42AE00548F3F /* libicucore.dylib in Frameworks */,
 			);
@@ -316,8 +333,14 @@
 		8714B1A82729F59F00DA4AF9 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				87C083512728DEA000C8F933 /* DLController.h */,
+				87C083522728DEA000C8F933 /* DLController.m */,
+				878E498327347A4900BBB18B /* DLWSController.h */,
+				878E498427347A4900BBB18B /* DLWSController.m */,
 				8714B1A92729F5B000DA4AF9 /* DLErrorHandler.h */,
 				8714B1AA2729F5B000DA4AF9 /* DLErrorHandler.m */,
+				871E7F1228B47C1200D498E7 /* DLPreferencesHandler.h */,
+				871E7F1328B47C1200D498E7 /* DLPreferencesHandler.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -434,10 +457,6 @@
 		87C0834F2728DE6B00C8F933 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				87C083512728DEA000C8F933 /* DLController.h */,
-				87C083522728DEA000C8F933 /* DLController.m */,
-				878E498327347A4900BBB18B /* DLWSController.h */,
-				878E498427347A4900BBB18B /* DLWSController.m */,
 				8714B1A42729ED5200DA4AF9 /* DLError.h */,
 				8714B1A52729ED5200DA4AF9 /* DLError.m */,
 				8714B1B7272A0C6900DA4AF9 /* DLServer.h */,
@@ -482,6 +501,9 @@
 				8791ACBE2794AE50005672AB /* DLTwoFactorWindowController.h */,
 				8791ACBF2794AE50005672AB /* DLTwoFactorWindowController.m */,
 				8791ACC52794AF0D005672AB /* DLTwoFactorWindowController.xib */,
+				87F066DD28B553D000FE92A2 /* DLPreferencesWindowController.h */,
+				87F066DE28B553D000FE92A2 /* DLPreferencesWindowController.m */,
+				87F066E428B553DC00FE92A2 /* DLPreferencesWindowController.xib */,
 			);
 			name = WindowControllers;
 			sourceTree = "<group>";
@@ -509,6 +531,7 @@
 		87C11C842728DB7B000046F2 = {
 			isa = PBXGroup;
 			children = (
+				87F066E828B585F300FE92A2 /* libz.dylib */,
 				8773980D288A42AE00548F3F /* libicucore.dylib */,
 				8773980B288A42A800548F3F /* WebKit.framework */,
 				87739809288A42A300548F3F /* Foundation.framework */,
@@ -588,6 +611,10 @@
 				87A38DCF2732FEDB002385EE /* HTTPCache.m */,
 				87A38DD12732FF76002385EE /* HTTPCacheData.h */,
 				87A38DD22732FF76002385EE /* HTTPCacheData.m */,
+				871E7F0F28B47B8A00D498E7 /* DLURLProtocol.h */,
+				871E7F1028B47B8A00D498E7 /* DLURLProtocol.m */,
+				87F066E528B5854000FE92A2 /* NSData+Compress.h */,
+				87F066E628B5854600FE92A2 /* NSData+Compress.m */,
 			);
 			name = HTTP;
 			sourceTree = "<group>";
@@ -722,6 +749,7 @@
 				87062778278E9CFF0056BD71 /* DLCaptchaWindowController.xib in Resources */,
 				87A32B2F273F1ADC003D64BD /* DLAttachmentWindowController.xib in Resources */,
 				879E31C62743070400A21FF5 /* AttachmentPreviewViewController.xib in Resources */,
+				87F066E228B553DC00FE92A2 /* DLPreferencesWindowController.xib in Resources */,
 				8742C86B2730EE85005359DC /* ChatItemViewController.xib in Resources */,
 				87A38DE927338E48002385EE /* f5k.png in Resources */,
 				878B0B2E2738FDCC00547D61 /* discord_group.png in Resources */,
@@ -772,6 +800,7 @@
 				878E497B2734645900BBB18B /* WSFrame.m in Sources */,
 				876DBDF327291681008682BC /* CJSONScanner.m in Sources */,
 				87C083532728DEA000C8F933 /* DLController.m in Sources */,
+				87F066E728B5854600FE92A2 /* NSData+Compress.m in Sources */,
 				87C11C942728DB7B000046F2 /* AppDelegate.m in Sources */,
 				87A38DE327337386002385EE /* DLDirectMessageChannel.m in Sources */,
 				87A38DD9273330C0002385EE /* AttachmentPreviewViewController.m in Sources */,
@@ -779,6 +808,7 @@
 				8782FE0E274C40B800ECA836 /* DLServerMember.m in Sources */,
 				8791ACC82794B7C9005672AB /* TwoFactorEntryFormatter.m in Sources */,
 				8714B1AF2729FC5000DA4AF9 /* DLMainWindowController.m in Sources */,
+				871E7F1128B47B8A00D498E7 /* DLURLProtocol.m in Sources */,
 				87D9D17127320C1000162F22 /* DLUser.m in Sources */,
 				87A38DDE27336E14002385EE /* DirectMessageItemViewController.m in Sources */,
 				87450D2C27370833007B4C08 /* DLUserSettings.m in Sources */,
@@ -787,11 +817,13 @@
 				87D9D16E27320B1500162F22 /* DLMessage.m in Sources */,
 				87BE741B278BEBA800F61BF7 /* NSTextView+Menu.m in Sources */,
 				87C6E6A827305DBF00090639 /* DLChannel.m in Sources */,
+				87F066E028B553D000FE92A2 /* DLPreferencesWindowController.m in Sources */,
 				876DBDF727291711008682BC /* CDataScanner.m in Sources */,
 				878E497C2734645900BBB18B /* WSMessage.m in Sources */,
 				87A32B2D273F1A28003D64BD /* DLAttachmentWindowController.m in Sources */,
 				876DBDF427291681008682BC /* CJSONSerializer.m in Sources */,
 				87C6E6A0273053F000090639 /* DynamicScrollView.m in Sources */,
+				871E7F1428B47C1200D498E7 /* DLPreferencesHandler.m in Sources */,
 				87A38DD32732FF76002385EE /* HTTPCacheData.m in Sources */,
 				87C2CF8C272F438600F10466 /* ViewController.m in Sources */,
 				87DA400C2739DD58007E7455 /* DLAudioPlayer.m in Sources */,
@@ -924,6 +956,14 @@
 			name = MainMenu.xib;
 			sourceTree = "<group>";
 		};
+		87F066E428B553DC00FE92A2 /* DLPreferencesWindowController.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				87F066E328B553DC00FE92A2 /* en */,
+			);
+			name = DLPreferencesWindowController.xib;
+			sourceTree = "<group>";
+		};
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
@@ -1018,7 +1058,10 @@
 				INFOPLIST_FILE = "Discord Lite/Info.plist";
 				LD_DEPENDENCY_INFO_FILE = "$(OBJECT_FILE_DIR_$(CURRENT_VARIANT))/$(CURRENT_ARCH)/$(PRODUCT_NAME)_dependency_info.dat";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited)";
-				LIBRARY_SEARCH_PATHS = "$(DEVELOPER_DIR)/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/usr/lib";
+				LIBRARY_SEARCH_PATHS = (
+					"$(DEVELOPER_DIR)/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/usr/lib",
+					"$(DEVELOPER_DIR)/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.7.sdk/usr/lib",
+				);
 				LINK_WITH_STANDARD_LIBRARIES = YES;
 				MACOSX_DEPLOYMENT_TARGET = 10.4;
 				PRODUCT_NAME = "$(TARGET_NAME)";

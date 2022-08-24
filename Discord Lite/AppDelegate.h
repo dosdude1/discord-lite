@@ -10,12 +10,16 @@
 #import "DLController.h"
 #import "DLLoginWindowController.h"
 #import "DLMainWindowController.h"
+#import "DLURLProtocol.h"
+#import "DLPreferencesWindowController.h"
 
 @interface AppDelegate : NSObject <DLLoginWindowDelegate, DLMainWindowDelegate> {
     DLLoginWindowController *loginWindow;
     DLMainWindowController *mainWindow;
+    DLPreferencesWindowController *preferencesWindow;
 }
 
+- (IBAction)showPreferencesWindow:(id)sender;
 
 @end
 
