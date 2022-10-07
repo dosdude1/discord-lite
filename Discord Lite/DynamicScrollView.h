@@ -8,6 +8,7 @@
 
 #import <Cocoa/Cocoa.h>
 #import "ViewController.h"
+#import "NSScroller+BGColor.h"
 
 @protocol DynamicScrollViewDelegate <NSObject>
 @optional

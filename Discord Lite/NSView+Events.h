@@ -12,6 +12,7 @@
 @optional
 -(void)mouseWasDepressedWithEvent:(NSEvent *)event;
 -(void)mouseRightButtonWasDepressedWithEvent:(NSEvent *)event;
+-(void)viewMovedToWindow:(NSView *)v;
 @end
 
 @interface NSView_Events : NSView {

@@ -18,6 +18,7 @@
 @end
 
 @interface DirectMessageItemViewController : ViewController <DLChannelDelegate, NSViewEventDelegate> {
+    NSColor *defaultTextColor;
     DLDirectMessageChannel *representedObject;
     IBOutlet NSImageView *avatarImageView;
     IBOutlet NSTextField *usernameTextField;

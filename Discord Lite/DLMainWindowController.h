@@ -35,8 +35,21 @@
     BOOL isTyping;
     BOOL madeMentionChange;
     
+    IBOutlet NSView_BGColor *messageEntryContainerView;
+    IBOutlet NSView_BGColor *channelViewHeader;
+    IBOutlet NSView_BGColor *chatViewHeader;
+    IBOutlet NSView_BGColor *userInfoView;
+    
     NSInteger editingLocation;
     NSInteger tagIndex;
+    
+    IBOutlet NSScroller_BGColor *serverViewScroller;
+    IBOutlet NSScroller_BGColor *channelViewScroller;
+    IBOutlet NSScroller_BGColor *chatViewScroller;
+    IBOutlet NSScroller_BGColor *messageEntryViewScroller;
+    IBOutlet NSScroller_BGColor *tagSelectionViewScroller;
+    IBOutlet NSScroller_BGColor *pendingAttachmentViewScroller;
+    
     
     IBOutlet DynamicScrollView *serversScrollView;
     IBOutlet DynamicScrollView *channelsScrollView;
@@ -53,7 +66,6 @@
     IBOutlet NSTextField *serverLabel;
     IBOutlet NSImageView *chatHeaderImage;
     IBOutlet NSTextField *chatHeaderLabel;
-    IBOutlet NSView_Border *messageEntryContainerView;
     IBOutlet HorizontalDynamicScrollView *pendingAttachmentsScrollView;
     IBOutlet NSTextField *typingStatusTextField;
     
@@ -73,6 +85,7 @@
     CGFloat currentMessageScrollHeight;
     
     NSTimer *typingTimer;
+    NSTimer *serverItemTrackingTimer;
     
     id<DLMainWindowDelegate> delegate;
 }

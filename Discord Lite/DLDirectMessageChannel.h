@@ -29,6 +29,7 @@
 -(NSDate *)lastUpdateTimestamp;
 -(DLUser *)recipientWithUserID:(NSString *)userID;
 -(NSArray *)recipientsWithUsernameContainingString:(NSString *)username;
+-(void)loadAvatarImageData;
 
 -(void)setLastMessageID:(NSString *)msgID;
 

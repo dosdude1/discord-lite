@@ -17,12 +17,19 @@
 
 -(id)initWithDict:(NSDictionary *)d {
     self = [self init];
-    serverPositions = [[d objectForKey:@"guild_positions"] retain];
+    NSArray *folderData = [d objectForKey:@"guild_folders"];
+    NSMutableArray *tempFolders = [[NSMutableArray alloc] init];
+    NSEnumerator *e = [folderData objectEnumerator];
+    NSDictionary *folder;
+    while (folder = [e nextObject]) {
+        [tempFolders addObject:[[DLServerFolder alloc] initWithDict:folder]];
+    }
+    serverFolders = tempFolders;
     return self;
 }
 
--(NSArray *)serverPositions {
-    return serverPositions;
+-(NSArray *)serverFolders {
+    return serverFolders;
 }
 
 @end

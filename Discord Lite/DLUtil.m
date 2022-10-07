@@ -10,8 +10,8 @@
 
 @implementation DLUtil
 
-+ (NSImage *)imageResize:(NSImage*)anImage newSize:(NSSize)newSize {
-    if (! anImage.isValid) return nil;
++(NSImage *)imageResize:(NSImage*)anImage newSize:(NSSize)newSize cornerRadius:(CGFloat)radius {
+    /*if (! anImage.isValid) return nil;
     
     NSBitmapImageRep *rep = [[NSBitmapImageRep alloc]
                              initWithBitmapDataPlanes:NULL
@@ -34,7 +34,21 @@
     NSImage *newImage = [[NSImage alloc] initWithSize:newSize];
     [newImage addRepresentation:rep];
     [rep release];
-    return [newImage autorelease];
+    return [newImage autorelease];*/
+    
+    [anImage setScalesWhenResized:YES];
+    NSImage *smallImage = [[NSImage alloc] initWithSize: newSize];
+    [smallImage lockFocus];
+    [anImage setSize: newSize];
+    [[NSGraphicsContext currentContext] setImageInterpolation:NSImageInterpolationHigh];
+    if (radius != 0) {
+        NSBezierPath *clipPath = [BezierPathRoundedRect bezierPathWithRoundedRect:NSMakeRect(0, 0, anImage.size.width, anImage.size.height) radius:radius];
+        [clipPath setWindingRule:NSEvenOddWindingRule];
+        [clipPath addClip];
+    }
+    [anImage drawAtPoint:NSZeroPoint fromRect:NSMakeRect(0, 0, newSize.width, newSize.height) operation:NSCompositeSourceOver fraction:1.0];
+    [smallImage unlockFocus];
+    return [smallImage autorelease];
 }
 +(NSString *)appVersionString {
     return [[NSBundle mainBundle] objectForInfoDictionaryKey: @"CFBundleShortVersionString"];

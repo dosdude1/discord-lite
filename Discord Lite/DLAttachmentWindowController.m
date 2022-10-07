@@ -53,7 +53,7 @@
     //[imgView setImage:[[[NSImage alloc] initWithData:[viewedAttachment attachmentData]] autorelease]];
     [imgView setAutoresizingMask:attachmentTemplateView.autoresizingMask];
     [attachmentTemplateView addSubview:imgView];
-    NSView_Events *eventHandlerView = [[[NSView_Events alloc] initWithFrame:attachmentTemplateView.frame] autorelease];
+    eventHandlerView = [[NSView_Events alloc] initWithFrame:attachmentTemplateView.frame];
     [eventHandlerView setAutoresizingMask:attachmentTemplateView.autoresizingMask];
     [eventHandlerView setDelegate:self];
     [imgView addSubview:eventHandlerView];
@@ -81,6 +81,8 @@
 }
 
 -(void)dealloc {
+    [eventHandlerView setDelegate:nil];
+    [eventHandlerView release];
     [viewedAttachment setViewerDelegate:nil];
     [viewedAttachment release];
     [super dealloc];

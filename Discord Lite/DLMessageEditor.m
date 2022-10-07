@@ -10,6 +10,12 @@
 
 @implementation DLMessageEditor
 
+const CGFloat MESSAGE_EDITOR_FONT_SIZE = 13.0;
+
++(NSColor *)DEFAULT_EDITOR_TEXT_COLOR {
+    return [NSColor colorWithCalibratedRed:212.0/255.0 green:213.0/255.0 blue:214.0/255.0 alpha:1.0f];
+}
+
 -(id)init {
     self = [super init];
     mentionedUsers = [[NSMutableArray alloc] init];
@@ -25,7 +31,7 @@
     NSMutableAttributedString *as = [[NSMutableAttributedString alloc] initWithString:userContent];
     NSInteger lastLocation = -1;
     NSInteger index = 0;
-    [as addAttribute:NSForegroundColorAttributeName value:[NSColor textColor] range:NSMakeRange(0, [as string].length)];
+    [as addAttribute:NSForegroundColorAttributeName value:[DLMessageEditor DEFAULT_EDITOR_TEXT_COLOR] range:NSMakeRange(0, [as string].length)];
     while (lastLocation != NSNotFound) {
         lastLocation = [userContent rangeOfString:@"@" options:0 range:NSMakeRange(lastLocation + 1, userContent.length - (lastLocation + 1))].location;
         if (lastLocation != NSNotFound) {
@@ -35,10 +41,12 @@
                     NSString *username = [userContent substringWithRange:NSMakeRange(lastLocation + 1, [user username].length)];
                     if ([username isEqualToString:[user username]]) {
                         NSRange tagRange = NSMakeRange(lastLocation, [user username].length + 1);
-                        [as addAttribute:NSBackgroundColorAttributeName value:[NSColor yellowColor] range:tagRange];
+                        [as addAttribute:NSBackgroundColorAttributeName value:[NSColor colorWithCalibratedRed:52.0/255.0 green:61.0/255.0 blue:106.0/255.0 alpha:1.0f] range:tagRange];
+                        [as addAttribute:NSFontAttributeName value:[NSFont boldSystemFontOfSize:MESSAGE_EDITOR_FONT_SIZE] range:tagRange];
                         [as addAttribute:@kTagAttribute value:[NSNumber numberWithBool:YES] range:tagRange];
-                        [as addAttribute:NSForegroundColorAttributeName value:[NSColor blackColor] range:tagRange];
-                        [as addAttribute:NSForegroundColorAttributeName value:[NSColor textColor] range:NSMakeRange(tagRange.location + tagRange.length + 1, [as string].length - (tagRange.location + tagRange.length + 1))];
+                        NSRange nonTagRange = NSMakeRange(tagRange.location + tagRange.length + 1, [as string].length - (tagRange.location + tagRange.length + 1));
+                        [as addAttribute:NSForegroundColorAttributeName value:[DLMessageEditor DEFAULT_EDITOR_TEXT_COLOR] range:nonTagRange];
+                        [as addAttribute:NSFontAttributeName value:[NSFont systemFontOfSize:MESSAGE_EDITOR_FONT_SIZE] range:nonTagRange];
                         index++;
                     }
                 }

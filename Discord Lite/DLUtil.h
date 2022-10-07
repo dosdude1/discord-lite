@@ -8,10 +8,11 @@
 
 #import <Cocoa/Cocoa.h>
 #include <sys/sysctl.h>
+#import "BezierPathRoundedRect.h"
 
 @interface DLUtil : NSObject
 
-+(NSImage *)imageResize:(NSImage*)anImage newSize:(NSSize)newSize;
++(NSImage *)imageResize:(NSImage*)anImage newSize:(NSSize)newSize cornerRadius:(CGFloat)radius;
 +(NSString *)appVersionString;
 +(NSString *)CFNetworkVersionString;
 +(NSString *)kernelVersion;

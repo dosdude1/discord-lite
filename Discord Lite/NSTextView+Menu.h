@@ -7,6 +7,7 @@
 //
 
 #import <Cocoa/Cocoa.h>
+#import "PaddedTextView.h"
 
 @protocol NSTextViewMenuDelegate <NSObject>
 @optional
@@ -14,7 +15,7 @@
 -(void)escapeKeyWasPressed;
 @end
 
-@interface NSTextView_Menu : NSTextView {
+@interface NSTextView_Menu : PaddedTextView {
     id<NSTextViewMenuDelegate> menuDelegate;
     BOOL bordered;
 }

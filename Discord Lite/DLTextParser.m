@@ -12,10 +12,22 @@
 
 const CGFloat MESSAGE_VIEW_FONT_SIZE = 13.0;
 
++(NSColor *)DEFAULT_TEXT_COLOR {
+    return [NSColor colorWithCalibratedRed:212.0/255.0 green:213.0/255.0 blue:214.0/255.0 alpha:1.0f];
+}
+
++(NSColor *)DEFAULT_TEXT_HIGHLIGHT_COLOR {
+    return [NSColor colorWithCalibratedRed:55.0/255.0 green:94.0/255.0 blue:140.0/255.0 alpha:1.0f];
+}
+
++(NSColor *)DEFAULT_LINK_TEXT_COLOR {
+    return [NSColor colorWithCalibratedRed:0.0/255.0 green:160.0/255.0 blue:243.0/255.0 alpha:1.0f];
+}
+
 +(NSAttributedString *)attributedContentStringForMessage:(DLMessage *)m {
     NSMutableAttributedString *as = [[NSMutableAttributedString alloc] initWithString:[m content]];
     [as addAttribute:NSFontAttributeName value:[NSFont systemFontOfSize:MESSAGE_VIEW_FONT_SIZE] range:NSMakeRange(0, [m content].length)];
-    [as addAttribute:NSForegroundColorAttributeName value:[NSColor textColor] range:NSMakeRange(0, [m content].length)];
+    [as addAttribute:NSForegroundColorAttributeName value:[DLTextParser DEFAULT_TEXT_COLOR] range:NSMakeRange(0, [m content].length)];
     
     NSString *userTagRegex = @"<@(!)?([0-9]*)>";
     NSString *userIDRegex = @"[0-9]+";
@@ -33,6 +45,7 @@ const CGFloat MESSAGE_VIEW_FONT_SIZE = 13.0;
                 NSRange replacementRange = [[as string] rangeOfString:matchedTag];
                 [as replaceCharactersInRange:replacementRange withString:username];
                 [as addAttribute:NSFontAttributeName value:[NSFont boldSystemFontOfSize:MESSAGE_VIEW_FONT_SIZE] range:NSMakeRange(replacementRange.location, username.length)];
+                [as addAttribute:NSBackgroundColorAttributeName value:[NSColor colorWithCalibratedRed:52.0/255.0 green:61.0/255.0 blue:106.0/255.0 alpha:1.0f] range:NSMakeRange(replacementRange.location, username.length)];
             }
         }
     }
@@ -43,6 +56,7 @@ const CGFloat MESSAGE_VIEW_FONT_SIZE = 13.0;
         lastLocation = everyoneRange.location;
         if (lastLocation != NSNotFound) {
             [as addAttribute:NSFontAttributeName value:[NSFont boldSystemFontOfSize:MESSAGE_VIEW_FONT_SIZE] range:everyoneRange];
+            [as addAttribute:NSBackgroundColorAttributeName value:[NSColor colorWithCalibratedRed:52.0/255.0 green:61.0/255.0 blue:106.0/255.0 alpha:1.0f] range:everyoneRange];
         }
     }
     
@@ -52,7 +66,8 @@ const CGFloat MESSAGE_VIEW_FONT_SIZE = 13.0;
     e = [urlMatches objectEnumerator];
     NSString *matchedUrl;
     while (matchedUrl = [e nextObject]) {
-        [as addAttribute: NSLinkAttributeName value:matchedUrl range:[[as string] rangeOfString:matchedUrl]];
+        NSRange urlRange = [[as string] rangeOfString:matchedUrl];
+        [as addAttribute: NSLinkAttributeName value:matchedUrl range:urlRange];
     }
     
     return [as autorelease];

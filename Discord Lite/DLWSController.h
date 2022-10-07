@@ -41,8 +41,8 @@ typedef enum {
 -(void)wsDidReceivePrivateChannelData:(NSArray *)data;
 -(void)wsDidReceiveServerData:(NSArray *)data;
 -(void)wsDidReceiveReadStateData:(NSArray *)data;
--(void)wsDidReceiveUserData:(DLUser *)u;
--(void)wsDidReceiveUserSettings:(DLUserSettings *)s;
+-(void)wsDidReceiveUserData:(NSDictionary *)data;
+-(void)wsDidReceiveUserSettingsData:(NSDictionary *)data;
 -(void)wsDidLoadAllData;
 -(void)wsDidAcknowledgeMessage:(DLMessage *)m;
 -(void)wsUserWithID:(NSString *)userID didStartTypingInServerWithID:(NSString *)serverID inChannelWithID:(NSString *)channelID withMemberData:(NSDictionary *)memberData;
@@ -55,11 +55,13 @@ typedef enum {
     WSWebSocket *webSocket;
     NSString *token;
     NSString *sessionID;
+    NSTimer *heartbeatTimer;
     int heartbeatInterval;
     id<DLWSControllerDelegate> delegate;
     BOOL heartbeatResponseReceived;
     BOOL shouldResume;
     int sequenceNumber;
+    BOOL didResume;
 }
 
 +(DLWSController *)sharedInstance;
@@ -72,5 +74,7 @@ typedef enum {
 -(void)updateWSForChannel:(DLChannel *)c inServer:(DLServer *)s;
 
 -(void)queryServer:(DLServer *)s forMembersContainingUsername:(NSString *)username;
+
+-(BOOL)didResume;
 
 @end

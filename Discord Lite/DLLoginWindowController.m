@@ -22,12 +22,12 @@
 }
 
 - (IBAction)login:(id)sender {
+    [[DLController sharedInstance] loginWithEmail:[emailField stringValue] andPassword:[passwordField stringValue]];
     [progressIndicator setHidden:NO];
     [progressIndicator startAnimation:self];
     [emailField setEnabled:NO];
     [passwordField setEnabled:NO];
     [loginButton setEnabled:NO];
-    [[DLController sharedInstance] loginWithEmail:[emailField stringValue] andPassword:[passwordField stringValue]];
 }
 
 -(void)setDelegate:(id<DLLoginWindowDelegate>)inDelegate {

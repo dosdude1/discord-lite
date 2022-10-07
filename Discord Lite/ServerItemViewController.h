@@ -10,6 +10,8 @@
 #import "BadgeTextField.h"
 #import "DLServer.h"
 #import "DLUtil.h"
+#import "NSView+Events.h"
+#import "ServerStatusIndicatorView.h"
 
 typedef enum {
     ServerItemViewTypeServer = 0,
@@ -28,9 +30,14 @@ typedef enum {
     DLServer *representedObject;
     IBOutlet NSButton *selectionButton;
     IBOutlet NSView_BGColor *separatorView;
+    IBOutlet ServerStatusIndicatorView *statusIndicatorView;
+    
     ServerItemViewType type;
     id<ServerItemDelegate> delegate;
     IBOutlet BadgeTextField *mentionBadgeLabel;
+    NSImage *iconImage;
+    NSTrackingRectTag trackingRect;
+    BOOL isSelected;
 }
 
 -(id)init;
@@ -44,5 +51,7 @@ typedef enum {
 -(void)setType:(ServerItemViewType)inType;
 
 -(void)setDelegate:(id<ServerItemDelegate>)inDelegate;
+
+-(void)updateRectTracking;
 
 @end

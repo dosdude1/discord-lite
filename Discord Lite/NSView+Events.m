@@ -12,7 +12,6 @@
 
 - (void)drawRect:(NSRect)dirtyRect {
     [super drawRect:dirtyRect];
-    
     // Drawing code here.
 }
 
@@ -29,5 +28,13 @@
         [delegate mouseRightButtonWasDepressedWithEvent:theEvent];
     }
 }
-
+-(void)viewDidMoveToWindow {
+    if ([delegate respondsToSelector:@selector(viewMovedToWindow:)]) {
+        [delegate viewMovedToWindow:self];
+    }
+}
+-(void)dealloc {
+    
+    [super dealloc];
+}
 @end

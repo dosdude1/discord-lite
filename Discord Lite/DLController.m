@@ -192,15 +192,20 @@ static DLController* sharedObject = nil;
 
 -(NSArray *)userServers {
     NSMutableArray *servers = [[NSMutableArray alloc] init];
-    NSEnumerator *e = [[myUserSettings serverPositions] objectEnumerator];
-    NSString *serverID;
-    while (serverID = [e nextObject]) {
-        if ([loadedServers objectForKey:serverID]) {
-            [servers addObject:[loadedServers objectForKey:serverID]];
+    NSEnumerator *e = [[myUserSettings serverFolders] objectEnumerator];
+    DLServerFolder *folder;
+    while (folder = [e nextObject]) {
+        NSEnumerator *ee = [[folder serverIDs] objectEnumerator];
+        NSString *serverID;
+        while (serverID = [ee nextObject]) {
+            if ([loadedServers objectForKey:serverID]) {
+                [servers addObject:[loadedServers objectForKey:serverID]];
+            }
         }
     }
     //Load unordered servers
     e = [[loadedServers allKeys] objectEnumerator];
+    NSString *serverID;
     while (serverID = [e nextObject]) {
         if ([loadedServers objectForKey:serverID]) {
             if (![servers containsObject:[loadedServers objectForKey:serverID]]) {
@@ -212,9 +217,11 @@ static DLController* sharedObject = nil;
     return servers;
 }
 -(NSArray *)channelsForServer:(DLServer *)s {
+    [selectedServer release];
+    [s retain];
     selectedServer = s;
     [selectedChannel release];
-    selectedChannel = [[DLChannel alloc] init];
+    selectedChannel = nil;
     NSMutableArray *channels = [[NSMutableArray alloc] init];
     
     NSEnumerator *e = [[loadedChannels allKeys] objectEnumerator];
@@ -243,9 +250,9 @@ static DLController* sharedObject = nil;
         }
     }
     
-    NSMutableArray *sortedParentChannels = [NSMutableArray arrayWithArray:[[[parentChannels sortedArrayUsingSelector:@selector(compare:)] objectEnumerator] allObjects]];
-    NSArray *sortedChildChannels = [[[childChannels sortedArrayUsingSelector:@selector(compare:)] objectEnumerator] allObjects];
-    NSArray *sortedUncategorizedChannels = [[[uncategorizedChannels sortedArrayUsingSelector:@selector(compare:)] objectEnumerator] allObjects];
+    NSMutableArray *sortedParentChannels = [NSMutableArray arrayWithArray:[parentChannels sortedArrayUsingSelector:@selector(compare:)]];
+    NSArray *sortedChildChannels = [childChannels sortedArrayUsingSelector:@selector(compare:)];
+    NSArray *sortedUncategorizedChannels = [uncategorizedChannels sortedArrayUsingSelector:@selector(compare:)];
     
     
     
@@ -278,7 +285,8 @@ static DLController* sharedObject = nil;
 }
 
 -(NSArray *)directMessageChannels {
-    selectedServer = [self myServerItem];
+    [selectedServer release];
+    selectedServer = [[self myServerItem] retain];
     NSMutableArray *dms = [[NSMutableArray alloc] init];
     NSEnumerator *e = [[loadedChannels allKeys] objectEnumerator];
     NSString *channelKey;
@@ -492,6 +500,7 @@ static DLController* sharedObject = nil;
 }
 
 -(void)wsDidReceiveServerData:(NSArray *)data {
+    [loadedServers removeObjectForKey:[[self myServerItem] serverID]];
     NSEnumerator *e = [data objectEnumerator];
     NSDictionary *serverData;
     while (serverData = [e nextObject]) {
@@ -525,20 +534,27 @@ static DLController* sharedObject = nil;
     }
 }
 
--(void)wsDidReceiveUserData:(DLUser *)u {
+-(void)wsDidReceiveUserData:(NSDictionary *)data {
     [myUser release];
-    [u retain];
-    myUser = u;
+    myUser = [[DLUser alloc] initWithDict:data];
 }
 
--(void)wsDidReceiveUserSettings:(DLUserSettings *)s {
+-(void)wsDidReceiveUserSettingsData:(NSDictionary *)data {
     [myUserSettings release];
-    [s retain];
-    myUserSettings = s;
+    myUserSettings = [[DLUserSettings alloc] initWithDict:data];
 }
 
 -(void)wsDidLoadAllData {
     [delegate initialDataWasReceived];
+    if ([[DLWSController sharedInstance] didResume]) {
+        if (selectedServer && selectedChannel) {
+            if ([selectedServer isEqual:myServerItem]) {
+                [[DLWSController sharedInstance] updateWSForDirectMessageChannel:selectedChannel];
+            } else {
+                [[DLWSController sharedInstance] updateWSForChannel:selectedChannel inServer:selectedServer];
+            }
+        }
+    }
 }
 
 -(void)wsDidAcknowledgeMessage:(DLMessage *)m {

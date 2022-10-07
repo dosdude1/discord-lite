@@ -13,9 +13,23 @@
 const NSInteger VIEW_HEADER_SPACING = 60;
 const NSInteger ATTACHMENT_SPACING = 15;
 
++(CGFloat)AVATAR_RADIUS {
+    return 25.0f;
+}
++(CGFloat)REFERENCED_AVATAR_RADIUS {
+    return 13.0f;
+}
+
 -(void)awakeFromNib {
     baseViewHeight = view.frame.size.height;
-    [insetView setBackgroundColor:[NSColor controlBackgroundColor]];
+    //[insetView setBackgroundColor:[NSColor controlBackgroundColor]];
+    [chatTextView setInsertionPointColor:[DLTextParser DEFAULT_TEXT_COLOR]];
+    [chatTextView setBackgroundColor:[NSColor colorWithCalibratedRed:49.0/255.0 green:52.0/255.0 blue:58.0/255.0 alpha:1.0f]];
+    [chatTextView setSelectedTextAttributes:[NSDictionary dictionaryWithObjects:[NSArray arrayWithObjects:[DLTextParser DEFAULT_TEXT_COLOR], [DLTextParser DEFAULT_TEXT_HIGHLIGHT_COLOR], nil] forKeys:[NSArray arrayWithObjects:NSForegroundColorAttributeName, NSBackgroundColorAttributeName, nil]]];
+    NSMutableDictionary *linkTextAttributes = [NSMutableDictionary dictionaryWithDictionary:[chatTextView linkTextAttributes]];
+    [linkTextAttributes setObject:[DLTextParser DEFAULT_LINK_TEXT_COLOR] forKey:NSForegroundColorAttributeName];
+    
+    [chatTextView setLinkTextAttributes:linkTextAttributes];
     [chatTextView setEditable:NO];
     [chatTextView setFont:[NSFont systemFontOfSize:13]];
     [chatTextView setMenuDelegate:self];
@@ -27,6 +41,14 @@ const NSInteger ATTACHMENT_SPACING = 15;
     [insetView setDelegate:self];
     
     contextMenu = [[NSMenu alloc] init];
+    
+    /*NSMenuItem *copySelectionItem = [[NSMenuItem alloc] initWithTitle:@"Copy" action:@selector(copySelectedMessageContent) keyEquivalent:@""];
+    [copySelectionItem setTarget:self];
+    [contextMenu addItem:copySelectionItem];
+    [copySelectionItem release];
+    
+    [contextMenu addItem:[NSMenuItem separatorItem]];*/
+    
     NSMenuItem *replyItem = [[NSMenuItem alloc] initWithTitle:@"Reply" action:@selector(addReply) keyEquivalent:@""];
     [replyItem setTarget:self];
     [contextMenu addItem:replyItem];
@@ -84,7 +106,7 @@ const NSInteger ATTACHMENT_SPACING = 15;
     [[chatTextView textStorage] setAttributedString:[DLTextParser attributedContentStringForMessage:representedObject]];
     
     [usernameTextField setStringValue:[[representedObject author] username]];
-    [avatarImageView setImage:[[[NSImage alloc] initWithData:[[representedObject author] avatarImageData]] autorelease]];
+    [avatarImageView setImage:[DLUtil imageResize:[[[NSImage alloc] initWithData:[[representedObject author] avatarImageData]] autorelease] newSize:avatarImageView.frame.size cornerRadius:[ChatItemViewController AVATAR_RADIUS]]];
     [[representedObject author] loadAvatarData];
     
     NSCalendar *cal = [NSCalendar currentCalendar];
@@ -151,7 +173,7 @@ const NSInteger ATTACHMENT_SPACING = 15;
         [attStr addAttribute:NSParagraphStyleAttributeName value:style range:NSMakeRange(0, attStr.length)];
         [referencedMessageTextField setAttributedStringValue:attStr];
         
-        [referencedMessageAvatarImageView setImage:[[[NSImage alloc] initWithData:[[[representedObject referencedMessage] author]avatarImageData]] autorelease]];
+        [referencedMessageAvatarImageView setImage:[DLUtil imageResize:[[[NSImage alloc] initWithData:[[[representedObject referencedMessage] author]avatarImageData]] autorelease] newSize:referencedMessageAvatarImageView.frame.size cornerRadius:[ChatItemViewController REFERENCED_AVATAR_RADIUS]]];
         NSRect frame = usernameTextField.frame;
         frame.origin.y -= shift;
         [usernameTextField setFrame:frame];
@@ -176,6 +198,11 @@ const NSInteger ATTACHMENT_SPACING = 15;
 -(void)addReply {
     [delegate addReferencedMessage:representedObject];
 }
+-(void)copySelectedMessageContent {
+    NSPasteboard *pasteBoard = [NSPasteboard generalPasteboard];
+    [pasteBoard declareTypes:[NSArray arrayWithObjects:NSStringPboardType, nil] owner:nil];
+    [pasteBoard setString:[representedObject content] forType:NSStringPboardType];
+}
 -(void)copyMessageContent {
     NSPasteboard *pasteBoard = [NSPasteboard generalPasteboard];
     [pasteBoard declareTypes:[NSArray arrayWithObjects:NSStringPboardType, nil] owner:nil];
@@ -194,14 +221,14 @@ const NSInteger ATTACHMENT_SPACING = 15;
     if ([delegate chatViewShouldBeginEditing:self]) {
         isEditing = YES;
         [chatTextView setEditable:YES];
-        [chatTextView setShouldShowBorder:YES];
+        [chatTextView setDrawsBackground:YES];
         [editDismissInfoLabel setHidden:NO];
     }
 }
 -(void)endEditingContent {
     isEditing = NO;
     [chatTextView setEditable:NO];
-    [chatTextView setShouldShowBorder:NO];
+    [chatTextView setDrawsBackground:NO];
     [editDismissInfoLabel setHidden:YES];
 }
 -(BOOL)isBeingEdited {
@@ -211,6 +238,7 @@ const NSInteger ATTACHMENT_SPACING = 15;
     [window makeFirstResponder:chatTextView];
 }
 -(void)dealloc {
+    [insetView setDelegate:nil];
     [attachmentViews release];
     [representedObject release];
     [self.view release];
@@ -221,11 +249,11 @@ const NSInteger ATTACHMENT_SPACING = 15;
 
 -(void)user:(DLUser *)u avatarDidUpdateWithData:(NSData *)data {
     if ([u isEqual:[representedObject author]]) {
-        [avatarImageView setImage:[[[NSImage alloc] initWithData:data] autorelease]];
+        [avatarImageView setImage:[DLUtil imageResize:[[[NSImage alloc] initWithData:data] autorelease] newSize:avatarImageView.frame.size cornerRadius:[ChatItemViewController AVATAR_RADIUS]]];
     }
     if ([representedObject referencedMessage]) {
         if ([u isEqual:[[representedObject referencedMessage] author]]) {
-            [referencedMessageAvatarImageView setImage:[[[NSImage alloc] initWithData:data] autorelease]];
+            [referencedMessageAvatarImageView setImage:[DLUtil imageResize:[[[NSImage alloc] initWithData:data] autorelease] newSize:referencedMessageAvatarImageView.frame.size cornerRadius:[ChatItemViewController REFERENCED_AVATAR_RADIUS]]];
         }
     }
 }

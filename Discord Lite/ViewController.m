@@ -42,4 +42,9 @@
     return nil;
 }
 
+-(void)dealloc {
+    //[view setDelegate:nil];
+    [super dealloc];
+}
+
 @end

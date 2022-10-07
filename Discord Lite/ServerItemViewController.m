@@ -8,18 +8,20 @@
 
 #import "ServerItemViewController.h"
 
-@interface ServerItemViewController ()
-
-@end
-
 @implementation ServerItemViewController
 
-
++(CGFloat)AVATAR_RADIUS {
+    return 27.0f;
+}
 
 -(id)init {
     self = [super init];
     type = ServerItemViewTypeServer;
+    isSelected = NO;
     return self;
+}
+-(void)awakeFromNib {
+    [view setDelegate:self];
 }
 
 -(void)setRepresentedObject:(DLServer *)inRepresentedObject {
@@ -27,7 +29,8 @@
     [inRepresentedObject retain];
     representedObject = inRepresentedObject;
     [representedObject setDelegate:self];
-    [selectionButton setImage:[DLUtil imageResize:[[[NSImage alloc] initWithData:[representedObject iconImageData]] autorelease] newSize:NSSizeFromCGSize(CGSizeMake(view.frame.size.width - 15, view.frame.size.height - 15))]];
+    iconImage = [[NSImage alloc] initWithData:[representedObject iconImageData]];
+    [selectionButton setImage:[DLUtil imageResize:iconImage newSize:NSSizeFromCGSize(CGSizeMake(selectionButton.frame.size.width - 5, selectionButton.frame.size.height - 5)) cornerRadius:[ServerItemViewController AVATAR_RADIUS]]];
     [self mentionCountDidUpdate];
 }
 
@@ -42,11 +45,16 @@
 
 -(void)setSelected:(BOOL)selected {
     if (type != ServerItemViewTypeSeparator) {
+        isSelected = selected;
         if (selected) {
-            [view setBackgroundColor:[[NSColor selectedControlColor] colorUsingColorSpaceName:NSCalibratedRGBColorSpace]];
+            [statusIndicatorView setDrawnIndicator:ServerStatusIndicatorSelected];
+            [statusIndicatorView setNeedsDisplay:YES];
+            [selectionButton setImage:[DLUtil imageResize:iconImage newSize:NSMakeSize(selectionButton.frame.size.width - 5, selectionButton.frame.size.height - 5) cornerRadius:20.0f]];
             [view setNeedsDisplay:YES];
         } else {
-            [view setBackgroundColor:[NSColor clearColor]];
+            [statusIndicatorView setDrawnIndicator:ServerStatusIndicatorNone];
+            [statusIndicatorView setNeedsDisplay:YES];
+            [selectionButton setImage:[DLUtil imageResize:iconImage newSize:NSMakeSize(selectionButton.frame.size.width - 5, selectionButton.frame.size.height - 5) cornerRadius:[ServerItemViewController AVATAR_RADIUS]]];
             [view setNeedsDisplay:YES];
         }
     }
@@ -60,7 +68,8 @@
         [view release];
         view = separatorView;
     } else if (inType == ServerItemViewTypeMe) {
-        [selectionButton setImage:[DLUtil imageResize:[[[NSImage alloc] initWithData:[representedObject iconImageData]]autorelease] newSize:NSSizeFromCGSize(CGSizeMake(view.frame.size.width - 15, view.frame.size.height - 15))]];
+        iconImage = [[NSImage alloc] initWithData:[representedObject iconImageData]];
+        [selectionButton setImage:[DLUtil imageResize:iconImage newSize:NSMakeSize(selectionButton.frame.size.width - 5, selectionButton.frame.size.height - 5) cornerRadius:[ServerItemViewController AVATAR_RADIUS]]];
     }
     type = inType;
 }
@@ -69,8 +78,41 @@
     delegate = inDelegate;
 }
 
+- (void)viewMovedToWindow:(NSView *)v {
+    if (type != ServerItemViewTypeSeparator) {
+        trackingRect = [selectionButton addTrackingRect:selectionButton.bounds owner:self userData:nil assumeInside:NO];
+    }
+}
+
+- (void)mouseEntered:(NSEvent *)theEvent{
+    if (!isSelected) {
+        [selectionButton setImage:[DLUtil imageResize:iconImage newSize:NSMakeSize(selectionButton.frame.size.width - 5, selectionButton.frame.size.height - 5) cornerRadius:20.0f]];
+        [statusIndicatorView setDrawnIndicator:ServerStatusIndicatorHover];
+        [statusIndicatorView setNeedsDisplay:YES];
+    }
+}
+
+- (void)mouseExited:(NSEvent *)theEvent{
+    if (!isSelected) {
+        [selectionButton setImage:[DLUtil imageResize:iconImage newSize:NSMakeSize(selectionButton.frame.size.width - 5, selectionButton.frame.size.height - 5) cornerRadius:[ServerItemViewController AVATAR_RADIUS]]];
+        [statusIndicatorView setDrawnIndicator:ServerStatusIndicatorNone];
+        [statusIndicatorView setNeedsDisplay:YES];
+    }
+}
+
+-(void)updateRectTracking {
+    if (type != ServerItemViewTypeSeparator) {
+        [self mouseExited:nil];
+        [selectionButton removeTrackingRect:trackingRect];
+        trackingRect = [selectionButton addTrackingRect:selectionButton.bounds owner:self userData:nil assumeInside:NO];
+    }
+}
+
 -(void)dealloc {
     [representedObject release];
+    if (type != ServerItemViewTypeSeparator) {
+        [selectionButton removeTrackingRect:trackingRect];
+    }
     [self.view release];
     [super dealloc];
 }
@@ -78,7 +120,8 @@
 #pragma mark Delegated Functions
 
 -(void)iconDidUpdateWithData:(NSData *)data {
-    [selectionButton setImage:[DLUtil imageResize:[[[NSImage alloc] initWithData:[representedObject iconImageData]]autorelease] newSize:NSSizeFromCGSize(CGSizeMake(view.frame.size.width - 15, view.frame.size.height - 15))]];
+    iconImage = [[NSImage alloc] initWithData:[representedObject iconImageData]];
+    [selectionButton setImage:[DLUtil imageResize:iconImage newSize:NSMakeSize(selectionButton.frame.size.width - 5, selectionButton.frame.size.height - 5) cornerRadius:[ServerItemViewController AVATAR_RADIUS]]];
 }
 
 -(void)mentionCountDidUpdate {

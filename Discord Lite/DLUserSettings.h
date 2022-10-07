@@ -7,14 +7,15 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "DLServerFolder.h"
 
 @interface DLUserSettings : NSObject {
-    NSArray *serverPositions;
+    NSArray *serverFolders;
 }
 
 -(id)init;
 -(id)initWithDict:(NSDictionary *)d;
 
--(NSArray *)serverPositions;
+-(NSArray *)serverFolders;
 
 @end

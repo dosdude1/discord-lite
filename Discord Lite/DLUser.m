@@ -96,7 +96,6 @@ const NSTimeInterval TYPING_INTERVAL = 10.0;
 #pragma mark Delegated Functions
 
 -(void)requestDidFinishLoading:(AsyncHTTPRequest *)request {
-    
     if ([request result] == HTTPResultOK) {
         [avatarImageData release];
         avatarImageData = [[request responseData] retain];

@@ -10,7 +10,7 @@
 #import "ViewController.h"
 
 @interface HorizontalDynamicScrollView : NSScrollView {
-    NSMutableArray *content;
+    NSArray *content;
     CGFloat docViewWidth;
 }
 

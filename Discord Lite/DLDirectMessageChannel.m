@@ -29,7 +29,6 @@
     while (recipientData = [e nextObject]) {
         DLUser *user = [[DLUser alloc] initWithDict:recipientData];
         [user setDelegate:self];
-        [user loadAvatarData];
         [rec addObject:user];
         [user release];
     }
@@ -125,8 +124,6 @@
             return NSOrderedAscending;
         } else if ([lastUpdateTimestamp isLessThan: [o lastUpdateTimestamp]]) {
             return NSOrderedDescending;
-        } else {
-            return NSOrderedSame;
         }
     }
     return NSOrderedSame;
@@ -135,6 +132,14 @@
 -(void)setLastMessageID:(NSString *)msgID {
     [super setLastMessageID:msgID];
     [self setUpdateTimestamp];
+}
+
+-(void)loadAvatarImageData {
+    NSEnumerator *e = [recipients objectEnumerator];
+    DLUser *user;
+    while (user = [e nextObject]) {
+        [user loadAvatarData];
+    }
 }
 
 -(void)dealloc {

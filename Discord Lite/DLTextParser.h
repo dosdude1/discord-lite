@@ -11,6 +11,10 @@
 
 @interface DLTextParser : NSObject
 
++(NSColor *)DEFAULT_TEXT_COLOR;
++(NSColor *)DEFAULT_TEXT_HIGHLIGHT_COLOR;
++(NSColor *)DEFAULT_LINK_TEXT_COLOR;
+
 +(NSAttributedString *)attributedContentStringForMessage:(DLMessage *)m;
 
 @end

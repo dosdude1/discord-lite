@@ -10,11 +10,13 @@
 
 @implementation TagSelectionViewController
 
++(CGFloat)AVATAR_RADIUS {
+    return 9.0f;
+}
+
 -(void)awakeFromNib {
     isSelected = NO;
     [view setDelegate:self];
-    unselectedBGColor = [[NSColor windowBackgroundColor] retain];
-    [view setBackgroundColor:unselectedBGColor];
 }
 
 -(id)init {
@@ -26,7 +28,7 @@
     [representedObject release];
     [u retain];
     representedObject = u;
-    [avatarImageView setImage:[[[NSImage alloc] initWithData:[u avatarImageData]] autorelease]];
+    [avatarImageView setImage:[DLUtil imageResize:[[[NSImage alloc] initWithData:[u avatarImageData]] autorelease] newSize:avatarImageView.frame.size cornerRadius:[TagSelectionViewController AVATAR_RADIUS]]];
     [u setDelegate:self];
     [u loadAvatarData];
     [usernameTextField setStringValue:[u username]];
@@ -43,10 +45,10 @@
 -(void)setSelected:(BOOL)selected {
     isSelected = selected;
     if (selected) {
-        [view setBackgroundColor:[[NSColor selectedControlColor] colorUsingColorSpaceName:NSCalibratedRGBColorSpace]];
+        [view setBackgroundColor:[NSColor colorWithCalibratedRed:50.0/255.0 green:54.0/255.0 blue:60.0/255.0 alpha:1.0f]];
         [view setNeedsDisplay:YES];
     } else {
-        [view setBackgroundColor:unselectedBGColor];
+        [view setBackgroundColor:[NSColor clearColor]];
         [view setNeedsDisplay:YES];
     }
 }
@@ -65,7 +67,7 @@
 #pragma mark Delegated Functions
 
 -(void)user:(DLUser *)u avatarDidUpdateWithData:(NSData *)data {
-    [avatarImageView setImage:[[[NSImage alloc] initWithData:data] autorelease]];
+    [avatarImageView setImage:[DLUtil imageResize:[[[NSImage alloc] initWithData:data] autorelease] newSize:avatarImageView.frame.size cornerRadius:[TagSelectionViewController AVATAR_RADIUS]]];
 }
 
 -(void)mouseWasDepressedWithEvent:(NSEvent *)event {

@@ -23,11 +23,11 @@
     NSRect frame = NSMakeRect(0, 0, [representedObject scaledWidth], [representedObject scaledHeight]);
     
     if ([representedObject type] == AttachmentTypeImage) {
-        imageView = [[[NSImageView alloc] initWithFrame:frame] autorelease];
+        imageView = [[NSImageView alloc] initWithFrame:frame];
         attachmentView = imageView;
         
         //Add invisible overlay to handle mouse events
-        NSView_Events *eventHandlerView = [[[NSView_Events alloc] initWithFrame:frame] autorelease];
+        eventHandlerView = [[NSView_Events alloc] initWithFrame:frame];
         [eventHandlerView setDelegate:self];
         [attachmentView addSubview:eventHandlerView];
         [representedObject loadScaledData];
@@ -73,6 +73,9 @@
 }
 
 -(void)dealloc {
+    [eventHandlerView setDelegate:nil];
+    [eventHandlerView release];
+    [attachmentView release];
     [representedObject setPreviewDelegate:nil];
     [representedObject release];
     [attachmentViewerWindow setDelegate:nil];

@@ -14,6 +14,7 @@
 @interface AttachmentPreviewViewController : ViewController <DLAttachmentPreviewDelegate, NSViewEventDelegate, DLAttachmentWindowDelegate> {
     NSView *attachmentView;
     NSImageView *imageView;
+    NSView_Events *eventHandlerView;
     DLAttachment *representedObject;
     DLAttachmentWindowController *attachmentViewerWindow;
     NSString *saveFilePath;

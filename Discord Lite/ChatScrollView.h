@@ -8,6 +8,7 @@
 
 #import <Cocoa/Cocoa.h>
 #import "ChatItemViewController.h"
+#import "NSScroller+BGColor.h"
 
 @protocol ChatScrollViewDelegate <NSObject>
 @optional

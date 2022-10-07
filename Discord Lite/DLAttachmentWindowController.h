@@ -22,6 +22,7 @@
     IBOutlet NSProgressIndicator *progressIndicator;
     id<DLAttachmentWindowDelegate> delegate;
     NSMenu *contextMenu;
+    NSView_Events *eventHandlerView;
 }
 
 

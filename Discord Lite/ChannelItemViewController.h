@@ -24,7 +24,7 @@ typedef enum {
 @end
 
 @interface ChannelItemViewController : ViewController <DLChannelDelegate, NSViewEventDelegate> {
-    
+    NSColor *defaultTextColor;
     IBOutlet NSView_BGColor *headerView;
     IBOutlet NSView_BGColor *dmView;
     ChannelItemViewType type;

@@ -19,6 +19,38 @@ const NSTimeInterval TYPING_SEND_INTERVAL = 8.0;
 - (void)windowDidLoad {
     [super windowDidLoad];
     
+    [messageEntryTextView setSelectedTextAttributes:[NSDictionary dictionaryWithObjects:[NSArray arrayWithObjects:[DLTextParser DEFAULT_TEXT_COLOR], [DLTextParser DEFAULT_TEXT_HIGHLIGHT_COLOR], nil] forKeys:[NSArray arrayWithObjects:NSForegroundColorAttributeName, NSBackgroundColorAttributeName, nil]]];
+    
+    [channelViewHeader setBackgroundColor:[channelsScrollView backgroundColor]];
+    [channelViewHeader setNeedsDisplay:YES];
+    
+    [chatViewHeader setBackgroundColor:[chatScrollView backgroundColor]];
+    [chatViewHeader setNeedsDisplay:YES];
+    
+    [userInfoView setBackgroundColor:[NSColor colorWithCalibratedRed:31.0/255.0 green:32.0/255.0 blue:35.0/255.0 alpha:1.0f]];
+    [userInfoView setNeedsDisplay:YES];
+    
+    [messageEntryContainerView setBackgroundColor:[NSColor colorWithCalibratedRed:40.0/255.0 green:43.0/255.0 blue:48.0/255.0 alpha:1.0f]];
+    [messageEntryContainerView setNeedsDisplay:YES];
+    
+    [serverViewScroller setBackgroundColor:[serversScrollView backgroundColor]];
+    [serverViewScroller setNeedsDisplay:YES];
+    
+    [channelViewScroller setBackgroundColor:[channelsScrollView backgroundColor]];
+    [channelViewScroller setNeedsDisplay:YES];
+    
+    [chatViewScroller setBackgroundColor:[chatScrollView backgroundColor]];
+    [chatViewScroller setNeedsDisplay:YES];
+    
+    [messageEntryViewScroller setBackgroundColor:[messageEntryTextView backgroundColor]];
+    [messageEntryViewScroller setNeedsDisplay:YES];
+    
+    [tagSelectionViewScroller setBackgroundColor:[tagSelectionScrollView backgroundColor]];
+    [tagSelectionViewScroller setNeedsDisplay:YES];
+    
+    [pendingAttachmentViewScroller setBackgroundColor:[pendingAttachmentsScrollView backgroundColor]];
+    [pendingAttachmentViewScroller setNeedsDisplay:YES];
+    
     lastMessage = nil;
     editingLocation = NSNotFound;
     tagIndex = NSNotFound;
@@ -32,6 +64,7 @@ const NSTimeInterval TYPING_SEND_INTERVAL = 8.0;
     [[DLController sharedInstance] setDelegate:self];
     [chatScrollView.contentView setPostsBoundsChangedNotifications:YES];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(chatScrollViewBoundsDidChange:) name:NSViewBoundsDidChangeNotification object:chatScrollView.contentView];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(serversScrollViewBoundsDidChange:) name:NSViewBoundsDidChangeNotification object:serversScrollView.contentView];
     // Implement this method to handle any initialization after your window controller's window has been loaded from its nib file.
     [messageEntryTextView setDelegate:self];
     [chatScrollView setDelegate:self];
@@ -108,16 +141,9 @@ const NSTimeInterval TYPING_SEND_INTERVAL = 8.0;
     if (!isLoadingViews) {
         isLoadingViews = YES;
         
-        //Clear delegates to prevent sending to released objects.
-        NSEnumerator *e = [channelViews objectEnumerator];
-        ViewController *v;
-        while (v = [e nextObject]) {
-            [[v representedObject] setDelegate:nil];
-        }
-        
         NSArray *channels = [[DLController sharedInstance] channelsForServer:[item representedObject]];
         NSMutableArray *views = [[NSMutableArray alloc] init];
-        e = [channels objectEnumerator];
+        NSEnumerator *e = [channels objectEnumerator];
         DLServerChannel *channelItem;
         while (channelItem = [e nextObject]) {
             ChannelItemViewController *view = [[[ChannelItemViewController alloc] initWithNibNamed:@"ChannelItemViewController" bundle:nil] autorelease];
@@ -148,16 +174,9 @@ const NSTimeInterval TYPING_SEND_INTERVAL = 8.0;
     if (!isLoadingViews) {
         isLoadingViews = YES;
         
-        //Clear delegates to prevent sending to released objects.
-        NSEnumerator *e = [channelViews objectEnumerator];
-        ViewController *v;
-        while (v = [e nextObject]) {
-            [[v representedObject] setDelegate:nil];
-        }
-        
         NSArray *channels = [[DLController sharedInstance] directMessageChannels];
         NSMutableArray *views = [[NSMutableArray alloc] init];
-        e = [channels objectEnumerator];
+        NSEnumerator *e = [channels objectEnumerator];
         DLDirectMessageChannel *item;
         while (item = [e nextObject]) {
             DirectMessageItemViewController *view = [[DirectMessageItemViewController alloc] initWithNibNamed:@"DirectMessageItemViewController" bundle:nil];
@@ -174,6 +193,10 @@ const NSTimeInterval TYPING_SEND_INTERVAL = 8.0;
         [channelsScrollView performSelectorOnMainThread:@selector(setContent:) withObject:views waitUntilDone:NO];
         [channelViews release];
         channelViews = views;
+        e = [channels objectEnumerator];
+        while (item = [e nextObject]) {
+            [item performSelectorOnMainThread:@selector(loadAvatarImageData) withObject:nil waitUntilDone:NO];
+        }
         isLoadingViews = NO;
     }
     
@@ -457,6 +480,22 @@ const NSTimeInterval TYPING_SEND_INTERVAL = 8.0;
     }
 }
 
+-(void)serversScrollViewBoundsDidChange:(NSNotification *)note {
+    if (serverItemTrackingTimer) {
+        [serverItemTrackingTimer invalidate];
+        serverItemTrackingTimer = nil;
+    }
+    serverItemTrackingTimer = [NSTimer scheduledTimerWithTimeInterval:0.25 target:self selector:@selector(updateServerViewMouseTracking) userInfo:nil repeats:NO];
+}
+-(void)updateServerViewMouseTracking {
+    serverItemTrackingTimer = nil;
+    NSEnumerator *e = [serverViews objectEnumerator];
+    ServerItemViewController *serverView;
+    while (serverView = [e nextObject]) {
+        [serverView updateRectTracking];
+    }
+}
+
 -(void)initialDataWasReceived {
     [NSThread detachNewThreadSelector:@selector(populateUserServers) toTarget:self withObject:nil];
     [self loadMainContent];
@@ -467,7 +506,7 @@ const NSTimeInterval TYPING_SEND_INTERVAL = 8.0;
 }
 
 -(void)user:(DLUser *)u avatarDidUpdateWithData:(NSData *)data {
-    [myUserAvatarImage setImage:[[[NSImage alloc] initWithData:data] autorelease]];
+    [myUserAvatarImage setImage:[DLUtil imageResize:[[[NSImage alloc] initWithData:data] autorelease] newSize:myUserAvatarImage.frame.size cornerRadius:18.0f]];
 }
 
 -(void)serverItemWasSelected:(ServerItemViewController *)item {
@@ -801,7 +840,7 @@ const NSTimeInterval TYPING_SEND_INTERVAL = 8.0;
 -(void)textViewDidChangeSelection:(NSNotification *)notification {
     editingLocation = [[[messageEntryTextView selectedRanges] objectAtIndex:0] rangeValue].location;
     
-    [messageEntryTextView setTypingAttributes:[NSDictionary dictionaryWithObjects:[NSArray arrayWithObjects:[NSColor textColor], [NSColor controlBackgroundColor], nil] forKeys:[NSArray arrayWithObjects:NSForegroundColorAttributeName, NSBackgroundColorAttributeName, nil]]];
+    [messageEntryTextView setTypingAttributes:[NSDictionary dictionaryWithObjects:[NSArray arrayWithObjects:[DLTextParser DEFAULT_TEXT_COLOR], [messageEntryTextView backgroundColor], nil] forKeys:[NSArray arrayWithObjects:NSForegroundColorAttributeName, NSBackgroundColorAttributeName, nil]]];
     
     if ([self isEditingTag]) {
         NSString *textPreSelection = [[messageEntryTextView string] substringToIndex:editingLocation];

@@ -14,8 +14,9 @@ static DLWSController* sharedObject = nil;
 
 -(id)init {
     self = [super init];
-    heartbeatResponseReceived = YES;
+    heartbeatResponseReceived = NO;
     shouldResume = NO;
+    didResume = NO;
     sequenceNumber = 0;
     return self;
 }
@@ -50,17 +51,17 @@ static DLWSController* sharedObject = nil;
 -(void)stop {
     [webSocket close];
     shouldResume = NO;
-    heartbeatResponseReceived = YES;
 }
 -(void)sendWSHeartbeat {
-    if(heartbeatResponseReceived) {
+    if (heartbeatResponseReceived) {
         heartbeatResponseReceived = NO;
         NSDictionary *response = [NSDictionary dictionaryWithObjects:[NSArray arrayWithObjects:[NSNumber numberWithInt:OPCodeHeartbeat], [NSNumber numberWithInt:sequenceNumber], nil] forKeys:[NSArray arrayWithObjects:@kWSOperation, @kWSData ,nil]];
         NSString *toSend = [[NSString alloc] initWithData:[[CJSONSerializer serializer] serializeDictionary:response error:nil] encoding:NSUTF8StringEncoding];
         [webSocket sendText:toSend];
     } else {
         shouldResume = YES;
-        [webSocket close];
+        didResume = YES;
+        [self stop];
         [self startWithAuthToken:token];
     }
 }
@@ -105,6 +106,10 @@ static DLWSController* sharedObject = nil;
     [webSocket sendText:str];
 }
 
+-(BOOL)didResume {
+    return didResume;
+}
+
 #pragma mark Delegated Functions
 
 
@@ -123,10 +128,9 @@ static DLWSController* sharedObject = nil;
             } else if ([type isEqualToString:@"READY"]) {
                 NSDictionary *wsData = [res objectForKey:@kWSData];
                 sessionID = [[wsData objectForKey:@"session_id"] retain];
-                [delegate wsDidReceiveUserSettings:[[DLUserSettings alloc] initWithDict:[wsData
-                                                                                         objectForKey:@"user_settings"]]];
-                [delegate wsDidReceiveUserData:[[DLUser alloc] initWithDict:[wsData objectForKey:@"user"]]];
                 [delegate wsDidReceiveServerData:[wsData objectForKey:@"guilds"]];
+                [delegate wsDidReceiveUserSettingsData:[wsData objectForKey:@"user_settings"]];
+                [delegate wsDidReceiveUserData:[wsData objectForKey:@"user"]];
                 [delegate wsDidReceivePrivateChannelData:[wsData objectForKey:@"private_channels"]];
                 [delegate wsDidLoadAllData];
                 [delegate wsDidReceiveReadStateData:[wsData
@@ -159,7 +163,7 @@ static DLWSController* sharedObject = nil;
         }
         case OPCodeHello: {
             heartbeatResponseReceived = YES;
-            if (shouldResume ) {
+            if (shouldResume) {
                 shouldResume = NO;
                 NSMutableDictionary *d = [[NSMutableDictionary alloc] init];
                 [d setObject:[NSNumber numberWithInt:OPCodeResume] forKey:@kWSOperation];
@@ -170,7 +174,7 @@ static DLWSController* sharedObject = nil;
             } else {
                 NSDictionary *wsData = [res objectForKey:@kWSData];
                 heartbeatInterval = [[wsData objectForKey:@"heartbeat_interval"] intValue];
-                [NSTimer scheduledTimerWithTimeInterval:heartbeatInterval/1000 target:self selector:@selector(sendWSHeartbeat) userInfo:nil repeats:YES];
+                heartbeatTimer = [NSTimer scheduledTimerWithTimeInterval:heartbeatInterval/1000 target:self selector:@selector(sendWSHeartbeat) userInfo:nil repeats:YES];
                 
                 NSMutableDictionary *d = [[NSMutableDictionary alloc] init];
                 [d setObject:[NSNumber numberWithInt:OPCodeIdentify] forKey:@kWSOperation];
@@ -200,6 +204,7 @@ static DLWSController* sharedObject = nil;
             break;
         }
         case OPCodeHeartbeat:
+            heartbeatResponseReceived = YES;
             [self sendWSHeartbeat];
             break;
         case OPCodeHeartbeatAck:

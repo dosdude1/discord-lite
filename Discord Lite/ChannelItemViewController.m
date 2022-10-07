@@ -11,6 +11,7 @@
 @implementation ChannelItemViewController
 
 -(void)awakeFromNib {
+    defaultTextColor = [[childChannelLabel textColor] retain];
     [view setDelegate:self];
     [dmView setDelegate:self];
     [view setNeedsDisplay:YES];
@@ -56,10 +57,12 @@
 }
 -(void)setSelected:(BOOL)selected {
     if (selected) {
-        [view setBackgroundColor:[[NSColor selectedControlColor] colorUsingColorSpaceName:NSCalibratedRGBColorSpace]];
+        [view setBackgroundColor:[NSColor colorWithCalibratedRed:50.0/255.0 green:54.0/255.0 blue:60.0/255.0 alpha:1.0f]];
+        [childChannelLabel setTextColor:[NSColor whiteColor]];
         [view setNeedsDisplay:YES];
     } else {
         [view setBackgroundColor:[NSColor clearColor]];
+        [childChannelLabel setTextColor:defaultTextColor];
         [view setNeedsDisplay:YES];
     }
 }
@@ -74,8 +77,12 @@
 }
 
 -(void)dealloc {
+    [representedObject setDelegate:nil];
     [representedObject release];
-    [self.view release];
+    [view setDelegate:nil];
+    [view release];
+    [dmView setDelegate:nil];
+    [dmView release];
     [super dealloc];
 }
 
