@@ -95,7 +95,7 @@ const NSTimeInterval TYPING_SEND_INTERVAL = 8.0;
     [u setDelegate:self];
     [myUserAvatarImage setImage:[[[NSImage alloc] initWithData:[u avatarImageData]] autorelease]];
     [myUsernameTextField setStringValue:[u username]];
-    [myDiscTextField setStringValue:[NSString stringWithFormat:@"#%@", [u discriminator]]];
+    [myDiscTextField setStringValue:[u globalName]];
     [u loadAvatarData];
 }
 
@@ -110,6 +110,9 @@ const NSTimeInterval TYPING_SEND_INTERVAL = 8.0;
         [me setType:ServerItemViewTypeMe];
         [me setRepresentedObject:[[DLController sharedInstance] myServerItem]];
         [me setDelegate:self];
+        if ([[[DLController sharedInstance] selectedServer] isEqual:[[DLController sharedInstance] myServerItem]]) {
+            [me setSelected:YES];
+        }
         
         ServerItemViewController *separator = [[[ServerItemViewController alloc] initWithNibNamed:@"ServerItemViewController" bundle:nil] autorelease];
         [separator setType:ServerItemViewTypeSeparator];
@@ -124,6 +127,9 @@ const NSTimeInterval TYPING_SEND_INTERVAL = 8.0;
             
             [view setRepresentedObject:item];
             [view setDelegate:self];
+            if ([[[DLController sharedInstance] selectedServer] isEqual:item]) {
+                [view setSelected:YES];
+            }
             [views addObject:view];
             
         }
@@ -150,7 +156,7 @@ const NSTimeInterval TYPING_SEND_INTERVAL = 8.0;
             [view setDelegate:self];
             [view setRepresentedObject:channelItem];
             [views addObject:view];
-            NSEnumerator *ee = [[channelItem children]objectEnumerator];
+            NSEnumerator *ee = [[channelItem children] objectEnumerator];
             DLServerChannel *child;
             while (child = [ee nextObject]) {
                 ChannelItemViewController *view = [[[ChannelItemViewController alloc] initWithNibNamed:@"ChannelItemViewController" bundle:nil] autorelease];
@@ -182,7 +188,7 @@ const NSTimeInterval TYPING_SEND_INTERVAL = 8.0;
             DirectMessageItemViewController *view = [[DirectMessageItemViewController alloc] initWithNibNamed:@"DirectMessageItemViewController" bundle:nil];
             [view setDelegate:self];
             [view setRepresentedObject:item];
-            if ([[view representedObject] isEqual:[[DLController sharedInstance] selectedChannel]]) {
+            if ([item isEqual:[[DLController sharedInstance] selectedChannel]]) {
                 [view setSelected:YES];
             }
             [views addObject:view];

@@ -11,6 +11,8 @@
 #import "CJSONSerializer.h"
 #import "DLUtil.h"
 #import "HTTPCache.h"
+#include "curl_headers/curl.h"
+#import "AsyncHTTPRequestSequencer.h"
 
 typedef enum {
     HTTPResultOK = 0,
@@ -27,30 +29,37 @@ typedef enum {
 -(void)responseDataDidUpdateWithSize:(NSInteger)size;
 @end
 
-@interface AsyncHTTPRequest : NSObject {
+@interface AsyncHTTPRequest : NSObject <AsyncHTTPRequestSequencerProtocol> {
+    CURL *curlRequestHandle;
     NSMutableData *responseData;
     HTTPResult result;
     NSDictionary *headers;
-    NSURL *url;
+    NSString *url;
     NSFileHandle *downloadingFile;
     int identifier;
-    NSInteger dataLength;
     id <AsyncHTTPRequestDelegate> delegate;
     BOOL cached;
     BOOL isFileDownload;
+    struct curl_slist *rootHeader;
+    char *postData;
 }
 -(id)init;
+-(void)initializeRequest;
 -(void)start;
--(NSData *)responseData;
+-(NSMutableData *)responseData;
 -(HTTPResult)result;
 -(int)identifier;
 -(NSString *)userAgentString;
+-(NSFileHandle *)downloadingFile;
 
 -(void)setHeaders:(NSDictionary *)inHeaders;
--(void)setUrl:(NSURL *)inUrl;
+-(void)setUrl:(NSString *)inUrl;
 -(void)setIdentifier:(int)inIdentifier;
 -(void)setDelegate:(id <AsyncHTTPRequestDelegate>)inDelegate;
 -(void)setCached:(BOOL)inCached;
 -(void)setDownloadingFile:(NSFileHandle *)inDownloadingFile;
+
+-(void)requestDidFinishLoading;
+-(void)dataChunkWasDownloaded;
 
 @end

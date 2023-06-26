@@ -61,7 +61,7 @@
 }
 
 -(NSDictionary *)dictRepresentation {
-    NSMutableDictionary *dict = [[[NSMutableDictionary alloc] initWithObjects:[NSArray arrayWithObjects:content, [DLUtil generateSnowflake],[NSNumber numberWithBool:NO], nil] forKeys:[NSArray arrayWithObjects:@"content", @"nonce", @"tts", nil]] autorelease];
+    NSMutableDictionary *dict = [[[NSMutableDictionary alloc] initWithObjects:[NSArray arrayWithObjects:content, [DLUtil generateSnowflake],[NSNumber numberWithBool:NO], [NSNumber numberWithInt:0], nil] forKeys:[NSArray arrayWithObjects:@"content", @"nonce", @"tts", @"flags", nil]] autorelease];
     if (referencedMessage) {
         NSMutableDictionary *refMsg = [[[NSMutableDictionary alloc] initWithObjects:[NSArray arrayWithObjects:[referencedMessage channelID], [referencedMessage messageID], nil] forKeys:[NSArray arrayWithObjects:@"channel_id", @"message_id", nil]] autorelease];
         if ([referencedMessage serverID]) {

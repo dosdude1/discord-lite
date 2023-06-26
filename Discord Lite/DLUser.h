@@ -26,6 +26,7 @@
 @interface DLUser : NSObject <AsyncHTTPRequestDelegate> {
     NSString *userID;
     NSString *username;
+    NSString *globalName;
     NSString *avatarID;
     NSData *avatarImageData;
     NSString *discriminator;
@@ -41,6 +42,7 @@
 
 -(NSString *)userID;
 -(NSString *)username;
+-(NSString *)globalName;
 -(NSString *)avatarID;
 -(NSData *)avatarImageData;
 -(NSString *)discriminator;

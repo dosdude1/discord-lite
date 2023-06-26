@@ -16,9 +16,10 @@
 		8714B1AF2729FC5000DA4AF9 /* DLMainWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8714B1AD2729FC5000DA4AF9 /* DLMainWindowController.m */; };
 		8714B1B12729FCF200DA4AF9 /* DLMainWindowController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8714B1B32729FCF200DA4AF9 /* DLMainWindowController.xib */; };
 		8714B1B9272A0C6900DA4AF9 /* DLServer.m in Sources */ = {isa = PBXBuildFile; fileRef = 8714B1B8272A0C6900DA4AF9 /* DLServer.m */; };
-		871E7F1128B47B8A00D498E7 /* DLURLProtocol.m in Sources */ = {isa = PBXBuildFile; fileRef = 871E7F1028B47B8A00D498E7 /* DLURLProtocol.m */; };
 		871E7F1428B47C1200D498E7 /* DLPreferencesHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 871E7F1328B47C1200D498E7 /* DLPreferencesHandler.m */; };
 		8725137A28EF98AD00BD5170 /* delete.png in Resources */ = {isa = PBXBuildFile; fileRef = 8725137928EF98AD00BD5170 /* delete.png */; };
+		872660932A461D1D009CE587 /* AsyncHTTPRequestSequencer.m in Sources */ = {isa = PBXBuildFile; fileRef = 872660922A461D1D009CE587 /* AsyncHTTPRequestSequencer.m */; };
+		872660962A461D90009CE587 /* AsyncHTTPRequestSequencerObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 872660952A461D90009CE587 /* AsyncHTTPRequestSequencerObject.m */; };
 		872FCEC8272A4C5F002434B1 /* ServerItemViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 872FCEC6272A4C5F002434B1 /* ServerItemViewController.m */; };
 		872FCECA272A4CDA002434B1 /* ServerItemViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 872FCECC272A4CDA002434B1 /* ServerItemViewController.xib */; };
 		872FCED7272A5902002434B1 /* FlippedClipView.m in Sources */ = {isa = PBXBuildFile; fileRef = 872FCED6272A5902002434B1 /* FlippedClipView.m */; };
@@ -45,11 +46,6 @@
 		878B0B2A2738FC6400547D61 /* discord_purple.png in Resources */ = {isa = PBXBuildFile; fileRef = 878B0B292738FC6400547D61 /* discord_purple.png */; };
 		878B0B2C2738FD4A00547D61 /* discord_placeholder.png in Resources */ = {isa = PBXBuildFile; fileRef = 878B0B2B2738FD4A00547D61 /* discord_placeholder.png */; };
 		878B0B2E2738FDCC00547D61 /* discord_group.png in Resources */ = {isa = PBXBuildFile; fileRef = 878B0B2D2738FDCC00547D61 /* discord_group.png */; };
-		878E49712734644600BBB18B /* NSString+Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = 878E49702734644600BBB18B /* NSString+Base64.m */; };
-		878E497B2734645900BBB18B /* WSFrame.m in Sources */ = {isa = PBXBuildFile; fileRef = 878E49732734645900BBB18B /* WSFrame.m */; };
-		878E497C2734645900BBB18B /* WSMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 878E49752734645900BBB18B /* WSMessage.m */; };
-		878E497D2734645900BBB18B /* WSMessageProcessor.m in Sources */ = {isa = PBXBuildFile; fileRef = 878E49772734645900BBB18B /* WSMessageProcessor.m */; };
-		878E497E2734645900BBB18B /* WSWebSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = 878E497A2734645900BBB18B /* WSWebSocket.m */; };
 		878E498527347A4900BBB18B /* DLWSController.m in Sources */ = {isa = PBXBuildFile; fileRef = 878E498427347A4900BBB18B /* DLWSController.m */; };
 		878EA5FA275477E5002F173A /* DLMessageEditor.m in Sources */ = {isa = PBXBuildFile; fileRef = 878EA5F9275477E5002F173A /* DLMessageEditor.m */; };
 		8791ACC12794AE50005672AB /* DLTwoFactorWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8791ACBF2794AE50005672AB /* DLTwoFactorWindowController.m */; };
@@ -66,13 +62,13 @@
 		87A38DD627330B49002385EE /* NSView+Border.m in Sources */ = {isa = PBXBuildFile; fileRef = 87A38DD527330B49002385EE /* NSView+Border.m */; };
 		87A38DD9273330C0002385EE /* AttachmentPreviewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 87A38DD8273330C0002385EE /* AttachmentPreviewViewController.m */; };
 		87A38DDE27336E14002385EE /* DirectMessageItemViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 87A38DDD27336E14002385EE /* DirectMessageItemViewController.m */; };
-		87A38DE027336E24002385EE /* DirectMessageItemViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 87A38DDF27336E24002385EE /* DirectMessageItemViewController.xib */; };
 		87A38DE327337386002385EE /* DLDirectMessageChannel.m in Sources */ = {isa = PBXBuildFile; fileRef = 87A38DE227337386002385EE /* DLDirectMessageChannel.m */; };
 		87A38DE927338E48002385EE /* f5k.png in Resources */ = {isa = PBXBuildFile; fileRef = 87A38DE827338E48002385EE /* f5k.png */; };
 		87A38DEF27339557002385EE /* at.png in Resources */ = {isa = PBXBuildFile; fileRef = 87A38DEE27339557002385EE /* at.png */; };
 		87A6E2BE2735E0C2000DC06E /* RoundedTextFieldCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 87A6E2BD2735E0C2000DC06E /* RoundedTextFieldCell.m */; };
 		87A6E2C12735E392000DC06E /* BadgeTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 87A6E2C02735E392000DC06E /* BadgeTextField.m */; };
 		87A6E2C4273612B5000DC06E /* BezierPathRoundedRect.m in Sources */ = {isa = PBXBuildFile; fileRef = 87A6E2C3273612B5000DC06E /* BezierPathRoundedRect.m */; };
+		87A7E7972A4935FB00CA0671 /* DirectMessageItemViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 87A7E7992A4935FB00CA0671 /* DirectMessageItemViewController.xib */; };
 		87AD27D72741D3230092F428 /* HorizontalDynamicScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 87AD27D62741D3230092F428 /* HorizontalDynamicScrollView.m */; };
 		87AD27DA2741EF9C0092F428 /* PendingAttachmentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 87AD27D92741EF9C0092F428 /* PendingAttachmentViewController.m */; };
 		87AD27DD2741EFBC0092F428 /* PendingAttachmentViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 87AD27DF2741EFBC0092F428 /* PendingAttachmentViewController.xib */; };
@@ -97,6 +93,12 @@
 		87C6E6A0273053F000090639 /* DynamicScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 87C6E69F273053F000090639 /* DynamicScrollView.m */; };
 		87C6E6A627305BB600090639 /* DLServerChannel.m in Sources */ = {isa = PBXBuildFile; fileRef = 87C6E6A527305BB600090639 /* DLServerChannel.m */; };
 		87C6E6A827305DBF00090639 /* DLChannel.m in Sources */ = {isa = PBXBuildFile; fileRef = 87C6E6A727305DBF00090639 /* DLChannel.m */; };
+		87D6C2822A4512A9002F5FBF /* libcrypto.1.1.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 87D6C27F2A4512A9002F5FBF /* libcrypto.1.1.dylib */; };
+		87D6C2832A4512A9002F5FBF /* libcurl.4.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 87D6C2802A4512A9002F5FBF /* libcurl.4.dylib */; };
+		87D6C2842A4512A9002F5FBF /* libssl.1.1.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 87D6C2812A4512A9002F5FBF /* libssl.1.1.dylib */; };
+		87D6C2862A4512C1002F5FBF /* libcrypto.1.1.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = 87D6C27F2A4512A9002F5FBF /* libcrypto.1.1.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		87D6C2872A4512C1002F5FBF /* libcurl.4.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = 87D6C2802A4512A9002F5FBF /* libcurl.4.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		87D6C2882A4512C1002F5FBF /* libssl.1.1.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = 87D6C2812A4512A9002F5FBF /* libssl.1.1.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		87D9D1682731C77600162F22 /* PaddedTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 87D9D1672731C77600162F22 /* PaddedTextView.m */; };
 		87D9D16B2731CCA700162F22 /* ChatScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 87D9D16A2731CCA700162F22 /* ChatScrollView.m */; };
 		87D9D16E27320B1500162F22 /* DLMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 87D9D16D27320B1500162F22 /* DLMessage.m */; };
@@ -124,6 +126,21 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		87D6C2852A4512B8002F5FBF /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				87D6C2862A4512C1002F5FBF /* libcrypto.1.1.dylib in CopyFiles */,
+				87D6C2872A4512C1002F5FBF /* libcurl.4.dylib in CopyFiles */,
+				87D6C2882A4512C1002F5FBF /* libssl.1.1.dylib in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		87062771278E97AA0056BD71 /* captcha_hcaptcha.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = captcha_hcaptcha.html; sourceTree = "<group>"; };
 		87062773278E9CF20056BD71 /* DLCaptchaWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DLCaptchaWindowController.h; sourceTree = "<group>"; };
@@ -139,11 +156,13 @@
 		8714B1B22729FCF200DA4AF9 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/DLMainWindowController.xib; sourceTree = "<group>"; };
 		8714B1B7272A0C6900DA4AF9 /* DLServer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DLServer.h; sourceTree = "<group>"; };
 		8714B1B8272A0C6900DA4AF9 /* DLServer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DLServer.m; sourceTree = "<group>"; };
-		871E7F0F28B47B8A00D498E7 /* DLURLProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DLURLProtocol.h; sourceTree = "<group>"; };
-		871E7F1028B47B8A00D498E7 /* DLURLProtocol.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DLURLProtocol.m; sourceTree = "<group>"; };
 		871E7F1228B47C1200D498E7 /* DLPreferencesHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DLPreferencesHandler.h; sourceTree = "<group>"; };
 		871E7F1328B47C1200D498E7 /* DLPreferencesHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DLPreferencesHandler.m; sourceTree = "<group>"; };
 		8725137928EF98AD00BD5170 /* delete.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = delete.png; sourceTree = "<group>"; };
+		872660912A461D1D009CE587 /* AsyncHTTPRequestSequencer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AsyncHTTPRequestSequencer.h; sourceTree = "<group>"; };
+		872660922A461D1D009CE587 /* AsyncHTTPRequestSequencer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AsyncHTTPRequestSequencer.m; sourceTree = "<group>"; };
+		872660942A461D90009CE587 /* AsyncHTTPRequestSequencerObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AsyncHTTPRequestSequencerObject.h; sourceTree = "<group>"; };
+		872660952A461D90009CE587 /* AsyncHTTPRequestSequencerObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AsyncHTTPRequestSequencerObject.m; sourceTree = "<group>"; };
 		872FCEC5272A4C5F002434B1 /* ServerItemViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ServerItemViewController.h; sourceTree = "<group>"; };
 		872FCEC6272A4C5F002434B1 /* ServerItemViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ServerItemViewController.m; sourceTree = "<group>"; };
 		872FCECB272A4CDA002434B1 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ServerItemViewController.xib; sourceTree = "<group>"; };
@@ -192,17 +211,6 @@
 		878B0B292738FC6400547D61 /* discord_purple.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = discord_purple.png; sourceTree = "<group>"; };
 		878B0B2B2738FD4A00547D61 /* discord_placeholder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = discord_placeholder.png; sourceTree = "<group>"; };
 		878B0B2D2738FDCC00547D61 /* discord_group.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = discord_group.png; sourceTree = "<group>"; };
-		878E496F2734644600BBB18B /* NSString+Base64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Base64.h"; sourceTree = "<group>"; };
-		878E49702734644600BBB18B /* NSString+Base64.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Base64.m"; sourceTree = "<group>"; };
-		878E49722734645900BBB18B /* WSFrame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WSFrame.h; sourceTree = "<group>"; };
-		878E49732734645900BBB18B /* WSFrame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WSFrame.m; sourceTree = "<group>"; };
-		878E49742734645900BBB18B /* WSMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WSMessage.h; sourceTree = "<group>"; };
-		878E49752734645900BBB18B /* WSMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WSMessage.m; sourceTree = "<group>"; };
-		878E49762734645900BBB18B /* WSMessageProcessor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WSMessageProcessor.h; sourceTree = "<group>"; };
-		878E49772734645900BBB18B /* WSMessageProcessor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WSMessageProcessor.m; sourceTree = "<group>"; };
-		878E49782734645900BBB18B /* WSWebSocket-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "WSWebSocket-Prefix.pch"; sourceTree = "<group>"; };
-		878E49792734645900BBB18B /* WSWebSocket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WSWebSocket.h; sourceTree = "<group>"; };
-		878E497A2734645900BBB18B /* WSWebSocket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WSWebSocket.m; sourceTree = "<group>"; };
 		878E498327347A4900BBB18B /* DLWSController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DLWSController.h; sourceTree = "<group>"; };
 		878E498427347A4900BBB18B /* DLWSController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DLWSController.m; sourceTree = "<group>"; };
 		878EA5F8275477E5002F173A /* DLMessageEditor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DLMessageEditor.h; sourceTree = "<group>"; };
@@ -231,7 +239,6 @@
 		87A38DD8273330C0002385EE /* AttachmentPreviewViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AttachmentPreviewViewController.m; sourceTree = "<group>"; };
 		87A38DDC27336E14002385EE /* DirectMessageItemViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DirectMessageItemViewController.h; sourceTree = "<group>"; };
 		87A38DDD27336E14002385EE /* DirectMessageItemViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DirectMessageItemViewController.m; sourceTree = "<group>"; };
-		87A38DDF27336E24002385EE /* DirectMessageItemViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DirectMessageItemViewController.xib; sourceTree = "<group>"; };
 		87A38DE127337386002385EE /* DLDirectMessageChannel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DLDirectMessageChannel.h; sourceTree = "<group>"; };
 		87A38DE227337386002385EE /* DLDirectMessageChannel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DLDirectMessageChannel.m; sourceTree = "<group>"; };
 		87A38DE827338E48002385EE /* f5k.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = f5k.png; sourceTree = "<group>"; };
@@ -242,6 +249,7 @@
 		87A6E2C02735E392000DC06E /* BadgeTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BadgeTextField.m; sourceTree = "<group>"; };
 		87A6E2C2273612B5000DC06E /* BezierPathRoundedRect.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BezierPathRoundedRect.h; sourceTree = "<group>"; };
 		87A6E2C3273612B5000DC06E /* BezierPathRoundedRect.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BezierPathRoundedRect.m; sourceTree = "<group>"; };
+		87A7E7982A4935FB00CA0671 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/DirectMessageItemViewController.xib; sourceTree = "<group>"; };
 		87AD27D52741D3230092F428 /* HorizontalDynamicScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HorizontalDynamicScrollView.h; sourceTree = "<group>"; };
 		87AD27D62741D3230092F428 /* HorizontalDynamicScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HorizontalDynamicScrollView.m; sourceTree = "<group>"; };
 		87AD27D82741EF9C0092F428 /* PendingAttachmentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PendingAttachmentViewController.h; sourceTree = "<group>"; };
@@ -284,6 +292,10 @@
 		87C6E6A427305BB600090639 /* DLServerChannel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DLServerChannel.h; sourceTree = "<group>"; };
 		87C6E6A527305BB600090639 /* DLServerChannel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DLServerChannel.m; sourceTree = "<group>"; };
 		87C6E6A727305DBF00090639 /* DLChannel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DLChannel.m; sourceTree = "<group>"; };
+		87D6C27F2A4512A9002F5FBF /* libcrypto.1.1.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libcrypto.1.1.dylib; path = "Discord Lite/libcrypto.1.1.dylib"; sourceTree = "<group>"; };
+		87D6C2802A4512A9002F5FBF /* libcurl.4.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libcurl.4.dylib; path = "Discord Lite/libcurl.4.dylib"; sourceTree = "<group>"; };
+		87D6C2812A4512A9002F5FBF /* libssl.1.1.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libssl.1.1.dylib; path = "Discord Lite/libssl.1.1.dylib"; sourceTree = "<group>"; };
+		87D6C28A2A4517F9002F5FBF /* curl_headers */ = {isa = PBXFileReference; lastKnownFileType = folder; path = curl_headers; sourceTree = "<group>"; };
 		87D9D1662731C77600162F22 /* PaddedTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PaddedTextView.h; sourceTree = "<group>"; };
 		87D9D1672731C77600162F22 /* PaddedTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PaddedTextView.m; sourceTree = "<group>"; };
 		87D9D1692731CCA700162F22 /* ChatScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatScrollView.h; sourceTree = "<group>"; };
@@ -313,10 +325,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				87E8A6F828B6A21D00BCBC93 /* Foundation.framework in Frameworks */,
+				87D6C2842A4512A9002F5FBF /* libssl.1.1.dylib in Frameworks */,
+				87D6C2832A4512A9002F5FBF /* libcurl.4.dylib in Frameworks */,
 				87E8A6F728B6A1A400BCBC93 /* WebKit.framework in Frameworks */,
 				87F066E928B585F300FE92A2 /* libz.dylib in Frameworks */,
 				87F17B26288A47D500CF4F5D /* Cocoa.framework in Frameworks */,
 				8773980E288A42AE00548F3F /* libicucore.dylib in Frameworks */,
+				87D6C2822A4512A9002F5FBF /* libcrypto.1.1.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -338,6 +353,7 @@
 				87C11C972728DB7B000046F2 /* Images.xcassets */,
 				87C11C992728DB7B000046F2 /* MainMenu.xib */,
 				87DA40162739F4DB007E7455 /* AppIcon.icns */,
+				87D6C28A2A4517F9002F5FBF /* curl_headers */,
 				87C083502728DE7600C8F933 /* WindowControllers */,
 				8714B1B6272A06B800DA4AF9 /* ViewControllers */,
 				877F4DD328ED2BF800183257 /* Custom Views */,
@@ -378,7 +394,7 @@
 				87877CDC273050A50062B796 /* ChannelItemViewController.xib */,
 				87A38DDC27336E14002385EE /* DirectMessageItemViewController.h */,
 				87A38DDD27336E14002385EE /* DirectMessageItemViewController.m */,
-				87A38DDF27336E24002385EE /* DirectMessageItemViewController.xib */,
+				87A7E7992A4935FB00CA0671 /* DirectMessageItemViewController.xib */,
 				8742C8662730EE47005359DC /* ChatItemViewController.h */,
 				8742C8672730EE47005359DC /* ChatItemViewController.m */,
 				8742C86D2730EE85005359DC /* ChatItemViewController.xib */,
@@ -448,17 +464,6 @@
 		878E496E2734643C00BBB18B /* Web Sockets */ = {
 			isa = PBXGroup;
 			children = (
-				878E496F2734644600BBB18B /* NSString+Base64.h */,
-				878E49702734644600BBB18B /* NSString+Base64.m */,
-				878E49722734645900BBB18B /* WSFrame.h */,
-				878E49732734645900BBB18B /* WSFrame.m */,
-				878E49742734645900BBB18B /* WSMessage.h */,
-				878E49752734645900BBB18B /* WSMessage.m */,
-				878E49762734645900BBB18B /* WSMessageProcessor.h */,
-				878E49772734645900BBB18B /* WSMessageProcessor.m */,
-				878E49782734645900BBB18B /* WSWebSocket-Prefix.pch */,
-				878E49792734645900BBB18B /* WSWebSocket.h */,
-				878E497A2734645900BBB18B /* WSWebSocket.m */,
 			);
 			name = "Web Sockets";
 			sourceTree = "<group>";
@@ -561,6 +566,9 @@
 				87E8A6F628B6A1A400BCBC93 /* WebKit.framework */,
 				87F066E828B585F300FE92A2 /* libz.dylib */,
 				8773980D288A42AE00548F3F /* libicucore.dylib */,
+				87D6C27F2A4512A9002F5FBF /* libcrypto.1.1.dylib */,
+				87D6C2802A4512A9002F5FBF /* libcurl.4.dylib */,
+				87D6C2812A4512A9002F5FBF /* libssl.1.1.dylib */,
 				87739809288A42A300548F3F /* Foundation.framework */,
 				87739807288A429B00548F3F /* Cocoa.framework */,
 				87C11C8F2728DB7B000046F2 /* Discord Lite */,
@@ -635,12 +643,14 @@
 				87C083652728E9FB00C8F933 /* AsyncHTTPPostRequest.m */,
 				87C083672728EA0800C8F933 /* AsyncHTTPGetRequest.h */,
 				87C083682728EA0800C8F933 /* AsyncHTTPGetRequest.m */,
+				872660912A461D1D009CE587 /* AsyncHTTPRequestSequencer.h */,
+				872660922A461D1D009CE587 /* AsyncHTTPRequestSequencer.m */,
+				872660942A461D90009CE587 /* AsyncHTTPRequestSequencerObject.h */,
+				872660952A461D90009CE587 /* AsyncHTTPRequestSequencerObject.m */,
 				87A38DCE2732FEDB002385EE /* HTTPCache.h */,
 				87A38DCF2732FEDB002385EE /* HTTPCache.m */,
 				87A38DD12732FF76002385EE /* HTTPCacheData.h */,
 				87A38DD22732FF76002385EE /* HTTPCacheData.m */,
-				871E7F0F28B47B8A00D498E7 /* DLURLProtocol.h */,
-				871E7F1028B47B8A00D498E7 /* DLURLProtocol.m */,
 				87F066E528B5854000FE92A2 /* NSData+Compress.h */,
 				87F066E628B5854600FE92A2 /* NSData+Compress.m */,
 			);
@@ -686,6 +696,8 @@
 				87C11C892728DB7B000046F2 /* Sources */,
 				87C11C8A2728DB7B000046F2 /* Frameworks */,
 				87C11C8B2728DB7B000046F2 /* Resources */,
+				87D6C2852A4512B8002F5FBF /* CopyFiles */,
+				87D6C2892A4512E6002F5FBF /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -761,7 +773,7 @@
 				87DA40172739F4DB007E7455 /* AppIcon.icns in Resources */,
 				8706277E278EB2BB0056BD71 /* captcha_recaptcha.html in Resources */,
 				87C11C982728DB7B000046F2 /* Images.xcassets in Resources */,
-				87A38DE027336E24002385EE /* DirectMessageItemViewController.xib in Resources */,
+				87A7E7972A4935FB00CA0671 /* DirectMessageItemViewController.xib in Resources */,
 				87C0835E2728E28500C8F933 /* Discord-Logo.png in Resources */,
 				87877CDA273050A50062B796 /* ChannelItemViewController.xib in Resources */,
 				8788B61728EE2F0A00B338DF /* attach.png in Resources */,
@@ -798,6 +810,22 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		87D6C2892A4512E6002F5FBF /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "install_name_tool -change /Users/collinmistr/openssl/install/lib/libcrypto.1.1.dylib @executable_path/../Frameworks/libcrypto.1.1.dylib \"$TARGET_BUILD_DIR/$PRODUCT_NAME.app/Contents/MacOS/$PRODUCT_NAME\";\ninstall_name_tool -change /Users/collinmistr/openssl/install/lib/libssl.1.1.dylib @executable_path/../Frameworks/libssl.1.1.dylib \"$TARGET_BUILD_DIR/$PRODUCT_NAME.app/Contents/MacOS/$PRODUCT_NAME\";\ninstall_name_tool -change /Users/collinmistr/Documents/curl-8.1.2/artifacts/lib/libcurl.4.dylib @executable_path/../Frameworks/libcurl.4.dylib \"$TARGET_BUILD_DIR/$PRODUCT_NAME.app/Contents/MacOS/$PRODUCT_NAME\";\ninstall_name_tool -change /usr/lib/libcurl.4.dylib @executable_path/../Frameworks/libcurl.4.dylib \"$TARGET_BUILD_DIR/$PRODUCT_NAME.app/Contents/MacOS/$PRODUCT_NAME\";\ninstall_name_tool -change /Users/collinmistr/openssl/install/lib/libcrypto.1.1.dylib @executable_path/../Frameworks/libcrypto.1.1.dylib \"$TARGET_BUILD_DIR/$PRODUCT_NAME.app/Contents/Frameworks/libssl.1.1.dylib\";\ninstall_name_tool -change /Users/collinmistr/openssl/install/lib/libcrypto.1.1.dylib @executable_path/../Frameworks/libcrypto.1.1.dylib \"$TARGET_BUILD_DIR/$PRODUCT_NAME.app/Contents/Frameworks/libcurl.4.dylib\";\ninstall_name_tool -change /Users/collinmistr/openssl/install/lib/libssl.1.1.dylib @executable_path/../Frameworks/libssl.1.1.dylib \"$TARGET_BUILD_DIR/$PRODUCT_NAME.app/Contents/Frameworks/libcurl.4.dylib\";";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		87C11C892728DB7B000046F2 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -809,14 +837,14 @@
 				87A38DD02732FEDB002385EE /* HTTPCache.m in Sources */,
 				8759138A274D9EBD003B7128 /* RegexKitLite.m in Sources */,
 				872FCEC8272A4C5F002434B1 /* ServerItemViewController.m in Sources */,
-				878E49712734644600BBB18B /* NSString+Base64.m in Sources */,
 				87AD27D72741D3230092F428 /* HorizontalDynamicScrollView.m in Sources */,
 				87A6E2C12735E392000DC06E /* BadgeTextField.m in Sources */,
+				872660932A461D1D009CE587 /* AsyncHTTPRequestSequencer.m in Sources */,
 				877F4DD928ED2DCB00183257 /* ServerStatusIndicatorView.m in Sources */,
 				876DBDFE2729172A008682BC /* NSDictionary_JSONExtensions.m in Sources */,
+				872660962A461D90009CE587 /* AsyncHTTPRequestSequencerObject.m in Sources */,
 				87C083662728E9FB00C8F933 /* AsyncHTTPPostRequest.m in Sources */,
 				8714B1AB2729F5B000DA4AF9 /* DLErrorHandler.m in Sources */,
-				878E497E2734645900BBB18B /* WSWebSocket.m in Sources */,
 				87C083692728EA0800C8F933 /* AsyncHTTPGetRequest.m in Sources */,
 				876DBDFD2729172A008682BC /* CDataScanner_Extensions.m in Sources */,
 				87AD27DA2741EF9C0092F428 /* PendingAttachmentViewController.m in Sources */,
@@ -829,7 +857,6 @@
 				87C2CF92272F77AD00F10466 /* NSView+BGColor.m in Sources */,
 				872FCED7272A5902002434B1 /* FlippedClipView.m in Sources */,
 				87D9D17427320C1A00162F22 /* DLAttachment.m in Sources */,
-				878E497B2734645900BBB18B /* WSFrame.m in Sources */,
 				876DBDF327291681008682BC /* CJSONScanner.m in Sources */,
 				87C083532728DEA000C8F933 /* DLController.m in Sources */,
 				87F066E728B5854600FE92A2 /* NSData+Compress.m in Sources */,
@@ -841,7 +868,6 @@
 				8782FE0E274C40B800ECA836 /* DLServerMember.m in Sources */,
 				8791ACC82794B7C9005672AB /* TwoFactorEntryFormatter.m in Sources */,
 				8714B1AF2729FC5000DA4AF9 /* DLMainWindowController.m in Sources */,
-				871E7F1128B47B8A00D498E7 /* DLURLProtocol.m in Sources */,
 				87D9D17127320C1000162F22 /* DLUser.m in Sources */,
 				87A38DDE27336E14002385EE /* DirectMessageItemViewController.m in Sources */,
 				87450D2C27370833007B4C08 /* DLUserSettings.m in Sources */,
@@ -853,7 +879,6 @@
 				87C6E6A827305DBF00090639 /* DLChannel.m in Sources */,
 				87F066E028B553D000FE92A2 /* DLPreferencesWindowController.m in Sources */,
 				876DBDF727291711008682BC /* CDataScanner.m in Sources */,
-				878E497C2734645900BBB18B /* WSMessage.m in Sources */,
 				87A32B2D273F1A28003D64BD /* DLAttachmentWindowController.m in Sources */,
 				876DBDF427291681008682BC /* CJSONSerializer.m in Sources */,
 				87C6E6A0273053F000090639 /* DynamicScrollView.m in Sources */,
@@ -863,7 +888,6 @@
 				87DA400C2739DD58007E7455 /* DLAudioPlayer.m in Sources */,
 				87C6E69A273052B100090639 /* ChannelItemViewController.m in Sources */,
 				878E498527347A4900BBB18B /* DLWSController.m in Sources */,
-				878E497D2734645900BBB18B /* WSMessageProcessor.m in Sources */,
 				87A38DD627330B49002385EE /* NSView+Border.m in Sources */,
 				87A6E2C4273612B5000DC06E /* BezierPathRoundedRect.m in Sources */,
 				87062776278E9CF20056BD71 /* DLCaptchaWindowController.m in Sources */,
@@ -964,6 +988,14 @@
 				87A32B30273F1ADC003D64BD /* en */,
 			);
 			name = DLAttachmentWindowController.xib;
+			sourceTree = "<group>";
+		};
+		87A7E7992A4935FB00CA0671 /* DirectMessageItemViewController.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				87A7E7982A4935FB00CA0671 /* en */,
+			);
+			name = DirectMessageItemViewController.xib;
 			sourceTree = "<group>";
 		};
 		87AD27DF2741EFBC0092F428 /* PendingAttachmentViewController.xib */ = {
@@ -1092,11 +1124,14 @@
 				INFOPLIST_FILE = "Discord Lite/Info.plist";
 				LD_DEPENDENCY_INFO_FILE = "$(OBJECT_FILE_DIR_$(CURRENT_VARIANT))/$(CURRENT_ARCH)/$(PRODUCT_NAME)_dependency_info.dat";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited)";
-				LIBRARY_SEARCH_PATHS = "$(DEVELOPER_DIR)/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/usr/lib";
+				LIBRARY_SEARCH_PATHS = (
+					"$(PROJECT_DIR)/$(TARGET_NAME)",
+					"$(DEVELOPER_DIR)/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.10.sdk/usr/lib",
+				);
 				LINK_WITH_STANDARD_LIBRARIES = YES;
 				MACOSX_DEPLOYMENT_TARGET = 10.4;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = macosx10.9;
+				SDKROOT = macosx;
 			};
 			name = Debug;
 		};
@@ -1105,9 +1140,9 @@
 			buildSettings = {
 				ADDITIONAL_SDKS = "";
 				ARCHS = (
-					ppc,
-					i386,
 					x86_64,
+					i386,
+					ppc,
 				);
 				CLANG_ENABLE_MODULES = NO;
 				CLANG_ENABLE_OBJC_ARC = NO;
@@ -1117,21 +1152,30 @@
 				FRAMEWORK_SEARCH_PATHS = "";
 				"FRAMEWORK_SEARCH_PATHS[arch=i386]" = "$(DEVELOPER_DIR)/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.7.sdk/System/Library/Frameworks";
 				"FRAMEWORK_SEARCH_PATHS[arch=ppc]" = "$(DEVELOPER_DIR)/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.5.sdk/System/Library/Frameworks";
-				"FRAMEWORK_SEARCH_PATHS[arch=x86_64]" = "$(DEVELOPER_DIR)/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.7.sdk/System/Library/Frameworks";
+				"FRAMEWORK_SEARCH_PATHS[arch=x86_64]" = "$(DEVELOPER_DIR)/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.10.sdk/System/Library/Frameworks";
 				INFOPLIST_FILE = "Discord Lite/Info.plist";
 				LD_DEPENDENCY_INFO_FILE = "$(OBJECT_FILE_DIR_$(CURRENT_VARIANT))/$(CURRENT_ARCH)/$(PRODUCT_NAME)_dependency_info.dat";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited)";
 				LIBRARY_SEARCH_PATHS = "";
-				"LIBRARY_SEARCH_PATHS[arch=i386]" = "$(DEVELOPER_DIR)/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.7.sdk/usr/lib";
-				"LIBRARY_SEARCH_PATHS[arch=ppc]" = "$(DEVELOPER_DIR)/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.5.sdk/usr/lib";
-				"LIBRARY_SEARCH_PATHS[arch=x86_64]" = "$(DEVELOPER_DIR)/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.7.sdk/usr/lib";
+				"LIBRARY_SEARCH_PATHS[arch=i386]" = (
+					"$(PROJECT_DIR)/$(TARGET_NAME)",
+					"$(DEVELOPER_DIR)/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.7.sdk/usr/lib",
+				);
+				"LIBRARY_SEARCH_PATHS[arch=ppc]" = (
+					"$(PROJECT_DIR)/$(TARGET_NAME)",
+					"$(DEVELOPER_DIR)/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.5.sdk/usr/lib",
+				);
+				"LIBRARY_SEARCH_PATHS[arch=x86_64]" = (
+					"$(PROJECT_DIR)/$(TARGET_NAME)",
+					"$(DEVELOPER_DIR)/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.10.sdk/usr/lib",
+				);
 				LINK_WITH_STANDARD_LIBRARIES = YES;
 				MACOSX_DEPLOYMENT_TARGET = 10.4;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = macosx10.7;
+				SDKROOT = macosx10.10;
 				"SDKROOT[arch=i386]" = macosx10.7;
 				"SDKROOT[arch=ppc]" = macosx10.5;
-				"SDKROOT[arch=x86_64]" = macosx10.7;
+				"SDKROOT[arch=x86_64]" = macosx10.10;
 			};
 			name = Release;
 		};

@@ -17,8 +17,9 @@
 }
 
 -(void)start {
-    [super start];
-    NSMutableURLRequest *request = [[[NSMutableURLRequest alloc] init] autorelease];
+    [super initializeRequest];
+    
+    curl_easy_setopt(curlRequestHandle, CURLOPT_CUSTOMREQUEST, [method UTF8String]);
     
     
     NSData *jsonData = [[CJSONSerializer serializer] serializeDictionary:parameters error:nil];
@@ -42,34 +43,31 @@
         
         queryData = formData;
         
-        [request setValue:[NSString stringWithFormat:@"multipart/form-data; boundary=%@", boundary] forHTTPHeaderField:@"Content-Type"];
+        rootHeader = curl_slist_append(rootHeader, [[NSString stringWithFormat:@"Content-Type: multipart/form-data; boundary=%@", boundary] UTF8String]);
         
     } else {
+        //NSLog(@"Req: %@", [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding]);
         queryData = jsonData;
-        [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+        rootHeader = curl_slist_append(rootHeader, [@"Content-Type: application/json" UTF8String]);
     }
     
-    [request setValue:@"*/*" forHTTPHeaderField:@"Accept"];
+    postData = malloc([queryData length]);
+    memcpy(postData, [queryData bytes], [queryData length]);
+    curl_easy_setopt(curlRequestHandle, CURLOPT_POSTFIELDSIZE, [queryData length]);
+    curl_easy_setopt(curlRequestHandle, CURLOPT_POSTFIELDS, postData);
     
-    NSString *queryLength = [NSString stringWithFormat:@"%lu", (unsigned long)[queryData length]];
-    [request setValue:queryLength forHTTPHeaderField:@"Content-Length"];
-    [request setHTTPBody:queryData];
-    
-    [request setURL:url];
-    [request setHTTPMethod:method];
-    [request setValue:[self userAgentString] forHTTPHeaderField:@"User-Agent"];
-    
+    rootHeader = curl_slist_append(rootHeader, [@"Accept: */*" UTF8String]);
     
     if (headers) {
         
         NSEnumerator *e = [[headers allKeys] objectEnumerator];
         NSString *key;
         while (key = [e nextObject]) {
-            [request setValue:[headers objectForKey:key] forHTTPHeaderField:key];
+            rootHeader = curl_slist_append(rootHeader, [[NSString stringWithFormat:@"%@: %@", key, [headers objectForKey:key]] UTF8String]);
         }
     }
-    
-    [[NSURLConnection alloc] initWithRequest:request delegate:self];
+    curl_easy_setopt(curlRequestHandle, CURLOPT_HTTPHEADER, rootHeader);
+    [super start];
 }
 
 -(void)setParameters:(NSDictionary *)inParameters {

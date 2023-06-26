@@ -53,7 +53,7 @@
 +(NSString *)appVersionString {
     return [[NSBundle mainBundle] objectForInfoDictionaryKey: @"CFBundleShortVersionString"];
 }
-+(NSString *)CFNetworkVersionString {
++(NSString *)networkVersionString {
     return [[NSBundle bundleWithIdentifier:@"com.apple.CFNetwork"] objectForInfoDictionaryKey:(NSString *)kCFBundleVersionKey];
 }
 +(NSString *)kernelVersion {
@@ -109,6 +109,9 @@
     NSDate *date = [formatter dateFromString:timestampString];
     [formatter release];
     return date;
+}
++(NSString *)userAgentString {
+    return [NSString stringWithFormat:@"DiscordLite/%@ CFNetwork/%@ Darwin/%@", [DLUtil appVersionString], [DLUtil networkVersionString], [DLUtil kernelVersion]];
 }
 
 @end

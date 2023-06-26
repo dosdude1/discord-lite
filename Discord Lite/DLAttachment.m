@@ -40,7 +40,7 @@
 -(void)loadScaledData {
     req = [[AsyncHTTPGetRequest alloc] init];
     [req setDelegate:self];
-    [req setUrl:[NSURL URLWithString:[proxyURL stringByAppendingString:[NSString stringWithFormat:@"?width=%ld&height=%ld", (NSInteger)[self scaledWidth], (NSInteger)[self scaledHeight]]]]];
+    [req setUrl:[proxyURL stringByAppendingString:[NSString stringWithFormat:@"?width=%ld&height=%ld", (NSInteger)[self scaledWidth], (NSInteger)[self scaledHeight]]]];
     [req setCached:NO];
     [req setIdentifier:AttachmentRequestPreview];
     [req start];
@@ -48,7 +48,7 @@
 -(void)loadFullData {
     req = [[AsyncHTTPGetRequest alloc] init];
     [req setDelegate:self];
-    [req setUrl:[NSURL URLWithString:proxyURL]];
+    [req setUrl:proxyURL];
     [req setCached:NO];
     [req setIdentifier:AttachmentRequestFull];
     [req start];
@@ -58,7 +58,7 @@
     downloadFileHandle = [[NSFileHandle fileHandleForUpdatingAtPath:path] retain];
     req = [[AsyncHTTPGetRequest alloc] init];
     [req setDelegate:self];
-    [req setUrl:[NSURL URLWithString:url]];
+    [req setUrl:url];
     [req setCached:NO];
     [req setDownloadingFile:downloadFileHandle];
     [req setIdentifier:AttachmentRequestDownload];

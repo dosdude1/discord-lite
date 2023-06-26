@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="6751" systemVersion="13F1911" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none">
+    <dependencies>
+        <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="6751"/>
+    </dependencies>
+    <objects>
+        <customObject id="-2" userLabel="File's Owner" customClass="DirectMessageItemViewController">
+            <connections>
+                <outlet property="avatarImageView" destination="73O-4X-CLX" id="HKH-zY-5Xt"/>
+                <outlet property="notificationBadgeLabel" destination="WZ2-tX-rW5" id="Vou-ic-xNx"/>
+                <outlet property="usernameTextField" destination="ejG-oa-RD4" id="c2q-Qq-R2F"/>
+                <outlet property="view" destination="c22-O7-iKe" id="G76-Wg-5yr"/>
+            </connections>
+        </customObject>
+        <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
+        <customObject id="-3" userLabel="Application" customClass="NSObject"/>
+        <customView id="c22-O7-iKe" customClass="NSView_BGColor">
+            <rect key="frame" x="0.0" y="1" width="254" height="46"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+            <subviews>
+                <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" id="73O-4X-CLX">
+                    <rect key="frame" x="5" y="5" width="37" height="37"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="discord_placeholder" id="zaR-Ab-5bL"/>
+                </imageView>
+                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="ejG-oa-RD4">
+                    <rect key="frame" x="48" y="15" width="188" height="17"/>
+                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                    <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Label" id="nEb-Qo-0kn">
+                        <font key="font" metaFont="systemBold"/>
+                        <color key="textColor" red="0.51372549020000002" green="0.52549019610000003" blue="0.5450980392" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                </textField>
+                <textField hidden="YES" horizontalHuggingPriority="251" verticalHuggingPriority="750" id="WZ2-tX-rW5" customClass="BadgeTextField">
+                    <rect key="frame" x="33" y="1" width="15" height="14"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="1" drawsBackground="YES" id="UjK-uH-sXP" customClass="RoundedTextFieldCell">
+                        <font key="font" metaFont="smallSystem"/>
+                        <color key="textColor" name="alternateSelectedControlTextColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" red="0.88270635190000002" green="0.0" blue="0.010405921659999999" alpha="1" colorSpace="calibratedRGB"/>
+                    </textFieldCell>
+                </textField>
+            </subviews>
+            <point key="canvasLocation" x="524" y="551"/>
+        </customView>
+    </objects>
+    <resources>
+        <image name="discord_placeholder" width="256" height="256"/>
+    </resources>
+</document>

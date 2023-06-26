@@ -10,7 +10,7 @@
 
 @implementation ChatItemViewController
 
-const NSInteger VIEW_HEADER_SPACING = 60;
+const NSInteger VIEW_HEADER_SPACING = 55;
 const NSInteger ATTACHMENT_SPACING = 15;
 
 +(CGFloat)AVATAR_RADIUS {
@@ -22,7 +22,7 @@ const NSInteger ATTACHMENT_SPACING = 15;
 
 -(void)awakeFromNib {
     baseViewHeight = view.frame.size.height;
-    //[insetView setBackgroundColor:[NSColor controlBackgroundColor]];
+    //[insetView setBackgroundColor:[NSColor redColor]];
     [chatTextView setInsertionPointColor:[DLTextParser DEFAULT_TEXT_COLOR]];
     [chatTextView setBackgroundColor:[NSColor colorWithCalibratedRed:49.0/255.0 green:52.0/255.0 blue:58.0/255.0 alpha:1.0f]];
     [chatTextView setSelectedTextAttributes:[NSDictionary dictionaryWithObjects:[NSArray arrayWithObjects:[DLTextParser DEFAULT_TEXT_COLOR], [DLTextParser DEFAULT_TEXT_HIGHLIGHT_COLOR], nil] forKeys:[NSArray arrayWithObjects:NSForegroundColorAttributeName, NSBackgroundColorAttributeName, nil]]];
@@ -54,13 +54,9 @@ const NSInteger ATTACHMENT_SPACING = 15;
     [contextMenu addItem:replyItem];
     [replyItem release];
     
-    NSMenuItem *copyItem = [[NSMenuItem alloc] initWithTitle:@"Copy Message" action:@selector(copyMessageContent) keyEquivalent:@""];
-    [copyItem setTarget:self];
-    [contextMenu addItem:copyItem];
-    [copyItem release];
-    
     editItem = [[NSMenuItem alloc] initWithTitle:@"Edit Message" action:@selector(beginEditingContent) keyEquivalent:@""];
     [editItem setTarget:self];
+    
 }
 
 -(CGFloat)expectedHeight {
@@ -185,7 +181,7 @@ const NSInteger ATTACHMENT_SPACING = 15;
         [avatarImageView setFrame:frame];
         
         frame = referencedMessageView.frame;
-        frame.origin.y = 31;
+        frame.origin.y = 25;
         frame.size.width = insetView.frame.size.width - 5;
         [referencedMessageView setFrame:frame];
         [insetView addSubview:referencedMessageView];
@@ -197,16 +193,6 @@ const NSInteger ATTACHMENT_SPACING = 15;
 
 -(void)addReply {
     [delegate addReferencedMessage:representedObject];
-}
--(void)copySelectedMessageContent {
-    NSPasteboard *pasteBoard = [NSPasteboard generalPasteboard];
-    [pasteBoard declareTypes:[NSArray arrayWithObjects:NSStringPboardType, nil] owner:nil];
-    [pasteBoard setString:[representedObject content] forType:NSStringPboardType];
-}
--(void)copyMessageContent {
-    NSPasteboard *pasteBoard = [NSPasteboard generalPasteboard];
-    [pasteBoard declareTypes:[NSArray arrayWithObjects:NSStringPboardType, nil] owner:nil];
-    [pasteBoard setString:[representedObject content] forType:NSStringPboardType];
 }
 
 -(void)setAllowsEditingContent:(BOOL)editable {

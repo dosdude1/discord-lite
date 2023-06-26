@@ -22,6 +22,7 @@ const NSTimeInterval TYPING_INTERVAL = 10.0;
     self = [self init];
     userID = [[d objectForKey:@"id"] retain];
     username = [[d objectForKey:@"username"] retain];
+    globalName = [[d objectForKey:@"global_name"] retain];
     avatarID = [[d objectForKey:@"avatar"] retain];
     discriminator = [[d objectForKey:@"discriminator"] retain];
     return self;
@@ -39,7 +40,7 @@ const NSTimeInterval TYPING_INTERVAL = 10.0;
     if (avatarID && ![avatarID isKindOfClass:[NSNull class]]) {
         req = [[AsyncHTTPGetRequest alloc] init];
         [req setDelegate:self];
-        [req setUrl:[NSURL URLWithString:[@AvatarCDNRoot stringByAppendingString:[NSString stringWithFormat:@"/%@/%@.png?size=128", userID, avatarID]]]];
+        [req setUrl:[@AvatarCDNRoot stringByAppendingString:[NSString stringWithFormat:@"/%@/%@.png?size=128", userID, avatarID]]];
         [req setCached:YES];
         [req start];
     }
@@ -49,6 +50,9 @@ const NSTimeInterval TYPING_INTERVAL = 10.0;
 }
 -(NSString *)username {
     return username;
+}
+-(NSString *)globalName {
+    return globalName;
 }
 -(NSString *)avatarID {
     return avatarID;

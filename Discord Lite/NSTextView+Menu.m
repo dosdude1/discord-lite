@@ -37,12 +37,19 @@
 }
 
 - (NSMenu *)menuForEvent:(NSEvent *)event {
+    NSMenu *menu = [super menuForEvent:event];
     if ([menuDelegate respondsToSelector:@selector(textViewContextMenu)]) {
-        if ([menuDelegate textViewContextMenu]) {
-            return [menuDelegate textViewContextMenu];
+        NSMenu *textViewContextMenu = [menuDelegate textViewContextMenu];
+        if (textViewContextMenu) {
+            [menu addItem:[NSMenuItem separatorItem]];
+            NSEnumerator *e = [[textViewContextMenu itemArray] objectEnumerator];
+            NSMenuItem *item;
+            while (item = [e nextObject]) {
+                [menu addItem:[item copy]];
+            }
         }
     }
-    return [super menuForEvent:event];
+    return menu;
 }
 -(void)setShouldShowBorder:(BOOL)isBordered {
     bordered = isBordered;

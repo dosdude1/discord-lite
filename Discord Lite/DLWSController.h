@@ -9,11 +9,12 @@
 #import <Foundation/Foundation.h>
 #import "DLChannel.h"
 #import "DLUserSettings.h"
-#import "WSWebSocket.h"
 #import "CJSONDeserializer.h"
 #import "CJSONSerializer.h"
 #import "DLServer.h"
 #import "DLPreferencesHandler.h"
+
+#include "curl_headers/curl.h"
 
 
 #define WS_GATEWAY_URL "wss://gateway.discord.gg/?encoding=json&v=6"
@@ -51,8 +52,8 @@ typedef enum {
 -(void)wsMessageWithID:(NSString *)messageID wasUpdatedWithData:(NSDictionary *)data;
 @end
 
-@interface DLWSController : NSObject <WSWebSocketDelegate> {
-    WSWebSocket *webSocket;
+@interface DLWSController : NSObject {
+    CURL *curlWebSocketHandle;
     NSString *token;
     NSString *sessionID;
     NSTimer *heartbeatTimer;
@@ -76,5 +77,10 @@ typedef enum {
 -(void)queryServer:(DLServer *)s forMembersContainingUsername:(NSString *)username;
 
 -(BOOL)didResume;
+
+
+//For libcurl callback
+
+-(void)wsTextDataReceived:(NSData *)textData;
 
 @end

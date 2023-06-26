@@ -10,7 +10,26 @@
 
 @implementation DLWSController
 
+static NSMutableData* receivedWSData;
+
 static DLWSController* sharedObject = nil;
+
+static size_t writecb(char *b, size_t size, size_t nitems, void *p) {
+    if (!receivedWSData) {
+        receivedWSData = [[NSMutableData alloc] init];
+    }
+    CURL *easy = p;
+    struct curl_ws_frame *frame = curl_ws_meta(easy);
+    
+    [receivedWSData appendBytes:b length:nitems * size];
+    if (frame->bytesleft < 1) {
+        NSData *resData = [NSData dataWithData:receivedWSData];
+        [[DLWSController sharedInstance] performSelectorOnMainThread:@selector(wsTextDataReceived:) withObject:resData waitUntilDone:YES];
+        [receivedWSData release];
+        receivedWSData = nil;
+    }
+    return nitems;
+}
 
 -(id)init {
     self = [super init];
@@ -33,36 +52,70 @@ static DLWSController* sharedObject = nil;
     delegate = inDelegate;
 }
 
+-(void)startWebSocketThread {
+    
+    NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
+    
+    CURLcode res;
+    
+    printf("libcurl version %s\n", curl_version());
+    
+    curlWebSocketHandle = curl_easy_init();
+    if (curlWebSocketHandle) {
+        curl_easy_setopt(curlWebSocketHandle, CURLOPT_URL, WS_GATEWAY_URL);
+        curl_easy_setopt(curlWebSocketHandle, CURLOPT_SSL_VERIFYPEER, 0L);
+        //curl_easy_setopt(curlWebSocketHandle, CURLOPT_VERBOSE, 1L);
+        curl_easy_setopt(curlWebSocketHandle, CURLOPT_USERAGENT, [[DLUtil userAgentString] UTF8String]);
+        curl_easy_setopt(curlWebSocketHandle, CURLOPT_WRITEFUNCTION, writecb);
+        curl_easy_setopt(curlWebSocketHandle, CURLOPT_WRITEDATA, curlWebSocketHandle);
+        
+        res = curl_easy_perform(curlWebSocketHandle);
+        if (res != CURLE_OK) {
+            printf("curl_easy_perform() failed: %s\n", curl_easy_strerror(res));
+        }
+        curl_easy_cleanup(curlWebSocketHandle);
+        curlWebSocketHandle = nil;
+    }
+    [pool release];
+    
+    
+    NSLog(@"Websocket Closed");
+}
+
 -(void)startWithAuthToken:(NSString *)inToken {
     token = inToken;
-    NSURL *wsURL = [NSURL URLWithString:@WS_GATEWAY_URL];
-    webSocket = [[WSWebSocket alloc] initWithURL:wsURL protocols:nil];
-    if ([[DLPreferencesHandler sharedInstance] shouldUseSOCKSProxy]) {
-        [webSocket setSOCKSProxyHost:[[DLPreferencesHandler sharedInstance] SOCKSProxyHost]];
-        [webSocket setSOCKSProxyPort:[[DLPreferencesHandler sharedInstance] SOCKSProxyPort]];
-        if ([[DLPreferencesHandler sharedInstance] SOCKSProxyRequiresPassword]) {
-            [webSocket setSOCKSProxyUsername:[[DLPreferencesHandler sharedInstance] SOCKSProxyUsername]];
-            [webSocket setSOCKSProxyPassword:[[DLPreferencesHandler sharedInstance] SOCKSProxyPassword]];
-        }
-    }
-    [webSocket setDelegate:self];
-    [webSocket open];
+    [NSThread detachNewThreadSelector:@selector(startWebSocketThread) toTarget:self withObject:nil];
 }
 -(void)stop {
-    [webSocket close];
+    if (heartbeatTimer) {
+        [heartbeatTimer invalidate];
+        heartbeatTimer = nil;
+    }
+    if (curlWebSocketHandle) {
+        curl_easy_setopt(curlWebSocketHandle, CURLOPT_TIMEOUT_MS, 1);
+    }
     shouldResume = NO;
 }
+
+-(void)sendWSTextData:(NSData *)textData {
+    if (curlWebSocketHandle) {
+        size_t sent;
+        curl_ws_send(curlWebSocketHandle, [textData bytes], [textData length], &sent, 0, CURLWS_TEXT);
+    }
+}
+
 -(void)sendWSHeartbeat {
     if (heartbeatResponseReceived) {
         heartbeatResponseReceived = NO;
         NSDictionary *response = [NSDictionary dictionaryWithObjects:[NSArray arrayWithObjects:[NSNumber numberWithInt:OPCodeHeartbeat], [NSNumber numberWithInt:sequenceNumber], nil] forKeys:[NSArray arrayWithObjects:@kWSOperation, @kWSData ,nil]];
-        NSString *toSend = [[NSString alloc] initWithData:[[CJSONSerializer serializer] serializeDictionary:response error:nil] encoding:NSUTF8StringEncoding];
-        [webSocket sendText:toSend];
+        NSData *toSend = [[CJSONSerializer serializer] serializeDictionary:response error:nil];
+        
+        [self sendWSTextData:toSend];
     } else {
         shouldResume = YES;
         didResume = YES;
-        [self stop];
-        [self startWithAuthToken:token];
+        curl_easy_setopt(curlWebSocketHandle, CURLOPT_TIMEOUT_MS, 1);
+        [self performSelector:@selector(startWithAuthToken:) withObject:token afterDelay:0.1];
     }
 }
 
@@ -72,8 +125,8 @@ static DLWSController* sharedObject = nil;
     [data setObject:[c channelID] forKey:@"channel_id"];
     [d setObject:[NSNumber numberWithInt:OPCodeDMParticipantOp] forKey:@kWSOperation];
     [d setObject:data forKey:@kWSData];
-    NSString *str = [[NSString alloc] initWithData:[[CJSONSerializer serializer] serializeDictionary:d error:nil] encoding:NSUTF8StringEncoding];
-    [webSocket sendText:str];
+    NSData *str = [[CJSONSerializer serializer] serializeDictionary:d error:nil];
+    [self sendWSTextData:str];
 }
 
 -(void)updateWSForChannel:(DLChannel *)c inServer:(DLServer *)s {
@@ -89,8 +142,8 @@ static DLWSController* sharedObject = nil;
     [data setObject:channels forKey:@"channels"];
     [d setObject:data forKey:@kWSData];
     [d setObject:[NSNumber numberWithInt:OPCodeServerMemberOp] forKey:@kWSOperation];
-    NSString *str = [[NSString alloc] initWithData:[[CJSONSerializer serializer] serializeDictionary:d error:nil] encoding:NSUTF8StringEncoding];
-    [webSocket sendText:str];
+    NSData *str = [[CJSONSerializer serializer] serializeDictionary:d error:nil];
+    [self sendWSTextData:str];
 }
 
 -(void)queryServer:(DLServer *)s forMembersContainingUsername:(NSString *)username {
@@ -102,8 +155,8 @@ static DLWSController* sharedObject = nil;
     NSMutableDictionary *d = [[NSMutableDictionary alloc] init];
     [d setObject:data forKey:@kWSData];
     [d setObject:[NSNumber numberWithInt:OPCodeQueryServerMembers] forKey:@kWSOperation];
-    NSString *str = [[NSString alloc] initWithData:[[CJSONSerializer serializer] serializeDictionary:d error:nil] encoding:NSUTF8StringEncoding];
-    [webSocket sendText:str];
+    NSData *str = [[CJSONSerializer serializer] serializeDictionary:d error:nil];
+    [self sendWSTextData:str];
 }
 
 -(BOOL)didResume {
@@ -112,10 +165,8 @@ static DLWSController* sharedObject = nil;
 
 #pragma mark Delegated Functions
 
-
--(void)wsTextReceived:(NSString *)text {
-    NSData *resData = [text dataUsingEncoding:NSUTF8StringEncoding];
-    NSDictionary *res = [[CJSONDeserializer deserializer] deserializeAsDictionary:resData error:nil];
+-(void)wsTextDataReceived:(NSData *)textData {
+    NSDictionary *res = [[CJSONDeserializer deserializer] deserializeAsDictionary:textData error:nil];
     OPCode c = [[res objectForKey:@kWSOperation] intValue];
     switch (c) {
         case OPCodeGeneral: {
@@ -135,7 +186,6 @@ static DLWSController* sharedObject = nil;
                 [delegate wsDidLoadAllData];
                 [delegate wsDidReceiveReadStateData:[wsData
                                                      objectForKey:@"read_state"]];
-                
             } else if ([type isEqualToString:@"MESSAGE_ACK"]) {
                 NSDictionary *wsData = [res objectForKey:@kWSData];
                 NSMutableDictionary *messageData = [[[NSMutableDictionary alloc] init] autorelease];
@@ -169,12 +219,15 @@ static DLWSController* sharedObject = nil;
                 [d setObject:[NSNumber numberWithInt:OPCodeResume] forKey:@kWSOperation];
                 NSDictionary *data = [[NSDictionary alloc] initWithObjects:[NSArray arrayWithObjects:token, sessionID, [NSNumber numberWithInt:sequenceNumber], nil] forKeys:[NSArray arrayWithObjects:@"token", @"session_id", @"seq", nil]];
                 [d setObject:data forKey:@kWSData];
-                NSString *str = [[NSString alloc] initWithData:[[CJSONSerializer serializer] serializeDictionary:d error:nil] encoding:NSUTF8StringEncoding];
-                [webSocket sendText:str];
+                NSData *str = [[CJSONSerializer serializer] serializeDictionary:d error:nil];
+                [self sendWSTextData:str];
             } else {
                 NSDictionary *wsData = [res objectForKey:@kWSData];
                 heartbeatInterval = [[wsData objectForKey:@"heartbeat_interval"] intValue];
-                heartbeatTimer = [NSTimer scheduledTimerWithTimeInterval:heartbeatInterval/1000 target:self selector:@selector(sendWSHeartbeat) userInfo:nil repeats:YES];
+                if (heartbeatTimer) {
+                    [heartbeatTimer invalidate];
+                }
+                heartbeatTimer = [NSTimer scheduledTimerWithTimeInterval:heartbeatInterval/1000.0 target:self selector:@selector(sendWSHeartbeat) userInfo:nil repeats:YES];
                 
                 NSMutableDictionary *d = [[NSMutableDictionary alloc] init];
                 [d setObject:[NSNumber numberWithInt:OPCodeIdentify] forKey:@kWSOperation];
@@ -197,8 +250,9 @@ static DLWSController* sharedObject = nil;
                 [data setObject:presence forKey:@"presence"];
                 
                 [d setObject:data forKey:@kWSData];
-                NSString *str = [[NSString alloc] initWithData:[[CJSONSerializer serializer] serializeDictionary:d error:nil] encoding:NSUTF8StringEncoding];
-                [webSocket sendText:str];
+                
+                NSData *toSend = [[CJSONSerializer serializer] serializeDictionary:d error:nil];
+                [self sendWSTextData:toSend];
             }
             
             break;

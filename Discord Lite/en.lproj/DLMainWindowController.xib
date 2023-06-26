@@ -129,7 +129,7 @@
                                 </scroller>
                             </scrollView>
                             <textField hidden="YES" horizontalHuggingPriority="251" verticalHuggingPriority="750" id="xQw-QO-0QG">
-                                <rect key="frame" x="16" y="4" width="375" height="11"/>
+                                <rect key="frame" x="36" y="4" width="355" height="11"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Typing..." id="tbp-qd-9uw">
                                     <font key="font" metaFont="miniSystem"/>
@@ -234,7 +234,7 @@
                                 </textFieldCell>
                             </textField>
                             <box autoresizesSubviews="NO" verticalHuggingPriority="750" title="Box" boxType="separator" titlePosition="noTitle" id="rrC-kW-Zcu">
-                                <rect key="frame" x="1" y="-2" width="253" height="5"/>
+                                <rect key="frame" x="0.0" y="-2" width="254" height="5"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
                                 <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -349,7 +349,7 @@
                     </connections>
                 </button>
             </subviews>
-            <point key="canvasLocation" x="462" y="771"/>
+            <point key="canvasLocation" x="315" y="822"/>
         </customView>
         <scrollView horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" usesPredominantAxisScrolling="NO" id="Kjp-i4-XhZ">
             <rect key="frame" x="0.0" y="0.0" width="183" height="96"/>

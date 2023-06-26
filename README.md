@@ -39,7 +39,7 @@
 
 ### Important Notes
 
-- Somewhat recently, Discord has killed support for TLS1.1 and older SSL protocols when connecting to their servers. As such, this application will no longer work on legacy Mac OS X versions without using a proxy. As of release 0.1.6-alpha, there is now a setting in the Preferences menu allowing you to set a SOCKS proxy configuration for the WebSocket. A custom proxy implementation for the HTTPS side of things is in the works, but at this time, that setting will have to be made in the Network pane of System Preferences on your machine.
+- As of version 0.3-alpha, a new Curl and OpenSSL-based backend for both the WebSocket and HTTP requests has been implemented. As such, the application now has full TLS v1.3 support, and once again works without the need of going through a proxy running on a newer machine.
 
 
 ### Releases

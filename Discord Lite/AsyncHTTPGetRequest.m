@@ -15,36 +15,31 @@
     return self;
 }
 
--(void)beginRequest {
-    NSMutableURLRequest *request = [[[NSMutableURLRequest alloc] init] autorelease];
-    [request setURL:url];
-    [request setHTTPMethod:@"GET"];
+-(void)start {
+    [self initializeRequest];
     
-    [request setValue:[self userAgentString] forHTTPHeaderField:@"User-Agent"];
     
     if (headers) {
+        rootHeader = nil;
         NSEnumerator *e = [[headers allKeys] objectEnumerator];
         NSString *key;
         while (key = [e nextObject]) {
-            [request setValue:[headers objectForKey:key] forHTTPHeaderField:key];
+            rootHeader = curl_slist_append(rootHeader, [[NSString stringWithFormat:@"%@: %@", key, [headers objectForKey:key]] UTF8String]);
         }
+        curl_easy_setopt(curlRequestHandle, CURLOPT_HTTPHEADER, rootHeader);
     }
-    [[NSURLConnection alloc] initWithRequest:request delegate:self];
-}
-
--(void)start {
-    [super start];
+    
     if (cached) {
-        if ([[HTTPCache sharedInstance] cachedDataForURL:[url absoluteString]]) {
+        if ([[HTTPCache sharedInstance] cachedDataForURL:url]) {
             [responseData release];
-            responseData = (NSMutableData *)[[[HTTPCache sharedInstance] cachedDataForURL:[url absoluteString]] retain];
+            responseData = (NSMutableData *)[[[HTTPCache sharedInstance] cachedDataForURL:url] retain];
             result = HTTPResultOK;
             [delegate requestDidFinishLoading:self];
         } else {
-            [self beginRequest];
+            [super start];
         }
     } else {
-        [self beginRequest];
+        [super start];
     }
 }
 
