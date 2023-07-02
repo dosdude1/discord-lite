@@ -72,6 +72,7 @@
 		87AD27D72741D3230092F428 /* HorizontalDynamicScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 87AD27D62741D3230092F428 /* HorizontalDynamicScrollView.m */; };
 		87AD27DA2741EF9C0092F428 /* PendingAttachmentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 87AD27D92741EF9C0092F428 /* PendingAttachmentViewController.m */; };
 		87AD27DD2741EFBC0092F428 /* PendingAttachmentViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 87AD27DF2741EFBC0092F428 /* PendingAttachmentViewController.xib */; };
+		87BCAA732A4CD8DA00EEFFB0 /* NSString+Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = 87BCAA722A4CD8DA00EEFFB0 /* NSString+Base64.m */; };
 		87BE740D278B811A00F61BF7 /* reply_curve.png in Resources */ = {isa = PBXBuildFile; fileRef = 87BE740C278B811A00F61BF7 /* reply_curve.png */; };
 		87BE741B278BEBA800F61BF7 /* NSTextView+Menu.m in Sources */ = {isa = PBXBuildFile; fileRef = 87BE741A278BEBA800F61BF7 /* NSTextView+Menu.m */; };
 		87C083532728DEA000C8F933 /* DLController.m in Sources */ = {isa = PBXBuildFile; fileRef = 87C083522728DEA000C8F933 /* DLController.m */; };
@@ -255,6 +256,8 @@
 		87AD27D82741EF9C0092F428 /* PendingAttachmentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PendingAttachmentViewController.h; sourceTree = "<group>"; };
 		87AD27D92741EF9C0092F428 /* PendingAttachmentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PendingAttachmentViewController.m; sourceTree = "<group>"; };
 		87AD27DE2741EFBC0092F428 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/PendingAttachmentViewController.xib; sourceTree = "<group>"; };
+		87BCAA712A4CD8DA00EEFFB0 /* NSString+Base64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Base64.h"; sourceTree = "<group>"; };
+		87BCAA722A4CD8DA00EEFFB0 /* NSString+Base64.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Base64.m"; sourceTree = "<group>"; };
 		87BE740C278B811A00F61BF7 /* reply_curve.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = reply_curve.png; sourceTree = "<group>"; };
 		87BE7419278BEBA800F61BF7 /* NSTextView+Menu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSTextView+Menu.h"; sourceTree = "<group>"; };
 		87BE741A278BEBA800F61BF7 /* NSTextView+Menu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSTextView+Menu.m"; sourceTree = "<group>"; };
@@ -653,6 +656,8 @@
 				87A38DD22732FF76002385EE /* HTTPCacheData.m */,
 				87F066E528B5854000FE92A2 /* NSData+Compress.h */,
 				87F066E628B5854600FE92A2 /* NSData+Compress.m */,
+				87BCAA712A4CD8DA00EEFFB0 /* NSString+Base64.h */,
+				87BCAA722A4CD8DA00EEFFB0 /* NSString+Base64.m */,
 			);
 			name = HTTP;
 			sourceTree = "<group>";
@@ -837,6 +842,7 @@
 				87A38DD02732FEDB002385EE /* HTTPCache.m in Sources */,
 				8759138A274D9EBD003B7128 /* RegexKitLite.m in Sources */,
 				872FCEC8272A4C5F002434B1 /* ServerItemViewController.m in Sources */,
+				87BCAA732A4CD8DA00EEFFB0 /* NSString+Base64.m in Sources */,
 				87AD27D72741D3230092F428 /* HorizontalDynamicScrollView.m in Sources */,
 				87A6E2C12735E392000DC06E /* BadgeTextField.m in Sources */,
 				872660932A461D1D009CE587 /* AsyncHTTPRequestSequencer.m in Sources */,

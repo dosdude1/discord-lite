@@ -133,6 +133,10 @@
     serverID = inServerID;
 }
 
+-(void)remove {
+    [delegate messageWasDeleted];
+}
+
 -(void)dealloc {
     [author release];
     [mentionedUsers release];

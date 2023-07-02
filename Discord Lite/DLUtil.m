@@ -10,6 +10,8 @@
 
 @implementation DLUtil
 
+static NSDictionary *superPropertiesDict;
+
 +(NSImage *)imageResize:(NSImage*)anImage newSize:(NSSize)newSize cornerRadius:(CGFloat)radius {
     /*if (! anImage.isValid) return nil;
     
@@ -112,6 +114,13 @@
 }
 +(NSString *)userAgentString {
     return [NSString stringWithFormat:@"DiscordLite/%@ CFNetwork/%@ Darwin/%@", [DLUtil appVersionString], [DLUtil networkVersionString], [DLUtil kernelVersion]];
+}
++(NSString *)superPropertiesString {
+    if (!superPropertiesDict) {
+        superPropertiesDict = [[NSDictionary alloc] initWithObjects:[NSArray arrayWithObjects:@"Mac OS X", @"Discord Client", @"stable", @"0.0.266", [DLUtil kernelVersion], @"x64", @"en-US", @"209354", [NSNull null], nil] forKeys:[NSArray arrayWithObjects:@"os", @"browser", @"release_channel", @"client_version", @"os_version", @"os_arch", @"system_locale", @"client_build_number", @"client_event_source", nil]];
+    }
+    NSData *serializedData = [[CJSONSerializer serializer] serializeDictionary:superPropertiesDict error:nil];
+    return [[NSString encodeBase64WithData:serializedData] autorelease];
 }
 
 @end

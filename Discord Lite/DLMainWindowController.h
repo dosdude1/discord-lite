@@ -23,6 +23,10 @@
 #import "TagSelectionViewController.h"
 #import "DLMessageEditor.h"
 
+typedef enum {
+    DLDialogConfirmMessageDelete = 0
+} DLDialog;
+
 @protocol DLMainWindowDelegate <NSObject>
 @optional
 -(void)logoutWasSuccessful;
@@ -74,6 +78,7 @@
     
     
     DLMessage *lastMessage;
+    DLMessage *messagePendingDeletion;
     DLMessageEditor *messageEditor;
     ServerItemViewController *me;
     

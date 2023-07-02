@@ -105,11 +105,12 @@
     [[NSDistributedNotificationCenter defaultCenter] postNotificationName:@"com.apple.DownloadFileFinished" object:saveFilePath];
 }
 -(void)mouseWasDepressedWithEvent:(NSEvent *)event {
-    attachmentViewerWindow = [[DLAttachmentWindowController alloc] initWithWindowNibName:@"DLAttachmentWindowController"];
-    [attachmentViewerWindow setDelegate:self];
-    [attachmentViewerWindow setViewedAttachmemt:representedObject];
+    if (!attachmentViewerWindow) {
+        attachmentViewerWindow = [[DLAttachmentWindowController alloc] initWithWindowNibName:@"DLAttachmentWindowController"];
+        [attachmentViewerWindow setDelegate:self];
+        [attachmentViewerWindow setViewedAttachmemt:representedObject];
+    }
     [attachmentViewerWindow showWindow:attachmentViewerWindow.window];
-    
 }
 -(void)viewerWindowDidClose {
     [attachmentViewerWindow release];

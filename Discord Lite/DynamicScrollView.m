@@ -41,11 +41,11 @@
         NSRect itemFrame = item.view.frame;
         height += itemFrame.size.height;
         itemFrame.origin.y = [self.documentView frame].size.height - height;
-        itemFrame.size.width = [self.contentView frame].size.width;
+        itemFrame.size.width = [self.documentView frame].size.width;
         item.view.frame = itemFrame;
         [self.documentView addSubview:item.view];
     }
-    NSRect frame = [self frame];
+    NSRect frame = [self.documentView frame];
     frame.size.height = height;
     [self.documentView setFrame: frame];
 }

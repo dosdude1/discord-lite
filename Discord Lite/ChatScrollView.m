@@ -26,61 +26,6 @@
 -(NSArray *)content {
     return content;
 }
--(void)setVisibleSubviews {
-    CGFloat height = 0;
-    NSEnumerator *e = [content reverseObjectEnumerator];
-    ChatItemViewController *item;
-    while (item = [e nextObject]) {
-        CGFloat expectedHeight = [item expectedHeight];
-        NSRect itemFrame = item.view.frame;
-        height += expectedHeight;
-        itemFrame.size.height = expectedHeight;
-        itemFrame.size.width = [self.contentView frame].size.width;
-        itemFrame.origin.y = [self.documentView frame].size.height - height;
-        item.view.frame = itemFrame;
-        [self.documentView addSubview:item.view];
-        [item.view setNeedsDisplay:YES];
-    }
-    NSRect frame = [self frame];
-    frame.size.height = height;
-    [self.documentView setFrame: frame];
-    [self.documentView setNeedsDisplay:YES];
-    [self performSelector:@selector(screenResize) withObject:nil afterDelay:0.5];
-}
--(void)setContent:(NSArray *)inContent {
-    NSEnumerator *e = [content objectEnumerator];
-    ViewController *item;
-    while (item = [e nextObject]) {
-        [item.view removeFromSuperview];
-    }
-    [content release];
-    content = [[NSMutableArray alloc] initWithArray:inContent];
-    [self setVisibleSubviews];
-}
--(void)appendContent:(NSArray *)inContent {
-    NSEnumerator *e = [inContent objectEnumerator];
-    ChatItemViewController *item;
-    while (item = [e nextObject]) {
-        [content addObject:item];
-        
-    }
-    [self setVisibleSubviews];
-}
--(void)prependViewController:(ChatItemViewController *)vc {
-    CGFloat expectedHeight = [vc expectedHeight];
-    NSRect itemFrame = vc.view.frame;
-    itemFrame.size.height = expectedHeight;
-    itemFrame.size.width = [self.contentView frame].size.width;
-    itemFrame.origin.y = 0;
-    vc.view.frame = itemFrame;
-    [vc.view setNeedsDisplay:YES];
-    NSRect frame = [self.documentView frame];
-    frame.size.height += expectedHeight;
-    [self.documentView setFrame: frame];
-    [content insertObject:vc atIndex:0];
-    [self.documentView addSubview:vc.view];
-    [self performSelector:@selector(screenResize) withObject:nil afterDelay:0.5];
-}
 -(void)screenResize {
     CGFloat currentHeight = 0;
     NSEnumerator *e = [content objectEnumerator];
@@ -102,6 +47,81 @@
         currentHeight += [item expectedHeight];
     }
     [self.documentView setNeedsDisplay:YES];
+}
+-(void)setContent:(NSArray *)inContent {
+    NSEnumerator *e = [content objectEnumerator];
+    ChatItemViewController *item;
+    while (item = [e nextObject]) {
+        [item.view removeFromSuperview];
+    }
+    [content release];
+    content = [[NSMutableArray alloc] initWithArray:inContent];
+    CGFloat height = 0;
+    e = [content reverseObjectEnumerator];
+    while (item = [e nextObject]) {
+        CGFloat expectedHeight = [item expectedHeight];
+        NSRect itemFrame = item.view.frame;
+        height += expectedHeight;
+        itemFrame.size.height = expectedHeight;
+        itemFrame.size.width = [self.documentView frame].size.width;
+        itemFrame.origin.y = [self.documentView frame].size.height - height;
+        item.view.frame = itemFrame;
+        [self.documentView addSubview:item.view];
+        [item.view setNeedsDisplay:YES];
+    }
+    NSRect frame = [self.documentView frame];
+    frame.origin.x = self.frame.origin.x;
+    frame.origin.y = self.frame.origin.y;
+    frame.size.height = height;
+    [self.documentView setFrame: frame];
+    [self.documentView setNeedsDisplay:YES];
+    [self performSelector:@selector(screenResize) withObject:nil afterDelay:0.5];
+}
+-(void)appendContent:(NSArray *)inContent {
+    CGFloat height = [self.documentView frame].size.height;
+    NSEnumerator *e = [inContent objectEnumerator];
+    ChatItemViewController *item;
+    while (item = [e nextObject]) {
+        [content addObject:item];
+        CGFloat expectedHeight = [item expectedHeight];
+        NSRect itemFrame = item.view.frame;
+        height += expectedHeight;
+        itemFrame.size.height = expectedHeight;
+        itemFrame.size.width = [self.documentView frame].size.width;
+        itemFrame.origin.y = [self.documentView frame].size.height - height;
+        item.view.frame = itemFrame;
+        [self.documentView addSubview:item.view];
+        [item.view setNeedsDisplay:YES];
+    }
+    
+    NSRect frame = [self.documentView frame];
+    frame.origin.x = self.frame.origin.x;
+    frame.origin.y = self.frame.origin.y;
+    frame.size.height = height;
+    [self.documentView setFrame: frame];
+    [self.documentView setNeedsDisplay:YES];
+    [self screenResize];
+    [self performSelector:@selector(screenResize) withObject:nil afterDelay:0.5];
+}
+-(void)prependViewController:(ChatItemViewController *)vc {
+    CGFloat expectedHeight = [vc expectedHeight];
+    NSRect itemFrame = vc.view.frame;
+    itemFrame.size.height = expectedHeight;
+    itemFrame.size.width = [self.contentView frame].size.width;
+    itemFrame.origin.y = 0;
+    vc.view.frame = itemFrame;
+    [vc.view setNeedsDisplay:YES];
+    NSRect frame = [self.documentView frame];
+    frame.size.height += expectedHeight;
+    [self.documentView setFrame: frame];
+    [content insertObject:vc atIndex:0];
+    [self.documentView addSubview:vc.view];
+    [self performSelector:@selector(screenResize) withObject:nil afterDelay:0.5];
+}
+-(void)removeViewController:(ChatItemViewController *)vc {
+    [vc.view removeFromSuperview];
+    [content removeObject:vc];
+    [self screenResize];
 }
 -(void)endAllChatContentEditing {
     NSEnumerator *e = [content objectEnumerator];

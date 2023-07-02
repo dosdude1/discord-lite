@@ -9,6 +9,8 @@
 #import <Cocoa/Cocoa.h>
 #include <sys/sysctl.h>
 #import "BezierPathRoundedRect.h"
+#import "NSString+Base64.h"
+#import "CJSONSerializer.h"
 
 @interface DLUtil : NSObject
 
@@ -22,5 +24,6 @@
 +(NSString *)generateSnowflake;
 +(NSDate *)dateFromTimestampString:(NSString *)timestampString;
 +(NSString *)userAgentString;
++(NSString *)superPropertiesString;
 
 @end

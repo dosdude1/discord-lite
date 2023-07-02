@@ -17,7 +17,7 @@
 
 -(void)awakeFromNib {
     docViewWidth = 0;
-    NSRect frame = [self.contentView frame];
+    NSRect frame = [self.documentView frame];
     frame.size.width = 50;
     //frame.origin.y = 0;
     [self.documentView setFrame: frame];

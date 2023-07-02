@@ -79,7 +79,7 @@
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <subviews>
                                 <view id="qPm-oO-MeO">
-                                    <rect key="frame" x="0.0" y="680" width="1984" height="2307"/>
+                                    <rect key="frame" x="0.0" y="1021" width="390" height="2292"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                 </view>
                             </subviews>

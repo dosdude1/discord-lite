@@ -26,6 +26,7 @@
 - Two-factor authentication
 - Captchas (in Mac OS X 10.5 or later only)
 - Editing messages
+- Deleting messages
 
 
 #### What does not work

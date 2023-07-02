@@ -26,6 +26,7 @@
 -(void)setContent:(NSArray *)inContent;
 -(void)appendContent:(NSArray *)inContent;
 -(void)prependViewController:(ChatItemViewController *)vc;
+-(void)removeViewController:(ChatItemViewController *)vc;
 -(void)screenResize;
 -(void)endAllChatContentEditing;
 

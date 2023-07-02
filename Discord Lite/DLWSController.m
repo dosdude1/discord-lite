@@ -35,6 +35,7 @@ static size_t writecb(char *b, size_t size, size_t nitems, void *p) {
     self = [super init];
     heartbeatResponseReceived = NO;
     shouldResume = NO;
+    didReconnect = NO;
     didResume = NO;
     sequenceNumber = 0;
     return self;
@@ -83,6 +84,8 @@ static size_t writecb(char *b, size_t size, size_t nitems, void *p) {
 }
 
 -(void)startWithAuthToken:(NSString *)inToken {
+    [token release];
+    [inToken retain];
     token = inToken;
     [NSThread detachNewThreadSelector:@selector(startWebSocketThread) toTarget:self withObject:nil];
 }
@@ -96,7 +99,6 @@ static size_t writecb(char *b, size_t size, size_t nitems, void *p) {
     }
     shouldResume = NO;
 }
-
 -(void)sendWSTextData:(NSData *)textData {
     if (curlWebSocketHandle) {
         size_t sent;
@@ -107,15 +109,27 @@ static size_t writecb(char *b, size_t size, size_t nitems, void *p) {
 -(void)sendWSHeartbeat {
     if (heartbeatResponseReceived) {
         heartbeatResponseReceived = NO;
-        NSDictionary *response = [NSDictionary dictionaryWithObjects:[NSArray arrayWithObjects:[NSNumber numberWithInt:OPCodeHeartbeat], [NSNumber numberWithInt:sequenceNumber], nil] forKeys:[NSArray arrayWithObjects:@kWSOperation, @kWSData ,nil]];
+        NSDictionary *response = [NSDictionary dictionaryWithObjects:[NSArray arrayWithObjects:[NSNumber numberWithInt:OPCodeHeartbeat], [NSNumber numberWithInt:sequenceNumber], nil] forKeys:[NSArray arrayWithObjects:@kWSOperation, @kWSData, nil]];
         NSData *toSend = [[CJSONSerializer serializer] serializeDictionary:response error:nil];
-        
         [self sendWSTextData:toSend];
     } else {
         shouldResume = YES;
-        didResume = YES;
-        curl_easy_setopt(curlWebSocketHandle, CURLOPT_TIMEOUT_MS, 1);
-        [self performSelector:@selector(startWithAuthToken:) withObject:token afterDelay:0.1];
+        didResume = NO;
+        if (curlWebSocketHandle) {
+            curl_easy_setopt(curlWebSocketHandle, CURLOPT_TIMEOUT_MS, 1);
+        }
+        [self performSelector:@selector(startWithAuthToken:) withObject:token afterDelay:0.15];
+    }
+}
+
+-(void)handleResumeStatus {
+    shouldResume = NO;
+    if (!didResume) {
+        didReconnect = YES;
+        if (curlWebSocketHandle) {
+            curl_easy_setopt(curlWebSocketHandle, CURLOPT_TIMEOUT_MS, 1);
+        }
+        [self performSelector:@selector(startWithAuthToken:) withObject:token afterDelay:0.15];
     }
 }
 
@@ -159,10 +173,6 @@ static size_t writecb(char *b, size_t size, size_t nitems, void *p) {
     [self sendWSTextData:str];
 }
 
--(BOOL)didResume {
-    return didResume;
-}
-
 #pragma mark Delegated Functions
 
 -(void)wsTextDataReceived:(NSData *)textData {
@@ -183,7 +193,7 @@ static size_t writecb(char *b, size_t size, size_t nitems, void *p) {
                 [delegate wsDidReceiveUserSettingsData:[wsData objectForKey:@"user_settings"]];
                 [delegate wsDidReceiveUserData:[wsData objectForKey:@"user"]];
                 [delegate wsDidReceivePrivateChannelData:[wsData objectForKey:@"private_channels"]];
-                [delegate wsDidLoadAllData];
+                [delegate wsDidLoadAllDataAfterReconnection:didReconnect];
                 [delegate wsDidReceiveReadStateData:[wsData
                                                      objectForKey:@"read_state"]];
             } else if ([type isEqualToString:@"MESSAGE_ACK"]) {
@@ -208,19 +218,26 @@ static size_t writecb(char *b, size_t size, size_t nitems, void *p) {
                 NSDictionary *wsData = [res objectForKey:@kWSData];
                 NSString *messageID = [wsData objectForKey:@"id"];
                 [delegate wsMessageWithID:messageID wasUpdatedWithData:wsData];
+            } else if ([type isEqualToString:@"RESUMED"]) {
+                didResume = YES;
+            }
+            else if ([type isEqualToString:@"MESSAGE_DELETE"]) {
+                NSDictionary *wsData = [res objectForKey:@kWSData];
+                NSString *messageID = [wsData objectForKey:@"id"];
+                [delegate wsMessageWithIDWasDeleted:messageID];
             }
             break;
         }
         case OPCodeHello: {
             heartbeatResponseReceived = YES;
             if (shouldResume) {
-                shouldResume = NO;
                 NSMutableDictionary *d = [[NSMutableDictionary alloc] init];
                 [d setObject:[NSNumber numberWithInt:OPCodeResume] forKey:@kWSOperation];
                 NSDictionary *data = [[NSDictionary alloc] initWithObjects:[NSArray arrayWithObjects:token, sessionID, [NSNumber numberWithInt:sequenceNumber], nil] forKeys:[NSArray arrayWithObjects:@"token", @"session_id", @"seq", nil]];
                 [d setObject:data forKey:@kWSData];
                 NSData *str = [[CJSONSerializer serializer] serializeDictionary:d error:nil];
                 [self sendWSTextData:str];
+                [self performSelector:@selector(handleResumeStatus) withObject:nil afterDelay:2];
             } else {
                 NSDictionary *wsData = [res objectForKey:@kWSData];
                 heartbeatInterval = [[wsData objectForKey:@"heartbeat_interval"] intValue];

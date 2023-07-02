@@ -44,12 +44,13 @@ typedef enum {
 -(void)wsDidReceiveReadStateData:(NSArray *)data;
 -(void)wsDidReceiveUserData:(NSDictionary *)data;
 -(void)wsDidReceiveUserSettingsData:(NSDictionary *)data;
--(void)wsDidLoadAllData;
+-(void)wsDidLoadAllDataAfterReconnection:(BOOL)didReconnect;
 -(void)wsDidAcknowledgeMessage:(DLMessage *)m;
 -(void)wsUserWithID:(NSString *)userID didStartTypingInServerWithID:(NSString *)serverID inChannelWithID:(NSString *)channelID withMemberData:(NSDictionary *)memberData;
 -(void)wsUserWithID:(NSString *)userID didStartTypingInDirectMessageChannelWithID:(NSString *)channelID;
 -(void)wsDidReceiveMemberData:(NSArray *)memberData forServerWithID:(NSString *)serverID;
 -(void)wsMessageWithID:(NSString *)messageID wasUpdatedWithData:(NSDictionary *)data;
+-(void)wsMessageWithIDWasDeleted:(NSString *)messageID;
 @end
 
 @interface DLWSController : NSObject {
@@ -62,6 +63,7 @@ typedef enum {
     BOOL heartbeatResponseReceived;
     BOOL shouldResume;
     int sequenceNumber;
+    BOOL didReconnect;
     BOOL didResume;
 }
 
@@ -75,8 +77,6 @@ typedef enum {
 -(void)updateWSForChannel:(DLChannel *)c inServer:(DLServer *)s;
 
 -(void)queryServer:(DLServer *)s forMembersContainingUsername:(NSString *)username;
-
--(BOOL)didResume;
 
 
 //For libcurl callback

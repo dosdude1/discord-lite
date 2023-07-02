@@ -430,6 +430,15 @@ const NSTimeInterval TYPING_SEND_INTERVAL = 8.0;
     return (tagIndex != NSNotFound) && ([[textPreSelection substringFromIndex:tagIndex] rangeOfString:@" "].location == NSNotFound);
 }
 
+- (void)alertDidEnd:(NSAlert *)alert returnCode:(NSInteger)returnCode contextInfo:(void *)contextInfo {
+    if (contextInfo == DLDialogConfirmMessageDelete) {
+        if (returnCode == NSAlertSecondButtonReturn) {
+            [[DLController sharedInstance] deleteMessage:messagePendingDeletion];
+        }
+        messagePendingDeletion = nil;
+    }
+}
+
 -(void)dealloc {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
     [super dealloc];
@@ -596,7 +605,7 @@ const NSTimeInterval TYPING_SEND_INTERVAL = 8.0;
         [view setDelegate:self];
         [view setRepresentedObject:item];
         if ([[item author] isEqual:[[DLController sharedInstance] myUser]]) {
-            [view setAllowsEditingContent:YES];
+            [view setIsMyContent:YES];
         }
         [views addObject:view];
         lastMessage = item;
@@ -626,7 +635,7 @@ const NSTimeInterval TYPING_SEND_INTERVAL = 8.0;
         [view setRepresentedObject:m];
         [view setDelegate:self];
         if ([[m author] isEqual:[[DLController sharedInstance] myUser]]) {
-            [view setAllowsEditingContent:YES];
+            [view setIsMyContent:YES];
         }
         [chatScrollView prependViewController:view];
         [[m author] setTyping:NO];
@@ -748,8 +757,12 @@ const NSTimeInterval TYPING_SEND_INTERVAL = 8.0;
     [chatView becomeWindowFirstResponderForEditing:self.window];
     return YES;
 }
--(void)chatViewUpdatedWithEnteredText {
+-(void)chatViewUpdatedWithEnteredText:(ChatItemViewController *)chatView {
     [chatScrollView screenResize];
+}
+
+-(void)chatViewContentWasUpdated:(ChatItemViewController *)chatView {
+    [chatScrollView performSelector:@selector(screenResize) withObject:nil afterDelay:0.5];
 }
 
 -(void)chatView:(ChatItemViewController *)chatView didEndEditingWithCommit:(BOOL)didCommit {
@@ -759,6 +772,20 @@ const NSTimeInterval TYPING_SEND_INTERVAL = 8.0;
         [chatScrollView performSelector:@selector(screenResize) withObject:nil afterDelay:0.5];
     }
     [self.window makeFirstResponder:messageEntryTextView];
+}
+
+-(void)chatViewMessageShouldBeDeleted:(ChatItemViewController *)chatView {
+    messagePendingDeletion = [chatView representedObject];
+    NSAlert *alert = [[NSAlert alloc] init];
+    [alert setMessageText:@"Delete Message"];
+    [alert setInformativeText:@"Are you sure you want to delete the selected message?"];
+    [alert addButtonWithTitle:@"No"];
+    [alert addButtonWithTitle:@"Yes"];
+    [alert beginSheetModalForWindow:self.window modalDelegate:self didEndSelector:@selector(alertDidEnd:returnCode:contextInfo:) contextInfo:DLDialogConfirmMessageDelete];
+}
+
+-(void)chatViewMessageWasDeleted:(ChatItemViewController *)chatView {
+    [chatScrollView removeViewController:chatView];
 }
 
 #pragma mark Text View Delegated Functions

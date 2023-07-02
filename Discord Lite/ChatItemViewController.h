@@ -18,8 +18,11 @@
 @optional
 -(void)addReferencedMessage:(DLMessage *)m;
 -(BOOL)chatViewShouldBeginEditing:(ChatItemViewController *)chatView;
--(void)chatViewUpdatedWithEnteredText;
+-(void)chatViewUpdatedWithEnteredText:(ChatItemViewController *)chatView;
+-(void)chatViewContentWasUpdated:(ChatItemViewController *)chatView;
 -(void)chatView:(ChatItemViewController *)chatView didEndEditingWithCommit:(BOOL)didCommit;
+-(void)chatViewMessageShouldBeDeleted:(ChatItemViewController *)chatView;
+-(void)chatViewMessageWasDeleted:(ChatItemViewController *)chatView;
 @end
 
 @interface ChatItemViewController : ViewController <DLUserDelegate, NSViewEventDelegate, NSTextViewMenuDelegate, DLMessageDelegate> {
@@ -38,6 +41,7 @@
     BOOL viewHasLoaded;
     NSMenu *contextMenu;
     NSMenuItem *editItem;
+    NSMenuItem *deleteItem;
     BOOL isEditing;
     IBOutlet NSTextField *editDismissInfoLabel;
     IBOutlet NSTextField *editedInfoLabel;
@@ -48,7 +52,7 @@
 
 -(void)setDelegate:(id<ChatItemViewControllerDelegate>)inDelegate;
 -(void)setRepresentedObject:(DLMessage *)obj;
--(void)setAllowsEditingContent:(BOOL)editable;
+-(void)setIsMyContent:(BOOL)mine;
 -(void)beginEditingContent;
 -(void)endEditingContent;
 -(BOOL)isBeingEdited;

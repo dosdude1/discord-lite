@@ -13,6 +13,7 @@
 
 @protocol DLMessageDelegate <NSObject>
 -(void)messageContentWasUpdated;
+-(void)messageWasDeleted;
 @end
 
 @interface DLMessage : NSObject {
@@ -54,5 +55,6 @@
 -(void)setAttachments:(NSArray *)inAttachments;
 -(void)setReferencedMessage:(DLMessage *)m;
 -(void)setServerID:(NSString *)inServerID;
+-(void)remove;
 
 @end

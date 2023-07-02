@@ -57,6 +57,9 @@ const NSInteger ATTACHMENT_SPACING = 15;
     editItem = [[NSMenuItem alloc] initWithTitle:@"Edit Message" action:@selector(beginEditingContent) keyEquivalent:@""];
     [editItem setTarget:self];
     
+    deleteItem = [[NSMenuItem alloc] initWithTitle:@"Delete Message" action:@selector(beginDeletingMessage) keyEquivalent:@""];
+    [deleteItem setTarget:self];
+    
 }
 
 -(CGFloat)expectedHeight {
@@ -99,7 +102,10 @@ const NSInteger ATTACHMENT_SPACING = 15;
     [representedObject setDelegate:self];
     [[representedObject author] setDelegate:self];
     
-    [[chatTextView textStorage] setAttributedString:[DLTextParser attributedContentStringForMessage:representedObject]];
+    NSAttributedString *as = [DLTextParser attributedContentStringForMessage:representedObject];
+    if (as) {
+        [[chatTextView textStorage] setAttributedString:as];
+    }
     
     [usernameTextField setStringValue:[[representedObject author] username]];
     [avatarImageView setImage:[DLUtil imageResize:[[[NSImage alloc] initWithData:[[representedObject author] avatarImageData]] autorelease] newSize:avatarImageView.frame.size cornerRadius:[ChatItemViewController AVATAR_RADIUS]]];
@@ -195,11 +201,13 @@ const NSInteger ATTACHMENT_SPACING = 15;
     [delegate addReferencedMessage:representedObject];
 }
 
--(void)setAllowsEditingContent:(BOOL)editable {
-    if (editable) {
+-(void)setIsMyContent:(BOOL)mine {
+    if (mine) {
         [contextMenu addItem:editItem];
+        [contextMenu addItem:deleteItem];
     } else {
         [contextMenu removeItem:editItem];
+        [contextMenu removeItem:deleteItem];
     }
 }
 
@@ -219,6 +227,9 @@ const NSInteger ATTACHMENT_SPACING = 15;
 }
 -(BOOL)isBeingEdited {
     return isEditing;
+}
+-(void)beginDeletingMessage {
+    [delegate chatViewMessageShouldBeDeleted:self];
 }
 -(void)becomeWindowFirstResponderForEditing:(NSWindow *)window {
     [window makeFirstResponder:chatTextView];
@@ -263,12 +274,16 @@ const NSInteger ATTACHMENT_SPACING = 15;
 }
 -(void)messageContentWasUpdated {
     [self updateViewFromRepresentedObject];
+    [delegate chatViewContentWasUpdated:self];
+}
+-(void)messageWasDeleted {
+    [delegate chatViewMessageWasDeleted:self];
 }
 
 #pragma mark TextView Delegated Functions
 
 -(void)textDidChange:(NSNotification *)notification {
-    [delegate chatViewUpdatedWithEnteredText];
+    [delegate chatViewUpdatedWithEnteredText:self];
 }
 
 - (BOOL)textView:(NSTextView *)aTextView doCommandBySelector:(SEL)aSelector

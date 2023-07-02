@@ -57,6 +57,10 @@ static DLController* sharedObject = nil;
     return (token && ![token isEqualToString:@""]);
 }
 
+-(NSDictionary *)requestHeaders {
+    return [[NSDictionary dictionaryWithObjects:[NSArray arrayWithObjects:token, [DLUtil superPropertiesString], nil] forKeys:[NSArray arrayWithObjects:@"Authorization", @"X-Super-Properties", nil]] autorelease];
+}
+
 -(void)loginWithEmail:(NSString *)email andPassword:(NSString *)password {
     NSMutableDictionary *params = [NSMutableDictionary dictionaryWithObjects:[NSArray arrayWithObjects:email, password, nil] forKeys:[NSArray arrayWithObjects:@"email", @"password", nil]];
     if (captchaKey) {
@@ -65,6 +69,7 @@ static DLController* sharedObject = nil;
     AsyncHTTPPostRequest *req = [[AsyncHTTPPostRequest alloc] init];
     [req setDelegate:self];
     [req setParameters:params];
+    [req setHeaders:[NSDictionary dictionaryWithObjects:[NSArray arrayWithObjects:[DLUtil superPropertiesString], nil] forKeys:[NSArray arrayWithObjects:@"X-Super-Properties", nil]]];
     [req setIdentifier:RequestIDLogin];
     
     [req setUrl:[@API_ROOT stringByAppendingString:@"/auth/login"]];
@@ -76,6 +81,7 @@ static DLController* sharedObject = nil;
     AsyncHTTPPostRequest *req = [[AsyncHTTPPostRequest alloc] init];
     [req setDelegate:self];
     [req setParameters:params];
+    [req setHeaders:[NSDictionary dictionaryWithObjects:[NSArray arrayWithObjects:[DLUtil superPropertiesString], nil] forKeys:[NSArray arrayWithObjects:@"X-Super-Properties", nil]]];
     [req setIdentifier:RequestIDTwoFactor];
     
     [req setUrl:[@API_ROOT stringByAppendingString:@"/auth/mfa/totp"]];
@@ -96,7 +102,7 @@ static DLController* sharedObject = nil;
     
     AsyncHTTPGetRequest *req = [[AsyncHTTPGetRequest alloc] init];
     [req setDelegate:self];
-    [req setHeaders:[NSDictionary dictionaryWithObjects:[NSArray arrayWithObjects:token, nil] forKeys:[NSArray arrayWithObjects:@"Authorization", nil]]];
+    [req setHeaders:[self requestHeaders]];
     [req setIdentifier:RequestIDMessages];
     NSString *requestURL = [@API_ROOT stringByAppendingString:[NSString stringWithFormat:@"/channels/%@/messages?limit=%ld", c.channelID, numMsgs]];
     if (m != nil) {
@@ -119,9 +125,20 @@ static DLController* sharedObject = nil;
         }
         [req setFiles:files];
     }
-    [req setHeaders:[NSDictionary dictionaryWithObjects:[NSArray arrayWithObjects:token, nil] forKeys:[NSArray arrayWithObjects:@"Authorization", nil]]];
+    [req setHeaders:[self requestHeaders]];
     [req setIdentifier:RequestIDSendMessage];
     NSString *requestURL = [@API_ROOT stringByAppendingString:[NSString stringWithFormat:@"/channels/%@/messages", c.channelID]];
+    [req setUrl:requestURL];
+    [req start];
+}
+
+-(void)deleteMessage:(DLMessage *)m {
+    AsyncHTTPPostRequest *req = [[AsyncHTTPPostRequest alloc] init];
+    [req setDelegate:self];
+    [req setHeaders:[self requestHeaders]];
+    [req setIdentifier:RequestIDMessageDelete];
+    [req setMethod:@"DELETE"];
+    NSString *requestURL = [@API_ROOT stringByAppendingString:[NSString stringWithFormat:@"/channels/%@/messages/%@", [m channelID], [m messageID]]];
     [req setUrl:requestURL];
     [req start];
 }
@@ -130,7 +147,7 @@ static DLController* sharedObject = nil;
     AsyncHTTPPostRequest *req = [[AsyncHTTPPostRequest alloc] init];
     [req setDelegate:self];
     [req setParameters:[NSDictionary dictionaryWithObject:[NSNull null] forKey:@"token"]];
-    [req setHeaders:[NSDictionary dictionaryWithObjects:[NSArray arrayWithObjects: token, nil] forKeys:[NSArray arrayWithObjects:@"Authorization", nil]]];
+    [req setHeaders:[self requestHeaders]];
     [req setIdentifier:RequestIDAckMessage];
     NSString *requestURL = [@API_ROOT stringByAppendingString:[NSString stringWithFormat:@"/channels/%@/messages/%@/ack", [m channelID], [m messageID]]];
     [req setUrl:requestURL];
@@ -141,7 +158,7 @@ static DLController* sharedObject = nil;
     AsyncHTTPPostRequest *req = [[AsyncHTTPPostRequest alloc] init];
     [req setDelegate:self];
     [req setParameters:[NSDictionary dictionaryWithObjects:[NSArray arrayWithObjects:@"apns_voip", @"apns", nil] forKeys:[NSArray arrayWithObjects:@"voip_provider", @"provider", nil]]];
-    [req setHeaders:[NSDictionary dictionaryWithObjects:[NSArray arrayWithObjects:token, nil] forKeys:[NSArray arrayWithObjects:@"Authorization", nil]]];
+    [req setHeaders:[self requestHeaders]];
     [req setIdentifier:RequestIDLogout];
     NSString *requestURL = [@API_ROOT stringByAppendingString:@"/auth/logout"];
     [req setUrl:requestURL];
@@ -171,7 +188,7 @@ static DLController* sharedObject = nil;
     AsyncHTTPPostRequest *req = [[AsyncHTTPPostRequest alloc] init];
     [req setDelegate:self];
     [req setParameters:[NSDictionary dictionaryWithObject:[NSNull null] forKey:@"token"]];
-    [req setHeaders:[NSDictionary dictionaryWithObjects:[NSArray arrayWithObjects: token, nil] forKeys:[NSArray arrayWithObjects:@"Authorization", nil]]];
+    [req setHeaders:[self requestHeaders]];
     [req setIdentifier:RequestIDTyping];
     NSString *requestURL = [@API_ROOT stringByAppendingString:[NSString stringWithFormat:@"/channels/%@/typing", [c channelID]]];
     [req setUrl:requestURL];
@@ -182,7 +199,7 @@ static DLController* sharedObject = nil;
     AsyncHTTPPostRequest *req = [[AsyncHTTPPostRequest alloc] init];
     [req setDelegate:self];
     [req setParameters:[NSDictionary dictionaryWithObject:[m content] forKey:@"content"]];
-    [req setHeaders:[NSDictionary dictionaryWithObjects:[NSArray arrayWithObjects: token, nil] forKeys:[NSArray arrayWithObjects:@"Authorization", nil]]];
+    [req setHeaders:[self requestHeaders]];
     [req setIdentifier:RequestIDMessageEdit];
     [req setMethod:@"PATCH"];
     NSString *requestURL = [@API_ROOT stringByAppendingString:[NSString stringWithFormat:@"/channels/%@/messages/%@", [m channelID], [m messageID]]];
@@ -544,9 +561,8 @@ static DLController* sharedObject = nil;
     myUserSettings = [[DLUserSettings alloc] initWithDict:data];
 }
 
--(void)wsDidLoadAllData {
-    [delegate initialDataWasReceived];
-    if ([[DLWSController sharedInstance] didResume]) {
+-(void)wsDidLoadAllDataAfterReconnection:(BOOL)didReconnect {
+    if (didReconnect) {
         if (selectedServer && selectedChannel) {
             if ([selectedServer isEqual:myServerItem]) {
                 [[DLWSController sharedInstance] updateWSForDirectMessageChannel:selectedChannel];
@@ -554,6 +570,8 @@ static DLController* sharedObject = nil;
                 [[DLWSController sharedInstance] updateWSForChannel:selectedChannel inServer:selectedServer];
             }
         }
+    } else {
+        [delegate initialDataWasReceived];
     }
 }
 
@@ -606,6 +624,21 @@ static DLController* sharedObject = nil;
         if ([[m messageID] isEqualToString:messageID]) {
             [m updateWithDict:data];
         }
+    }
+}
+-(void)wsMessageWithIDWasDeleted:(NSString *)messageID {
+    DLMessage *msgToDelete;
+    NSEnumerator *e = [loadedMessages objectEnumerator];
+    DLMessage *m;
+    while (m = [e nextObject]) {
+        if ([[m messageID] isEqualToString:messageID]) {
+            msgToDelete = m;
+            break;
+        }
+    }
+    if (msgToDelete) {
+        [msgToDelete remove];
+        [loadedMessages removeObject:msgToDelete];
     }
 }
 
