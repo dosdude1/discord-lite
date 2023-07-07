@@ -118,7 +118,7 @@ static size_t writecb(char *b, size_t size, size_t nitems, void *p) {
         if (curlWebSocketHandle) {
             curl_easy_setopt(curlWebSocketHandle, CURLOPT_TIMEOUT_MS, 1);
         }
-        [self performSelector:@selector(startWithAuthToken:) withObject:token afterDelay:0.15];
+        [self performSelector:@selector(startWithAuthToken:) withObject:token afterDelay:1];
     }
 }
 
@@ -129,7 +129,7 @@ static size_t writecb(char *b, size_t size, size_t nitems, void *p) {
         if (curlWebSocketHandle) {
             curl_easy_setopt(curlWebSocketHandle, CURLOPT_TIMEOUT_MS, 1);
         }
-        [self performSelector:@selector(startWithAuthToken:) withObject:token afterDelay:0.15];
+        [self performSelector:@selector(startWithAuthToken:) withObject:token afterDelay:1];
     }
 }
 
@@ -237,6 +237,10 @@ static size_t writecb(char *b, size_t size, size_t nitems, void *p) {
                 [d setObject:data forKey:@kWSData];
                 NSData *str = [[CJSONSerializer serializer] serializeDictionary:d error:nil];
                 [self sendWSTextData:str];
+                if (heartbeatTimer) {
+                    [heartbeatTimer invalidate];
+                }
+                heartbeatTimer = [NSTimer scheduledTimerWithTimeInterval:heartbeatInterval/1000.0 target:self selector:@selector(sendWSHeartbeat) userInfo:nil repeats:YES];
                 [self performSelector:@selector(handleResumeStatus) withObject:nil afterDelay:2];
             } else {
                 NSDictionary *wsData = [res objectForKey:@kWSData];

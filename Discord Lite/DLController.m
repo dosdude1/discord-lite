@@ -90,10 +90,11 @@ static DLController* sharedObject = nil;
 
 -(void)loadMessagesForChannel:(DLChannel *)c beforeMessage:(DLMessage *)m quantity:(NSInteger)numMsgs {
     if (![c isEqual:selectedChannel]) {
+        [loadedMessages removeAllObjects];
         [selectedChannel release];
         [c retain];
         selectedChannel = c;
-        if ([selectedServer isEqual:myServerItem]) {
+        if ([selectedServer isEqual:[self myServerItem]]) {
             [[DLWSController sharedInstance] updateWSForDirectMessageChannel:c];
         } else {
             [[DLWSController sharedInstance] updateWSForChannel:c inServer:selectedServer];
@@ -230,7 +231,6 @@ static DLController* sharedObject = nil;
             }
         }
     }
-    [loadedServers setObject:[self myServerItem] forKey:[[self myServerItem] serverID]];
     return servers;
 }
 -(NSArray *)channelsForServer:(DLServer *)s {
@@ -415,16 +415,18 @@ static DLController* sharedObject = nil;
 
 -(void)handleMessagesRequestResponse:(AsyncHTTPRequest *)req {
     if ([req result] == HTTPResultOK) {
-        [loadedMessages removeAllObjects];
         NSArray *resArray = [[CJSONDeserializer deserializer] deserializeAsArray:[req responseData] error:nil];
         NSEnumerator *e = [resArray objectEnumerator];
         NSDictionary *messageData;
+        NSMutableArray *newMessages = [[NSMutableArray alloc] init];
         while (messageData = [e nextObject]) {
             DLMessage *m = [[DLMessage alloc] initWithDict:messageData];
-            [loadedMessages addObject:m];
+            [newMessages addObject:m];
             [m release];
         }
-        [delegate messages:loadedMessages receivedForChannel:selectedChannel];
+        [loadedMessages addObjectsFromArray:newMessages];
+        [delegate messages:newMessages receivedForChannel:selectedChannel];
+        [newMessages release];
     } else {
         [self handleHTTPRequestError:req];
     }
@@ -517,7 +519,6 @@ static DLController* sharedObject = nil;
 }
 
 -(void)wsDidReceiveServerData:(NSArray *)data {
-    [loadedServers removeObjectForKey:[[self myServerItem] serverID]];
     NSEnumerator *e = [data objectEnumerator];
     NSDictionary *serverData;
     while (serverData = [e nextObject]) {
@@ -537,6 +538,7 @@ static DLController* sharedObject = nil;
             }
         }
     }
+    [loadedServers setObject:[self myServerItem] forKey:[[self myServerItem] serverID]];
 }
 
 -(void)wsDidReceiveReadStateData:(NSArray *)data {
@@ -627,7 +629,7 @@ static DLController* sharedObject = nil;
     }
 }
 -(void)wsMessageWithIDWasDeleted:(NSString *)messageID {
-    DLMessage *msgToDelete;
+    DLMessage *msgToDelete = nil;
     NSEnumerator *e = [loadedMessages objectEnumerator];
     DLMessage *m;
     while (m = [e nextObject]) {

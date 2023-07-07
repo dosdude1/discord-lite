@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Discord Lite/DLMainWindowController.m"
-            timestampString = "710027632.588523"
+            timestampString = "710120375.3694659"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "547"
-            endingLineNumber = "547"
+            startingLineNumber = "548"
+            endingLineNumber = "548"
             landmarkName = "-serverItemWasSelected:"
             landmarkType = "5">
          </BreakpointContent>
@@ -26,7 +26,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Discord Lite/ServerItemViewController.m"
-            timestampString = "686791166.544313"
+            timestampString = "710118848.409723"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "33"

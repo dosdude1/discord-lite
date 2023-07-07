@@ -134,7 +134,9 @@
 }
 
 -(void)remove {
-    [delegate messageWasDeleted];
+    if ([delegate respondsToSelector:@selector(messageWasDeleted)]) {
+        [delegate messageWasDeleted];
+    }
 }
 
 -(void)dealloc {

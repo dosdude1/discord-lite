@@ -104,7 +104,6 @@ const NSTimeInterval TYPING_SEND_INTERVAL = 8.0;
     if (!isLoadingViews) {
         isLoadingViews = YES;
         NSMutableArray *views = [[NSMutableArray alloc] init];
-        NSEnumerator *e = [[[DLController sharedInstance] userServers] objectEnumerator];
         
         me = [[[ServerItemViewController alloc] initWithNibNamed:@"ServerItemViewController" bundle:nil] autorelease];
         [me setType:ServerItemViewTypeMe];
@@ -120,18 +119,20 @@ const NSTimeInterval TYPING_SEND_INTERVAL = 8.0;
         [views addObject:me];
         [views addObject:separator];
         
+        NSEnumerator *e = [[[DLController sharedInstance] userServers] objectEnumerator];
         DLServer *item;
         while (item = [e nextObject]) {
-            ServerItemViewController *view = [[[ServerItemViewController alloc] initWithNibNamed:@"ServerItemViewController" bundle:nil] autorelease];
-            
-            
-            [view setRepresentedObject:item];
-            [view setDelegate:self];
-            if ([[[DLController sharedInstance] selectedServer] isEqual:item]) {
-                [view setSelected:YES];
+            if (![item isEqual:[[DLController sharedInstance] myServerItem]]) {
+                ServerItemViewController *view = [[[ServerItemViewController alloc] initWithNibNamed:@"ServerItemViewController" bundle:nil] autorelease];
+                
+                
+                [view setRepresentedObject:item];
+                [view setDelegate:self];
+                if ([[[DLController sharedInstance] selectedServer] isEqual:item]) {
+                    [view setSelected:YES];
+                }
+                [views addObject:view];
             }
-            [views addObject:view];
-            
         }
         [serversScrollView performSelectorOnMainThread:@selector(setContent:) withObject:views waitUntilDone:NO];
         [serverViews release];
@@ -649,12 +650,6 @@ const NSTimeInterval TYPING_SEND_INTERVAL = 8.0;
     NSEnumerator *e = [[m mentionedUsers] objectEnumerator];
     DLUser *user;
     if (![[m author] isEqual:[[DLController sharedInstance] myUser]]) {
-        while (user = [e nextObject]) {
-            if ([user isEqual:[[DLController sharedInstance] myUser]]) {
-                mentioned = YES;
-            }
-        }
-        e = [[[m referencedMessage] mentionedUsers] objectEnumerator];
         while (user = [e nextObject]) {
             if ([user isEqual:[[DLController sharedInstance] myUser]]) {
                 mentioned = YES;
