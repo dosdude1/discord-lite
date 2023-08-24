@@ -14,6 +14,7 @@
     defaultTextColor = [[childChannelLabel textColor] retain];
     [view setDelegate:self];
     [dmView setDelegate:self];
+    isSelected = NO;
     [view setNeedsDisplay:YES];
 }
 
@@ -33,6 +34,8 @@
         [childChannelLabel setStringValue:[(DLServerChannel *)representedObject name]];
     }
     [self updateMentionsLabel];
+    [self updateUnreadStatus];
+    [view setNeedsDisplay:YES];
 }
 
 -(void)setType:(ChannelItemViewType)t {
@@ -51,18 +54,31 @@
 -(void)setDelegate:(id<ChannelItemDelegate>)inDelegate {
     delegate = inDelegate;
 }
+-(void)updateUnreadStatus {
+    if ([representedObject hasUnreadMessages]) {
+        [childChannelLabel setTextColor:[NSColor whiteColor]];
+        [statusIndicatorView setDrawnIndicator:ServerStatusIndicatorUnread];
+    } else {
+        if (!isSelected) {
+            [childChannelLabel setTextColor:defaultTextColor];
+        }
+        [statusIndicatorView setDrawnIndicator:ServerStatusIndicatorNone];
+    }
+    [statusIndicatorView setNeedsDisplay:YES];
+}
 -(void)mouseWasDepressedWithEvent:(NSEvent *)event {
     [delegate channelItemWasSelected:self];
     [self setSelected:YES];
 }
 -(void)setSelected:(BOOL)selected {
+    isSelected = selected;
     if (selected) {
         [view setBackgroundColor:[NSColor colorWithCalibratedRed:50.0/255.0 green:54.0/255.0 blue:60.0/255.0 alpha:1.0f]];
         [childChannelLabel setTextColor:[NSColor whiteColor]];
         [view setNeedsDisplay:YES];
     } else {
         [view setBackgroundColor:[NSColor clearColor]];
-        [childChannelLabel setTextColor:defaultTextColor];
+        [self updateUnreadStatus];
         [view setNeedsDisplay:YES];
     }
 }
@@ -91,6 +107,9 @@
 
 -(void)mentionsUpdatedForChannel:(DLChannel *)c {
     [self updateMentionsLabel];
+}
+-(void)unreadStatusUpdatedForChannel:(DLChannel *)c {
+    [self updateUnreadStatus];
 }
 
 @end

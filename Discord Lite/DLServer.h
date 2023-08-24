@@ -16,6 +16,7 @@
 @optional
 -(void)iconDidUpdateWithData:(NSData *)data;
 -(void)mentionCountDidUpdate;
+-(void)unreadStatusDidUpdate;
 @end
 
 @interface DLServer : NSObject <AsyncHTTPRequestDelegate> {
@@ -26,6 +27,7 @@
     NSInteger mentionCount;
     NSMutableArray *members;
     id<DLServerDelegate> delegate;
+    BOOL hasUnreadMessages;
 }
 
 -(id)init;
@@ -37,6 +39,7 @@
 -(NSData *)iconImageData;
 -(NSInteger)mentionCount;
 -(NSArray *)members;
+-(BOOL)hasUnreadMessages;
 
 -(void)setServerID:(NSString *)inId;
 -(void)setName:(NSString *)inName;
@@ -52,5 +55,8 @@
 
 -(void)notifyOfNewMention;
 -(void)addMentionCount:(NSInteger)inMentions;
+-(void)setMentionCount:(NSInteger)inMentions;
+
+-(void)setHasUnreadMessages:(BOOL)unread;
 
 @end

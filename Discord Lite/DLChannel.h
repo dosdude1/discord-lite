@@ -24,6 +24,7 @@ typedef enum {
 @optional
 -(void)channel:(DLChannel *)c imageDidUpdateWithData:(NSData *)d;
 -(void)mentionsUpdatedForChannel:(DLChannel *)c;
+-(void)unreadStatusUpdatedForChannel:(DLChannel *)c;
 @end
 
 @interface DLChannel : NSObject {
@@ -33,8 +34,9 @@ typedef enum {
     NSData *subImageData;
     NSString *name;
     NSInteger mentionCount;
-    NSString *lastMessageID;
     id<DLChannelDelegate> delegate;
+    BOOL hasUnreadMessages;
+    DLMessage *lastMessage;
 }
 
 -(id)init;
@@ -51,7 +53,8 @@ typedef enum {
 -(NSArray *)children;
 -(NSInteger)mentionCount;
 -(NSString *)serverID;
--(NSString *)lastMessageID;
+-(BOOL)hasUnreadMessages;
+-(DLMessage *)lastMessage;
 
 -(DLUser *)recipientWithUserID:(NSString *)userID;
 -(NSArray *)recipientsWithUsernameContainingString:(NSString *)username;
@@ -63,6 +66,7 @@ typedef enum {
 -(void)notifyOfNewMention;
 -(void)setMentionCount:(NSInteger)inMentions;
 - (NSComparisonResult)compare:(DLChannel *)o;
--(void)setLastMessageID:(NSString *)msgID;;
+-(void)setLastMessage:(DLMessage *)msg;
+-(void)setHasUnreadMessages:(BOOL)unread;
 
 @end

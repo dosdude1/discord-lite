@@ -147,7 +147,7 @@ static DLController* sharedObject = nil;
 -(void)acknowledgeMessage:(DLMessage *)m {
     AsyncHTTPPostRequest *req = [[AsyncHTTPPostRequest alloc] init];
     [req setDelegate:self];
-    [req setParameters:[NSDictionary dictionaryWithObject:[NSNull null] forKey:@"token"]];
+    [req setParameters:[NSDictionary dictionaryWithObjects:[NSArray arrayWithObjects:[NSNull null], [NSNumber numberWithInt:0], [NSNumber numberWithInt:1], nil] forKeys:[NSArray arrayWithObjects:@"token", @"last_viewed", @"flags", nil]]];
     [req setHeaders:[self requestHeaders]];
     [req setIdentifier:RequestIDAckMessage];
     NSString *requestURL = [@API_ROOT stringByAppendingString:[NSString stringWithFormat:@"/channels/%@/messages/%@/ack", [m channelID], [m messageID]]];
@@ -502,7 +502,7 @@ static DLController* sharedObject = nil;
     [loadedMessages addObject:m];
     DLChannel *c = [self loadedChannelWithID:[m channelID]];
     DLServer *s = [self loadedServerWithID:[c serverID]];
-    [c setLastMessageID:[m messageID]];
+    [c setLastMessage:m];
     [delegate newMessage:m receivedForChannel:c inServer:s];
 }
 
@@ -542,13 +542,30 @@ static DLController* sharedObject = nil;
 }
 
 -(void)wsDidReceiveReadStateData:(NSArray *)data {
-    NSEnumerator *e = [data objectEnumerator];
+    
+    NSEnumerator *e = [[loadedServers allKeys] objectEnumerator];
+    NSString *key;
+    while (key = [e nextObject]) {
+        [[loadedServers objectForKey:key] setMentionCount:0];
+    }
+    
+    e = [data objectEnumerator];
     NSDictionary *channelData;
     while (channelData = [e nextObject]) {
         if ([loadedChannels objectForKey:[channelData objectForKey:@"id"]]) {
             DLChannel *c = [loadedChannels objectForKey:[channelData objectForKey:@"id"]];
+            DLServer *associatedServer = [self loadedServerWithID:[c serverID]];
             [c setMentionCount:[[channelData objectForKey:@"mention_count"] intValue]];
-            [[self loadedServerWithID:[c serverID]] addMentionCount:[[channelData objectForKey:@"mention_count"] intValue]];
+            [associatedServer addMentionCount:[[channelData objectForKey:@"mention_count"] intValue]];
+            
+            if ([channelData objectForKey:@"last_message_id"] != [NSNull null] && [c lastMessage]) {
+                if (![[[c lastMessage] messageID] isEqualToString:[channelData objectForKey:@"last_message_id"]] && ![c isEqual:selectedChannel]) {
+                    [c setHasUnreadMessages:YES];
+                    if (![associatedServer isEqual:[self myServerItem]]) {
+                        [associatedServer setHasUnreadMessages:YES];
+                    }
+                }
+            }
         }
     }
 }
@@ -579,8 +596,26 @@ static DLController* sharedObject = nil;
 
 -(void)wsDidAcknowledgeMessage:(DLMessage *)m {
     DLChannel *c = [self loadedChannelWithID:[m channelID]];
-    [[self loadedServerWithID:[c serverID]] addMentionCount:[c mentionCount] * -1];
+    DLServer *associatedServer = [self loadedServerWithID:[c serverID]];
+    [associatedServer setMentionCount:0];
     [c setMentionCount:0];
+    [c setHasUnreadMessages:NO];
+    
+    NSEnumerator *e = [[loadedChannels allKeys] objectEnumerator];
+    NSString *channelID;
+    BOOL hasUnreads = NO;
+    while (channelID = [e nextObject]) {
+        DLChannel *channel = [loadedChannels objectForKey:channelID];
+        if (channel) {
+            if ([[channel serverID] isEqualToString:[c serverID]] && [channel hasUnreadMessages]) {
+                hasUnreads = YES;
+                break;
+            }
+        }
+    }
+    if (![associatedServer isEqual:[self myServerItem]]) {
+        [associatedServer setHasUnreadMessages:hasUnreads];
+    }
 }
 
 -(void)wsUserWithID:(NSString *)userID didStartTypingInServerWithID:(NSString *)serverID inChannelWithID:(NSString *)channelID withMemberData:(NSDictionary *)memberData {

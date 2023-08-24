@@ -153,7 +153,7 @@ const NSInteger ATTACHMENT_SPACING = 15;
         if ([representedObject referencedMessage]) {
             frame.origin.y -= referencedMessageView.frame.size.height;
         }
-        frame.origin.x = chatTextView.frame.origin.x;
+        frame.origin.x = chatTextView.frame.origin.x + chatTextView.textContainerInset.height;
         [[attachmentVC attachmentView] setFrame:frame];
         [views addObject:attachmentVC];
         [insetView addSubview:attachmentVC.attachmentView];
@@ -194,6 +194,25 @@ const NSInteger ATTACHMENT_SPACING = 15;
         
         [[[representedObject referencedMessage] author] loadAvatarData];
     }
+    
+    BOOL mentionedMyUser = NO;
+    e = [[representedObject mentionedUsers] objectEnumerator];
+    DLUser *u;
+    while (u = [e nextObject]) {
+        if ([u isEqual:[[DLController sharedInstance] myUser]]) {
+            mentionedMyUser = YES;
+        }
+    }
+    
+    if ([representedObject mentionedEveryone]) {
+        mentionedMyUser = YES;
+    }
+    
+    if (mentionedMyUser) {
+        [insetView setBackgroundColor:[NSColor colorWithCalibratedRed:54.0/255.0 green:49.0/255.0 blue:41.0/255.0 alpha:1.0f]];
+        [insetView setNeedsDisplay:YES];
+    }
+    
     viewHasLoaded = YES;
 }
 

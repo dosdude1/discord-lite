@@ -27,16 +27,16 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
             <subviews>
                 <customView id="pHK-Z3-6HJ" customClass="NSView_BGColor">
-                    <rect key="frame" x="7" y="6" width="397" height="57"/>
+                    <rect key="frame" x="0.0" y="6" width="411" height="63"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                     <subviews>
                         <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" id="vY0-Rz-T46">
-                            <rect key="frame" x="13" y="5" width="48" height="48"/>
+                            <rect key="frame" x="14" y="5" width="48" height="48"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                             <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="discord_placeholder" id="g8U-Qp-0Ni"/>
                         </imageView>
                         <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="xQA-wb-nV4">
-                            <rect key="frame" x="72" y="40" width="163" height="17"/>
+                            <rect key="frame" x="74" y="40" width="169" height="17"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                             <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Name" id="aeb-hD-NFI">
                                 <font key="font" metaFont="systemBold"/>
@@ -45,11 +45,11 @@
                             </textFieldCell>
                         </textField>
                         <customView id="VIi-as-Cgc" customClass="NSTextView_Menu">
-                            <rect key="frame" x="69" y="14" width="308" height="18"/>
+                            <rect key="frame" x="70" y="14" width="325" height="18"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                         </customView>
                         <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="r01-07-0b0">
-                            <rect key="frame" x="239" y="43" width="151" height="14"/>
+                            <rect key="frame" x="247" y="43" width="150" height="14"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                             <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="01/11/2021" id="et7-wg-9h8">
                                 <font key="font" metaFont="smallSystem"/>
@@ -57,19 +57,19 @@
                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                             </textFieldCell>
                         </textField>
-                        <textField hidden="YES" horizontalHuggingPriority="251" verticalHuggingPriority="750" id="XsW-F6-pAI">
-                            <rect key="frame" x="67" y="0.0" width="215" height="11"/>
-                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                            <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Escape to cancel, return to save" id="JXG-ez-pmR">
+                        <textField hidden="YES" horizontalHuggingPriority="251" verticalHuggingPriority="750" id="UP0-MF-Owu">
+                            <rect key="frame" x="347" y="0.0" width="50" height="11"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxY="YES"/>
+                            <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="(edited)" id="vu1-0h-1Fz">
                                 <font key="font" metaFont="miniSystem"/>
                                 <color key="textColor" red="0.51372549020000002" green="0.52549019610000003" blue="0.5450980392" alpha="1" colorSpace="calibratedRGB"/>
                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                             </textFieldCell>
                         </textField>
-                        <textField hidden="YES" horizontalHuggingPriority="251" verticalHuggingPriority="750" id="UP0-MF-Owu">
-                            <rect key="frame" x="340" y="0.0" width="50" height="11"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxY="YES"/>
-                            <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="(edited)" id="vu1-0h-1Fz">
+                        <textField hidden="YES" horizontalHuggingPriority="251" verticalHuggingPriority="750" id="XsW-F6-pAI">
+                            <rect key="frame" x="68" y="0.0" width="215" height="11"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                            <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Escape to cancel, return to save" id="JXG-ez-pmR">
                                 <font key="font" metaFont="miniSystem"/>
                                 <color key="textColor" red="0.51372549020000002" green="0.52549019610000003" blue="0.5450980392" alpha="1" colorSpace="calibratedRGB"/>
                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>

@@ -13,6 +13,7 @@
 -(id)init {
     self = [super init];
     mentionCount = 0;
+    hasUnreadMessages = NO;
     channelID = @"";
     subImageData = [[NSData alloc] initWithContentsOfFile:[[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"uI4.png"]];
     return self;
@@ -28,7 +29,12 @@
     channelID = [[d objectForKey:@"id"] retain];
     name = [[d objectForKey:@"name"] retain];
     type = [[d objectForKey:@"type"] intValue];
-    lastMessageID = [[d objectForKey:@"last_message_id"] retain];
+    
+    if ([d objectForKey:@"last_message_id"] != [NSNull null]) {
+        lastMessage = [[DLMessage alloc] init];
+        [lastMessage setMessageID:[d objectForKey:@"last_message_id"]];
+        [lastMessage setChannelID:channelID];
+    }
 }
 
 -(void)setDelegate:(id<DLChannelDelegate>)inDelegate {
@@ -59,23 +65,32 @@
 -(NSString *)serverID {
     return @"none";
 }
--(NSString *)lastMessageID {
-    return lastMessageID;
-}
 -(DLUser *)recipientWithUserID:(NSString *)userID {
     return nil;
 }
 -(NSArray *)recipientsWithUsernameContainingString:(NSString *)username {
     return nil;
 }
+-(BOOL)hasUnreadMessages {
+    return hasUnreadMessages;
+}
+-(DLMessage *)lastMessage {
+    return lastMessage;
+}
 
 -(void)setServerID:(NSString *)inServerID {
     //Doesn't exist
 }
--(void)setLastMessageID:(NSString *)msgID {
-    [lastMessageID release];
-    [msgID retain];
-    lastMessageID = msgID;
+-(void)setLastMessage:(DLMessage *)msg {
+    [lastMessage release];
+    [msg retain];
+    lastMessage = msg;
+}
+-(void)setHasUnreadMessages:(BOOL)unread {
+    hasUnreadMessages = unread;
+    if ([delegate respondsToSelector:@selector(unreadStatusUpdatedForChannel:)]) {
+        [delegate unreadStatusUpdatedForChannel:self];
+    }
 }
 -(BOOL)isEqual:(DLChannel *)c {
     return [channelID isEqualToString:[c channelID]];

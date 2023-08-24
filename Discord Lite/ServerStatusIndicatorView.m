@@ -34,7 +34,6 @@
             [self drawSelectedIndicator];
             break;
         case ServerStatusIndicatorNone:
-            break;
         default:
             break;
     }

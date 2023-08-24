@@ -9,6 +9,7 @@
 #import "ViewController.h"
 #import "DLServerChannel.h"
 #import "BadgeTextField.h"
+#import "ServerStatusIndicatorView.h"
 
 typedef enum {
     ChannelItemViewTypeParent = 0,
@@ -33,6 +34,8 @@ typedef enum {
     IBOutlet NSTextField *parentChannelLabel;
     id<ChannelItemDelegate> delegate;
     IBOutlet BadgeTextField *mentionBadgeLabel;
+    IBOutlet ServerStatusIndicatorView *statusIndicatorView;
+    BOOL isSelected;
 }
 
 -(DLChannel *)representedObject;

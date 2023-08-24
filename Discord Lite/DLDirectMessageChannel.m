@@ -49,8 +49,8 @@
 }
 
 -(void)setUpdateTimestamp {
-    if (![lastMessageID isEqual:[NSNull null]]) {
-        uint64_t timeMillis = (([lastMessageID doubleValue] / 4194304) + 1420070400000);
+    if (lastMessage) {
+        uint64_t timeMillis = (([[lastMessage messageID] doubleValue] / 4194304) + 1420070400000);
         lastUpdateTimestamp = [[NSDate dateWithTimeIntervalSince1970:timeMillis/1000] retain];
     } else {
         lastUpdateTimestamp = [[NSDate dateWithTimeIntervalSince1970:0] retain];
@@ -129,8 +129,8 @@
     return NSOrderedSame;
 }
 
--(void)setLastMessageID:(NSString *)msgID {
-    [super setLastMessageID:msgID];
+-(void)setLastMessage:(DLMessage *)msg {
+    [super setLastMessage:msg];
     [self setUpdateTimestamp];
 }
 

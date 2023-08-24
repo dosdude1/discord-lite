@@ -11,6 +11,7 @@
 #import "AttachmentPreviewViewController.h"
 #import "DLTextParser.h"
 #import "NSTextView+Menu.h"
+#import "DLController.h"
 
 @class ChatItemViewController;
 

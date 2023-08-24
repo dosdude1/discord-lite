@@ -51,10 +51,14 @@
 
 -(void)setDelegate:(id<DLMessageDelegate>)inDelegate;
 
+-(void)setMessageID:(NSString *)msgID;
 -(void)setContent:(NSString *)inContent;
 -(void)setAttachments:(NSArray *)inAttachments;
 -(void)setReferencedMessage:(DLMessage *)m;
+-(void)setChannelID:(NSString *)inChannelID;
 -(void)setServerID:(NSString *)inServerID;
 -(void)remove;
+
+-(BOOL)isEqual:(DLMessage *)m;
 
 @end

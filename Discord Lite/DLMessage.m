@@ -110,6 +110,12 @@
     delegate = inDelegate;
 }
 
+-(void)setMessageID:(NSString *)msgID {
+    [messageID release];
+    [msgID retain];
+    messageID = msgID;
+}
+
 -(void)setContent:(NSString *)inContent {
     [content release];
     [inContent retain];
@@ -132,11 +138,20 @@
     [inServerID retain];
     serverID = inServerID;
 }
+-(void)setChannelID:(NSString *)inChannelID {
+    [channelID release];
+    [inChannelID retain];
+    channelID = inChannelID;
+}
 
 -(void)remove {
     if ([delegate respondsToSelector:@selector(messageWasDeleted)]) {
         [delegate messageWasDeleted];
     }
+}
+
+-(BOOL)isEqual:(DLMessage *)m {
+    return [messageID isEqualToString:[m messageID]];
 }
 
 -(void)dealloc {

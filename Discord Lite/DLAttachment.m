@@ -29,7 +29,7 @@
         mimeType = @"application/octet-stream";
     }
     fileSize = [[d objectForKey:@"size"] intValue];
-    if ([mimeType rangeOfString:@"image"].location != NSNotFound) {
+    if ([mimeType rangeOfString:@"image/"].location != NSNotFound) {
         type = AttachmentTypeImage;
     } else {
         type = AttachmentTypeFile;
@@ -154,7 +154,7 @@
     [mimeType release];
     [inMimeType retain];
     mimeType = inMimeType;
-    if ([mimeType rangeOfString:@"image"].location != NSNotFound) {
+    if ([mimeType rangeOfString:@"image/"].location != NSNotFound) {
         type = AttachmentTypeImage;
     } else {
         type = AttachmentTypeFile;

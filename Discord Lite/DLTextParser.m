@@ -25,7 +25,7 @@ const CGFloat MESSAGE_VIEW_FONT_SIZE = 13.0;
 }
 
 +(NSAttributedString *)attributedContentStringForMessage:(DLMessage *)m {
-    if ([m content]) {
+    if ([[m content] length] > 0) {
         NSMutableAttributedString *as = [[NSMutableAttributedString alloc] initWithString:[m content]];
         [as addAttribute:NSFontAttributeName value:[NSFont systemFontOfSize:MESSAGE_VIEW_FONT_SIZE] range:NSMakeRange(0, [m content].length)];
         [as addAttribute:NSForegroundColorAttributeName value:[DLTextParser DEFAULT_TEXT_COLOR] range:NSMakeRange(0, [m content].length)];

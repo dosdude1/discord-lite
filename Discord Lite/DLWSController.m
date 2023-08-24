@@ -177,6 +177,7 @@ static size_t writecb(char *b, size_t size, size_t nitems, void *p) {
 
 -(void)wsTextDataReceived:(NSData *)textData {
     NSDictionary *res = [[CJSONDeserializer deserializer] deserializeAsDictionary:textData error:nil];
+    //NSLog(@"Res: %@", res);
     OPCode c = [[res objectForKey:@kWSOperation] intValue];
     switch (c) {
         case OPCodeGeneral: {

@@ -32,10 +32,22 @@
     iconImage = [[NSImage alloc] initWithData:[representedObject iconImageData]];
     [selectionButton setImage:[DLUtil imageResize:iconImage newSize:NSSizeFromCGSize(CGSizeMake(selectionButton.frame.size.width - 5, selectionButton.frame.size.height - 5)) cornerRadius:[ServerItemViewController AVATAR_RADIUS]]];
     [self mentionCountDidUpdate];
+    [self updateStatusIndicator];
 }
 
 -(DLServer *)representedObject {
     return representedObject;
+}
+
+-(void)updateStatusIndicator {
+    if (!isSelected) {
+        if ([representedObject hasUnreadMessages]) {
+            [statusIndicatorView setDrawnIndicator:ServerStatusIndicatorUnread];
+        } else {
+            [statusIndicatorView setDrawnIndicator:ServerStatusIndicatorNone];
+        }
+        [statusIndicatorView setNeedsDisplay:YES];
+    }
 }
 
 - (IBAction)selectItem:(id)sender {
@@ -52,8 +64,7 @@
             [selectionButton setImage:[DLUtil imageResize:iconImage newSize:NSMakeSize(selectionButton.frame.size.width - 5, selectionButton.frame.size.height - 5) cornerRadius:20.0f]];
             [view setNeedsDisplay:YES];
         } else {
-            [statusIndicatorView setDrawnIndicator:ServerStatusIndicatorNone];
-            [statusIndicatorView setNeedsDisplay:YES];
+            [self updateStatusIndicator];
             [selectionButton setImage:[DLUtil imageResize:iconImage newSize:NSMakeSize(selectionButton.frame.size.width - 5, selectionButton.frame.size.height - 5) cornerRadius:[ServerItemViewController AVATAR_RADIUS]]];
             [view setNeedsDisplay:YES];
         }
@@ -95,8 +106,7 @@
 - (void)mouseExited:(NSEvent *)theEvent{
     if (!isSelected) {
         [selectionButton setImage:[DLUtil imageResize:iconImage newSize:NSMakeSize(selectionButton.frame.size.width - 5, selectionButton.frame.size.height - 5) cornerRadius:[ServerItemViewController AVATAR_RADIUS]]];
-        [statusIndicatorView setDrawnIndicator:ServerStatusIndicatorNone];
-        [statusIndicatorView setNeedsDisplay:YES];
+        [self updateStatusIndicator];
     }
 }
 
@@ -133,6 +143,10 @@
         [mentionBadgeLabel setStringValue:[NSString stringWithFormat:@"%ld", mentionCount]];
     }
     
+}
+
+-(void)unreadStatusDidUpdate {
+    [self updateStatusIndicator];
 }
 
 @end

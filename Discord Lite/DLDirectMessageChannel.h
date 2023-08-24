@@ -31,7 +31,7 @@
 -(NSArray *)recipientsWithUsernameContainingString:(NSString *)username;
 -(void)loadAvatarImageData;
 
--(void)setLastMessageID:(NSString *)msgID;
+-(void)setLastMessage:(DLMessage *)msg;
 
 - (NSComparisonResult)compare:(DLDirectMessageChannel *)o;
 

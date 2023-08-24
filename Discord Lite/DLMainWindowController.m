@@ -27,10 +27,10 @@ const NSTimeInterval TYPING_SEND_INTERVAL = 8.0;
     [chatViewHeader setBackgroundColor:[chatScrollView backgroundColor]];
     [chatViewHeader setNeedsDisplay:YES];
     
-    [userInfoView setBackgroundColor:[NSColor colorWithCalibratedRed:31.0/255.0 green:32.0/255.0 blue:35.0/255.0 alpha:1.0f]];
+    [userInfoView setBackgroundColor:[NSColor colorWithCalibratedRed:26.0/255.0 green:27.0/255.0 blue:30.0/255.0 alpha:1.0f]];
     [userInfoView setNeedsDisplay:YES];
     
-    [messageEntryContainerView setBackgroundColor:[NSColor colorWithCalibratedRed:40.0/255.0 green:43.0/255.0 blue:48.0/255.0 alpha:1.0f]];
+    [messageEntryContainerView setBackgroundColor:[NSColor colorWithCalibratedRed:37.0/255.0 green:38.0/255.0 blue:42.0/255.0 alpha:1.0f]];
     [messageEntryContainerView setNeedsDisplay:YES];
     
     [serverViewScroller setBackgroundColor:[serversScrollView backgroundColor]];
@@ -212,6 +212,9 @@ const NSTimeInterval TYPING_SEND_INTERVAL = 8.0;
 
 -(void)showPendingAttachmentView {
     if (![pendingAttachmentsScrollView superview]) {
+        
+        //CGPoint originalScrollOrigin = [chatScrollView frame].origin;
+        
         NSRect attachmentsViewFrame = pendingAttachmentsScrollView.frame;
         attachmentsViewFrame.origin.y = messageEntryContainerView.frame.size.height;
         attachmentsViewFrame.size.width = messageEntryContainerView.frame.size.width;
@@ -236,6 +239,8 @@ const NSTimeInterval TYPING_SEND_INTERVAL = 8.0;
             [replyToView setFrame:replyToViewFrame];
             [replyToView setNeedsDisplay:YES];
         }
+        
+        //[chatScrollView.documentView scrollPoint:NSMakePoint(0, [[chatScrollView contentView] bounds].origin.y + originalScrollOrigin.y)];
     }
 }
 
@@ -269,7 +274,7 @@ const NSTimeInterval TYPING_SEND_INTERVAL = 8.0;
 -(void)showReplyToView {
     if (![replyToView superview]) {
         NSRect replyToViewFrame = replyToView.frame;
-        replyToViewFrame.origin.y = messageEntryTextView.frame.size.height + 35;
+        replyToViewFrame.origin.y = messageEntryScrollView.frame.size.height + 35;
         replyToViewFrame.size.width = messageEntryContainerView.frame.size.width;
         [replyToView setFrame:replyToViewFrame];
         
@@ -379,9 +384,11 @@ const NSTimeInterval TYPING_SEND_INTERVAL = 8.0;
 }
 
 -(void)hideTagSelectionView {
-    [tagSelectionScrollView removeFromSuperview];
-    [chatScrollView setNeedsDisplay:YES];
-    [tagSelectionScrollView setNeedsDisplay:YES];
+    if ([tagSelectionScrollView superview]) {
+        [tagSelectionScrollView removeFromSuperview];
+        [chatScrollView setNeedsDisplay:YES];
+        [tagSelectionScrollView setNeedsDisplay:YES];
+    }
 }
 
 -(void)updateTextViewSizing {
@@ -437,6 +444,15 @@ const NSTimeInterval TYPING_SEND_INTERVAL = 8.0;
             [[DLController sharedInstance] deleteMessage:messagePendingDeletion];
         }
         messagePendingDeletion = nil;
+    }
+}
+
+-(void)updateServerViewMouseTracking {
+    serverItemTrackingTimer = nil;
+    NSEnumerator *e = [serverViews objectEnumerator];
+    ServerItemViewController *serverView;
+    while (serverView = [e nextObject]) {
+        [serverView updateRectTracking];
     }
 }
 
@@ -502,14 +518,6 @@ const NSTimeInterval TYPING_SEND_INTERVAL = 8.0;
         serverItemTrackingTimer = nil;
     }
     serverItemTrackingTimer = [NSTimer scheduledTimerWithTimeInterval:0.25 target:self selector:@selector(updateServerViewMouseTracking) userInfo:nil repeats:NO];
-}
--(void)updateServerViewMouseTracking {
-    serverItemTrackingTimer = nil;
-    NSEnumerator *e = [serverViews objectEnumerator];
-    ServerItemViewController *serverView;
-    while (serverView = [e nextObject]) {
-        [serverView updateRectTracking];
-    }
 }
 
 -(void)initialDataWasReceived {
@@ -618,8 +626,8 @@ const NSTimeInterval TYPING_SEND_INTERVAL = 8.0;
         [chatScrollView setContent:views];
         [[chatScrollView contentView] scrollToPoint: NSMakePoint(chatScrollView.frame.origin.x, chatScrollView.frame.origin.y)];
         [chatScrollView reflectScrolledClipView: [chatScrollView contentView]];
-        if ([c mentionCount] > 0) {
-            [[DLController sharedInstance] acknowledgeMessage:lastMessage];
+        if ([c hasUnreadMessages] || [c mentionCount] > 0) {
+            [[DLController sharedInstance] acknowledgeMessage:[c lastMessage]];
         }
     } else {
         [chatScrollView appendContent:views];
@@ -671,6 +679,13 @@ const NSTimeInterval TYPING_SEND_INTERVAL = 8.0;
                 [s notifyOfNewMention];
                 [[DLAudioPlayer sharedInstance] playAudioWithID:AudioIDNotificationNewMention];
             }
+        }
+    }
+    
+    if (![c isEqual:[[DLController sharedInstance] selectedChannel]]) {
+        [c setHasUnreadMessages:YES];
+        if (![s isEqual:[[DLController sharedInstance] myServerItem]]) {
+            [s setHasUnreadMessages:YES];
         }
     }
     

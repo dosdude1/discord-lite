@@ -351,12 +351,6 @@
 		8714B1A72729F46300DA4AF9 /* UI */ = {
 			isa = PBXGroup;
 			children = (
-				87C11C922728DB7B000046F2 /* AppDelegate.h */,
-				87C11C932728DB7B000046F2 /* AppDelegate.m */,
-				87C11C972728DB7B000046F2 /* Images.xcassets */,
-				87C11C992728DB7B000046F2 /* MainMenu.xib */,
-				87DA40162739F4DB007E7455 /* AppIcon.icns */,
-				87D6C28A2A4517F9002F5FBF /* curl_headers */,
 				87C083502728DE7600C8F933 /* WindowControllers */,
 				8714B1B6272A06B800DA4AF9 /* ViewControllers */,
 				877F4DD328ED2BF800183257 /* Custom Views */,
@@ -429,7 +423,6 @@
 			isa = PBXGroup;
 			children = (
 				87591385274D9EA5003B7128 /* Regex */,
-				878E496E2734643C00BBB18B /* Web Sockets */,
 				876DBDF827291713008682BC /* JSON */,
 			);
 			name = Libraries;
@@ -462,13 +455,6 @@
 				877F4DD828ED2DCB00183257 /* ServerStatusIndicatorView.m */,
 			);
 			name = "Custom Views";
-			sourceTree = "<group>";
-		};
-		878E496E2734643C00BBB18B /* Web Sockets */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = "Web Sockets";
 			sourceTree = "<group>";
 		};
 		87994C67275344D000A27326 /* OS X */ = {
@@ -592,6 +578,12 @@
 		87C11C8F2728DB7B000046F2 /* Discord Lite */ = {
 			isa = PBXGroup;
 			children = (
+				87C11C922728DB7B000046F2 /* AppDelegate.h */,
+				87C11C932728DB7B000046F2 /* AppDelegate.m */,
+				87C11C972728DB7B000046F2 /* Images.xcassets */,
+				87C11C992728DB7B000046F2 /* MainMenu.xib */,
+				87DA40162739F4DB007E7455 /* AppIcon.icns */,
+				87D6C28A2A4517F9002F5FBF /* curl_headers */,
 				8714B1A72729F46300DA4AF9 /* UI */,
 				8714B1A82729F59F00DA4AF9 /* Controllers */,
 				87C0834F2728DE6B00C8F933 /* Classes */,

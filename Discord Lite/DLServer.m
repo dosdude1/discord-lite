@@ -15,6 +15,7 @@
     self = [super init];
     mentionCount = 0;
     serverID = @"";
+    hasUnreadMessages = NO;
     return self;
 }
 
@@ -66,6 +67,9 @@
 }
 -(NSArray *)members {
     return members;
+}
+-(BOOL)hasUnreadMessages {
+    return hasUnreadMessages;
 }
 -(void)setDelegate:(id <DLServerDelegate>)inDelegate {
     delegate = inDelegate;
@@ -121,6 +125,16 @@
 -(void)addMentionCount:(NSInteger)inMentions; {
     mentionCount += inMentions;
     [delegate mentionCountDidUpdate];
+}
+
+-(void)setMentionCount:(NSInteger)inMentions {
+    mentionCount = inMentions;
+    [delegate mentionCountDidUpdate];
+}
+
+-(void)setHasUnreadMessages:(BOOL)unread {
+    hasUnreadMessages = unread;
+    [delegate unreadStatusDidUpdate];
 }
 
 -(BOOL)isEqual:(DLServer *)object {
