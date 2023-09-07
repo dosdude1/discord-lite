@@ -40,7 +40,14 @@
 -(void)loadScaledData {
     req = [[AsyncHTTPGetRequest alloc] init];
     [req setDelegate:self];
-    [req setUrl:[proxyURL stringByAppendingString:[NSString stringWithFormat:@"?width=%ld&height=%ld", (NSInteger)[self scaledWidth], (NSInteger)[self scaledHeight]]]];
+    NSString *scaledURL = proxyURL;
+    if ([scaledURL rangeOfString:@"?"].location == NSNotFound) {
+        scaledURL = [scaledURL stringByAppendingString:@"?"];
+    } else {
+        scaledURL = [scaledURL stringByAppendingString:@"&"];
+    }
+    scaledURL = [scaledURL stringByAppendingString:[NSString stringWithFormat:@"width=%ld&height=%ld", (NSInteger)[self scaledWidth], (NSInteger)[self scaledHeight]]];
+    [req setUrl:scaledURL];
     [req setCached:NO];
     [req setIdentifier:AttachmentRequestPreview];
     [req start];
