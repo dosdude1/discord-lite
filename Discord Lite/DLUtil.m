@@ -67,7 +67,7 @@ static NSDictionary *superPropertiesDict;
         sysctl(mib, sizeof mib / sizeof(int), str, &size, NULL, 0);
         NSString *ret = [[NSString stringWithUTF8String:str] retain];
         free(str);
-        return ret;
+        return [ret autorelease];
     }
     return @"";
 }
@@ -80,8 +80,8 @@ static NSDictionary *superPropertiesDict;
     return randomString;
 }
 +(NSString *)mimeTypeForExtension:(NSString *)ext {
-    NSString *UTI = (NSString *)UTTypeCreatePreferredIdentifierForTag(kUTTagClassFilenameExtension, (CFStringRef)ext, NULL);
-    NSString *mimeType = (NSString *)UTTypeCopyPreferredTagWithClass((CFStringRef)UTI, kUTTagClassMIMEType);
+    NSString *UTI = [(NSString*)UTTypeCreatePreferredIdentifierForTag(kUTTagClassFilenameExtension, (CFStringRef)ext, NULL) autorelease];
+    NSString *mimeType = [(NSString*)UTTypeCopyPreferredTagWithClass((CFStringRef)UTI, kUTTagClassMIMEType) autorelease];
     if (!mimeType) {
         mimeType = @"application/octet-stream";
     }
@@ -113,14 +113,14 @@ static NSDictionary *superPropertiesDict;
     return date;
 }
 +(NSString *)userAgentString {
-    return [NSString stringWithFormat:@"DiscordLite/%@ CFNetwork/%@ Darwin/%@", [DLUtil appVersionString], [DLUtil networkVersionString], [DLUtil kernelVersion]];
+    return [[NSString stringWithFormat:@"DiscordLite/%@ CFNetwork/%@ Darwin/%@", [DLUtil appVersionString], [DLUtil networkVersionString], [DLUtil kernelVersion]] autorelease];
 }
 +(NSString *)superPropertiesString {
     if (!superPropertiesDict) {
         superPropertiesDict = [[NSDictionary alloc] initWithObjects:[NSArray arrayWithObjects:@"Mac OS X", @"Discord Client", @"stable", @"0.0.266", [DLUtil kernelVersion], @"x64", @"en-US", @"209354", [NSNull null], nil] forKeys:[NSArray arrayWithObjects:@"os", @"browser", @"release_channel", @"client_version", @"os_version", @"os_arch", @"system_locale", @"client_build_number", @"client_event_source", nil]];
     }
     NSData *serializedData = [[CJSONSerializer serializer] serializeDictionary:superPropertiesDict error:nil];
-    return [[NSString encodeBase64WithData:serializedData] autorelease];
+    return [NSString encodeBase64WithData:serializedData];
 }
 
 @end

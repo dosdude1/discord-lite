@@ -149,7 +149,7 @@ static size_t writecb(char *b, size_t size, size_t nitems, void *p) {
     [data setObject:[NSNumber numberWithBool:YES] forKey:@"typing"];
     [data setObject:[NSNumber numberWithBool:NO] forKey:@"activities"];
     [data setObject:[NSNumber numberWithBool:NO] forKey:@"threads"];
-    NSArray *channelInfo = [NSArray arrayWithObjects:[[NSArray alloc] initWithObjects:[NSNumber numberWithInt:0], [NSNumber numberWithInt:99], nil], nil];
+    NSArray *channelInfo = [NSArray arrayWithObjects:[NSArray arrayWithObjects:[NSNumber numberWithInt:0], [NSNumber numberWithInt:99], nil], nil];
     NSMutableDictionary *channels = [[NSMutableDictionary alloc] init];
     [channels setObject:channelInfo forKey:[c channelID]];
     NSMutableDictionary *d = [[NSMutableDictionary alloc] init];

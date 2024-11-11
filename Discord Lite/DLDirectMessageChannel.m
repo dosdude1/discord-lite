@@ -115,7 +115,7 @@
             [matchedUsers addObject:user];
         }
     }
-    return matchedUsers;
+    return [matchedUsers autorelease];
 }
 
 - (NSComparisonResult)compare:(DLDirectMessageChannel *)o {
