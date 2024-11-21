@@ -72,6 +72,13 @@
 		87AD27D72741D3230092F428 /* HorizontalDynamicScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 87AD27D62741D3230092F428 /* HorizontalDynamicScrollView.m */; };
 		87AD27DA2741EF9C0092F428 /* PendingAttachmentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 87AD27D92741EF9C0092F428 /* PendingAttachmentViewController.m */; };
 		87AD27DD2741EFBC0092F428 /* PendingAttachmentViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 87AD27DF2741EFBC0092F428 /* PendingAttachmentViewController.xib */; };
+		87B886372CEEF8A7005117BE /* libcrypto.3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 87B886342CEEF8A7005117BE /* libcrypto.3.dylib */; };
+		87B886382CEEF8A7005117BE /* libcurl.4.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 87B886352CEEF8A7005117BE /* libcurl.4.dylib */; };
+		87B886392CEEF8A7005117BE /* libssl.3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 87B886362CEEF8A7005117BE /* libssl.3.dylib */; };
+		87B8863A2CEEFA4A005117BE /* libcrypto.3.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = 87B886342CEEF8A7005117BE /* libcrypto.3.dylib */; };
+		87B8863B2CEEFA4A005117BE /* libcurl.4.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = 87B886352CEEF8A7005117BE /* libcurl.4.dylib */; };
+		87B8863C2CEEFA4A005117BE /* libssl.3.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = 87B886362CEEF8A7005117BE /* libssl.3.dylib */; };
+		87B8863F2CEF05AC005117BE /* AsyncHTTPRequestSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = 87B8863E2CEF05AC005117BE /* AsyncHTTPRequestSettings.m */; };
 		87BCAA732A4CD8DA00EEFFB0 /* NSString+Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = 87BCAA722A4CD8DA00EEFFB0 /* NSString+Base64.m */; };
 		87BE740D278B811A00F61BF7 /* reply_curve.png in Resources */ = {isa = PBXBuildFile; fileRef = 87BE740C278B811A00F61BF7 /* reply_curve.png */; };
 		87BE741B278BEBA800F61BF7 /* NSTextView+Menu.m in Sources */ = {isa = PBXBuildFile; fileRef = 87BE741A278BEBA800F61BF7 /* NSTextView+Menu.m */; };
@@ -94,12 +101,6 @@
 		87C6E6A0273053F000090639 /* DynamicScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 87C6E69F273053F000090639 /* DynamicScrollView.m */; };
 		87C6E6A627305BB600090639 /* DLServerChannel.m in Sources */ = {isa = PBXBuildFile; fileRef = 87C6E6A527305BB600090639 /* DLServerChannel.m */; };
 		87C6E6A827305DBF00090639 /* DLChannel.m in Sources */ = {isa = PBXBuildFile; fileRef = 87C6E6A727305DBF00090639 /* DLChannel.m */; };
-		87D6C2822A4512A9002F5FBF /* libcrypto.1.1.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 87D6C27F2A4512A9002F5FBF /* libcrypto.1.1.dylib */; };
-		87D6C2832A4512A9002F5FBF /* libcurl.4.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 87D6C2802A4512A9002F5FBF /* libcurl.4.dylib */; };
-		87D6C2842A4512A9002F5FBF /* libssl.1.1.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 87D6C2812A4512A9002F5FBF /* libssl.1.1.dylib */; };
-		87D6C2862A4512C1002F5FBF /* libcrypto.1.1.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = 87D6C27F2A4512A9002F5FBF /* libcrypto.1.1.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
-		87D6C2872A4512C1002F5FBF /* libcurl.4.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = 87D6C2802A4512A9002F5FBF /* libcurl.4.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
-		87D6C2882A4512C1002F5FBF /* libssl.1.1.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = 87D6C2812A4512A9002F5FBF /* libssl.1.1.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		87D9D1682731C77600162F22 /* PaddedTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 87D9D1672731C77600162F22 /* PaddedTextView.m */; };
 		87D9D16B2731CCA700162F22 /* ChatScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 87D9D16A2731CCA700162F22 /* ChatScrollView.m */; };
 		87D9D16E27320B1500162F22 /* DLMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 87D9D16D27320B1500162F22 /* DLMessage.m */; };
@@ -134,9 +135,9 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				87D6C2862A4512C1002F5FBF /* libcrypto.1.1.dylib in CopyFiles */,
-				87D6C2872A4512C1002F5FBF /* libcurl.4.dylib in CopyFiles */,
-				87D6C2882A4512C1002F5FBF /* libssl.1.1.dylib in CopyFiles */,
+				87B8863A2CEEFA4A005117BE /* libcrypto.3.dylib in CopyFiles */,
+				87B8863B2CEEFA4A005117BE /* libcurl.4.dylib in CopyFiles */,
+				87B8863C2CEEFA4A005117BE /* libssl.3.dylib in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -256,6 +257,11 @@
 		87AD27D82741EF9C0092F428 /* PendingAttachmentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PendingAttachmentViewController.h; sourceTree = "<group>"; };
 		87AD27D92741EF9C0092F428 /* PendingAttachmentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PendingAttachmentViewController.m; sourceTree = "<group>"; };
 		87AD27DE2741EFBC0092F428 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/PendingAttachmentViewController.xib; sourceTree = "<group>"; };
+		87B886342CEEF8A7005117BE /* libcrypto.3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libcrypto.3.dylib; path = "Discord Lite/libcrypto.3.dylib"; sourceTree = "<group>"; };
+		87B886352CEEF8A7005117BE /* libcurl.4.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libcurl.4.dylib; path = "Discord Lite/libcurl.4.dylib"; sourceTree = "<group>"; };
+		87B886362CEEF8A7005117BE /* libssl.3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libssl.3.dylib; path = "Discord Lite/libssl.3.dylib"; sourceTree = "<group>"; };
+		87B8863D2CEF05AC005117BE /* AsyncHTTPRequestSettings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AsyncHTTPRequestSettings.h; sourceTree = "<group>"; };
+		87B8863E2CEF05AC005117BE /* AsyncHTTPRequestSettings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AsyncHTTPRequestSettings.m; sourceTree = "<group>"; };
 		87BCAA712A4CD8DA00EEFFB0 /* NSString+Base64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Base64.h"; sourceTree = "<group>"; };
 		87BCAA722A4CD8DA00EEFFB0 /* NSString+Base64.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Base64.m"; sourceTree = "<group>"; };
 		87BE740C278B811A00F61BF7 /* reply_curve.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = reply_curve.png; sourceTree = "<group>"; };
@@ -295,9 +301,6 @@
 		87C6E6A427305BB600090639 /* DLServerChannel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DLServerChannel.h; sourceTree = "<group>"; };
 		87C6E6A527305BB600090639 /* DLServerChannel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DLServerChannel.m; sourceTree = "<group>"; };
 		87C6E6A727305DBF00090639 /* DLChannel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DLChannel.m; sourceTree = "<group>"; };
-		87D6C27F2A4512A9002F5FBF /* libcrypto.1.1.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libcrypto.1.1.dylib; path = "Discord Lite/libcrypto.1.1.dylib"; sourceTree = "<group>"; };
-		87D6C2802A4512A9002F5FBF /* libcurl.4.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libcurl.4.dylib; path = "Discord Lite/libcurl.4.dylib"; sourceTree = "<group>"; };
-		87D6C2812A4512A9002F5FBF /* libssl.1.1.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libssl.1.1.dylib; path = "Discord Lite/libssl.1.1.dylib"; sourceTree = "<group>"; };
 		87D6C28A2A4517F9002F5FBF /* curl_headers */ = {isa = PBXFileReference; lastKnownFileType = folder; path = curl_headers; sourceTree = "<group>"; };
 		87D9D1662731C77600162F22 /* PaddedTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PaddedTextView.h; sourceTree = "<group>"; };
 		87D9D1672731C77600162F22 /* PaddedTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PaddedTextView.m; sourceTree = "<group>"; };
@@ -328,13 +331,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				87E8A6F828B6A21D00BCBC93 /* Foundation.framework in Frameworks */,
-				87D6C2842A4512A9002F5FBF /* libssl.1.1.dylib in Frameworks */,
-				87D6C2832A4512A9002F5FBF /* libcurl.4.dylib in Frameworks */,
+				87B886382CEEF8A7005117BE /* libcurl.4.dylib in Frameworks */,
+				87B886392CEEF8A7005117BE /* libssl.3.dylib in Frameworks */,
 				87E8A6F728B6A1A400BCBC93 /* WebKit.framework in Frameworks */,
 				87F066E928B585F300FE92A2 /* libz.dylib in Frameworks */,
 				87F17B26288A47D500CF4F5D /* Cocoa.framework in Frameworks */,
+				87B886372CEEF8A7005117BE /* libcrypto.3.dylib in Frameworks */,
 				8773980E288A42AE00548F3F /* libicucore.dylib in Frameworks */,
-				87D6C2822A4512A9002F5FBF /* libcrypto.1.1.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -555,9 +558,9 @@
 				87E8A6F628B6A1A400BCBC93 /* WebKit.framework */,
 				87F066E828B585F300FE92A2 /* libz.dylib */,
 				8773980D288A42AE00548F3F /* libicucore.dylib */,
-				87D6C27F2A4512A9002F5FBF /* libcrypto.1.1.dylib */,
-				87D6C2802A4512A9002F5FBF /* libcurl.4.dylib */,
-				87D6C2812A4512A9002F5FBF /* libssl.1.1.dylib */,
+				87B886342CEEF8A7005117BE /* libcrypto.3.dylib */,
+				87B886352CEEF8A7005117BE /* libcurl.4.dylib */,
+				87B886362CEEF8A7005117BE /* libssl.3.dylib */,
 				87739809288A42A300548F3F /* Foundation.framework */,
 				87739807288A429B00548F3F /* Cocoa.framework */,
 				87C11C8F2728DB7B000046F2 /* Discord Lite */,
@@ -632,6 +635,8 @@
 		87D9D17527320E6A00162F22 /* HTTP */ = {
 			isa = PBXGroup;
 			children = (
+				87B8863D2CEF05AC005117BE /* AsyncHTTPRequestSettings.h */,
+				87B8863E2CEF05AC005117BE /* AsyncHTTPRequestSettings.m */,
 				87C083612728E94A00C8F933 /* AsyncHTTPRequest.h */,
 				87C083622728E94A00C8F933 /* AsyncHTTPRequest.m */,
 				87C083642728E9FB00C8F933 /* AsyncHTTPPostRequest.h */,
@@ -819,7 +824,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "install_name_tool -change /Users/collinmistr/openssl/install/lib/libcrypto.1.1.dylib @executable_path/../Frameworks/libcrypto.1.1.dylib \"$TARGET_BUILD_DIR/$PRODUCT_NAME.app/Contents/MacOS/$PRODUCT_NAME\";\ninstall_name_tool -change /Users/collinmistr/openssl/install/lib/libssl.1.1.dylib @executable_path/../Frameworks/libssl.1.1.dylib \"$TARGET_BUILD_DIR/$PRODUCT_NAME.app/Contents/MacOS/$PRODUCT_NAME\";\ninstall_name_tool -change /Users/collinmistr/Documents/curl-8.1.2/artifacts/lib/libcurl.4.dylib @executable_path/../Frameworks/libcurl.4.dylib \"$TARGET_BUILD_DIR/$PRODUCT_NAME.app/Contents/MacOS/$PRODUCT_NAME\";\ninstall_name_tool -change /usr/lib/libcurl.4.dylib @executable_path/../Frameworks/libcurl.4.dylib \"$TARGET_BUILD_DIR/$PRODUCT_NAME.app/Contents/MacOS/$PRODUCT_NAME\";\ninstall_name_tool -change /Users/collinmistr/openssl/install/lib/libcrypto.1.1.dylib @executable_path/../Frameworks/libcrypto.1.1.dylib \"$TARGET_BUILD_DIR/$PRODUCT_NAME.app/Contents/Frameworks/libssl.1.1.dylib\";\ninstall_name_tool -change /Users/collinmistr/openssl/install/lib/libcrypto.1.1.dylib @executable_path/../Frameworks/libcrypto.1.1.dylib \"$TARGET_BUILD_DIR/$PRODUCT_NAME.app/Contents/Frameworks/libcurl.4.dylib\";\ninstall_name_tool -change /Users/collinmistr/openssl/install/lib/libssl.1.1.dylib @executable_path/../Frameworks/libssl.1.1.dylib \"$TARGET_BUILD_DIR/$PRODUCT_NAME.app/Contents/Frameworks/libcurl.4.dylib\";";
+			shellScript = "#install_name_tool -change /usr/local/lib/libcrypto.3.dylib @executable_path/../Frameworks/libcrypto.3.dylib \"$TARGET_BUILD_DIR/$PRODUCT_NAME.app/Contents/MacOS/$PRODUCT_NAME\";\n#install_name_tool -change /usr/local/lib/libssl.3.dylib @executable_path/../Frameworks/libssl.3.dylib \"$TARGET_BUILD_DIR/$PRODUCT_NAME.app/Contents/MacOS/$PRODUCT_NAME\";\n#install_name_tool -change /Users/collinmistr/curlpref/lib/libcurl.4.dylib @executable_path/../Frameworks/libcurl.4.dylib \"$TARGET_BUILD_DIR/$PRODUCT_NAME.app/Contents/MacOS/$PRODUCT_NAME\";\n#install_name_tool -change /usr/local/lib/libcurl.4.dylib @executable_path/../Frameworks/libcurl.4.dylib \"$TARGET_BUILD_DIR/$PRODUCT_NAME.app/Contents/MacOS/$PRODUCT_NAME\";\n#install_name_tool -change /usr/local/lib/libcrypto.3.dylib @executable_path/../Frameworks/libcrypto.3.dylib \"$TARGET_BUILD_DIR/$PRODUCT_NAME.app/Contents/Frameworks/libssl.3.dylib\";\n#install_name_tool -change /usr/local/lib/libcrypto.3.dylib @executable_path/../Frameworks/libcrypto.3.dylib \"$TARGET_BUILD_DIR/$PRODUCT_NAME.app/Contents/Frameworks/libcurl.4.dylib\";\n#install_name_tool -change /usr/local/lib/libssl.3.dylib @executable_path/../Frameworks/libssl.3.dylib \"$TARGET_BUILD_DIR/$PRODUCT_NAME.app/Contents/Frameworks/libcurl.4.dylib\";";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -885,6 +890,7 @@
 				87C2CF8C272F438600F10466 /* ViewController.m in Sources */,
 				87DA400C2739DD58007E7455 /* DLAudioPlayer.m in Sources */,
 				87C6E69A273052B100090639 /* ChannelItemViewController.m in Sources */,
+				87B8863F2CEF05AC005117BE /* AsyncHTTPRequestSettings.m in Sources */,
 				878E498527347A4900BBB18B /* DLWSController.m in Sources */,
 				87A38DD627330B49002385EE /* NSView+Border.m in Sources */,
 				87A6E2C4273612B5000DC06E /* BezierPathRoundedRect.m in Sources */,
@@ -1114,6 +1120,7 @@
 				CLANG_ENABLE_OBJC_ARC = NO;
 				CLANG_LINK_OBJC_RUNTIME = YES;
 				CLANG_MODULES_AUTOLINK = NO;
+				CODE_SIGN_IDENTITY = "";
 				COMBINE_HIDPI_IMAGES = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1125,6 +1132,9 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(PROJECT_DIR)/$(TARGET_NAME)",
 					"$(DEVELOPER_DIR)/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.10.sdk/usr/lib",
+					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/Discord",
+					Lite,
 				);
 				LINK_WITH_STANDARD_LIBRARIES = YES;
 				MACOSX_DEPLOYMENT_TARGET = 10.4;
@@ -1146,6 +1156,7 @@
 				CLANG_ENABLE_OBJC_ARC = NO;
 				CLANG_LINK_OBJC_RUNTIME = YES;
 				CLANG_MODULES_AUTOLINK = NO;
+				CODE_SIGN_IDENTITY = "";
 				COMBINE_HIDPI_IMAGES = YES;
 				FRAMEWORK_SEARCH_PATHS = "";
 				"FRAMEWORK_SEARCH_PATHS[arch=i386]" = "$(DEVELOPER_DIR)/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.7.sdk/System/Library/Frameworks";
@@ -1154,7 +1165,11 @@
 				INFOPLIST_FILE = "Discord Lite/Info.plist";
 				LD_DEPENDENCY_INFO_FILE = "$(OBJECT_FILE_DIR_$(CURRENT_VARIANT))/$(CURRENT_ARCH)/$(PRODUCT_NAME)_dependency_info.dat";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited)";
-				LIBRARY_SEARCH_PATHS = "";
+				LIBRARY_SEARCH_PATHS = (
+					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/Discord",
+					Lite,
+				);
 				"LIBRARY_SEARCH_PATHS[arch=i386]" = (
 					"$(PROJECT_DIR)/$(TARGET_NAME)",
 					"$(DEVELOPER_DIR)/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.7.sdk/usr/lib",

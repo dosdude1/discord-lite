@@ -25,5 +25,6 @@
 +(NSDate *)dateFromTimestampString:(NSString *)timestampString;
 +(NSString *)userAgentString;
 +(NSString *)superPropertiesString;
++(NSDictionary *)defaultHTTPPostHeaders;
 
 @end

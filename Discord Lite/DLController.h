@@ -16,7 +16,7 @@
 #import "DLDirectMessageChannel.h"
 #import "DLWSController.h"
 
-#define API_ROOT "https://discordapp.com/api/v6"
+#define API_ROOT "https://discord.com/api/v6"
 
 #define kDefaultsToken "token"
 
@@ -29,7 +29,8 @@ typedef enum {
     RequestIDTyping = 5,
     RequestIDTwoFactor = 6,
     RequestIDMessageEdit = 7,
-    RequestIDMessageDelete = 8
+    RequestIDMessageDelete = 8,
+    RequestIDGetFingerprint = 9
 } RequestID;
 
 @protocol DLLoginDelegate <NSObject>
@@ -37,6 +38,8 @@ typedef enum {
 -(void)didLoginWithError:(DLError *)e;
 -(void)didReceiveCaptchaRequestOfType:(NSString *)captchaType withSiteKey:(NSString *)siteKey;
 -(void)didReceiveTwoFactorAuthRequest;
+-(void)didReceiveAuthFingerprint:(NSString *)fingerprint;
+-(void)authFingerprintFailedWithError:(DLError *)e;
 @end
 
 @protocol DLControllerDelegate <NSObject>
@@ -64,6 +67,7 @@ typedef enum {
     NSMutableDictionary *loadedServers;
     NSMutableDictionary *loadedChannels;
     NSMutableArray *loadedMessages;
+    NSString *authFingerprint;
 }
 
 -(DLServer *)selectedServer;
@@ -89,6 +93,7 @@ typedef enum {
 -(void)logOutUser;
 -(void)informTypingInChannel:(DLChannel *)c;
 -(void)submitEditedMessage:(DLMessage *)m;
+-(void)getAuthFingerprint;
 
 -(void)startWebSocket;
 -(void)stopWebSocket;
@@ -96,6 +101,8 @@ typedef enum {
 -(NSArray *)userServers;
 -(NSArray *)channelsForServer:(DLServer *)s;
 -(NSArray *)directMessageChannels;
+
+-(NSString *)authFingerprint;
 
 -(void)queryServer:(DLServer *)s forMembersContainingUsername:(NSString *)username;
 

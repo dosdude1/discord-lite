@@ -18,6 +18,8 @@ static DLController* sharedObject = nil;
     loadedChannels = [[NSMutableDictionary alloc] init];
     loadedServers = [[NSMutableDictionary alloc] init];
     loadedMessages = [[NSMutableArray alloc] init];
+    [[AsyncHTTPRequestSettings sharedInstance] setUserAgentString:[DLUtil userAgentString]];
+    [[AsyncHTTPRequestSettings sharedInstance] setPersistentPOSTHeaders:[DLUtil defaultHTTPPostHeaders]];
     [self loadUserDefaults];
     return self;
 }
@@ -62,14 +64,14 @@ static DLController* sharedObject = nil;
 }
 
 -(void)loginWithEmail:(NSString *)email andPassword:(NSString *)password {
-    NSMutableDictionary *params = [NSMutableDictionary dictionaryWithObjects:[NSArray arrayWithObjects:email, password, nil] forKeys:[NSArray arrayWithObjects:@"email", @"password", nil]];
+    NSMutableDictionary *params = [NSMutableDictionary dictionaryWithObjects:[NSArray arrayWithObjects:email, password, [NSNull null], [NSNull null], [NSNumber numberWithBool:NO], nil] forKeys:[NSArray arrayWithObjects:@"login", @"password", @"gift_code_sku_id", @"login_source", @"undelete", nil]];
     if (captchaKey) {
         [params setObject:captchaKey forKey:@"captcha_key"];
     }
     AsyncHTTPPostRequest *req = [[AsyncHTTPPostRequest alloc] init];
     [req setDelegate:self];
     [req setParameters:params];
-    [req setHeaders:[NSDictionary dictionaryWithObjects:[NSArray arrayWithObjects:[DLUtil superPropertiesString], nil] forKeys:[NSArray arrayWithObjects:@"X-Super-Properties", nil]]];
+    [req setHeaders:[NSDictionary dictionaryWithObjects:[NSArray arrayWithObjects:[DLUtil superPropertiesString], authFingerprint, nil] forKeys:[NSArray arrayWithObjects:@"X-Super-Properties", @"X-Fingerprint", nil]]];
     [req setIdentifier:RequestIDLogin];
     
     [req setUrl:[@API_ROOT stringByAppendingString:@"/auth/login"]];
@@ -77,14 +79,24 @@ static DLController* sharedObject = nil;
 }
 
 -(void)loginWithTwoFactorAuthCode:(NSString *)twoFactorCode {
-    NSDictionary *params = [NSDictionary dictionaryWithObjects:[NSArray arrayWithObjects:twoFactorTicket, twoFactorCode, nil] forKeys:[NSArray arrayWithObjects:@"ticket", @"code", nil]];
+    NSDictionary *params = [NSDictionary dictionaryWithObjects:[NSArray arrayWithObjects:twoFactorTicket, twoFactorCode, [NSNull null
+], [NSNull null], nil] forKeys:[NSArray arrayWithObjects:@"ticket", @"code", @"gift_code_sku_id", @"login_source", nil]];
     AsyncHTTPPostRequest *req = [[AsyncHTTPPostRequest alloc] init];
     [req setDelegate:self];
     [req setParameters:params];
-    [req setHeaders:[NSDictionary dictionaryWithObjects:[NSArray arrayWithObjects:[DLUtil superPropertiesString], nil] forKeys:[NSArray arrayWithObjects:@"X-Super-Properties", nil]]];
+    [req setHeaders:[NSDictionary dictionaryWithObjects:[NSArray arrayWithObjects:[DLUtil superPropertiesString], authFingerprint, nil] forKeys:[NSArray arrayWithObjects:@"X-Super-Properties", @"X-Fingerprint", nil]]];
     [req setIdentifier:RequestIDTwoFactor];
     
     [req setUrl:[@API_ROOT stringByAppendingString:@"/auth/mfa/totp"]];
+    [req start];
+}
+
+-(void)getAuthFingerprint {
+    AsyncHTTPPostRequest *req = [[AsyncHTTPPostRequest alloc] init];
+    [req setDelegate:self];
+    [req setHeaders:[NSDictionary dictionaryWithObjects:[NSArray arrayWithObjects:[DLUtil superPropertiesString], nil] forKeys:[NSArray arrayWithObjects:@"X-Super-Properties", nil]]];
+    [req setIdentifier:RequestIDGetFingerprint];
+    [req setUrl:[@API_ROOT stringByAppendingString:@"/auth/fingerprint"]];
     [req start];
 }
 
@@ -352,6 +364,10 @@ static DLController* sharedObject = nil;
     return myServerItem;
 }
 
+-(NSString *)authFingerprint {
+    return authFingerprint;
+}
+
 -(void)queryServer:(DLServer *)s forMembersContainingUsername:(NSString *)username {
     [[DLWSController sharedInstance] queryServer:s forMembersContainingUsername:username];
 }
@@ -382,6 +398,7 @@ static DLController* sharedObject = nil;
             NSDictionary *resDict = nil;
             if ([req responseData]) {
                 resDict = [[CJSONDeserializer deserializer] deserializeAsDictionary:[req responseData] error:nil];
+                NSLog(@"Res: %@", resDict);
             }
             if ([resDict objectForKey:@"captcha_key"]) {
                 [loginDelegate didReceiveCaptchaRequestOfType:[resDict objectForKey:@"captcha_service"] withSiteKey:[resDict objectForKey:@"captcha_sitekey"]];
@@ -438,6 +455,24 @@ static DLController* sharedObject = nil;
     }
 }
 
+-(void)handleFingerprintRequestResponse:(AsyncHTTPRequest *)req {
+    if ([req result] == HTTPResultOK) {
+        if ([req responseData]) {
+            NSDictionary *resDict = [[CJSONDeserializer deserializer] deserializeAsDictionary:[req responseData] error:nil];
+            authFingerprint = [[resDict objectForKey:@"fingerprint"] retain];
+            [loginDelegate didReceiveAuthFingerprint:authFingerprint];
+        }
+    } else if ([req result] == HTTPResultErrGeneral) {
+        NSDictionary *resDict = nil;
+        if ([req responseData]) {
+            resDict = [[CJSONDeserializer deserializer] deserializeAsDictionary:[req responseData] error:nil];
+        }
+        [loginDelegate authFingerprintFailedWithError:[DLError requestErrorWithMessage:[resDict objectForKey:@"message"]]];
+    } else {
+        [loginDelegate authFingerprintFailedWithError:[DLError generalConnectionError]];
+    }
+}
+
 
 -(void)handleHTTPRequestError:(AsyncHTTPRequest *)req {
     switch ([req result]) {
@@ -489,6 +524,9 @@ static DLController* sharedObject = nil;
             [self handleSendMessageRequestResponse:request];
             break;
         case RequestIDTyping:
+            break;
+        case RequestIDGetFingerprint:
+            [self handleFingerprintRequestResponse:request];
             break;
         default:
             break;

@@ -22,7 +22,12 @@
 }
 
 - (IBAction)login:(id)sender {
-    [[DLController sharedInstance] loginWithEmail:[emailField stringValue] andPassword:[passwordField stringValue]];
+    if (![[DLController sharedInstance] authFingerprint]) {
+        [[DLController sharedInstance] getAuthFingerprint];
+    } else {
+        [[DLController sharedInstance] loginWithEmail:[emailField stringValue] andPassword:[passwordField stringValue]];
+    }
+    
     [progressIndicator setHidden:NO];
     [progressIndicator startAnimation:self];
     [emailField setEnabled:NO];
@@ -73,14 +78,6 @@
     }
 }
 
--(void)didCompleteCaptchaSuccessfully:(BOOL)success {
-    if (success) {
-        [[DLController sharedInstance] loginWithEmail:[emailField stringValue] andPassword:[passwordField stringValue]];
-    } else {
-        [self resetUI];
-    }
-}
-
 -(void)didReceiveTwoFactorAuthRequest {
     if (!twoFactorWindow) {
         twoFactorWindow = [[DLTwoFactorWindowController alloc] initWithWindowNibName:@"DLTwoFactorWindowController"];
@@ -89,6 +86,26 @@
     [twoFactorWindow clear];
     [NSApp beginSheet:twoFactorWindow.window modalForWindow:self.window modalDelegate:nil didEndSelector:nil contextInfo:nil];
 }
+
+-(void)didReceiveAuthFingerprint:(NSString *)fingerprint {
+    [[DLController sharedInstance] loginWithEmail:[emailField stringValue] andPassword:[passwordField stringValue]];
+}
+-(void)authFingerprintFailedWithError:(DLError *)e {
+    [self resetUI];
+    [DLErrorHandler displayError:e onWindow:self.window];
+}
+
+#pragma mark CaptchaDelegate
+
+-(void)didCompleteCaptchaSuccessfully:(BOOL)success {
+    if (success) {
+        [[DLController sharedInstance] loginWithEmail:[emailField stringValue] andPassword:[passwordField stringValue]];
+    } else {
+        [self resetUI];
+    }
+}
+
+#pragma mark TwoFactorDelegate
 
 -(void)didSubmitTwoFactorWithCode:(NSString *)twoFactorCode {
     [NSApp endSheet:twoFactorWindow.window];

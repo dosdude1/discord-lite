@@ -45,7 +45,7 @@ size_t writeFileData(char *data, size_t size, size_t nmemb, void *ptr) {
     if (curlRequestHandle) {
         curl_easy_setopt(curlRequestHandle, CURLOPT_URL, [url UTF8String]);
         curl_easy_setopt(curlRequestHandle, CURLOPT_NOPROGRESS, 1L);
-        curl_easy_setopt(curlRequestHandle, CURLOPT_USERAGENT, [[DLUtil userAgentString] UTF8String]);
+        curl_easy_setopt(curlRequestHandle, CURLOPT_USERAGENT, [[[AsyncHTTPRequestSettings sharedInstance] userAgentString] UTF8String]);
         curl_easy_setopt(curlRequestHandle, CURLOPT_MAXREDIRS, 50L);
         curl_easy_setopt(curlRequestHandle, CURLOPT_TCP_KEEPALIVE, 1L);
         curl_easy_setopt(curlRequestHandle, CURLOPT_TIMEOUT, 120L);

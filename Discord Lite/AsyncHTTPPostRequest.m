@@ -58,6 +58,14 @@
     
     rootHeader = curl_slist_append(rootHeader, [@"Accept: */*" UTF8String]);
     
+    if ([[AsyncHTTPRequestSettings sharedInstance] persistentPOSTHeaders]) {
+        NSEnumerator *e = [[[[AsyncHTTPRequestSettings sharedInstance] persistentPOSTHeaders] allKeys] objectEnumerator];
+        NSString *key;
+        while (key = [e nextObject]) {
+            rootHeader = curl_slist_append(rootHeader, [[NSString stringWithFormat:@"%@: %@", key, [[[AsyncHTTPRequestSettings sharedInstance] persistentPOSTHeaders] objectForKey:key]] UTF8String]);
+        }
+    }
+    
     if (headers) {
         
         NSEnumerator *e = [[headers allKeys] objectEnumerator];

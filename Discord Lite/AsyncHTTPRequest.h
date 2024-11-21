@@ -13,6 +13,7 @@
 #import "HTTPCache.h"
 #include "curl_headers/curl.h"
 #import "AsyncHTTPRequestSequencer.h"
+#import "AsyncHTTPRequestSettings.h"
 
 typedef enum {
     HTTPResultOK = 0,

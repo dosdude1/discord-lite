@@ -13,30 +13,6 @@
 static NSDictionary *superPropertiesDict;
 
 +(NSImage *)imageResize:(NSImage*)anImage newSize:(NSSize)newSize cornerRadius:(CGFloat)radius {
-    /*if (! anImage.isValid) return nil;
-    
-    NSBitmapImageRep *rep = [[NSBitmapImageRep alloc]
-                             initWithBitmapDataPlanes:NULL
-                             pixelsWide:newSize.width
-                             pixelsHigh:newSize.height
-                             bitsPerSample:8
-                             samplesPerPixel:4
-                             hasAlpha:YES
-                             isPlanar:NO
-                             colorSpaceName:NSCalibratedRGBColorSpace
-                             bytesPerRow:0
-                             bitsPerPixel:0];
-    rep.size = newSize;
-    
-    [NSGraphicsContext saveGraphicsState];
-    [NSGraphicsContext setCurrentContext:[NSGraphicsContext graphicsContextWithBitmapImageRep:rep]];
-    [anImage drawInRect:NSMakeRect(0, 0, newSize.width, newSize.height) fromRect:NSZeroRect operation:NSCompositeCopy fraction:1.0];
-    [NSGraphicsContext restoreGraphicsState];
-    
-    NSImage *newImage = [[NSImage alloc] initWithSize:newSize];
-    [newImage addRepresentation:rep];
-    [rep release];
-    return [newImage autorelease];*/
     
     [anImage setScalesWhenResized:YES];
     NSImage *smallImage = [[NSImage alloc] initWithSize: newSize];
@@ -113,14 +89,18 @@ static NSDictionary *superPropertiesDict;
     return date;
 }
 +(NSString *)userAgentString {
-    return [NSString stringWithFormat:@"DiscordLite/%@ CFNetwork/%@ Darwin/%@", [DLUtil appVersionString], [DLUtil networkVersionString], [DLUtil kernelVersion]];
+    return @"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) discord/0.0.326 Chrome/128.0.6613.186 Electron/32.2.2 Safari/537.36";
 }
 +(NSString *)superPropertiesString {
     if (!superPropertiesDict) {
-        superPropertiesDict = [[NSDictionary alloc] initWithObjects:[NSArray arrayWithObjects:@"Mac OS X", @"Discord Client", @"stable", @"0.0.266", [DLUtil kernelVersion], @"x64", @"en-US", @"209354", [NSNull null], nil] forKeys:[NSArray arrayWithObjects:@"os", @"browser", @"release_channel", @"client_version", @"os_version", @"os_arch", @"system_locale", @"client_build_number", @"client_event_source", nil]];
+        superPropertiesDict = [[NSDictionary alloc] initWithObjects:[NSArray arrayWithObjects:@"Mac OS X", @"Discord Client", @"stable", @"0.0.326", [DLUtil kernelVersion], @"x64", @"x64", @"en-US", [self userAgentString], @"32.2.2", @"23", @"209354", [NSNull null], [NSNull null], nil] forKeys:[NSArray arrayWithObjects:@"os", @"browser", @"release_channel", @"client_version", @"os_version", @"os_arch", @"app_arch", @"system_locale", @"browser_user_agent", @"browser_version", @"os_sdk_version", @"client_build_number", @"native_build_number", @"client_event_source", nil]];
     }
     NSData *serializedData = [[CJSONSerializer serializer] serializeDictionary:superPropertiesDict error:nil];
     return [[NSString encodeBase64WithData:serializedData] autorelease];
+}
++(NSDictionary *)defaultHTTPPostHeaders {
+    NSDictionary *headers = [[NSDictionary alloc] initWithObjects:[NSArray arrayWithObjects:@"en-US,en;q=0.5", @"en-US", @"America/New_York", @"bugReporterEnabled", @"https://discord.com", @"1", @"1", @"keep-alive", @"https://discord.com/login?redirect_to=%2Flogin", @"empty", @"cors", @"same-origin", @"u=0", @"trailers", nil] forKeys:[NSArray arrayWithObjects:@"Accept-Language", @"X-Discord-Locale", @"X-Discord-Timezone", @"X-Debug-Options", @"Origin", @"DNT", @"Sec-GPC", @"Connection", @"Referer", @"Sec-Fetch-Dest", @"Sec-Fetch-Mode", @"Sec-Fetch-Site", @"Priority", @"TE", nil]];
+    return [headers autorelease];
 }
 
 @end
