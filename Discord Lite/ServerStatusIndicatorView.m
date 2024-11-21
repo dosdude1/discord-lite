@@ -57,6 +57,7 @@
     [path fill];
     [[NSColor whiteColor] set];
     [path stroke];
+	[path release];
 }
 
 -(void)drawHoverIndicator {
@@ -76,6 +77,7 @@
     [path fill];
     [[NSColor whiteColor] set];
     [path stroke];
+	[path release];
 }
 
 -(void)drawSelectedIndicator {
@@ -95,6 +97,7 @@
     [path fill];
     [[NSColor whiteColor] set];
     [path stroke];
+	[path release];
 }
 
 @end

@@ -22,7 +22,7 @@
     NSEnumerator *e = [folderData objectEnumerator];
     NSDictionary *folder;
     while (folder = [e nextObject]) {
-        [tempFolders addObject:[[DLServerFolder alloc] initWithDict:folder]];
+        [tempFolders addObject:[[[DLServerFolder alloc] initWithDict:folder] autorelease]];
     }
     serverFolders = tempFolders;
     return self;

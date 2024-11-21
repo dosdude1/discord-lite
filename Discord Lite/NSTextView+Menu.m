@@ -45,7 +45,7 @@
             NSEnumerator *e = [[textViewContextMenu itemArray] objectEnumerator];
             NSMenuItem *item;
             while (item = [e nextObject]) {
-                [menu addItem:[item copy]];
+                [menu addItem:[[item copy] autorelease]];
             }
         }
     }
