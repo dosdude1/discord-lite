@@ -135,7 +135,7 @@ const CGFloat MESSAGE_EDITOR_FONT_SIZE = 13.0;
     [m setContent:rawContent];
     [m setAttachments:attachments];
     [m setReferencedMessage:referencedMessage];
-    return [m autorelease];
+    return m;
 }
 
 -(void)clear {

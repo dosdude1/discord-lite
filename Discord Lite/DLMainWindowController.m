@@ -760,7 +760,6 @@ const NSTimeInterval TYPING_SEND_INTERVAL = 8.0;
     NSMutableAttributedString *as = [[NSMutableAttributedString alloc] initWithString:baseString];
     [as addAttribute:NSFontAttributeName value:[NSFont boldSystemFontOfSize:13] range:[baseString rangeOfString:[[m author] username]]];
     [replyToTextField setAttributedStringValue:as];
-    [as release];
     [self showReplyToView];
 }
 -(BOOL)chatViewShouldBeginEditing:(ChatItemViewController *)chatView {
