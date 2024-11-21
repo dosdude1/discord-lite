@@ -624,7 +624,7 @@ static DLController* sharedObject = nil;
         if (!m) {
             m = [[DLServerMember alloc] initWithDict:memberData];
             [[self loadedServerWithID:serverID] addMember:m];
-            [m release];
+            [m autorelease];
         }
         DLUser *u = [m user];
         if (u && (![u isEqual:myUser])) {
