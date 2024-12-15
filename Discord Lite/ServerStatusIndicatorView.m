@@ -81,16 +81,19 @@
 }
 
 -(void)drawSelectedIndicator {
-    NSPoint start = NSMakePoint(0, self.frame.size.height/2);
+    
+    CGFloat height = 38.0f;
+    
+    NSPoint start = NSMakePoint(0, self.frame.size.height / 2);
     NSBezierPath *path = [[NSBezierPath alloc] init];
     [path moveToPoint:start];
     
-    [path lineToPoint:NSMakePoint(start.x, start.y + 20)];
-    [path appendBezierPathWithArcFromPoint:NSMakePoint(start.x + 4, start.y + 20) toPoint:NSMakePoint(start.x + 4, start.y + 10) radius:4.0f];
+    [path lineToPoint:NSMakePoint(start.x, start.y + (height / 2))];
+    [path appendBezierPathWithArcFromPoint:NSMakePoint(start.x + 4, start.y + (height / 2)) toPoint:NSMakePoint(start.x + 4, start.y + (height / 4)) radius:4.0f];
     
-    [path lineToPoint:NSMakePoint(start.x + 4, start.y - 10)];
+    [path lineToPoint:NSMakePoint(start.x + 4, start.y - (height / 4))];
     
-    [path appendBezierPathWithArcFromPoint:NSMakePoint(start.x + 4, start.y - 20) toPoint:NSMakePoint(start.x , start.y - 20) radius:4.0f];
+    [path appendBezierPathWithArcFromPoint:NSMakePoint(start.x + 4, start.y - (height / 2)) toPoint:NSMakePoint(start.x , start.y - (height / 2)) radius:4.0f];
     
     [path closePath];
     [[NSColor whiteColor] set];

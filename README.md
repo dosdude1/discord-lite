@@ -45,7 +45,7 @@
 
 ### Releases
 
-Prebuilt Universal "Tri-FAT" binaries can be found in the [Releases](https://github.com/dosdude1/discord-lite/releases) section. You can download and run on PowerPC, 32-bit Intel, or 64-bit Intel. It will also run on ARM-based Macs under Rosetta, but native ARM support will be added soon.
+Prebuilt Universal "Quad-FAT" binaries can be found in the [Releases](https://github.com/dosdude1/discord-lite/releases) section. You can download and run on PowerPC, 32-bit Intel, 64-bit Intel, or ARM (Apple Silicon) Macs.
 
 Alternatively, you can download the latest release off [my website](http://dosdude1.com/apps/Discord%20Lite.dmg), which is loadable on the older machines.
 

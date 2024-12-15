@@ -51,7 +51,16 @@ static DLController* sharedObject = nil;
 -(void)setDelegate:(id <DLControllerDelegate>)inDelegate {
     delegate = inDelegate;
 }
+-(void)setToken:(NSString *)t {
+    [token release];
+    [t retain];
+    token = t;
+    [[NSUserDefaults standardUserDefaults] setObject:token forKey:@kDefaultsToken];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+}
 -(void)setCaptchaKey:(NSString *)inKey {
+    [captchaKey release];
+    [inKey retain];
     captchaKey = inKey;
 }
 
@@ -360,6 +369,7 @@ static DLController* sharedObject = nil;
         myServerItem = [[DLServer alloc] init];
         [myServerItem setIconImageData:[NSData dataWithContentsOfFile:[[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"discord_purple.png"]]];
         [myServerItem setServerID:@"@me"];
+        [myServerItem setName:@"Direct Messages"];
     }
     return myServerItem;
 }
@@ -398,7 +408,6 @@ static DLController* sharedObject = nil;
             NSDictionary *resDict = nil;
             if ([req responseData]) {
                 resDict = [[CJSONDeserializer deserializer] deserializeAsDictionary:[req responseData] error:nil];
-                NSLog(@"Res: %@", resDict);
             }
             if ([resDict objectForKey:@"captcha_key"]) {
                 [loginDelegate didReceiveCaptchaRequestOfType:[resDict objectForKey:@"captcha_service"] withSiteKey:[resDict objectForKey:@"captcha_sitekey"]];

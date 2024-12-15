@@ -107,7 +107,7 @@ const NSInteger ATTACHMENT_SPACING = 15;
         [[chatTextView textStorage] setAttributedString:as];
     }
     
-    [usernameTextField setStringValue:[[representedObject author] username]];
+    [usernameTextField setStringValue:[[representedObject author] globalName]];
     [avatarImageView setImage:[DLUtil imageResize:[[[NSImage alloc] initWithData:[[representedObject author] avatarImageData]] autorelease] newSize:avatarImageView.frame.size cornerRadius:[ChatItemViewController AVATAR_RADIUS]]];
     [[representedObject author] loadAvatarData];
     
@@ -167,7 +167,7 @@ const NSInteger ATTACHMENT_SPACING = 15;
         [[[representedObject referencedMessage] author] setDelegate:self];
         shift = referencedMessageView.frame.size.height;
         
-        NSMutableAttributedString *attStr = [[NSMutableAttributedString alloc] initWithString:[[[[representedObject referencedMessage] author] username] stringByAppendingString:@" "]];
+        NSMutableAttributedString *attStr = [[NSMutableAttributedString alloc] initWithString:[[[[representedObject referencedMessage] author] globalName] stringByAppendingString:@" "]];
         [attStr addAttribute:NSFontAttributeName value:[NSFont boldSystemFontOfSize:12] range:NSMakeRange(0, attStr.length)];
         [attStr appendAttributedString:[DLTextParser attributedContentStringForMessage:[representedObject referencedMessage]]];
         NSMutableParagraphStyle *style = [[NSMutableParagraphStyle alloc] init];
@@ -175,7 +175,7 @@ const NSInteger ATTACHMENT_SPACING = 15;
         [attStr addAttribute:NSParagraphStyleAttributeName value:style range:NSMakeRange(0, attStr.length)];
         [referencedMessageTextField setAttributedStringValue:attStr];
         
-        [referencedMessageAvatarImageView setImage:[DLUtil imageResize:[[[NSImage alloc] initWithData:[[[representedObject referencedMessage] author]avatarImageData]] autorelease] newSize:referencedMessageAvatarImageView.frame.size cornerRadius:[ChatItemViewController REFERENCED_AVATAR_RADIUS]]];
+        [referencedMessageAvatarImageView setImage:[DLUtil imageResize:[[[NSImage alloc] initWithData:[[[representedObject referencedMessage] author] avatarImageData]] autorelease] newSize:referencedMessageAvatarImageView.frame.size cornerRadius:[ChatItemViewController REFERENCED_AVATAR_RADIUS]]];
         NSRect frame = usernameTextField.frame;
         frame.origin.y -= shift;
         [usernameTextField setFrame:frame];

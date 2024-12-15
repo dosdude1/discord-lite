@@ -10,18 +10,19 @@
 
 @implementation ServerItemViewController
 
-+(CGFloat)AVATAR_RADIUS {
-    return 27.0f;
-}
+const CGFloat AVATAR_RADIUS = 25.0f;
+const CGFloat SELECTED_AVATAR_RADIUS = 16.5f;
 
 -(id)init {
     self = [super init];
     type = ServerItemViewTypeServer;
     isSelected = NO;
+    isHovering = NO;
     return self;
 }
 -(void)awakeFromNib {
     [view setDelegate:self];
+    [detailView setBackgroundColor:[NSColor colorWithCalibratedRed:14.0/255.0 green:15.0/255.0 blue:16.0/255.0 alpha:1.0f]];
 }
 
 -(void)setRepresentedObject:(DLServer *)inRepresentedObject {
@@ -30,7 +31,11 @@
     representedObject = inRepresentedObject;
     [representedObject setDelegate:self];
     iconImage = [[NSImage alloc] initWithData:[representedObject iconImageData]];
-    [selectionButton setImage:[DLUtil imageResize:iconImage newSize:NSSizeFromCGSize(CGSizeMake(selectionButton.frame.size.width - 5, selectionButton.frame.size.height - 5)) cornerRadius:[ServerItemViewController AVATAR_RADIUS]]];
+    [selectionButton setImage:[DLUtil imageResize:iconImage newSize:NSSizeFromCGSize(CGSizeMake(selectionButton.frame.size.width - 5, selectionButton.frame.size.height - 5)) cornerRadius:AVATAR_RADIUS]];
+    if ([representedObject name]) {
+        [self setupDetailView];
+    }
+    
     [self mentionCountDidUpdate];
     [self updateStatusIndicator];
 }
@@ -39,8 +44,16 @@
     return representedObject;
 }
 
+-(void)setupDetailView {
+    [detailViewTextField setStringValue:[representedObject name]];
+    CGFloat yMargin = detailView.frame.size.height - detailViewTextField.frame.size.height;
+    CGFloat xMargin = detailView.frame.size.width - detailViewTextField.frame.size.width;
+    NSSize s = [detailViewTextField intrinsicContentSize];
+    [detailView setFrame:NSMakeRect(detailView.frame.origin.x, detailView.frame.origin.y, s.width + xMargin, s.height + yMargin)];
+}
+
 -(void)updateStatusIndicator {
-    if (!isSelected) {
+    if (!isSelected && !isHovering) {
         if ([representedObject hasUnreadMessages]) {
             [statusIndicatorView setDrawnIndicator:ServerStatusIndicatorUnread];
         } else {
@@ -61,11 +74,11 @@
         if (selected) {
             [statusIndicatorView setDrawnIndicator:ServerStatusIndicatorSelected];
             [statusIndicatorView setNeedsDisplay:YES];
-            [selectionButton setImage:[DLUtil imageResize:iconImage newSize:NSMakeSize(selectionButton.frame.size.width - 5, selectionButton.frame.size.height - 5) cornerRadius:20.0f]];
+            [selectionButton setImage:[DLUtil imageResize:iconImage newSize:NSMakeSize(selectionButton.frame.size.width - 5, selectionButton.frame.size.height - 5) cornerRadius:SELECTED_AVATAR_RADIUS]];
             [view setNeedsDisplay:YES];
         } else {
             [self updateStatusIndicator];
-            [selectionButton setImage:[DLUtil imageResize:iconImage newSize:NSMakeSize(selectionButton.frame.size.width - 5, selectionButton.frame.size.height - 5) cornerRadius:[ServerItemViewController AVATAR_RADIUS]]];
+            [selectionButton setImage:[DLUtil imageResize:iconImage newSize:NSMakeSize(selectionButton.frame.size.width - 5, selectionButton.frame.size.height - 5) cornerRadius:AVATAR_RADIUS]];
             [view setNeedsDisplay:YES];
         }
     }
@@ -80,7 +93,7 @@
         view = separatorView;
     } else if (inType == ServerItemViewTypeMe) {
         iconImage = [[NSImage alloc] initWithData:[representedObject iconImageData]];
-        [selectionButton setImage:[DLUtil imageResize:iconImage newSize:NSMakeSize(selectionButton.frame.size.width - 5, selectionButton.frame.size.height - 5) cornerRadius:[ServerItemViewController AVATAR_RADIUS]]];
+        [selectionButton setImage:[DLUtil imageResize:iconImage newSize:NSMakeSize(selectionButton.frame.size.width - 5, selectionButton.frame.size.height - 5) cornerRadius:AVATAR_RADIUS]];
     }
     type = inType;
 }
@@ -96,18 +109,23 @@
 }
 
 - (void)mouseEntered:(NSEvent *)theEvent{
+    isHovering = YES;
     if (!isSelected) {
-        [selectionButton setImage:[DLUtil imageResize:iconImage newSize:NSMakeSize(selectionButton.frame.size.width - 5, selectionButton.frame.size.height - 5) cornerRadius:20.0f]];
+        [selectionButton setImage:[DLUtil imageResize:iconImage newSize:NSMakeSize(selectionButton.frame.size.width - 5, selectionButton.frame.size.height - 5) cornerRadius:SELECTED_AVATAR_RADIUS]];
         [statusIndicatorView setDrawnIndicator:ServerStatusIndicatorHover];
         [statusIndicatorView setNeedsDisplay:YES];
     }
+    [detailView setFrame:NSMakeRect(self.view.frame.origin.x, self.view.frame.origin.y, detailView.frame.size.width, detailView.frame.size.height)];
+    [delegate serverItemHoverActiveWithDetailView:detailView atPoint:CGPointMake(self.view.frame.origin.x + 70, self.view.frame.origin.y + ((self.view.frame.size.height / 2) - (detailView.frame.size.height / 2)))];
 }
 
 - (void)mouseExited:(NSEvent *)theEvent{
+    isHovering = NO;
     if (!isSelected) {
-        [selectionButton setImage:[DLUtil imageResize:iconImage newSize:NSMakeSize(selectionButton.frame.size.width - 5, selectionButton.frame.size.height - 5) cornerRadius:[ServerItemViewController AVATAR_RADIUS]]];
+        [selectionButton setImage:[DLUtil imageResize:iconImage newSize:NSMakeSize(selectionButton.frame.size.width - 5, selectionButton.frame.size.height - 5) cornerRadius:AVATAR_RADIUS]];
         [self updateStatusIndicator];
     }
+    [detailView removeFromSuperview];
 }
 
 -(void)updateRectTracking {
@@ -131,7 +149,7 @@
 
 -(void)iconDidUpdateWithData:(NSData *)data {
     iconImage = [[NSImage alloc] initWithData:[representedObject iconImageData]];
-    [selectionButton setImage:[DLUtil imageResize:iconImage newSize:NSMakeSize(selectionButton.frame.size.width - 5, selectionButton.frame.size.height - 5) cornerRadius:[ServerItemViewController AVATAR_RADIUS]]];
+    [selectionButton setImage:[DLUtil imageResize:iconImage newSize:NSMakeSize(selectionButton.frame.size.width - 5, selectionButton.frame.size.height - 5) cornerRadius:AVATAR_RADIUS]];
 }
 
 -(void)mentionCountDidUpdate {

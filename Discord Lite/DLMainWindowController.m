@@ -15,6 +15,7 @@
 @implementation DLMainWindowController
 
 const NSTimeInterval TYPING_SEND_INTERVAL = 8.0;
+const CGFloat MY_USER_AVATAR_RADIUS = 18.0f;
 
 - (void)windowDidLoad {
     [super windowDidLoad];
@@ -66,6 +67,7 @@ const NSTimeInterval TYPING_SEND_INTERVAL = 8.0;
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(chatScrollViewBoundsDidChange:) name:NSViewBoundsDidChangeNotification object:chatScrollView.contentView];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(serversScrollViewBoundsDidChange:) name:NSViewBoundsDidChangeNotification object:serversScrollView.contentView];
     // Implement this method to handle any initialization after your window controller's window has been loaded from its nib file.
+    [myUserAvatarImage setImage:[DLUtil imageResize:[[[NSImage alloc] initWithContentsOfFile:[[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"discord_placeholder.png"]] autorelease] newSize:myUserAvatarImage.frame.size cornerRadius:MY_USER_AVATAR_RADIUS]];
     [messageEntryTextView setDelegate:self];
     [chatScrollView setDelegate:self];
     currentMessageScrollHeight = messageEntryScrollView.frame.size.height;
@@ -93,9 +95,9 @@ const NSTimeInterval TYPING_SEND_INTERVAL = 8.0;
 -(void)loadMainContent {
     DLUser *u = [[DLController sharedInstance] myUser];
     [u setDelegate:self];
-    [myUserAvatarImage setImage:[[[NSImage alloc] initWithData:[u avatarImageData]] autorelease]];
-    [myUsernameTextField setStringValue:[u username]];
-    [myDiscTextField setStringValue:[u globalName]];
+    [myUserAvatarImage setImage:[DLUtil imageResize:[[[NSImage alloc] initWithData:[u avatarImageData]] autorelease] newSize:myUserAvatarImage.frame.size cornerRadius:MY_USER_AVATAR_RADIUS]];
+    [myUsernameTextField setStringValue:[u globalName]];
+    [myDiscTextField setStringValue:[u username]];
     [u loadAvatarData];
 }
 
@@ -530,7 +532,7 @@ const NSTimeInterval TYPING_SEND_INTERVAL = 8.0;
 }
 
 -(void)user:(DLUser *)u avatarDidUpdateWithData:(NSData *)data {
-    [myUserAvatarImage setImage:[DLUtil imageResize:[[[NSImage alloc] initWithData:data] autorelease] newSize:myUserAvatarImage.frame.size cornerRadius:18.0f]];
+    [myUserAvatarImage setImage:[DLUtil imageResize:[[[NSImage alloc] initWithData:data] autorelease] newSize:myUserAvatarImage.frame.size cornerRadius:MY_USER_AVATAR_RADIUS]];
 }
 
 -(void)serverItemWasSelected:(ServerItemViewController *)item {
@@ -555,6 +557,13 @@ const NSTimeInterval TYPING_SEND_INTERVAL = 8.0;
         [NSThread detachNewThreadSelector:@selector(loadChannelsForServerItem:) toTarget:self withObject:item];
     }
     
+}
+
+-(void)serverItemHoverActiveWithDetailView:(NSView *)detail atPoint:(CGPoint)p {
+    NSRect r = [serversScrollView documentVisibleRect];
+    
+    [detail setFrame:NSMakeRect(p.x, p.y - r.origin.y, detail.frame.size.width, detail.frame.size.height)];
+    [self.window.contentView addSubview:detail];
 }
 
 -(void)channelItemWasSelected:(ChannelItemViewController *)item {
@@ -703,18 +712,18 @@ const NSTimeInterval TYPING_SEND_INTERVAL = 8.0;
         NSString *typingString = @"";
         [typingStatusTextField setHidden:NO];
         if (typingUsers.count == 1) {
-            typingString = [NSString stringWithFormat:@"%@ is Typing...", [[typingUsers objectAtIndex:0] username]];
+            typingString = [NSString stringWithFormat:@"%@ is Typing...", [[typingUsers objectAtIndex:0] globalName]];
         } else if (typingUsers.count < 4) {
             for (int i = 0; i<typingUsers.count; i++) {
                 if (i < typingUsers.count - 1) {
-                    typingString = [typingString stringByAppendingString:[NSString stringWithFormat:@"%@", [[typingUsers objectAtIndex:i] username]]];
+                    typingString = [typingString stringByAppendingString:[NSString stringWithFormat:@"%@", [[typingUsers objectAtIndex:i] globalName]]];
                     if (i < typingUsers.count - 2) {
                         typingString = [typingString stringByAppendingString:@", "];
                     } else {
                         typingString = [typingString stringByAppendingString:@" "];
                     }
                 } else {
-                    typingString = [typingString stringByAppendingString:[NSString stringWithFormat:@"and %@ are Typing...", [[typingUsers objectAtIndex:i] username]]];
+                    typingString = [typingString stringByAppendingString:[NSString stringWithFormat:@"and %@ are Typing...", [[typingUsers objectAtIndex:i] globalName]]];
                 }
             }
         } else {
@@ -756,9 +765,9 @@ const NSTimeInterval TYPING_SEND_INTERVAL = 8.0;
         [m setServerID:[[[DLController sharedInstance] selectedServer] serverID]];
     }
     [messageEditor setReferencedMessage:m];
-    NSString *baseString = [NSString stringWithFormat:@"Replying to %@", [[m author] username]];
+    NSString *baseString = [NSString stringWithFormat:@"Replying to %@", [[m author] globalName]];
     NSMutableAttributedString *as = [[NSMutableAttributedString alloc] initWithString:baseString];
-    [as addAttribute:NSFontAttributeName value:[NSFont boldSystemFontOfSize:13] range:[baseString rangeOfString:[[m author] username]]];
+    [as addAttribute:NSFontAttributeName value:[NSFont boldSystemFontOfSize:13] range:[baseString rangeOfString:[[m author] globalName]]];
     [replyToTextField setAttributedStringValue:as];
     [self showReplyToView];
 }

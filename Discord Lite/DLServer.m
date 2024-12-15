@@ -106,18 +106,6 @@
     return nil;
 }
 
--(NSArray *)membersWithUsernameContainingString:(NSString *)username {
-    NSMutableArray *matchedMembers = [[NSMutableArray alloc] init];
-    NSEnumerator *e = [members objectEnumerator];
-    DLServerMember *m;
-    while (m = [e nextObject]) {
-        if ([[[m user] username] rangeOfString:username].location != NSNotFound) {
-            [matchedMembers addObject:m];
-        }
-    }
-    return matchedMembers;
-}
-
 -(void)notifyOfNewMention {
     mentionCount++;
     [delegate mentionCountDidUpdate];

@@ -78,6 +78,7 @@ typedef enum {
 -(void)setLoginDelegate:(id <DLLoginDelegate>)inLoginDelegate;
 -(void)setDelegate:(id <DLControllerDelegate>)inDelegate;
 
+-(void)setToken:(NSString *)t;
 -(void)setCaptchaKey:(NSString *)inKey;
 
 +(DLController *)sharedInstance;

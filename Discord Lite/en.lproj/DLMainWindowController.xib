@@ -50,7 +50,7 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <scrollView borderType="none" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" horizontalScrollElasticity="none" scrollerKnobStyle="dark" id="h23-nI-XrN" customClass="DynamicScrollView">
-                        <rect key="frame" x="0.0" y="0.0" width="85" height="517"/>
+                        <rect key="frame" x="0.0" y="0.0" width="80" height="517"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" heightSizable="YES"/>
                         <clipView key="contentView" copiesOnScroll="NO" id="Ngg-kN-ptI" customClass="FlippedClipView">
                             <rect key="frame" x="1" y="1" width="166" height="79"/>
@@ -151,34 +151,11 @@
                         </subviews>
                     </customView>
                     <customView id="M6y-cL-GMB" customClass="NSView_BGColor">
-                        <rect key="frame" x="85" y="0.0" width="253" height="56"/>
+                        <rect key="frame" x="80" y="0.0" width="258" height="56"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" id="Nku-Ug-uCU">
-                                <rect key="frame" x="11" y="11" width="35" height="34"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="discord_placeholder" id="bJx-Je-493"/>
-                            </imageView>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="x7Y-QF-JDT">
-                                <rect key="frame" x="52" y="29" width="157" height="17"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="User" id="rG5-UM-Swz">
-                                    <font key="font" metaFont="systemBold"/>
-                                    <color key="textColor" red="1" green="1" blue="0.96470588235294119" alpha="1" colorSpace="calibratedRGB"/>
-                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                                </textFieldCell>
-                            </textField>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="lIR-ck-USc">
-                                <rect key="frame" x="52" y="11" width="157" height="17"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="#" id="j13-uA-ybz">
-                                    <font key="font" metaFont="system"/>
-                                    <color key="textColor" red="0.66666666666666663" green="0.67843137254901964" blue="0.69019607843137254" alpha="1" colorSpace="calibratedRGB"/>
-                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                                </textFieldCell>
-                            </textField>
                             <button id="TWf-Ue-t6e">
-                                <rect key="frame" x="215" y="19" width="18" height="18"/>
+                                <rect key="frame" x="220" y="19" width="18" height="18"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="settings" imagePosition="only" alignment="center" inset="2" id="79q-Wv-aSM">
                                     <behavior key="behavior" lightByContents="YES"/>
@@ -188,17 +165,40 @@
                                     <action selector="showSettingsMenu:" target="-2" id="ZmV-b8-6Y7"/>
                                 </connections>
                             </button>
+                            <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" id="Nku-Ug-uCU">
+                                <rect key="frame" x="11" y="11" width="35" height="34"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="discord_placeholder" id="bJx-Je-493"/>
+                            </imageView>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="x7Y-QF-JDT">
+                                <rect key="frame" x="52" y="29" width="162" height="17"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="User" id="rG5-UM-Swz">
+                                    <font key="font" metaFont="systemBold"/>
+                                    <color key="textColor" red="1" green="1" blue="0.96470588235294119" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="lIR-ck-USc">
+                                <rect key="frame" x="52" y="11" width="162" height="17"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="#" id="j13-uA-ybz">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" red="0.66666666666666663" green="0.67843137254901964" blue="0.69019607843137254" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
                         </subviews>
                     </customView>
                     <scrollView borderType="none" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" horizontalScrollElasticity="none" id="E5m-T8-onc" customClass="DynamicScrollView">
-                        <rect key="frame" x="85" y="56" width="253" height="420"/>
+                        <rect key="frame" x="80" y="56" width="258" height="420"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" heightSizable="YES"/>
                         <clipView key="contentView" copiesOnScroll="NO" id="de6-yQ-Van" customClass="FlippedClipView">
                             <rect key="frame" x="1" y="1" width="166" height="79"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <subviews>
                                 <view id="K1O-Yv-55k">
-                                    <rect key="frame" x="0.0" y="0.0" width="618" height="2416"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="695" height="2416"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                 </view>
                             </subviews>
@@ -221,11 +221,11 @@
                         <font key="titleFont" metaFont="system"/>
                     </box>
                     <customView id="2zV-G3-7IT" customClass="NSView_BGColor">
-                        <rect key="frame" x="85" y="475" width="253" height="42"/>
+                        <rect key="frame" x="80" y="475" width="258" height="42"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <subviews>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="Rwc-we-IWw">
-                                <rect key="frame" x="18" y="12" width="223" height="19"/>
+                                <rect key="frame" x="13" y="12" width="234" height="19"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Server" id="8Nf-bh-iJR">
                                     <font key="font" metaFont="systemBold" size="15"/>
@@ -234,7 +234,7 @@
                                 </textFieldCell>
                             </textField>
                             <box autoresizesSubviews="NO" verticalHuggingPriority="750" title="Box" boxType="separator" titlePosition="noTitle" id="rrC-kW-Zcu">
-                                <rect key="frame" x="0.0" y="-2" width="254" height="5"/>
+                                <rect key="frame" x="6" y="-2" width="254" height="5"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
                                 <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>

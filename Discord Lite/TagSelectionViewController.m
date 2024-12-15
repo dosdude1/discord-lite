@@ -31,7 +31,7 @@
     [avatarImageView setImage:[DLUtil imageResize:[[[NSImage alloc] initWithData:[u avatarImageData]] autorelease] newSize:avatarImageView.frame.size cornerRadius:[TagSelectionViewController AVATAR_RADIUS]]];
     [u setDelegate:self];
     [u loadAvatarData];
-    [usernameTextField setStringValue:[u username]];
+    [usernameTextField setStringValue:[u globalName]];
 }
 
 -(void)setDelegate:(id <TagSelectionItemDelegate>)inDelegate {

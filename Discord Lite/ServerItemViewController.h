@@ -12,6 +12,8 @@
 #import "DLUtil.h"
 #import "NSView+Events.h"
 #import "ServerStatusIndicatorView.h"
+#import "NSTextField+DynamicHeight.h"
+#import "PopoutView.h"
 
 typedef enum {
     ServerItemViewTypeServer = 0,
@@ -24,6 +26,7 @@ typedef enum {
 @protocol ServerItemDelegate <NSObject>
 @optional
 -(void)serverItemWasSelected:(ServerItemViewController *)item;
+-(void)serverItemHoverActiveWithDetailView:(NSView *)detail atPoint:(CGPoint)p;
 @end
 
 @interface ServerItemViewController : ViewController <DLServerDelegate> {
@@ -32,12 +35,16 @@ typedef enum {
     IBOutlet NSView_BGColor *separatorView;
     IBOutlet ServerStatusIndicatorView *statusIndicatorView;
     
+    IBOutlet PopoutView *detailView;
+    IBOutlet NSTextField_DynamicHeight *detailViewTextField;
+    
     ServerItemViewType type;
     id<ServerItemDelegate> delegate;
     IBOutlet BadgeTextField *mentionBadgeLabel;
     NSImage *iconImage;
     NSTrackingRectTag trackingRect;
     BOOL isSelected;
+    BOOL isHovering;
 }
 
 -(id)init;

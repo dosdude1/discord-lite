@@ -33,6 +33,24 @@
     [emailField setEnabled:NO];
     [passwordField setEnabled:NO];
     [loginButton setEnabled:NO];
+    [useTokenButton setEnabled:NO];
+}
+
+- (IBAction)showTokenEntryPanel:(id)sender {
+    [tokenEntryTextField setStringValue:@""];
+    [NSApp beginSheet:tokenEntryPanel modalForWindow:self.window modalDelegate:nil didEndSelector:nil contextInfo:nil];
+}
+
+- (IBAction)loginWithToken:(id)sender {
+    [NSApp endSheet:tokenEntryPanel];
+    [tokenEntryPanel orderOut:sender];
+    [[DLController sharedInstance] setToken:[tokenEntryTextField stringValue]];
+    [delegate loginWasSuccessful];
+}
+
+- (IBAction)dismissTokenEntryPanel:(id)sender {
+    [NSApp endSheet:tokenEntryPanel];
+    [tokenEntryPanel orderOut:sender];
 }
 
 -(void)setDelegate:(id<DLLoginWindowDelegate>)inDelegate {
@@ -45,6 +63,7 @@
     [emailField setEnabled:YES];
     [passwordField setEnabled:YES];
     [loginButton setEnabled:YES];
+    [useTokenButton setEnabled:YES];
 }
 
 -(void)dealloc {

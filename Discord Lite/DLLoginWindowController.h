@@ -27,8 +27,16 @@
     IBOutlet NSButton *loginButton;
     DLCaptchaWindowController *captchaWindow;
     DLTwoFactorWindowController *twoFactorWindow;
+    IBOutlet NSButton *useTokenButton;
+    
+    IBOutlet NSPanel *tokenEntryPanel;
+    IBOutlet NSTextField *tokenEntryTextField;
+    
 }
 - (IBAction)login:(id)sender;
+- (IBAction)showTokenEntryPanel:(id)sender;
+- (IBAction)loginWithToken:(id)sender;
+- (IBAction)dismissTokenEntryPanel:(id)sender;
 -(void)setDelegate:(id<DLLoginWindowDelegate>)inDelegate;
 
 @end

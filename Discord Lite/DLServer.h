@@ -48,7 +48,6 @@
 -(void)addMember:(DLServerMember *)m;
 
 -(DLServerMember *)memberWithUserID:(NSString *)userID;
--(NSArray *)membersWithUsernameContainingString:(NSString *)username;
 
 -(void)setDelegate:(id <DLServerDelegate>)inDelegate;
 -(BOOL)isEqual:(DLServer *)object;

@@ -67,17 +67,17 @@
 -(NSString *)name {
     if (name == nil || [name isKindOfClass:[NSNull class]]) {
         if (recipients.count == 1) {
-            return [[recipients objectAtIndex:0] username];
+            return [[recipients objectAtIndex:0] globalName];
         } else if (recipients.count > 1) {
-            NSString *usernames = @"";
+            NSString *globalNames = @"";
             for (int i = 0; i<recipients.count; i++) {
                 if (i < recipients.count - 1) {
-                    usernames = [usernames stringByAppendingString:[NSString stringWithFormat:@"%@, ", [[recipients objectAtIndex:i] username]]];
+                    globalNames = [globalNames stringByAppendingString:[NSString stringWithFormat:@"%@, ", [[recipients objectAtIndex:i] globalName]]];
                 } else {
-                    usernames = [usernames stringByAppendingString:[[recipients objectAtIndex:i] username]];
+                    globalNames = [globalNames stringByAppendingString:[[recipients objectAtIndex:i] globalName]];
                 }
             }
-            return usernames;
+            return globalNames;
         }
     }
     return name;
@@ -111,7 +111,7 @@
     NSEnumerator *e = [recipients objectEnumerator];
     DLUser *user;
     while (user = [e nextObject]) {
-        if ([[user username] rangeOfString:username].location != NSNotFound) {
+        if ([[user username] rangeOfString:username].location != NSNotFound || [[user globalName] rangeOfString:username].location != NSNotFound) {
             [matchedUsers addObject:user];
         }
     }

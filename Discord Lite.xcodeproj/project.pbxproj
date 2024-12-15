@@ -23,6 +23,8 @@
 		872FCEC8272A4C5F002434B1 /* ServerItemViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 872FCEC6272A4C5F002434B1 /* ServerItemViewController.m */; };
 		872FCECA272A4CDA002434B1 /* ServerItemViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 872FCECC272A4CDA002434B1 /* ServerItemViewController.xib */; };
 		872FCED7272A5902002434B1 /* FlippedClipView.m in Sources */ = {isa = PBXBuildFile; fileRef = 872FCED6272A5902002434B1 /* FlippedClipView.m */; };
+		873E712F2D0E7F3200427A00 /* NSTextField+DynamicHeight.m in Sources */ = {isa = PBXBuildFile; fileRef = 873E712E2D0E7F3200427A00 /* NSTextField+DynamicHeight.m */; };
+		873E71322D0E899E00427A00 /* PopoutView.m in Sources */ = {isa = PBXBuildFile; fileRef = 873E71312D0E899E00427A00 /* PopoutView.m */; };
 		8742C8682730EE47005359DC /* ChatItemViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8742C8672730EE47005359DC /* ChatItemViewController.m */; };
 		8742C86B2730EE85005359DC /* ChatItemViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8742C86D2730EE85005359DC /* ChatItemViewController.xib */; };
 		87450D2C27370833007B4C08 /* DLUserSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = 87450D2B27370833007B4C08 /* DLUserSettings.m */; };
@@ -170,6 +172,10 @@
 		872FCECB272A4CDA002434B1 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ServerItemViewController.xib; sourceTree = "<group>"; };
 		872FCED5272A5902002434B1 /* FlippedClipView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlippedClipView.h; sourceTree = "<group>"; };
 		872FCED6272A5902002434B1 /* FlippedClipView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FlippedClipView.m; sourceTree = "<group>"; };
+		873E712D2D0E7F3200427A00 /* NSTextField+DynamicHeight.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSTextField+DynamicHeight.h"; sourceTree = "<group>"; };
+		873E712E2D0E7F3200427A00 /* NSTextField+DynamicHeight.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSTextField+DynamicHeight.m"; sourceTree = "<group>"; };
+		873E71302D0E899E00427A00 /* PopoutView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PopoutView.h; sourceTree = "<group>"; };
+		873E71312D0E899E00427A00 /* PopoutView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PopoutView.m; sourceTree = "<group>"; };
 		8742C8662730EE47005359DC /* ChatItemViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatItemViewController.h; sourceTree = "<group>"; };
 		8742C8672730EE47005359DC /* ChatItemViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatItemViewController.m; sourceTree = "<group>"; };
 		8742C86C2730EE85005359DC /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ChatItemViewController.xib; sourceTree = "<group>"; };
@@ -456,6 +462,8 @@
 			children = (
 				877F4DD728ED2DCB00183257 /* ServerStatusIndicatorView.h */,
 				877F4DD828ED2DCB00183257 /* ServerStatusIndicatorView.m */,
+				873E71302D0E899E00427A00 /* PopoutView.h */,
+				873E71312D0E899E00427A00 /* PopoutView.m */,
 			);
 			name = "Custom Views";
 			sourceTree = "<group>";
@@ -684,6 +692,8 @@
 				87A6E2C3273612B5000DC06E /* BezierPathRoundedRect.m */,
 				8791ACC62794B7C9005672AB /* TwoFactorEntryFormatter.h */,
 				8791ACC72794B7C9005672AB /* TwoFactorEntryFormatter.m */,
+				873E712D2D0E7F3200427A00 /* NSTextField+DynamicHeight.h */,
+				873E712E2D0E7F3200427A00 /* NSTextField+DynamicHeight.m */,
 			);
 			name = "Helper Classes";
 			sourceTree = "<group>";
@@ -699,7 +709,6 @@
 				87C11C8A2728DB7B000046F2 /* Frameworks */,
 				87C11C8B2728DB7B000046F2 /* Resources */,
 				87D6C2852A4512B8002F5FBF /* CopyFiles */,
-				87D6C2892A4512E6002F5FBF /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -812,22 +821,6 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
-/* Begin PBXShellScriptBuildPhase section */
-		87D6C2892A4512E6002F5FBF /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "#install_name_tool -change /usr/local/lib/libcrypto.3.dylib @executable_path/../Frameworks/libcrypto.3.dylib \"$TARGET_BUILD_DIR/$PRODUCT_NAME.app/Contents/MacOS/$PRODUCT_NAME\";\n#install_name_tool -change /usr/local/lib/libssl.3.dylib @executable_path/../Frameworks/libssl.3.dylib \"$TARGET_BUILD_DIR/$PRODUCT_NAME.app/Contents/MacOS/$PRODUCT_NAME\";\n#install_name_tool -change /Users/collinmistr/curlpref/lib/libcurl.4.dylib @executable_path/../Frameworks/libcurl.4.dylib \"$TARGET_BUILD_DIR/$PRODUCT_NAME.app/Contents/MacOS/$PRODUCT_NAME\";\n#install_name_tool -change /usr/local/lib/libcurl.4.dylib @executable_path/../Frameworks/libcurl.4.dylib \"$TARGET_BUILD_DIR/$PRODUCT_NAME.app/Contents/MacOS/$PRODUCT_NAME\";\n#install_name_tool -change /usr/local/lib/libcrypto.3.dylib @executable_path/../Frameworks/libcrypto.3.dylib \"$TARGET_BUILD_DIR/$PRODUCT_NAME.app/Contents/Frameworks/libssl.3.dylib\";\n#install_name_tool -change /usr/local/lib/libcrypto.3.dylib @executable_path/../Frameworks/libcrypto.3.dylib \"$TARGET_BUILD_DIR/$PRODUCT_NAME.app/Contents/Frameworks/libcurl.4.dylib\";\n#install_name_tool -change /usr/local/lib/libssl.3.dylib @executable_path/../Frameworks/libssl.3.dylib \"$TARGET_BUILD_DIR/$PRODUCT_NAME.app/Contents/Frameworks/libcurl.4.dylib\";";
-		};
-/* End PBXShellScriptBuildPhase section */
-
 /* Begin PBXSourcesBuildPhase section */
 		87C11C892728DB7B000046F2 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -838,6 +831,7 @@
 				8791ACC12794AE50005672AB /* DLTwoFactorWindowController.m in Sources */,
 				87A38DD02732FEDB002385EE /* HTTPCache.m in Sources */,
 				8759138A274D9EBD003B7128 /* RegexKitLite.m in Sources */,
+				873E712F2D0E7F3200427A00 /* NSTextField+DynamicHeight.m in Sources */,
 				872FCEC8272A4C5F002434B1 /* ServerItemViewController.m in Sources */,
 				87BCAA732A4CD8DA00EEFFB0 /* NSString+Base64.m in Sources */,
 				87AD27D72741D3230092F428 /* HorizontalDynamicScrollView.m in Sources */,
@@ -881,6 +875,7 @@
 				87BE741B278BEBA800F61BF7 /* NSTextView+Menu.m in Sources */,
 				87C6E6A827305DBF00090639 /* DLChannel.m in Sources */,
 				87F066E028B553D000FE92A2 /* DLPreferencesWindowController.m in Sources */,
+				873E71322D0E899E00427A00 /* PopoutView.m in Sources */,
 				876DBDF727291711008682BC /* CDataScanner.m in Sources */,
 				87A32B2D273F1A28003D64BD /* DLAttachmentWindowController.m in Sources */,
 				876DBDF427291681008682BC /* CJSONSerializer.m in Sources */,

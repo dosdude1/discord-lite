@@ -37,10 +37,10 @@ const CGFloat MESSAGE_EDITOR_FONT_SIZE = 13.0;
         if (lastLocation != NSNotFound) {
             if (mentionedUsers.count >= index + 1) {
                 DLUser *user = [mentionedUsers objectAtIndex:index];
-                if ([user username].length <= userContent.length - (lastLocation + 1)) {
-                    NSString *username = [userContent substringWithRange:NSMakeRange(lastLocation + 1, [user username].length)];
-                    if ([username isEqualToString:[user username]]) {
-                        NSRange tagRange = NSMakeRange(lastLocation, [user username].length + 1);
+                if ([user globalName].length <= userContent.length - (lastLocation + 1)) {
+                    NSString *globalName = [userContent substringWithRange:NSMakeRange(lastLocation + 1, [user globalName].length)];
+                    if ([globalName isEqualToString:[user globalName]]) {
+                        NSRange tagRange = NSMakeRange(lastLocation, [user globalName].length + 1);
                         [as addAttribute:NSBackgroundColorAttributeName value:[NSColor colorWithCalibratedRed:52.0/255.0 green:61.0/255.0 blue:106.0/255.0 alpha:1.0f] range:tagRange];
                         [as addAttribute:NSFontAttributeName value:[NSFont boldSystemFontOfSize:MESSAGE_EDITOR_FONT_SIZE] range:tagRange];
                         [as addAttribute:@kTagAttribute value:[NSNumber numberWithBool:YES] range:tagRange];
@@ -69,9 +69,9 @@ const CGFloat MESSAGE_EDITOR_FONT_SIZE = 13.0;
         if (lastLocation != NSNotFound) {
             if (mentionedUsers.count >= insertionIndex + 1) {
                 DLUser *user = [mentionedUsers objectAtIndex:insertionIndex];
-                if ([user username].length <= previousTags.length - (lastLocation + 1)) {
-                    NSString *username = [previousTags substringWithRange:NSMakeRange(lastLocation + 1, [user username].length)];
-                    if ([username isEqualToString:[user username]]) {
+                if ([user globalName].length <= previousTags.length - (lastLocation + 1)) {
+                    NSString *globalName = [previousTags substringWithRange:NSMakeRange(lastLocation + 1, [user globalName].length)];
+                    if ([globalName isEqualToString:[user globalName]]) {
                         insertionIndex++;
                     }
                 }
@@ -80,7 +80,7 @@ const CGFloat MESSAGE_EDITOR_FONT_SIZE = 13.0;
     }
     [mentionedUsers insertObject:u atIndex:insertionIndex];
     NSMutableString *contentTemp = [userContent mutableCopy];
-    [contentTemp replaceCharactersInRange:range withString:[NSString stringWithFormat:@"@%@ ", [u username]]];
+    [contentTemp replaceCharactersInRange:range withString:[NSString stringWithFormat:@"@%@ ", [u globalName]]];
     userContent = [contentTemp copy];
     [delegate editorContentDidUpdateWithAttributedString:[self attributedUserString]];
 }
@@ -125,7 +125,7 @@ const CGFloat MESSAGE_EDITOR_FONT_SIZE = 13.0;
     DLUser *user;
     NSInteger lastLocation = -1;
     while (user = [e nextObject]) {
-        NSRange tagRange = [rawContent rangeOfString:[NSString stringWithFormat:@"@%@", [user username]] options:0 range:NSMakeRange(lastLocation + 1, rawContent.length - (lastLocation + 1))];
+        NSRange tagRange = [rawContent rangeOfString:[NSString stringWithFormat:@"@%@", [user globalName]] options:0 range:NSMakeRange(lastLocation + 1, rawContent.length - (lastLocation + 1))];
         if (tagRange.location != NSNotFound) {
             lastLocation = tagRange.location;
             [rawContent replaceCharactersInRange:tagRange withString:[NSString stringWithFormat:@"<@%@>", [user userID]]];

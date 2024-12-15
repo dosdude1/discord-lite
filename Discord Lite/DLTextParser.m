@@ -43,11 +43,11 @@ const CGFloat MESSAGE_VIEW_FONT_SIZE = 13.0;
             while (user = [ee nextObject]) {
                 if ([[user userID] isEqualToString:userID]) {
                     NSRange replacementRange = [[as string] rangeOfString:matchedTag];
-                    if (replacementRange.location != NSNotFound && [user username]) {
-                        NSString *username = [NSString stringWithFormat:@"@%@", [user username]];
-                        [as replaceCharactersInRange:replacementRange withString:username];
-                        [as addAttribute:NSFontAttributeName value:[NSFont boldSystemFontOfSize:MESSAGE_VIEW_FONT_SIZE] range:NSMakeRange(replacementRange.location, username.length)];
-                        [as addAttribute:NSBackgroundColorAttributeName value:[NSColor colorWithCalibratedRed:52.0/255.0 green:61.0/255.0 blue:106.0/255.0 alpha:1.0f] range:NSMakeRange(replacementRange.location, username.length)];
+                    if (replacementRange.location != NSNotFound && [user globalName]) {
+                        NSString *globalName = [NSString stringWithFormat:@"@%@", [user globalName]];
+                        [as replaceCharactersInRange:replacementRange withString:globalName];
+                        [as addAttribute:NSFontAttributeName value:[NSFont boldSystemFontOfSize:MESSAGE_VIEW_FONT_SIZE] range:NSMakeRange(replacementRange.location, globalName.length)];
+                        [as addAttribute:NSBackgroundColorAttributeName value:[NSColor colorWithCalibratedRed:52.0/255.0 green:61.0/255.0 blue:106.0/255.0 alpha:1.0f] range:NSMakeRange(replacementRange.location, globalName.length)];
                     }
                 }
             }

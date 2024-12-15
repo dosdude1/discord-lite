@@ -52,6 +52,9 @@ const NSTimeInterval TYPING_INTERVAL = 10.0;
     return username;
 }
 -(NSString *)globalName {
+    if (!globalName || [globalName isKindOfClass:[NSNull class]] || [globalName isEqualToString:@""]) {
+        return username;
+    }
     return globalName;
 }
 -(NSString *)avatarID {
