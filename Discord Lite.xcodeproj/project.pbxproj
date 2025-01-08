@@ -1146,6 +1146,7 @@
 					x86_64,
 					i386,
 					ppc,
+					ppc64,
 				);
 				CLANG_ENABLE_MODULES = NO;
 				CLANG_ENABLE_OBJC_ARC = NO;
@@ -1155,6 +1156,7 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				FRAMEWORK_SEARCH_PATHS = "";
 				"FRAMEWORK_SEARCH_PATHS[arch=i386]" = "$(DEVELOPER_DIR)/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.7.sdk/System/Library/Frameworks";
+				"FRAMEWORK_SEARCH_PATHS[arch=ppc64]" = "$(DEVELOPER_DIR)/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.5.sdk/System/Library/Frameworks";
 				"FRAMEWORK_SEARCH_PATHS[arch=ppc]" = "$(DEVELOPER_DIR)/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.5.sdk/System/Library/Frameworks";
 				"FRAMEWORK_SEARCH_PATHS[arch=x86_64]" = "$(DEVELOPER_DIR)/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.10.sdk/System/Library/Frameworks";
 				INFOPLIST_FILE = "Discord Lite/Info.plist";
@@ -1169,6 +1171,10 @@
 					"$(PROJECT_DIR)/$(TARGET_NAME)",
 					"$(DEVELOPER_DIR)/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.7.sdk/usr/lib",
 				);
+				"LIBRARY_SEARCH_PATHS[arch=ppc64]" = (
+					"$(PROJECT_DIR)/$(TARGET_NAME)",
+					"$(DEVELOPER_DIR)/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.5.sdk/usr/lib",
+				);
 				"LIBRARY_SEARCH_PATHS[arch=ppc]" = (
 					"$(PROJECT_DIR)/$(TARGET_NAME)",
 					"$(DEVELOPER_DIR)/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.5.sdk/usr/lib",
@@ -1182,8 +1188,9 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx10.10;
 				"SDKROOT[arch=i386]" = macosx10.7;
+				"SDKROOT[arch=ppc64]" = macosx10.5;
 				"SDKROOT[arch=ppc]" = macosx10.5;
-				"SDKROOT[arch=x86_64]" = macosx10.10;
+				"SDKROOT[arch=x86_64]" = macosx;
 			};
 			name = Release;
 		};

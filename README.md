@@ -45,7 +45,7 @@
 
 ### Releases
 
-Prebuilt Universal "Quad-FAT" binaries can be found in the [Releases](https://github.com/dosdude1/discord-lite/releases) section. You can download and run on PowerPC, 32-bit Intel, 64-bit Intel, or ARM (Apple Silicon) Macs.
+Prebuilt Universal "Penta-FAT" binaries can be found in the [Releases](https://github.com/dosdude1/discord-lite/releases) section. You can download and run on 32-bit PowerPC, 64-bit PowerPC, 32-bit Intel, 64-bit Intel, or ARM (Apple Silicon) Macs.
 
 Alternatively, you can download the latest release off [my website](http://dosdude1.com/apps/Discord%20Lite.dmg), which is loadable on the older machines.
 
@@ -61,3 +61,5 @@ The following components of Xcode Legacy need to be installed:
 - Mac OS X 10.7 SDK
 
 Once Xcode Legacy components have been installed, the application can simply be built and run in Xcode.
+
+**Note:** In order to compile a working 64-bit binary for OS X 10.5 Leopard, you must either build with the 10.5 SDK itself, or use the CoreFoundation and Foundation framework binaries from the 10.5 SDK in a later SDK.
